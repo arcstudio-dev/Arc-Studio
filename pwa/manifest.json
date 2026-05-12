@@ -1,14 +1,15 @@
 {
   "name": "VOLTIQ by Arc Studio",
   "short_name": "VOLTIQ",
-  "description": "Ausbildungssuite für Mechatroniker — AP1, AP2, Berichtsheft, Rechner, SPS",
+  "description": "Ausbildungssuite für Mechatroniker, Elektroniker und Industriemechaniker — AP1, AP2, Berichtsheft, Rechner, SPS",
+  "lang": "de",
+  "dir": "ltr",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#000000",
   "theme_color": "#000000",
-  "lang": "de",
   "categories": ["education", "utilities"],
   "icons": [
     {
@@ -26,52 +27,114 @@
   ],
   "shortcuts": [
     {
+      "name": "VOLTIQ — Mechatroniker",
+      "short_name": "VOLTIQ",
+      "description": "Lernplattform für Mechatroniker-Ausbildung (AP1, AP2, SPS, Berichtsheft)",
+      "url": "/voltiq.html",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='96'>⚡</text></svg>",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "AMPERE — Elektroniker",
+      "short_name": "AMPERE",
+      "description": "Lernplattform für Elektroniker-Ausbildung",
+      "url": "/VOLTECH-ampere.html",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='96'>🔌</text></svg>",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "TORQUE — Industriemechaniker",
+      "short_name": "TORQUE",
+      "description": "Lernplattform für Industriemechaniker-Ausbildung",
+      "url": "/VOLTECH-torque.html",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='96'>⚙️</text></svg>",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
       "name": "Lernmodus",
       "short_name": "Lernen",
       "url": "./VOLTECH-lern-basis.html",
-      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='96'>📚</text></svg>", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='96'>📚</text></svg>",
+          "sizes": "96x96"
+        }
+      ]
     },
     {
       "name": "Berichtsheft",
       "short_name": "Heft",
       "url": "./VOLTECH-berichtsheft.html",
-      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='96'>📓</text></svg>", "sizes": "96x96" }]
-    },
-    {
-      "name": "Tool-App",
-      "short_name": "Tools",
-      "url": "./VOLTECH-mechatronik-pro.html",
-      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='96'>⚙️</text></svg>", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='96'>📓</text></svg>",
+          "sizes": "96x96"
+        }
+      ]
     },
     {
       "name": "SPS-Trainer",
       "short_name": "SPS",
       "url": "./VOLTECH-sps.html",
-      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='96'>🔌</text></svg>", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='96'>🔌</text></svg>",
+          "sizes": "96x96"
+        }
+      ]
     },
     {
       "name": "Lerntools",
       "short_name": "Lerntools",
       "url": "./VOLTECH-tools2.html",
-      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='96'>🧰</text></svg>", "sizes": "96x96" }]
-    },
-    {
-      "name": "AMPERE — Elektroniker",
-      "short_name": "AMPERE",
-      "url": "./VOLTECH-ampere.html",
-      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='96'>⚡</text></svg>", "sizes": "96x96" }]
-    },
-    {
-      "name": "TORQUE — Industriemechaniker",
-      "short_name": "TORQUE",
-      "url": "./VOLTECH-torque.html",
-      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='96'>⚙️</text></svg>", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='96'>🧰</text></svg>",
+          "sizes": "96x96"
+        }
+      ]
     },
     {
       "name": "KI-Assistent",
       "short_name": "KI",
       "url": "./VOLTECH-ki.html",
-      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='96'>🧠</text></svg>", "sizes": "96x96" }]
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='.9em' font-size='96'>🧠</text></svg>",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "_note": "Screenshots hier einfügen sobald verfügbar. Empfohlen: min. 1 Desktop (1280x800) + 1 Mobile (390x844). Felder: src, sizes, type, form_factor ('wide' oder 'narrow'), label",
+      "_beispiel_desktop": {
+        "src": "/pwa/screenshots/desktop-home.png",
+        "sizes": "1280x800",
+        "type": "image/png",
+        "form_factor": "wide",
+        "label": "Arc Studio — Homepage"
+      },
+      "_beispiel_mobile": {
+        "src": "/pwa/screenshots/mobile-voltiq.png",
+        "sizes": "390x844",
+        "type": "image/png",
+        "form_factor": "narrow",
+        "label": "VOLTIQ — Lernmodus"
+      }
     }
   ]
 }

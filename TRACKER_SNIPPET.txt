@@ -1,0 +1,102 @@
+================================================================================
+  ARC STUDIO — ANALYTICS TRACKER SNIPPET
+  DSGVO-konform | Kein Cookie | Kein PII | Kein IP-Tracking
+================================================================================
+
+EINFÜGEN: Vor </body> in JEDER HTML-Seite, NACH dem letzten vorhandenen <script>-Block.
+
+--------------------------------------------------------------------------------
+SNIPPET (in <script>-Tags einwickeln und kopieren):
+--------------------------------------------------------------------------------
+
+<script>
+// Analytics: privacy-freundlich, kein Cookie, kein PII
+(function(){
+  var p = location.pathname.split('/').pop() || 'index.html';
+  var l = localStorage.getItem('arc_lang') || 'de';
+  fetch('/analytics.php', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({page: p, lang: l})
+  }).catch(function(){});
+})();
+</script>
+
+--------------------------------------------------------------------------------
+WO EINFÜGEN (in jeder HTML-Datei):
+--------------------------------------------------------------------------------
+
+Füge das Snippet direkt vor dem schließenden </body>-Tag ein.
+Stelle sicher, dass es NACH allen anderen <script>-Blöcken steht,
+damit localStorage.getItem('arc_lang') bereits gesetzt sein kann.
+
+Beispiel (korrekte Position im HTML):
+
+    ...
+    <script src="app.js"></script>        <!-- dein vorhandener Script-Block -->
+    <script>                              <!-- <-- TRACKER HIER EINFÜGEN -->
+    // Analytics: privacy-freundlich, kein Cookie, kein PII
+    (function(){
+      var p = location.pathname.split('/').pop() || 'index.html';
+      var l = localStorage.getItem('arc_lang') || 'de';
+      fetch('/analytics.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({page: p, lang: l})
+      }).catch(function(){});
+    })();
+    </script>
+  </body>                                 <!-- schließendes Body-Tag -->
+</html>
+
+--------------------------------------------------------------------------------
+BETROFFENE DATEIEN (alle HTML-Seiten der Suite):
+--------------------------------------------------------------------------------
+
+  index.html
+  voltiq.html
+  VOLTECH-ampere.html
+  VOLTECH-torque.html
+  VOLTECH-lern-basis.html
+  VOLTECH-berichtsheft.html
+  VOLTECH-mechatronik-pro.html
+  VOLTECH-sps.html
+  VOLTECH-tools2.html
+  VOLTECH-ki.html
+  404.html                        <- bereits enthalten
+
+  (stats.php und analytics.php brauchen keinen Tracker)
+
+--------------------------------------------------------------------------------
+WIE ES FUNKTIONIERT:
+--------------------------------------------------------------------------------
+
+1. `location.pathname.split('/').pop()` extrahiert den Dateinamen aus der URL.
+   Beispiel: https://arc-studio.org/voltiq.html  -> "voltiq.html"
+   Auf der Root-URL (/) wird "index.html" als Fallback verwendet.
+
+2. `localStorage.getItem('arc_lang')` liest die vom Nutzer gesetzte Sprache
+   (identisch zur Sprachumschaltlogik der restlichen Site). Fallback: 'de'.
+
+3. fetch() sendet einen POST-Request an /analytics.php.
+   Das .catch() stellt sicher, dass kein JS-Fehler auftritt wenn der
+   Endpunkt nicht erreichbar ist (z.B. offline / lokal).
+
+4. analytics.php verarbeitet den Request:
+   - Bot-Filter per User-Agent
+   - Rate-Limiting: max 1 Aufruf pro IP+Page pro 60 Sekunden (via APCu oder tmp-File)
+   - Schreibt in MySQL-Tabelle: pageviews(date, hour, page, lang, views)
+   - Gibt immer {"ok":true} zurück — Fehler werden nicht an den Client weitergegeben
+
+--------------------------------------------------------------------------------
+DATENSCHUTZ-HINWEIS:
+--------------------------------------------------------------------------------
+
+  KEIN Cookie wird gesetzt.
+  KEINE IP-Adresse wird gespeichert.
+  KEINE personenbezogenen Daten werden erfasst.
+  Der anonymisierte Rate-Limit-Hash wird nur im Server-RAM (APCu) oder
+  als tmp-File gespeichert und läuft nach 60 Sekunden ab.
+  Konform mit DSGVO Art. 6 (berechtigtes Interesse, da keine PII).
+
+================================================================================
