@@ -103,7 +103,7 @@ $timestamps[] = $now;
 file_put_contents($rlFile, implode("\n", $timestamps) . "\n", LOCK_EX);
 
 // ── E-Mail versenden ──────────────────────────────────────────
-$to      = 'arc.studio@gmx.de';
+$to      = 'arc-studio@arc-studio.org';
 $subject = '=?UTF-8?B?' . base64_encode('Neue Kontaktanfrage von ' . $name) . '?=';
 
 // Felder für die Mail absichern (Header-Injection verhindern)
