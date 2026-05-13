@@ -3040,6 +3040,7 @@ function toggleLang() {
 <script>
 // Analytics: privacy-freundlich, kein Cookie, kein PII
 (function(){
+  if (location.hostname !== 'arc-studio.org') return;
   var p = location.pathname.split('/').pop() || 'index.html';
   var l = localStorage.getItem('arc_lang') || 'de';
   fetch('/analytics.php', {

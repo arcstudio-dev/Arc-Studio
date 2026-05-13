@@ -420,41 +420,57 @@ nav {
 .screenshots-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 2rem;
   margin-top: 2.5rem;
+  justify-items: center;
 }
-.screenshot-placeholder {
-  background: var(--card);
-  border: 1px dashed var(--txm);
-  border-radius: var(--br);
-  aspect-ratio: 9/16;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: .6rem;
+.screenshot-frame {
+  position: relative;
+  background: #1a1a2e;
+  border: 2px solid rgba(255,255,255,.1);
+  border-radius: 28px;
+  padding: 10px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.04), 0 24px 60px rgba(0,0,0,.55), 0 0 40px rgba(99,102,241,.08);
+  width: 100%;
+  max-width: 200px;
+  transition: transform .25s, box-shadow .25s;
 }
-.screenshot-placeholder-icon {
-  font-size: 28px;
-  opacity: .4;
+.screenshot-frame::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 5px;
+  background: rgba(255,255,255,.12);
+  border-radius: 3px;
+  margin: 0 auto 8px;
 }
-.screenshot-placeholder-label {
-  font-size: 12px;
-  color: var(--txm);
-  font-weight: 500;
+.screenshot-frame:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 1px rgba(99,102,241,.2), 0 32px 70px rgba(0,0,0,.6), 0 0 50px rgba(99,102,241,.15);
+}
+.screenshot-frame img {
+  width: 100%;
+  border-radius: 18px;
+  display: block;
 }
 .screenshots-note {
   font-size: 13px;
   color: var(--txm);
-  margin-top: 1.25rem;
+  margin-top: 1.5rem;
   text-align: center;
 }
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+  .screenshots-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+@media (max-width: 450px) {
   .screenshots-grid {
     grid-template-columns: 1fr;
   }
-  .screenshot-placeholder {
-    aspect-ratio: 16/9;
+  .screenshot-frame {
+    max-width: 240px;
   }
 }
 
@@ -1254,168 +1270,35 @@ html.lang-de .en-only { display: none !important; }
     <p class="section-label"><span class="de-only">App-Einblick</span><span class="en-only">App Preview</span></p>
     <h2 class="section-headline" id="screenshots-headline"><span class="de-only">Sieh selbst rein.</span><span class="en-only">See for yourself.</span></h2>
 
-    <div class="screenshots-grid" role="list" aria-label="App-Mockups">
+    <div class="screenshots-grid" role="list" aria-label="App-Screenshots">
 
-      <!-- Mockup 1: Lernmodus -->
+      <!-- Screenshot 1: Lernmodus -->
       <figure style="margin:0;text-align:center;" role="listitem">
-        <svg viewBox="0 0 220 400" width="100%" style="max-width:220px;display:block;margin:0 auto;" aria-label="App-Mockup: Lernmodus" xmlns="http://www.w3.org/2000/svg" font-family="'Inter', system-ui, sans-serif">
-          <!-- Smartphone frame -->
-          <rect width="220" height="400" rx="24" fill="#1c1c1e"/>
-          <!-- Screen area -->
-          <rect x="8" y="8" width="204" height="384" rx="18" fill="#0a0a0f"/>
-          <!-- Status bar -->
-          <rect x="10" y="10" width="200" height="20" rx="4" fill="#2c2c2e"/>
-          <text x="20" y="23" fill="#a0a0b0" font-size="8" font-family="'Inter', system-ui, sans-serif">9:41</text>
-          <text x="185" y="23" fill="#a0a0b0" font-size="8" font-family="'Inter', system-ui, sans-serif" text-anchor="end">▌▌▌</text>
-          <!-- Header -->
-          <rect x="10" y="38" width="200" height="36" rx="8" fill="#2c2c2e"/>
-          <text x="110" y="61" fill="#ffffff" font-size="11" font-family="'Inter', system-ui, sans-serif" text-anchor="middle" font-weight="600">📚 VOLTIQ · Lernen</text>
-          <!-- Category badge -->
-          <rect x="20" y="82" width="80" height="16" rx="6" fill="rgba(99,102,241,0.2)"/>
-          <text x="60" y="93" fill="#6366f1" font-size="8" font-family="'Inter', system-ui, sans-serif" text-anchor="middle" font-weight="600">LERNFELD 3</text>
-          <!-- Flashcard -->
-          <rect x="20" y="104" width="180" height="120" rx="12" fill="#2c2c2e"/>
-          <text x="110" y="127" fill="#a0a0b0" font-size="10" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">Ohmsches Gesetz</text>
-          <text x="110" y="162" fill="#6366f1" font-size="30" font-family="'Inter', system-ui, sans-serif" text-anchor="middle" font-weight="700">U = R × I</text>
-          <text x="110" y="185" fill="#505060" font-size="9" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">Spannung = Widerstand × Strom</text>
-          <text x="110" y="200" fill="#505060" font-size="9" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">Einheit: Volt [V]</text>
-          <!-- Progress bar -->
-          <rect x="20" y="234" width="180" height="6" rx="3" fill="#2c2c2e"/>
-          <rect x="20" y="234" width="108" height="6" rx="3" fill="#6366f1"/>
-          <text x="20" y="250" fill="#505060" font-size="9" font-family="'Inter', system-ui, sans-serif">Karte 6 von 10</text>
-          <text x="200" y="250" fill="#6366f1" font-size="9" font-family="'Inter', system-ui, sans-serif" text-anchor="end">60%</text>
-          <!-- Answer buttons -->
-          <rect x="20" y="258" width="82" height="36" rx="10" fill="#ff453a"/>
-          <text x="61" y="281" fill="#ffffff" font-size="11" font-family="'Inter', system-ui, sans-serif" text-anchor="middle" font-weight="600">✕ Schwer</text>
-          <rect x="118" y="258" width="82" height="36" rx="10" fill="#30d158"/>
-          <text x="159" y="281" fill="#ffffff" font-size="11" font-family="'Inter', system-ui, sans-serif" text-anchor="middle" font-weight="600">✓ Leicht</text>
-          <!-- Hint text -->
-          <text x="110" y="310" fill="#505060" font-size="9" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">Tippe auf die Karte zum Umdrehen</text>
-          <!-- Bottom nav -->
-          <rect x="10" y="348" width="200" height="44" rx="10" fill="#1c1c2e"/>
-          <circle cx="44" cy="370" r="12" fill="rgba(99,102,241,0.25)"/>
-          <text x="44" y="374" fill="#6366f1" font-size="12" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">📚</text>
-          <circle cx="88" cy="370" r="12" fill="rgba(255,255,255,0.05)"/>
-          <text x="88" y="374" fill="#505060" font-size="12" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">🎤</text>
-          <circle cx="132" cy="370" r="12" fill="rgba(255,255,255,0.05)"/>
-          <text x="132" y="374" fill="#505060" font-size="12" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">🔌</text>
-          <circle cx="176" cy="370" r="12" fill="rgba(255,255,255,0.05)"/>
-          <text x="176" y="374" fill="#505060" font-size="12" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">📓</text>
-        </svg>
-        <figcaption style="margin-top:.75rem;font-size:13px;color:#a0a0b0;font-weight:500;"><span class="de-only">Lernmodus</span><span class="en-only">Learning Mode</span></figcaption>
+        <div class="screenshot-frame">
+          <img src="screenshots/lernmodus.webp" alt="VOLTIQ Lernmodus — Karteikarten, Lernfelder, SRS" loading="lazy" width="390" height="780">
+        </div>
+        <figcaption style="margin-top:.85rem;font-size:13px;color:#a0a0b0;font-weight:500;"><span class="de-only">Lernmodus</span><span class="en-only">Learning Mode</span></figcaption>
       </figure>
 
-      <!-- Mockup 2: SPS-Quiz -->
+      <!-- Screenshot 2: SPS-Trainer -->
       <figure style="margin:0;text-align:center;" role="listitem">
-        <svg viewBox="0 0 220 400" width="100%" style="max-width:220px;display:block;margin:0 auto;" aria-label="App-Mockup: SPS-Quiz" xmlns="http://www.w3.org/2000/svg" font-family="'Inter', system-ui, sans-serif">
-          <!-- Smartphone frame -->
-          <rect width="220" height="400" rx="24" fill="#1c1c1e"/>
-          <rect x="8" y="8" width="204" height="384" rx="18" fill="#0a0a0f"/>
-          <!-- Status bar -->
-          <rect x="10" y="10" width="200" height="20" rx="4" fill="#2c2c2e"/>
-          <text x="20" y="23" fill="#a0a0b0" font-size="8" font-family="'Inter', system-ui, sans-serif">9:41</text>
-          <text x="185" y="23" fill="#a0a0b0" font-size="8" font-family="'Inter', system-ui, sans-serif" text-anchor="end">▌▌▌</text>
-          <!-- Header -->
-          <rect x="10" y="38" width="200" height="36" rx="8" fill="#2c2c2e"/>
-          <text x="100" y="61" fill="#ffffff" font-size="11" font-family="'Inter', system-ui, sans-serif" text-anchor="middle" font-weight="600">🔌 SPS-Trainer</text>
-          <!-- Score badge -->
-          <rect x="155" y="44" width="44" height="18" rx="6" fill="rgba(99,102,241,0.2)"/>
-          <text x="177" y="56" fill="#6366f1" font-size="9" font-family="'Inter', system-ui, sans-serif" text-anchor="middle" font-weight="700">12 / 30</text>
-          <!-- Progress bar -->
-          <rect x="20" y="82" width="180" height="6" rx="3" fill="#2c2c2e"/>
-          <rect x="20" y="82" width="72" height="6" rx="3" fill="#6366f1"/>
-          <text x="20" y="98" fill="#505060" font-size="9" font-family="'Inter', system-ui, sans-serif">Frage 8 / 20</text>
-          <text x="200" y="98" fill="#6366f1" font-size="9" font-family="'Inter', system-ui, sans-serif" text-anchor="end">40%</text>
-          <!-- Question box -->
-          <rect x="20" y="104" width="180" height="54" rx="10" fill="#2c2c2e"/>
-          <text x="110" y="122" fill="#f0f0f5" font-size="11" font-family="'Inter', system-ui, sans-serif" text-anchor="middle" font-weight="600">Was ist ein NC-Kontakt?</text>
-          <text x="110" y="138" fill="#a0a0b0" font-size="9" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">Normally Closed = Öffner</text>
-          <text x="110" y="150" fill="#505060" font-size="9" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">im Ruhezustand geschlossen</text>
-          <!-- Answer options -->
-          <rect x="20" y="166" width="180" height="30" rx="8" fill="#2c2c2e"/>
-          <text x="110" y="185" fill="#a0a0b0" font-size="10" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">Öffner (normally closed)</text>
-          <!-- Selected answer (indigo) -->
-          <rect x="20" y="202" width="180" height="30" rx="8" fill="#6366f1"/>
-          <text x="110" y="221" fill="#ffffff" font-size="10" font-family="'Inter', system-ui, sans-serif" text-anchor="middle" font-weight="600">Schließer (normally open)</text>
-          <rect x="20" y="238" width="180" height="30" rx="8" fill="#2c2c2e"/>
-          <text x="110" y="257" fill="#a0a0b0" font-size="10" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">Wechsler</text>
-          <rect x="20" y="274" width="180" height="30" rx="8" fill="#2c2c2e"/>
-          <text x="110" y="293" fill="#a0a0b0" font-size="10" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">Flankenauslöser</text>
-          <!-- Submit button -->
-          <rect x="20" y="312" width="180" height="34" rx="10" fill="#6366f1"/>
-          <text x="110" y="334" fill="#ffffff" font-size="12" font-family="'Inter', system-ui, sans-serif" text-anchor="middle" font-weight="700">→ Antwort prüfen</text>
-          <!-- Bottom nav -->
-          <rect x="10" y="348" width="200" height="44" rx="10" fill="#1c1c2e"/>
-          <circle cx="44" cy="370" r="12" fill="rgba(255,255,255,0.05)"/>
-          <text x="44" y="374" fill="#505060" font-size="12" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">📖</text>
-          <circle cx="88" cy="370" r="12" fill="rgba(255,255,255,0.05)"/>
-          <text x="88" y="374" fill="#505060" font-size="12" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">🎯</text>
-          <circle cx="132" cy="370" r="12" fill="rgba(99,102,241,0.25)"/>
-          <text x="132" y="374" fill="#6366f1" font-size="12" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">❓</text>
-          <circle cx="176" cy="370" r="12" fill="rgba(255,255,255,0.05)"/>
-          <text x="176" y="374" fill="#505060" font-size="12" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">🖥</text>
-        </svg>
-        <figcaption style="margin-top:.75rem;font-size:13px;color:#a0a0b0;font-weight:500;"><span class="de-only">SPS-Quiz</span><span class="en-only">PLC Quiz</span></figcaption>
+        <div class="screenshot-frame">
+          <img src="screenshots/sps-trainer.webp" alt="VOLTIQ SPS-Trainer — Grundlagen, KOP-Trainer, Quiz, Simulator" loading="lazy" width="390" height="780">
+        </div>
+        <figcaption style="margin-top:.85rem;font-size:13px;color:#a0a0b0;font-weight:500;"><span class="de-only">SPS-Trainer</span><span class="en-only">PLC Trainer</span></figcaption>
       </figure>
 
-      <!-- Mockup 3: Berichtsheft -->
+      <!-- Screenshot 3: Berichtsheft -->
       <figure style="margin:0;text-align:center;" role="listitem">
-        <svg viewBox="0 0 220 400" width="100%" style="max-width:220px;display:block;margin:0 auto;" aria-label="App-Mockup: Berichtsheft" xmlns="http://www.w3.org/2000/svg" font-family="'Inter', system-ui, sans-serif">
-          <!-- Smartphone frame -->
-          <rect width="220" height="400" rx="24" fill="#1c1c1e"/>
-          <rect x="8" y="8" width="204" height="384" rx="18" fill="#0a0a0f"/>
-          <!-- Status bar -->
-          <rect x="10" y="10" width="200" height="20" rx="4" fill="#2c2c2e"/>
-          <text x="20" y="23" fill="#a0a0b0" font-size="8" font-family="'Inter', system-ui, sans-serif">9:41</text>
-          <text x="185" y="23" fill="#a0a0b0" font-size="8" font-family="'Inter', system-ui, sans-serif" text-anchor="end">▌▌▌</text>
-          <!-- Header -->
-          <rect x="10" y="38" width="200" height="36" rx="8" fill="#2c2c2e"/>
-          <text x="110" y="61" fill="#ffffff" font-size="11" font-family="'Inter', system-ui, sans-serif" text-anchor="middle" font-weight="600">📓 Berichtsheft</text>
-          <!-- Section label -->
-          <text x="20" y="92" fill="#505060" font-size="9" font-family="'Inter', system-ui, sans-serif" font-weight="600">MEINE BERICHTE</text>
-          <!-- Week card 1 -->
-          <rect x="20" y="100" width="180" height="60" rx="10" fill="#1c1c2e" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
-          <rect x="28" y="112" width="30" height="14" rx="4" fill="rgba(99,102,241,0.2)"/>
-          <text x="43" y="122" fill="#6366f1" font-size="8" font-family="'Inter', system-ui, sans-serif" text-anchor="middle" font-weight="700">KW 18</text>
-          <text x="70" y="122" fill="#f0f0f5" font-size="10" font-family="'Inter', system-ui, sans-serif" font-weight="600">SPS-Programmierung</text>
-          <text x="28" y="138" fill="#505060" font-size="9" font-family="'Inter', system-ui, sans-serif">29.04. – 03.05.2026</text>
-          <text x="193" y="134" fill="#505060" font-size="14" font-family="'Inter', system-ui, sans-serif" text-anchor="end">›</text>
-          <!-- Week card 2 -->
-          <rect x="20" y="168" width="180" height="60" rx="10" fill="#1c1c2e" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
-          <rect x="28" y="180" width="30" height="14" rx="4" fill="rgba(99,102,241,0.2)"/>
-          <text x="43" y="190" fill="#6366f1" font-size="8" font-family="'Inter', system-ui, sans-serif" text-anchor="middle" font-weight="700">KW 17</text>
-          <text x="70" y="190" fill="#f0f0f5" font-size="10" font-family="'Inter', system-ui, sans-serif" font-weight="600">Hydraulik Grundlagen</text>
-          <text x="28" y="206" fill="#505060" font-size="9" font-family="'Inter', system-ui, sans-serif">22.04. – 26.04.2026</text>
-          <text x="193" y="202" fill="#505060" font-size="14" font-family="'Inter', system-ui, sans-serif" text-anchor="end">›</text>
-          <!-- Week card 3 -->
-          <rect x="20" y="236" width="180" height="60" rx="10" fill="#1c1c2e" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
-          <rect x="28" y="248" width="30" height="14" rx="4" fill="rgba(99,102,241,0.2)"/>
-          <text x="43" y="258" fill="#6366f1" font-size="8" font-family="'Inter', system-ui, sans-serif" text-anchor="middle" font-weight="700">KW 16</text>
-          <text x="70" y="258" fill="#f0f0f5" font-size="10" font-family="'Inter', system-ui, sans-serif" font-weight="600">Pneumatik &amp; Wartung</text>
-          <text x="28" y="274" fill="#505060" font-size="9" font-family="'Inter', system-ui, sans-serif">14.04. – 17.04.2026</text>
-          <text x="193" y="270" fill="#505060" font-size="14" font-family="'Inter', system-ui, sans-serif" text-anchor="end">›</text>
-          <!-- Add hint -->
-          <text x="110" y="318" fill="#505060" font-size="9" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">3 Berichte gespeichert</text>
-          <!-- Floating action button -->
-          <circle cx="180" cy="338" r="18" fill="#6366f1" filter="url(#shadow)"/>
-          <text x="180" y="344" fill="#ffffff" font-size="18" font-family="'Inter', system-ui, sans-serif" text-anchor="middle" font-weight="300">+</text>
-          <!-- Bottom nav -->
-          <rect x="10" y="354" width="200" height="38" rx="10" fill="#1c1c2e"/>
-          <circle cx="44" cy="373" r="10" fill="rgba(255,255,255,0.05)"/>
-          <text x="44" y="377" fill="#505060" font-size="11" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">📚</text>
-          <circle cx="88" cy="373" r="10" fill="rgba(255,255,255,0.05)"/>
-          <text x="88" y="377" fill="#505060" font-size="11" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">🎤</text>
-          <circle cx="132" cy="373" r="10" fill="rgba(255,255,255,0.05)"/>
-          <text x="132" y="377" fill="#505060" font-size="11" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">⚙️</text>
-          <circle cx="176" cy="373" r="10" fill="rgba(99,102,241,0.25)"/>
-          <text x="176" y="377" fill="#6366f1" font-size="11" font-family="'Inter', system-ui, sans-serif" text-anchor="middle">📓</text>
-        </svg>
-        <figcaption style="margin-top:.75rem;font-size:13px;color:#a0a0b0;font-weight:500;"><span class="de-only">Berichtsheft</span><span class="en-only">Training Report</span></figcaption>
+        <div class="screenshot-frame">
+          <img src="screenshots/berichtsheft.webp" alt="VOLTIQ Berichtsheft — Wochenberichte, Vorlagen, Statistik" loading="lazy" width="390" height="780">
+        </div>
+        <figcaption style="margin-top:.85rem;font-size:13px;color:#a0a0b0;font-weight:500;"><span class="de-only">Berichtsheft</span><span class="en-only">Training Report</span></figcaption>
       </figure>
 
     </div>
 
-    <p class="screenshots-note"><span class="de-only">SVG-Mockups — die echte App direkt ausprobieren: <a href="voltiq.html" style="color:var(--ac);font-weight:600;text-decoration:none;">VOLTIQ starten →</a></span><span class="en-only">SVG mockups — try the real app: <a href="voltiq.html" style="color:var(--ac);font-weight:600;text-decoration:none;">Start VOLTIQ →</a></span></p>
+    <p class="screenshots-note"><span class="de-only">Echte App — direkt ausprobieren: <a href="voltiq.html" style="color:var(--ac);font-weight:600;text-decoration:none;">VOLTIQ starten →</a></span><span class="en-only">Real app — try it now: <a href="voltiq.html" style="color:var(--ac);font-weight:600;text-decoration:none;">Start VOLTIQ →</a></span></p>
   </div>
 </section>
 
@@ -1501,10 +1384,18 @@ html.lang-de .en-only { display: none !important; }
       </div>
 
       <div class="roadmap-item" role="listitem">
-        <span class="roadmap-badge badge-progress"><span class="de-only">🔄 In Arbeit</span><span class="en-only">🔄 In Progress</span></span>
+        <span class="roadmap-badge badge-live">✅ Live</span>
         <div>
           <p class="roadmap-content-title">English Mode</p>
-          <p class="roadmap-content-desc"><span class="de-only">Alle Apps auf Englisch — für internationale Azubis</span><span class="en-only">All apps in English — for international apprentices</span></p>
+          <p class="roadmap-content-desc"><span class="de-only">Vollständige EN-Übersetzung der Landing Page — Sprachumschalter oben rechts</span><span class="en-only">Full EN translation of the landing page — language switcher top right</span></p>
+        </div>
+      </div>
+
+      <div class="roadmap-item" role="listitem">
+        <span class="roadmap-badge badge-progress"><span class="de-only">🔄 In Arbeit</span><span class="en-only">🔄 In Progress</span></span>
+        <div>
+          <p class="roadmap-content-title"><span class="de-only">Prüfungssimulator v2</span><span class="en-only">Exam Simulator v2</span></p>
+          <p class="roadmap-content-desc"><span class="de-only">AP1 + AP2 Vollsimulation mit IHK-Auswertung, Timer und Ergebnisanalyse</span><span class="en-only">AP1 + AP2 full simulation with IHK scoring, timer and result analysis</span></p>
         </div>
       </div>
 
@@ -1856,6 +1747,7 @@ function setLang(l) {
 <script>
 // Analytics: privacy-freundlich, kein Cookie, kein PII
 (function(){
+  if (location.hostname !== 'arc-studio.org') return;
   var p = location.pathname.split('/').pop() || 'index.html';
   var l = localStorage.getItem('arc_lang') || 'de';
   fetch('/analytics.php', {
