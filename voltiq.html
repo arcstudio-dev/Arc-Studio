@@ -242,6 +242,28 @@ html.lang-de .en-only { display: none !important; }
 .lang-btn { font-size: 12px; font-weight: 700; padding: .35rem .65rem; border-radius: 8px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.5); cursor: pointer; letter-spacing: .04em; }
 .lang-btn:hover { background: rgba(255,255,255,.1); color: rgba(255,255,255,.8); }
 
+/* ── RÜCKKEHRER-BANNER ── */
+.return-banner{
+  display:none;
+  margin:0 1rem .5rem;
+  padding:.9rem 1.1rem;
+  background:rgba(99,102,241,.1);
+  border:1px solid rgba(99,102,241,.25);
+  border-radius:var(--r2);
+  animation:fadeUp .3s ease both;
+}
+.return-banner-top{display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem;}
+.return-banner-icon{font-size:18px;flex-shrink:0;}
+.return-banner-text{font-size:13px;font-weight:600;color:var(--tx);}
+.return-banner-sub{font-size:11px;color:var(--tx3);margin-top:1px;}
+.return-banner-btns{display:flex;gap:.5rem;flex-wrap:wrap;}
+.return-btn{
+  font-size:12px;font-weight:600;color:var(--ac);
+  background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);
+  padding:.3rem .75rem;border-radius:8px;text-decoration:none;
+  transition:background .15s;white-space:nowrap;
+}
+.return-btn:active{background:rgba(99,102,241,.3);}
 </style>
 </head>
 <body>
@@ -317,6 +339,23 @@ html.lang-de .en-only { display: none !important; }
   <h1 class="hero-title">Dein digitaler<br><span class="hl">Azubi-Begleiter</span></h1>
   <p class="hero-sub">5 Apps für die Mechatroniker-Ausbildung — offline, kein Account.</p>
 </section>
+
+<!-- Rückkehrer-Banner (wird per JS eingeblendet wenn Visits > 1) -->
+<div class="return-banner" id="return-banner">
+  <div class="return-banner-top">
+    <span class="return-banner-icon">👋</span>
+    <div>
+      <div class="return-banner-text">Willkommen zurück!</div>
+      <div class="return-banner-sub">Mach da weiter, wo du aufgehört hast.</div>
+    </div>
+  </div>
+  <div class="return-banner-btns">
+    <a href="VOLTECH-lern-basis.html" class="return-btn">📚 Lernmodus</a>
+    <a href="VOLTECH-sps.html" class="return-btn">🔌 SPS-Trainer</a>
+    <a href="VOLTECH-berichtsheft.html" class="return-btn">📓 Berichtsheft</a>
+    <a href="VOLTECH-lern-extra.html" class="return-btn">🎤 AP2-Extra</a>
+  </div>
+</div>
 
 <div class="stats">
   <div class="stat"><div class="stat-val">5</div><div class="stat-lbl">Apps</div></div>
@@ -872,6 +911,19 @@ function toggleLang() {
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({page: p, lang: l})
   }).catch(function(){});
+})();
+</script>
+<script>
+// Rückkehrer-Banner: ab dem 2. Besuch einblenden
+(function(){
+  try {
+    var visits = parseInt(localStorage.getItem('voltiq_visits') || '0', 10) + 1;
+    localStorage.setItem('voltiq_visits', visits);
+    if (visits >= 2) {
+      var banner = document.getElementById('return-banner');
+      if (banner) banner.style.display = 'block';
+    }
+  } catch(e) {}
 })();
 </script>
 </body>

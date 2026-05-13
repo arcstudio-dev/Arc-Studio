@@ -29,6 +29,7 @@ AddType text/html                          .html
 AddType image/svg+xml                      .svg
 AddType font/woff2                         .woff2
 AddType font/woff                          .woff
+AddType image/webp                         .webp
 
 # ── CACHE-CONTROL ─────────────────────────────────────────────
 # HTML: kein Cache (immer frisch)
@@ -48,9 +49,14 @@ AddType font/woff                          .woff
   Header always set Cache-Control "max-age=86400"
 </FilesMatch>
 
-# Statische Assets: langer Cache
-<FilesMatch "\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2)$">
+# Statische Assets: langer Cache (30 Tage)
+<FilesMatch "\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|webp)$">
   Header always set Cache-Control "max-age=2592000, public"
+</FilesMatch>
+
+# PHP-Endpunkte: kein Cache
+<FilesMatch "\.php$">
+  Header always set Cache-Control "no-cache, no-store, must-revalidate"
 </FilesMatch>
 
 # ── SECURITY HEADERS ──────────────────────────────────────────

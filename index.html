@@ -288,6 +288,56 @@ nav {
   color: var(--txm);
   line-height: 1.5;
 }
+.hero-choose-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--txm);
+}
+.hero-prof-btns {
+  display: flex;
+  gap: .6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.prof-btn {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .7rem 1.15rem;
+  border: 1px solid var(--sep);
+  border-radius: 14px;
+  background: rgba(255,255,255,.03);
+  text-decoration: none;
+  transition: border-color .2s, background .2s, transform .15s, box-shadow .2s;
+  min-width: 155px;
+  text-align: left;
+}
+.prof-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,.06);
+  box-shadow: 0 8px 24px rgba(0,0,0,.3);
+}
+.prof-voltiq:hover { border-color: #6366f1; box-shadow: 0 8px 24px rgba(99,102,241,.15); }
+.prof-ampere:hover { border-color: #f97316; box-shadow: 0 8px 24px rgba(249,115,22,.15); }
+.prof-torque:hover { border-color: #14b8a6; box-shadow: 0 8px 24px rgba(20,184,166,.15); }
+.prof-icon { font-size: 22px; flex-shrink: 0; line-height: 1; }
+.prof-info { display: flex; flex-direction: column; }
+.prof-name {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -.2px;
+  line-height: 1.1;
+}
+.prof-voltiq .prof-name { color: #6366f1; }
+.prof-ampere .prof-name { color: #f97316; }
+.prof-torque .prof-name { color: #14b8a6; }
+.prof-role {
+  font-size: 10px;
+  color: var(--txm);
+  margin-top: 2px;
+}
 @media (max-width: 600px) {
   #hero {
     padding: 4rem 1.25rem 3.5rem;
@@ -295,6 +345,11 @@ nav {
   .hero-headline {
     letter-spacing: -1.5px;
   }
+  .hero-prof-btns {
+    flex-direction: column;
+    align-items: center;
+  }
+  .prof-btn { min-width: 220px; }
 }
 
 /* ══ SECTION: FÜR WEN ════════════════════════════════════════ */
@@ -984,13 +1039,39 @@ html.lang-de .en-only { display: none !important; }
   </p>
 
   <p class="hero-stats mono">
-    <span class="de-only">3 Apps · KI-Assistent · 18 Lernfelder · 105+ Quizfragen · 100&nbsp;% offline · 0&nbsp;€</span>
-    <span class="en-only">3 Apps · AI Assistant · 18 Learning Fields · 105+ Quiz Questions · 100&nbsp;% offline · 0&nbsp;€</span>
+    <span class="de-only">4 Apps · 30+ Lernfelder · 100+ Quiz-Fragen · 100&nbsp;% offline · 0&nbsp;€</span>
+    <span class="en-only">4 Apps · 30+ Learning Fields · 100+ Quiz Questions · 100&nbsp;% offline · 0&nbsp;€</span>
   </p>
 
   <div class="hero-cta-group">
-    <a href="voltiq.html" class="btn btn-primary hero-cta-btn"><span class="de-only">VOLTIQ starten →</span><span class="en-only">Start VOLTIQ →</span></a>
-    <p class="hero-pwa-note"><span class="de-only">Auch als PWA installierbar — direkt im Browser, kein App Store nötig</span><span class="en-only">Also installable as a PWA — directly in your browser, no App Store needed</span></p>
+    <p class="hero-choose-label"><span class="de-only">Wähle deinen Beruf — direkt loslegen:</span><span class="en-only">Choose your trade — start right away:</span></p>
+    <div class="hero-prof-btns">
+      <a href="voltiq.html" class="prof-btn prof-voltiq">
+        <span class="prof-icon">⚡</span>
+        <span class="prof-info">
+          <span class="prof-name">VOLTIQ</span>
+          <span class="prof-role de-only">Mechatroniker</span>
+          <span class="prof-role en-only">Mechatronics Tech.</span>
+        </span>
+      </a>
+      <a href="VOLTECH-ampere.html" class="prof-btn prof-ampere">
+        <span class="prof-icon">🔌</span>
+        <span class="prof-info">
+          <span class="prof-name">AMPERE</span>
+          <span class="prof-role de-only">Elektroniker EfB</span>
+          <span class="prof-role en-only">Electrician EfB</span>
+        </span>
+      </a>
+      <a href="VOLTECH-torque.html" class="prof-btn prof-torque">
+        <span class="prof-icon">⚙️</span>
+        <span class="prof-info">
+          <span class="prof-name">TORQUE</span>
+          <span class="prof-role de-only">Industriemechaniker</span>
+          <span class="prof-role en-only">Industrial Mechanic</span>
+        </span>
+      </a>
+    </div>
+    <p class="hero-pwa-note"><span class="de-only">Kostenlos · Offline · Kein Account · Als PWA installierbar</span><span class="en-only">Free · Offline · No account · Installable as PWA</span></p>
   </div>
 </section>
 
