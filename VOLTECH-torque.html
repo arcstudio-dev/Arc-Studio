@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="de" class="lang-de">
+<html lang="de" class="lang-de theme-torque">
 <head>
 <meta charset="UTF-8">
+<script>if(localStorage.getItem('arc_theme')==='dark')document.documentElement.classList.add('dm');</script>
+<script>if(!localStorage.getItem('arc_onboarding_done'))window.location.replace('VOLTECH-onboarding.html');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="TORQUE — IHK-Lern-App für Industriemechaniker. Quiz, Toleranzen, SR-Karten, AP1-Simulator. Kostenlos & offline.">
+<meta property="og:title" content="TORQUE · Industriemechaniker">
+<meta property="og:description" content="IHK-Vorbereitung für Industriemechaniker. Kostenlos, offline, kein Account.">
+<meta property="og:url" content="https://arc-studio.org/VOLTECH-torque.html">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="theme-color" content="#040608">
 <meta name="apple-mobile-web-app-title" content="TORQUE">
 <title>TORQUE — Industriemechaniker Betriebstechnik</title>
@@ -13,32 +19,107 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ARC STUDIO — UNIFIED DESIGN TOKENS v1.0 · TORQUE Theme
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 :root {
-  --bg: #040608;
-  --bg2: #0c0e12;
-  --bg3: #141720;
-  --bg4: #1c2028;
-  --sep: rgba(255,255,255,.06);
-  --br: rgba(255,255,255,.07);
-  --tx: #eef0f5;
-  --tx2: #9aa0b0;
-  --tx3: #4a5060;
-  --ac: #14b8a6;
+  /* ── Surfaces (TORQUE: blau-getönt) ──────────────────────── */
+  --bg:  #ffffff;
+  --bg2: #f8f5ff;
+  --bg3: #f3f0fa;
+  --bg4: #ede8f8;
+
+  /* ── Borders ──────────────────────────────────────────────── */
+  --sep:  rgba(122,14,200,.06);
+  --brd:  rgba(122,14,200,.10);
+  --brd2: rgba(122,14,200,.18);
+
+  /* ── Text ─────────────────────────────────────────────────── */
+  --tx:  #1a1a2e;
+  --tx2: #6b7280;
+  --tx3: #9ca3af;
+  --tx4: rgba(26,26,46,.08);
+
+  /* ── Accent (TORQUE: Teal) ────────────────────────────────── */
+  --ac:  #14b8a6;
   --acd: #0d9488;
   --acg: rgba(20,184,166,.12);
-  --ok: #34d399;
-  --err: #f87171;
-  --warn: #fbbf24;
-  --r: 10px;
-  --r2: 14px;
-  --r3: 18px;
-  --sa: 'Inter', system-ui, sans-serif;
-  --mo: 'JetBrains Mono', monospace;
+  --acb: rgba(20,184,166,.28);
+
+  /* ── Semantic Status ──────────────────────────────────────── */
+  --ok:   #34d399;  --ok-g:  rgba(52,211,153,.14);   --ok-b:  rgba(52,211,153,.25);
+  --warn: #ff9f0a;  --warn-g:rgba(251,191,36,.12);
+  --err:  #f87171;  --err-g: rgba(248,113,113,.12);
+  --pur:  #bf5af2;
+  --teal: #40c8e0;
+
+  /* ── Typography ───────────────────────────────────────────── */
+  --font-sans:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'SF Mono','Fira Code',monospace;
+
+  /* ── Foreground alias ────────────────────────────────────── */
+  --fg: var(--tx);
+  --fs-xs:   10px;
+  --fs-sm:   12px;
+  --fs-md:   13px;
+  --fs-base: 15px;
+  --fs-lg:   17px;
+  --fs-xl:   20px;
+  --fs-2xl:  24px;
+  --fw-medium: 500;
+  --fw-semi:   600;
+  --fw-bold:   700;
+  --lh-snug:   1.3;
+  --lh-base:   1.5;
+  --lh-relaxed:1.65;
+
+  /* ── Spacing (4px grid) ───────────────────────────────────── */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+
+  /* ── Border Radius ────────────────────────────────────────── */
+  --r-xs:   6px;
+  --r-sm:   8px;
+  --r-md:  12px;
+  --r-lg:  16px;
+  --r-xl:  20px;
+  --r-full:9999px;
+
+  /* ── Shadows ──────────────────────────────────────────────── */
+  --shadow-sm: 0 1px 4px rgba(0,0,0,.08);
+  --shadow-md: 0 4px 20px rgba(0,0,0,.10);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,.15);
+
+  /* ── Transitions ──────────────────────────────────────────── */
+  --t-fast: .12s ease;
+  --t-base: .2s ease;
+  --t-slow: .32s cubic-bezier(.16,1,.3,1);
+
+  /* ── Layout ───────────────────────────────────────────────── */
+  --max-w: 640px;
+  --touch: 44px;
+
+  /* ── Legacy aliases (zero breaking changes) ───────────────── */
+  --br:  var(--brd);
+  --br2: var(--brd2);
+  --r:   var(--r-md);
+  --r2:  var(--r-lg);
+  --r3:  var(--r-xl);
+  --sa:  var(--font-sans);
+  --mo:  var(--font-mono);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { background: var(--bg); color: var(--tx); font-family: var(--sa); }
+html {
+  background: var(--bg); color: var(--tx); font-family: var(--sa);
+  scroll-padding-top: 52px; /* Sticky header compensation */
+}
 
 body {
   -webkit-font-smoothing: antialiased;
@@ -48,13 +129,28 @@ body {
   overflow-x: hidden;
 }
 
-/* Light Mode */
-.lm { --bg:#f4f6f8; --bg2:#ffffff; --bg3:#e6eaee; --bg4:#d8dde3;
-      --tx:#1a1e25; --tx2:#3a4050; --tx3:#7a8090; }
-.lm .hdr { background: rgba(244,246,248,.9); }
-.lm .tabs { background: rgba(244,246,248,.95); }
-.lm .drawer-overlay { background: rgba(0,0,0,.4); }
-.lm .drawer { background: var(--bg2); }
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.08;
+}
+
+/* Light Mode */.dm {
+  color-scheme: dark;
+  --bg:#0a0a0f; --bg2:#0f0f17; --bg3:#171720; --bg4:#1e1e2a;
+  --tx:#f0f0f5; --tx2:#a0a0b0; --tx3:#606070; --tx4:rgba(255,255,255,.08);
+  --sep:rgba(255,255,255,.06); --brd:rgba(255,255,255,.09); --brd2:rgba(255,255,255,.14);
+  --br:rgba(255,255,255,.09); --br2:rgba(255,255,255,.14);
+  --border:rgba(255,255,255,.09);
+  --shadow-sm:0 1px 4px rgba(0,0,0,.5); --shadow-md:0 4px 20px rgba(0,0,0,.55); --shadow-lg:0 16px 48px rgba(0,0,0,.65);
+  --sh:0 1px 4px rgba(0,0,0,.5),0 4px 16px rgba(0,0,0,.45); --sh2:0 2px 8px rgba(0,0,0,.6),0 12px 40px rgba(0,0,0,.5);
+}
+.dm .hdr { background:rgba(10,10,15,.92); }
+.dm .bnav { background:rgba(10,10,15,.94); border-top: 1px solid rgba(255,255,255,.08); }
+.dm .bnav-btn { color: rgba(255,255,255,.35); }
+.dm .bnav-btn.on { color: var(--ac); background: rgba(99,102,241,.07); }
+.dm .drawer-overlay { background: rgba(255,255,255,.35); }
+.dm .drawer { background: var(--bg2); }
 
 /* Header */
 .hdr {
@@ -75,54 +171,59 @@ body {
 .hdr-wordmark p { font-size: 10px; color: var(--tx3); font-weight: 500; letter-spacing: .2px; margin-top: 1px; }
 .hdr-actions { display: flex; gap: .4rem; }
 .hdr-btn {
-  width: 36px; height: 36px; border-radius: 10px;
-  background: var(--bg3); border: 1px solid var(--br);
+  width: 44px; height: 44px; border-radius: var(--r-sm);
+  background: var(--bg3); border: 1px solid var(--brd);
   color: var(--tx2); font-size: 16px; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  transition: all .15s;
+  transition: background var(--t-fast), color var(--t-fast);
+  flex-shrink: 0;
 }
 .hdr-btn:hover { background: var(--bg4); color: var(--tx); }
+.hdr-btn:active { opacity: .7; }
 
-/* Tab Bar */
-.tabs {
-  position: sticky; top: 57px; z-index: 90;
-  background: rgba(4,6,8,.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--sep);
-  display: flex;
-  overflow-x: auto;
-  scrollbar-width: none;
-  padding: 0 .5rem;
+/* ── BOTTOM NAV ── */
+.bnav {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(10,10,15,.94);
+  backdrop-filter: saturate(180%) blur(28px);
+  -webkit-backdrop-filter: saturate(180%) blur(28px);
+  border-top: 1px solid rgba(255,255,255,.08);
+  display: flex; padding: .3rem .3rem calc(.3rem + env(safe-area-inset-bottom));
+  z-index: 40; gap: 2px;
 }
-.tabs::-webkit-scrollbar { display: none; }
-.tab-btn {
-  flex-shrink: 0;
-  font-size: 12px; font-weight: 600;
-  padding: .65rem .85rem;
-  border: none; background: transparent;
-  color: var(--tx3); cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: all .15s;
-  display: flex; align-items: center; gap: .4rem;
-  white-space: nowrap; min-height: 44px;
-  font-family: var(--sa);
+.bnav-btn {
+  flex: 1; font-size: 9.5px; font-weight: 600;
+  padding: .5rem .2rem .45rem; border: none; background: transparent;
+  cursor: pointer; color: var(--tx3); border-radius: var(--r-sm);
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  min-height: var(--touch); /* 44px touch target */
+  letter-spacing: .02em; -webkit-tap-highlight-color: transparent;
+  text-transform: uppercase; transition: color var(--t-fast), background var(--t-fast);
 }
-.tab-btn.on { color: var(--ac); border-bottom-color: var(--ac); }
-.tab-btn:hover:not(.on) { color: var(--tx2); }
+.bnav-btn:active { opacity: .65; transform: scale(.95); }
+.bnav-btn.on { color: var(--ac); background: var(--acg); }
+.bnav-icon { font-size: 20px; line-height: 1; display: block;
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1); }
+.bnav-btn.on .bnav-icon { transform: translateY(-2px) scale(1.12); }
 
 /* Screens */
-.screen { display: none; padding: 1rem; max-width: 640px; margin: 0 auto; padding-bottom: 2rem; }
-.screen.on { display: block; }
+.screen { display: none; padding: 1rem; max-width: 640px; margin: 0 auto; padding-bottom: 90px; animation: none; }
+.screen.on { display: block; animation: fadeUp .25s ease both; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 /* Cards */
 .card {
   background: var(--bg2);
   border: 1px solid var(--br);
-  border-radius: var(--r2);
+  border-radius: var(--r2, 14px);
   padding: 1rem;
   margin-bottom: .75rem;
+  transition: border-color .2s;
 }
+.card:hover { border-color: var(--br2); }
 
 /* Section titles */
 .sec-title {
@@ -151,13 +252,13 @@ body {
 }
 .dq-toggle {
   background: var(--acg); color: var(--ac);
-  border: 1px solid rgba(20,184,166,.3);
-  border-radius: 8px; padding: .5rem .85rem;
+  border: 1px solid var(--acb);
+  border-radius: var(--r-sm); padding: .5rem .85rem;
   font-size: 13px; font-weight: 600; cursor: pointer;
-  font-family: var(--sa); min-height: 36px;
-  transition: all .15s;
+  font-family: var(--sa); min-height: var(--touch);
+  transition: background var(--t-fast), border-color var(--t-fast);
 }
-.dq-toggle:hover { background: rgba(20,184,166,.2); }
+.dq-toggle:hover { background: var(--acb); }
 .dq-answer {
   background: var(--bg3); border-radius: 8px;
   padding: .75rem; margin-top: .75rem;
@@ -187,10 +288,10 @@ body {
 .lf-quick-card {
   background: var(--bg2); border: 1px solid var(--br);
   border-radius: var(--r); padding: .75rem;
-  cursor: pointer; transition: all .15s;
+  cursor: pointer; transition: background .15s, color .15s, border-color .15s, opacity .15s;
   text-align: left;
 }
-.lf-quick-card:hover { background: var(--bg3); border-color: rgba(20,184,166,.3); }
+.lf-quick-card:hover { background: var(--bg3); border-color: var(--acb); }
 .lf-quick-icon { font-size: 18px; margin-bottom: .3rem; display: block; }
 .lf-quick-name { font-size: 12px; font-weight: 600; color: var(--tx); line-height: 1.3; }
 .lf-quick-sub { font-size: 10px; color: var(--tx3); margin-top: 2px; }
@@ -247,10 +348,14 @@ details[open] .lf-arrow { transform: rotate(90deg); color: var(--ac); }
 .quiz-hs-badge {
   display: inline-flex; align-items: center; gap: .4rem;
   background: var(--acg); color: var(--ac);
-  border: 1px solid rgba(20,184,166,.2);
+  border: 1px solid var(--acb);
   border-radius: 20px; padding: .3rem .8rem;
   font-size: 12px; font-weight: 600; margin-bottom: 1.25rem;
 }
+.quiz-filter{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0 1rem;justify-content:center;}
+.quiz-filter-btn{padding:.3rem .75rem;border-radius:20px;border:1px solid var(--sep);background:var(--bg3);color:var(--tx2);font-size:11px;font-weight:600;cursor:pointer;transition:all .2s;min-height:32px;}
+.quiz-filter-btn:hover{background:var(--bg3);border-color:var(--brd2);}
+.quiz-filter-btn.active{background:var(--acg);border-color:rgba(20,184,166,.4);color:var(--ac);}
 
 .btn-primary {
   background: var(--ac); color: #fff;
@@ -291,12 +396,12 @@ details[open] .lf-arrow { transform: rotate(90deg); color: var(--ac); }
   border-radius: 10px; padding: .75rem 1rem;
   font-size: 14px; font-weight: 500; color: var(--tx);
   cursor: pointer; text-align: left; font-family: var(--sa);
-  min-height: 44px; transition: all .15s; line-height: 1.3;
+  min-height: 44px; transition: background .15s, color .15s, border-color .15s, opacity .15s; line-height: 1.3;
 }
 .quiz-opt:hover:not(:disabled) { border-color: var(--ac); color: var(--tx); }
 .quiz-opt.chosen { border-color: var(--ac); background: var(--acg); color: var(--ac); }
-.quiz-opt.correct { border-color: var(--ok); background: rgba(52,211,153,.12); color: var(--ok); }
-.quiz-opt.wrong { border-color: var(--err); background: rgba(248,113,113,.1); color: var(--err); }
+.quiz-opt.correct { border-color: var(--ok); background: var(--ok-g); color: var(--ok); }
+.quiz-opt.wrong { border-color: var(--err); background: var(--err-g); color: var(--err); }
 .quiz-opt:disabled { cursor: default; }
 .quiz-explanation {
   background: var(--bg3); border-radius: 10px;
@@ -358,7 +463,7 @@ details[open] .lf-arrow { transform: rotate(90deg); color: var(--ac); }
   border-radius: 6px; width: 28px; height: 28px;
   font-size: 12px; cursor: pointer; color: var(--tx3);
   display: flex; align-items: center; justify-content: center;
-  transition: all .15s; font-family: var(--sa);
+  transition: background .15s, color .15s, border-color .15s, opacity .15s; font-family: var(--sa);
 }
 .formula-copy:hover { color: var(--ac); border-color: var(--ac); background: var(--acg); }
 
@@ -367,11 +472,11 @@ details[open] .lf-arrow { transform: rotate(90deg); color: var(--ac); }
   display: flex; gap: .4rem; margin-bottom: 1rem;
 }
 .inner-tab {
-  padding: .55rem 1.1rem; border-radius: 20px;
-  border: 1px solid var(--br); background: var(--bg2);
+  padding: .55rem 1.1rem; border-radius: var(--r-full);
+  border: 1px solid var(--brd); background: var(--bg2);
   color: var(--tx2); font-size: 13px; font-weight: 600;
-  cursor: pointer; font-family: var(--sa); min-height: 36px;
-  transition: all .15s;
+  cursor: pointer; font-family: var(--sa); min-height: var(--touch);
+  transition: background var(--t-fast), border-color var(--t-fast), color var(--t-fast);
 }
 .inner-tab.on { background: var(--ac); color: #fff; border-color: var(--ac); }
 .inner-tab:hover:not(.on) { border-color: var(--ac); color: var(--ac); }
@@ -402,7 +507,7 @@ details[open] .lf-arrow { transform: rotate(90deg); color: var(--ac); }
   border-radius: var(--r); padding: .75rem;
   cursor: pointer; transition: border-color .15s;
 }
-.ap-item:hover { border-color: rgba(20,184,166,.3); }
+.ap-item:hover { border-color: var(--acb); }
 .ap-check {
   width: 18px; height: 18px; accent-color: var(--ac);
   cursor: pointer; flex-shrink: 0; margin-top: 1px;
@@ -438,7 +543,7 @@ details[open] .lf-arrow { transform: rotate(90deg); color: var(--ac); }
 }
 .drawer-title { font-size: 14px; font-weight: 700; color: var(--tx); }
 .drawer-close {
-  width: 32px; height: 32px; border-radius: 8px;
+  width: 44px; height: 44px; min-height: 44px; min-width: 44px; border-radius: 8px;
   background: var(--bg3); border: none; color: var(--tx2);
   font-size: 16px; cursor: pointer; display: flex;
   align-items: center; justify-content: center;
@@ -481,6 +586,16 @@ details[open] .lf-arrow { transform: rotate(90deg); color: var(--ac); }
   .lf-grid { grid-template-columns: 1fr 1fr; }
   .formula-eq { font-size: 13px; }
 }
+@media (min-width: 768px) {
+  .screen { max-width: 720px; padding-left: 1.5rem; padding-right: 1.5rem; }
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  .lf-grid { grid-template-columns: repeat(3, 1fr); }
+  .sr-grade-row { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1024px) {
+  .screen { max-width: 800px; }
+  .lf-grid { grid-template-columns: repeat(4, 1fr); }
+}
 /* ── Calculator ─────────────────────────────────── */
 .calc-card{background:var(--bg2);border:1px solid var(--br);border-radius:10px;padding:1rem;margin-bottom:1rem;}
 .calc-card-title{font-size:13px;font-weight:700;color:var(--tx);margin-bottom:.25rem;display:flex;align-items:center;gap:.4rem;}
@@ -492,7 +607,7 @@ details[open] .lf-arrow { transform: rotate(90deg); color: var(--ac); }
 .calc-field input:focus,.calc-field select:focus{border-color:var(--ac);}
 .calc-go{width:100%;background:var(--ac);color:#fff;border:none;border-radius:8px;padding:.65rem;font-size:13px;font-weight:700;cursor:pointer;margin:.5rem 0 .25rem;letter-spacing:.02em;}
 .calc-go:active{opacity:.85;}
-.calc-result-box{background:rgba(20,184,166,.08);border:1px solid rgba(20,184,166,.2);border-radius:8px;padding:.75rem 1rem;display:none;margin-top:.4rem;}
+.calc-result-box{background:var(--acg);border:1px solid var(--acb);border-radius:8px;padding:.75rem 1rem;display:none;margin-top:.4rem;}
 .calc-result-box.show{display:block;}
 .calc-result-val{font-size:22px;font-weight:800;color:var(--ac);}
 .calc-result-unit{font-size:13px;color:var(--tx3);margin-left:.25rem;}
@@ -504,8 +619,430 @@ details[open] .lf-arrow { transform: rotate(90deg); color: var(--ac); }
 /* ── Language ──────────────────────────────────── */
 html.lang-en .de-only { display: none !important; }
 html.lang-de .en-only { display: none !important; }
-.lang-btn { font-size: 12px; font-weight: 700; padding: .35rem .65rem; border-radius: 8px; background: var(--bg3); border: 1px solid var(--br); color: var(--tx2); cursor: pointer; letter-spacing: .04em; }
+html.lang-tr .de-only, html.lang-tr .en-only, html.lang-tr .ru-only, html.lang-tr .ar-only { display: none !important; }
+html.lang-ru .de-only, html.lang-ru .en-only, html.lang-ru .tr-only, html.lang-ru .ar-only { display: none !important; }
+html.lang-ar .de-only, html.lang-ar .en-only, html.lang-ar .tr-only, html.lang-ar .ru-only { display: none !important; }
+html.lang-de .tr-only, html.lang-de .ru-only, html.lang-de .ar-only { display: none !important; }
+html.lang-en .tr-only, html.lang-en .ru-only, html.lang-en .ar-only { display: none !important; }
+html.lang-ar { direction: rtl; }
+html.lang-ar .hdr { flex-direction: row-reverse; }
+html.lang-ar .hdr-logo { flex-direction: row-reverse; }
+html.lang-ar .bnav { direction: rtl; }
+html.lang-ar .drawer { direction: rtl; }
+.modal-overlay{position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);display:none;align-items:flex-end;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal-sheet{background:var(--bg2);border:1px solid var(--brd);border-radius:20px 20px 0 0;padding:20px;width:100%;max-width:640px}
+.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.modal-close{background:none;border:none;color:var(--tx2);font-size:1.2rem;cursor:pointer;min-height:44px;min-width:44px;display:flex;align-items:center;justify-content:center}
+.lang-pill-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:16px 0}
+.lang-pill{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 8px;background:var(--bg3);border:2px solid transparent;border-radius:12px;cursor:pointer;color:var(--fg);transition:all .2s}
+.lang-pill:hover{background:var(--bg4);border-color:var(--brd2)}
+.lang-pill.active{border-color:var(--ac);background:rgba(20,184,166,.15)}
+.lang-flag{font-size:1.6rem}
+.lang-code{font-size:.75rem;font-weight:700;color:var(--ac)}
+.lang-name{font-size:.65rem;color:var(--sep)}
+html.lang-ar{direction:rtl}
+.lang-btn { font-size: 16px; font-weight: 700; padding: .35rem .65rem; border-radius: 8px; background: var(--bg3); border: 1px solid var(--br); color: var(--tx2); cursor: pointer; letter-spacing: .04em; min-height:44px; min-width:44px; display:inline-flex; align-items:center; justify-content:center; }
 .lang-btn:hover { background: var(--bg4); }
+.header-btn { min-height:44px; min-width:44px; }
+.theme-btn { min-height:44px; min-width:44px; }
+/* ── SPACED REPETITION ── */
+.sr-stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:1.25rem;}
+.sr-stat{background:var(--bg2);border:1px solid var(--br);border-radius:var(--r);padding:.75rem .5rem;text-align:center;}
+.sr-stat-v{font-family:var(--mo);font-size:22px;font-weight:700;line-height:1;}
+.sr-stat-l{font-size:10px;color:var(--tx3);margin-top:4px;letter-spacing:.04em;text-transform:uppercase;}
+.sr-section-title{font-size:13px;font-weight:700;color:var(--tx2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.75rem;}
+.sr-start-btn{width:100%;padding:.85rem;background:var(--ac);color:#fff;border:none;border-radius:var(--r2);font-family:var(--sa);font-size:15px;font-weight:700;cursor:pointer;letter-spacing:-.2px;transition:opacity .15s;}
+.sr-start-btn:active{opacity:.8;}
+.sr-start-btn:hover{opacity:.88;}
+.sr-reset-btn{width:100%;padding:.6rem;background:transparent;color:var(--tx3);border:1px solid var(--br);border-radius:var(--r);font-family:var(--sa);font-size:13px;cursor:pointer;margin-top:8px;}
+.sr-notify-row { margin: 1rem 0 0; display:flex; flex-direction:column; align-items:center; gap:.4rem; }
+.sr-notify-btn { background: var(--acg); border:1px solid var(--acb); color:var(--ac); padding:.5rem 1.2rem; border-radius:20px; font-size:.85rem; cursor:pointer; }
+.sr-notify-btn.active { background:var(--acb); }
+.sr-notify-hint { font-size:.75rem; color:var(--tx2,#aaa); }
+/* ── SR Flashcard — Industrial Redesign ─────────────────── */
+.sr-flip-wrap{
+  perspective:1200px;
+  width:100%;
+  max-width:480px;
+  margin:0 auto 1.5rem;
+}
+.sr-flip{
+  position:relative;
+  width:100%;
+  min-height:300px;
+  transform-style:preserve-3d;
+  transition:transform .5s cubic-bezier(.33,1,.68,1);
+  cursor:pointer;
+  border-radius:20px;
+}
+.sr-flip.flipped{transform:rotateY(180deg);}
+.sr-front,.sr-back{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  border-radius:20px;
+  padding:2rem 1.75rem 1.5rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  min-height:300px;
+}
+.sr-front{
+  background:#111118;
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 24px 64px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.06);
+}
+.sr-back{
+  background:linear-gradient(160deg,var(--acg) 0%,rgba(20,184,166,.04) 100%);
+  border:1px solid var(--acb);
+  box-shadow:0 24px 64px rgba(0,0,0,.65),0 0 48px rgba(20,184,166,.08),inset 0 1px 0 rgba(20,184,166,.1);
+  transform:rotateY(180deg);
+}
+.sr-card-tag{
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--tx3);
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;
+  padding:.25rem .75rem;
+  margin-bottom:1.5rem;
+  align-self:center;
+}
+.sr-back .sr-card-tag{color:var(--ac);background:var(--acg);border-color:var(--acb);}
+.sr-card-q{
+  font-size:clamp(18px,4vw,22px);
+  font-weight:700;
+  line-height:1.35;
+  color:var(--tx);
+  letter-spacing:-.4px;
+  flex:1;
+  display:flex;
+  align-items:center;
+}
+.sr-card-a{
+  font-size:clamp(14px,3vw,16px);
+  line-height:1.65;
+  color:var(--tx);
+  font-family:var(--mo);
+}
+.sr-card-hint{
+  font-size:10px;
+  color:var(--tx3);
+  margin-top:auto;
+  padding-top:1.25rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.sr-card-hint::before{content:'↕';font-size:13px;}
+
+/* Progress bar */
+.sr-prog-wrap{margin-bottom:1.25rem;width:100%;max-width:480px;margin-left:auto;margin-right:auto;}
+.sr-prog-bar-track{height:3px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden;margin-bottom:.6rem;}
+.sr-prog-bar-fill{height:100%;background:var(--ac);border-radius:99px;transition:width .3s ease;}
+.sr-prog-label{font-family:var(--mo);font-size:10px;color:var(--tx3);text-align:right;letter-spacing:.05em;}
+
+/* Grade buttons */
+.sr-grade-prompt{
+  font-family:var(--mo);
+  font-size:10px;
+  color:var(--tx3);
+  text-align:center;
+  margin-bottom:.85rem;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.sr-grade-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:.75rem;}
+.sr-grade-btn{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  min-height:64px;
+  padding:1rem .5rem;
+  border-radius:16px;
+  border:1px solid;
+  background:transparent;
+  cursor:pointer;
+  transition:transform .1s ease,background .15s;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+}
+.sr-grade-btn:active{transform:scale(.94);}
+.sr-grade-btn-label{font-size:14px;font-weight:700;letter-spacing:-.2px;}
+.sr-grade-btn-note{font-family:var(--mo);font-size:10px;opacity:.55;letter-spacing:.03em;}
+.sr-grade-btn.bad{border-color:rgba(255,69,58,.3);color:#ff453a;background:rgba(255,69,58,.06);}
+.sr-grade-btn.bad:active{background:rgba(255,69,58,.16);}
+.sr-grade-btn.ok{border-color:rgba(255,214,10,.3);color:#ffd60a;background:rgba(255,214,10,.05);}
+.sr-grade-btn.ok:active{background:rgba(255,214,10,.14);}
+.sr-grade-btn.good{border-color:rgba(48,209,88,.3);color:#30d158;background:rgba(48,209,88,.06);}
+.sr-grade-btn.good:active{background:rgba(48,209,88,.16);}
+
+/* Done screen */
+.sr-done{text-align:center;padding:2.5rem 1rem;}
+.sr-done-emoji{font-size:48px;margin-bottom:.75rem;display:block;}
+.sr-done-title{font-size:22px;font-weight:800;margin-bottom:.5rem;letter-spacing:-.4px;}
+.sr-done-sub{font-size:14px;color:var(--tx3);line-height:1.6;}
+/* ── Return Banner ── */
+.return-banner{display:none;align-items:center;gap:10px;background:linear-gradient(135deg,var(--ac),var(--acd));color:#fff;padding:12px 16px;border-radius:12px;margin:0 0 16px;font-size:.9rem;cursor:pointer;animation:slideDown .4s ease}
+.return-banner.show{display:flex}
+.return-banner-icon{font-size:1.4rem}
+.return-banner-text strong{display:block;font-size:1rem}
+@keyframes slideDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+/* ── Quick Stats ── */
+.quick-stats{display:flex;gap:8px;overflow-x:auto;padding:0 0 8px;margin:0 0 20px;scrollbar-width:none}
+.quick-stats::-webkit-scrollbar{display:none}
+.qs-card{flex:0 0 auto;background:var(--bg2);border:1px solid var(--brd);border-radius:12px;padding:10px 16px;text-align:center;min-width:100px}
+.qs-val{font-size:1.4rem;font-weight:700;color:var(--ac)}
+.qs-lbl{font-size:.72rem;color:var(--sep);margin-top:2px}
+/* ── Forum Spotlight ── */
+.forum-spotlight{background:linear-gradient(135deg,#30d15815,#40c8e010);border:1px solid #30d15830;border-radius:16px;padding:16px 20px;margin:0 0 20px;display:flex;align-items:center;gap:14px;cursor:pointer;text-decoration:none}
+.forum-spotlight:hover{border-color:var(--ac)}
+.fs-icon{font-size:2rem;flex-shrink:0}
+.fs-text strong{display:block;font-size:1rem;color:var(--fg)}
+.fs-text span{font-size:.82rem;color:var(--sep)}
+.fs-arrow{margin-left:auto;color:var(--ac);font-size:1.2rem}
+/* ── Backup Panel ── */
+.backup-panel{background:var(--bg2);border:1px solid var(--brd);border-radius:16px;padding:20px;margin:20px 0}
+.backup-panel h3{margin:0 0 4px;font-size:1rem}
+.backup-panel p{margin:0 0 16px;font-size:.82rem;color:var(--sep)}
+.backup-btns{display:flex;gap:10px;flex-wrap:wrap}
+.backup-btn{flex:1;min-width:120px;padding:12px;background:var(--bg3);border:1px solid var(--brd);border-radius:10px;color:var(--fg);font-size:.88rem;cursor:pointer;text-align:center}
+.backup-btn:hover{background:var(--bg4)}
+.backup-btn.primary{background:var(--ac);color:#fff;border-color:transparent}
+.backup-btn.primary:hover{background:var(--acd)}
+.backup-keys{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px}
+.bk-tag{padding:4px 10px;background:var(--bg3);border:1px solid var(--brd);border-radius:20px;font-size:.75rem;color:var(--sep)}
+.bk-tag.has-data{border-color:var(--ok);color:var(--ok)}
+/* ── Sync Panel ── */
+.sync-panel{background:var(--bg2);border:1px solid var(--brd);border-radius:16px;padding:20px;margin:20px 0}
+.sync-panel h3{margin:0 0 4px;font-size:1rem}
+.sync-panel p{margin:0 0 16px;font-size:.82rem;color:var(--sep)}
+.sync-views>div{display:none}
+.sync-views>div.active{display:block}
+.sync-input{width:100%;padding:10px 12px;background:var(--bg3);border:1px solid var(--brd);border-radius:10px;color:var(--fg);font-size:.9rem;margin-bottom:10px;box-sizing:border-box}
+.sync-btn{width:100%;padding:12px;background:var(--ac);color:#fff;border:none;border-radius:10px;font-size:.9rem;cursor:pointer;margin-bottom:8px}
+.sync-btn:hover{background:var(--acd)}
+.sync-btn.sec{background:var(--bg3);color:var(--fg);border:1px solid var(--brd)}
+.sync-btn.sec:hover{background:var(--bg4)}
+.sync-code-display{text-align:center;padding:20px;background:var(--bg3);border-radius:12px;margin-bottom:12px}
+.sync-code-display .code{font-size:2rem;font-weight:700;letter-spacing:.2em;color:var(--ac);font-family:var(--font-mono)}
+.sync-status{font-size:.8rem;color:var(--sep);text-align:center;margin-top:8px}
+/* ── What's New Toast ── */
+.whats-new-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--bg2);border:1px solid var(--ac);border-radius:16px;padding:14px 20px;max-width:340px;width:calc(100% - 40px);z-index:900;box-shadow:0 8px 32px #0008;animation:slideUp .4s ease}
+.whats-new-toast.hidden{display:none}
+.wnt-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.wnt-header strong{font-size:.95rem}
+.wnt-close{background:none;border:none;color:var(--sep);font-size:1.2rem;cursor:pointer;padding:4px}
+.wnt-body{font-size:.82rem;color:var(--sep);line-height:1.5}
+@keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+/* ── ARC STUDIO BRAND LIGHT MODE */
+.hdr {
+  background: rgba(255,255,255,.92) !important;
+  backdrop-filter: saturate(180%) blur(24px) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(24px) !important;
+  box-shadow: 0 1px 12px rgba(0,0,0,.06) !important;
+  border-bottom-color: rgba(122,14,200,.08) !important;
+}
+.app-tile:hover, .card:hover, .dash-card:hover {
+  box-shadow: 0 8px 24px rgba(122,14,200,.10), 0 0 0 1px rgba(122,14,200,.06) !important;
+}
+input, textarea, select {
+  background: #ffffff !important;
+  border-color: rgba(122,14,200,.15) !important;
+  color: #1a1a2e !important;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: #7a0ec8 !important;
+  box-shadow: 0 0 0 3px rgba(122,14,200,.12) !important;
+}
+.drawer { box-shadow: -4px 0 32px rgba(0,0,0,.12) !important; }
+
+/* ── DARK MODE: Inputs, Selects, Checkboxes ──────────────────── */
+.dm input,
+.dm input[type=text],
+.dm input[type=number],
+.dm input[type=date],
+.dm input[type=time],
+.dm input[type=email],
+.dm input[type=password],
+.dm input[type=search],
+.dm input[type=url],
+.dm textarea,
+.dm select {
+  background: #1a1a28 !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: #f0f0f5 !important;
+  color-scheme: dark !important;
+}
+.dm input::placeholder,
+.dm textarea::placeholder { color: rgba(240,240,245,.35) !important; }
+.dm input:focus,
+.dm textarea:focus,
+.dm select:focus {
+  border-color: rgba(122,14,200,.6) !important;
+  box-shadow: 0 0 0 3px rgba(122,14,200,.18) !important;
+  outline: none !important;
+}
+.dm input[type=checkbox],
+.dm input[type=radio] {
+  accent-color: #7a0ec8 !important;
+  color-scheme: dark !important;
+}
+.dm input[type=range] {
+  accent-color: #7a0ec8 !important;
+  color-scheme: dark !important;
+}
+/* ── DARK MODE: Polish ───────────────────────────────────────── */
+.dm * { scrollbar-color: rgba(122,14,200,.4) rgba(255,255,255,.05); }
+.dm ::selection { background: rgba(122,14,200,.35); color: #fff; }
+html { transition: background-color .25s ease, color .25s ease; }
+
+/* ── DARK MODE POLISH ──────────────────────────────────────── */
+.dm body {
+  background: #08080f !important;
+}
+.dm .hdr,
+.dm header,
+.dm nav {
+  background: rgba(8,8,15,.94) !important;
+  border-bottom-color: rgba(255,255,255,.07) !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,.06) !important;
+  backdrop-filter: saturate(120%) blur(20px) !important;
+  -webkit-backdrop-filter: saturate(120%) blur(20px) !important;
+}
+.dm .card,
+.dm .dash-card,
+.dm .app-tile,
+.dm .stat-card,
+.dm .quiz-card,
+.dm .lern-card,
+.dm .info-card,
+.dm .feature-card,
+.dm .tool-card,
+.dm .week-card,
+.dm .bento-cell {
+  background: #0f0f1a !important;
+  border: 1px solid rgba(255,255,255,.07) !important;
+}
+.dm .card:hover,
+.dm .dash-card:hover,
+.dm .app-tile:hover,
+.dm .tool-card:hover {
+  border-color: rgba(122,14,200,.4) !important;
+  box-shadow: 0 0 0 1px rgba(122,14,200,.2), 0 8px 24px rgba(0,0,0,.4) !important;
+}
+.dm .badge,
+.dm .chip,
+.dm .tag,
+.dm .pill,
+.dm .label {
+  background: rgba(255,255,255,.07) !important;
+  color: var(--tx2) !important;
+  border-color: rgba(255,255,255,.1) !important;
+}
+.dm .bnav,
+.dm .nav,
+.dm .tab-bar,
+.dm .bottom-nav {
+  background: rgba(8,8,15,.97) !important;
+  border-top-color: rgba(255,255,255,.07) !important;
+  box-shadow: 0 -1px 0 rgba(255,255,255,.06) !important;
+}
+.dm .drawer,
+.dm .modal,
+.dm .sheet,
+.dm .popup,
+.dm .dropdown,
+.dm .panel {
+  background: #0f0f1a !important;
+  border-color: rgba(255,255,255,.08) !important;
+  box-shadow: 0 24px 64px rgba(0,0,0,.6) !important;
+}
+.dm .toast,
+.dm .snack,
+.dm .alert {
+  background: #1a1a28 !important;
+  border-color: rgba(255,255,255,.1) !important;
+  color: var(--tx) !important;
+}
+.dm a:not(.btn):not([class*="btn"]):not([class*="card"]) {
+  color: #c084fc;
+}
+.dm a:not(.btn):not([class*="btn"]):not([class*="card"]):hover {
+  color: #e879f9;
+}
+.dm code,
+.dm pre,
+.dm .code-block {
+  background: rgba(255,255,255,.05) !important;
+  border-color: rgba(255,255,255,.08) !important;
+  color: #c4b5fd !important;
+}
+.dm table thead {
+  background: rgba(255,255,255,.05) !important;
+}
+.dm table tr:nth-child(even) {
+  background: rgba(255,255,255,.025) !important;
+}
+.dm table td,
+.dm table th {
+  border-color: rgba(255,255,255,.07) !important;
+}
+.dm hr,
+.dm .divider,
+.dm .sep {
+  border-color: rgba(255,255,255,.07) !important;
+  background: rgba(255,255,255,.07) !important;
+}
+/* ── Lückentext Mode ── */
+.sr-mode-row{display:flex;gap:8px;margin-bottom:1rem;}
+.sr-mode-btn{flex:1;padding:.55rem;background:var(--bg2);border:1px solid var(--br);border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;color:var(--tx2);font-family:var(--sa);transition:all .15s;}
+.sr-mode-btn.active{background:rgba(202,138,4,.12);border-color:rgba(202,138,4,.4);color:var(--ac);}
+.sr-fill-area-wrap{width:100%;max-width:480px;margin:0 auto;}
+.sr-fill-q-card{background:var(--bg2);border:1px solid var(--br);border-radius:var(--r2);padding:1.5rem 1.25rem;margin-bottom:1rem;text-align:center;}
+.sr-fill-q-tag{font-size:9px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--ac);background:rgba(202,138,4,.1);border:1px solid rgba(202,138,4,.2);border-radius:99px;padding:3px 10px;display:inline-block;margin-bottom:.75rem;}
+.sr-fill-q-text{font-size:clamp(17px,3.5vw,21px);font-weight:700;line-height:1.4;color:var(--tx);}
+.sr-fill-input{width:100%;padding:.9rem 1rem;font-size:15px;font-family:var(--sa);background:var(--bg2);border:2px solid var(--br2);border-radius:var(--r2);color:var(--tx);outline:none;resize:vertical;min-height:72px;transition:border-color .2s;display:block;}
+.sr-fill-input:focus{border-color:var(--ac);}
+.sr-fill-input:disabled{opacity:.55;cursor:not-allowed;}
+.sr-fill-submit{width:100%;padding:.85rem;background:var(--ac);color:#fff;border:none;border-radius:var(--r2);font-family:var(--sa);font-size:15px;font-weight:700;cursor:pointer;letter-spacing:-.2px;margin-top:.75rem;transition:opacity .15s;display:block;}
+.sr-fill-submit:active{opacity:.8;}
+.sr-fill-submit:disabled{opacity:.45;cursor:not-allowed;}
+
+.sr-fill-input-row { position:relative; }
+.sr-mic-btn {
+  position:absolute; right:8px; bottom:8px;
+  width:36px; height:36px; border-radius:50%;
+  border:none; background:var(--acg); color:var(--ac);
+  cursor:pointer; font-size:18px; display:flex;
+  align-items:center; justify-content:center;
+  transition:background var(--t-fast), transform var(--t-fast);
+  z-index:2;
+}
+.sr-mic-btn:hover { background:var(--acb); transform:scale(1.1); }
+.sr-mic-btn.listening {
+  background:rgba(255,69,58,.15); color:#ff453a;
+  animation:mic-pulse 1s ease infinite;
+}
+@keyframes mic-pulse {
+  0%,100%{ transform:scale(1); }
+  50%{ transform:scale(1.18); }
+}
+.sr-fill-answer-box{background:var(--bg2);border:1px solid var(--br);border-left:3px solid var(--ac);border-radius:var(--r2);padding:1rem 1.25rem;margin-top:1rem;}
+.sr-fill-answer-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--tx3);margin-bottom:.4rem;font-weight:600;}
+.sr-fill-answer-text{font-size:15px;line-height:1.55;color:var(--tx);}
 </style>
 </head>
 <body>
@@ -520,32 +1057,51 @@ html.lang-de .en-only { display: none !important; }
   </div>
   <div class="hdr-wordmark">
     <h1>TOR<span style="color:var(--ac)">QUE</span></h1>
-    <p><span class="de-only">Industriemechaniker · Betriebstechnik</span><span class="en-only">Industrial Mechanic · Operations Technology</span></p>
+    <p><span class="de-only">Industriemechaniker · Betriebstechnik</span><span class="en-only">Industrial Mechanic · Operations Technology</span><span class="tr-only">Endüstriyel Mekanik</span><span class="ru-only">Промышленный механик</span><span class="ar-only">ميكانيكي صناعي</span></p>
   </div>
   <div class="hdr-actions">
-    <button class="hdr-btn" id="thm-btn" onclick="thmToggle()" title="Theme wechseln">🌙</button>
-    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
-    <button class="hdr-btn" onclick="drawerOpen()" title="App-Switcher">⊞</button>
+    <button type="button" class="hdr-btn" id="thm-btn" onclick="thmToggle()" title="Theme wechseln" aria-label="Theme wechseln">🌙</button>
+    <button class="lang-btn header-btn" id="langBtn" onclick="openLangModal()" aria-label="Sprache">🇩🇪</button>
+    <button type="button" class="hdr-btn" onclick="drawerOpen()" title="App-Switcher" aria-label="App-Switcher öffnen">⊞</button>
   </div>
 </header>
 
-<!-- Tab Bar -->
-<nav class="tabs" id="tab-bar">
-  <button class="tab-btn on" data-screen="s-dash" onclick="showScreen(this.dataset.screen)"><span class="de-only">🏠 Dashboard</span><span class="en-only">🏠 Dashboard</span></button>
-  <button class="tab-btn" data-screen="s-lern" onclick="showScreen(this.dataset.screen)"><span class="de-only">📐 Lernfelder</span><span class="en-only">📐 Learning Areas</span></button>
-  <button class="tab-btn" data-screen="s-quiz" onclick="showScreen(this.dataset.screen)"><span class="de-only">❓ Quiz</span><span class="en-only">❓ Quiz</span></button>
-  <button class="tab-btn" data-screen="s-form" onclick="showScreen(this.dataset.screen)"><span class="de-only">🔢 Formeln</span><span class="en-only">🔢 Formulas</span></button>
-  <button class="tab-btn" data-screen="s-ap" onclick="showScreen(this.dataset.screen)"><span class="de-only">✅ AP-Check</span><span class="en-only">✅ Exam Check</span></button>
-  <button class="tab-btn" data-screen="s-calc" onclick="showScreen(this.dataset.screen)"><span class="de-only">🧮 Rechner</span><span class="en-only">🧮 Calculator</span></button>
+<!-- Bottom Nav -->
+<nav class="bnav">
+  <button type="button" class="bnav-btn on" data-screen="s-dash" aria-current="page"><span class="bnav-icon">🏠</span><span class="de-only">Home</span><span class="en-only">Home</span><span class="tr-only">Ana Sayfa</span><span class="ru-only">Главная</span><span class="ar-only">الرئيسية</span></button>
+  <button type="button" class="bnav-btn" data-screen="s-lern"><span class="bnav-icon">📐</span><span class="de-only">Lernen</span><span class="en-only">Learn</span><span class="tr-only">Öğren</span><span class="ru-only">Учёба</span><span class="ar-only">تعلم</span></button>
+  <button type="button" class="bnav-btn" data-screen="s-quiz"><span class="bnav-icon">❓</span>Quiz</button>
+  <button type="button" class="bnav-btn" data-screen="s-form"><span class="bnav-icon">🔢</span><span class="de-only">Formeln</span><span class="en-only">Formulas</span><span class="tr-only">Formüller</span><span class="ru-only">Формулы</span><span class="ar-only">الصيغ</span></button>
+  <button type="button" class="bnav-btn" data-screen="s-ap"><span class="bnav-icon">✅</span>AP-Check</button>
+  <button type="button" class="bnav-btn" data-screen="s-calc"><span class="bnav-icon">🧮</span><span class="de-only">Rechner</span><span class="en-only">Calc</span><span class="tr-only">Hesap</span><span class="ru-only">Калькулятор</span><span class="ar-only">حاسبة</span></button>
+  <button type="button" class="bnav-btn" data-screen="s-sim"><span class="bnav-icon">🎓</span>AP1-Sim</button>
+  <button type="button" class="bnav-btn" data-screen="s-sr"><span class="bnav-icon">🧠</span>SR</button>
 </nav>
 
 <!-- ===================== SCREEN 1: DASHBOARD ===================== -->
 <main id="s-dash" class="screen on">
 
+<div class="return-banner" id="returnBanner" onclick="document.getElementById('returnBanner').style.display='none'">
+  <span class="return-banner-icon">🔩</span>
+  <div class="return-banner-text"><strong>Willkommen zurück!</strong>Dein Lernfortschritt wartet auf dich.</div>
+</div>
+
+<div class="quick-stats" id="quickStats">
+  <div class="qs-card"><div class="qs-val" id="qsStreak">0</div><div class="qs-lbl">🔥 Streak</div></div>
+  <div class="qs-card"><div class="qs-val" id="qsSR">0</div><div class="qs-lbl">📚 SR fällig</div></div>
+  <div class="qs-card"><div class="qs-val" id="qsDate">—</div><div class="qs-lbl">📅 Heute</div></div>
+</div>
+
+<a class="forum-spotlight" href="VOLTECH-forum.html">
+  <span class="fs-icon">💬</span>
+  <div class="fs-text"><strong>VOLTECH Forum</strong><span>Fragen, Tipps &amp; Community für Industriemechaniker</span></div>
+  <span class="fs-arrow">›</span>
+</a>
+
   <div class="dq-card">
     <div class="dq-label">⚙️ Aufgabe des Tages</div>
     <div class="dq-question" id="dq-q">Lade...</div>
-    <button class="dq-toggle" id="dq-toggle" onclick="dqReveal()">Antwort zeigen</button>
+    <button type="button" class="dq-toggle" id="dq-toggle" onclick="dqReveal()">Antwort zeigen</button>
     <div class="dq-answer" id="dq-answer" style="display:none"></div>
   </div>
 
@@ -571,37 +1127,84 @@ html.lang-de .en-only { display: none !important; }
 
   <div class="sec-title">📚 Lernfelder Übersicht</div>
   <div class="lf-grid">
-    <button class="lf-quick-card" onclick="openLf('lf1')">
+    <button type="button" class="lf-quick-card" onclick="openLf('lf1')">
       <span class="lf-quick-icon">⚙️</span>
       <div class="lf-quick-name">LF 1</div>
       <div class="lf-quick-sub"><span class="de-only">Fertigungstechnik & Toleranzen</span><span class="en-only">Manufacturing Technology & Tolerances</span></div>
     </button>
-    <button class="lf-quick-card" onclick="openLf('lf2')">
+    <button type="button" class="lf-quick-card" onclick="openLf('lf2')">
       <span class="lf-quick-icon">🔩</span>
       <div class="lf-quick-name">LF 2</div>
       <div class="lf-quick-sub"><span class="de-only">Maschinenelemente</span><span class="en-only">Machine Elements</span></div>
     </button>
-    <button class="lf-quick-card" onclick="openLf('lf3')">
+    <button type="button" class="lf-quick-card" onclick="openLf('lf3')">
       <span class="lf-quick-icon">💧</span>
       <div class="lf-quick-name">LF 3</div>
       <div class="lf-quick-sub"><span class="de-only">Hydraulik & Pneumatik</span><span class="en-only">Hydraulics & Pneumatics</span></div>
     </button>
-    <button class="lf-quick-card" onclick="openLf('lf4')">
+    <button type="button" class="lf-quick-card" onclick="openLf('lf4')">
       <span class="lf-quick-icon">📏</span>
       <div class="lf-quick-name">LF 4</div>
       <div class="lf-quick-sub"><span class="de-only">Mess- & Prüftechnik</span><span class="en-only">Measurement & Testing</span></div>
     </button>
-    <button class="lf-quick-card" onclick="openLf('lf5')">
+    <button type="button" class="lf-quick-card" onclick="openLf('lf5')">
       <span class="lf-quick-icon">🔧</span>
       <div class="lf-quick-name">LF 5</div>
       <div class="lf-quick-sub"><span class="de-only">CNC & Zerspanung</span><span class="en-only">CNC & Machining</span></div>
     </button>
-    <button class="lf-quick-card" onclick="openLf('lf6')">
+    <button type="button" class="lf-quick-card" onclick="openLf('lf6')">
       <span class="lf-quick-icon">🏭</span>
       <div class="lf-quick-name">LF 6</div>
       <div class="lf-quick-sub"><span class="de-only">Instandhaltung & Wartung</span><span class="en-only">Maintenance & Servicing</span></div>
     </button>
   </div>
+
+  <div class="sec-title">🔗 <span class="de-only">Schnellzugriff</span><span class="en-only">Quick Access</span></div>
+  <a href="VOLTECH-berichtsheft.html" style="display:flex;align-items:center;gap:.75rem;background:var(--bg2);border:1px solid var(--sep);border-radius:var(--r);padding:.9rem 1rem;text-decoration:none;color:var(--tx);margin-bottom:.5rem;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(99,102,241,.3)'" onmouseout="this.style.borderColor=''">
+    <span style="font-size:24px;">📓</span>
+    <div>
+      <div style="font-size:13px;font-weight:700;"><span class="de-only">Berichtsheft</span><span class="en-only">Training Report</span></div>
+      <div style="font-size:11px;color:var(--tx3);"><span class="de-only">Ausbildungsnachweise für Industriemechaniker/in</span><span class="en-only">Training log for industrial mechanics</span></div>
+    </div>
+    <span style="margin-left:auto;color:var(--tx3);">→</span>
+  </a>
+
+<section class="backup-panel" id="backupPanel">
+  <h3>💾 Datensicherung</h3>
+  <p>Exportiere oder importiere alle deine Lernfortschritte</p>
+  <div class="backup-btns">
+    <button class="backup-btn primary" onclick="torExportBackup()">⬇ Exportieren</button>
+    <button class="backup-btn" onclick="document.getElementById('torImportFile').click()">⬆ Importieren</button>
+  </div>
+  <input type="file" id="torImportFile" accept=".json" style="display:none" onchange="torImportBackup(event)">
+  <div class="backup-keys" id="backupKeyList"></div>
+</section>
+
+<section class="sync-panel" id="syncPanel">
+  <h3>☁️ Cloud Sync</h3>
+  <p>Synchronisiere deinen Fortschritt zwischen Geräten</p>
+  <div class="sync-views">
+    <div class="active" id="syncHome">
+      <button class="sync-btn" onclick="torSyncCreate()">Neuen Sync-Code erstellen</button>
+      <button class="sync-btn sec" onclick="torShowJoin()">Mit Code verbinden</button>
+    </div>
+    <div id="syncActive">
+      <div class="sync-code-display">
+        <div style="font-size:.8rem;color:var(--sep);margin-bottom:6px">Dein Sync-Code</div>
+        <div class="code" id="torSyncCodeDisplay">—</div>
+      </div>
+      <button class="sync-btn" onclick="torSyncPush()">⬆ Hochladen</button>
+      <button class="sync-btn sec" onclick="torSyncPull()">⬇ Herunterladen</button>
+      <button class="sync-btn sec" onclick="torSyncLeave()">Verbindung trennen</button>
+      <div class="sync-status" id="torSyncStatus"></div>
+    </div>
+    <div id="syncJoin">
+      <input class="sync-input" id="torJoinCode" placeholder="Sync-Code eingeben" maxlength="8">
+      <button class="sync-btn" onclick="torSyncJoin()">Verbinden</button>
+      <button class="sync-btn sec" onclick="torShowHome()">Abbrechen</button>
+    </div>
+  </div>
+</section>
 
 </main>
 
@@ -767,9 +1370,18 @@ html.lang-de .en-only { display: none !important; }
     <div class="quiz-hero">
       <span class="quiz-hero-icon">❓</span>
       <h2>Prüfungstraining</h2>
-      <p>35 Fragen · Multiple Choice · 20 pro Runde</p>
+      <p>35 Fragen · Multiple Choice · Themenfilter · 20 pro Runde</p>
       <div class="quiz-hs-badge" id="hs-badge">🏆 Highscore: —</div>
-      <button onclick="quizStart()" class="btn-primary">Quiz starten</button>
+      <div class="quiz-filter">
+        <button class="quiz-filter-btn active" data-topic="all" onclick="setQuizTopic('all')">🔩 Alle</button>
+        <button class="quiz-filter-btn" data-topic="Mechanik" onclick="setQuizTopic('Mechanik')">⚙️ Mechanik</button>
+        <button class="quiz-filter-btn" data-topic="Toleranz" onclick="setQuizTopic('Toleranz')">📐 Toleranz</button>
+        <button class="quiz-filter-btn" data-topic="Werkstoffe" onclick="setQuizTopic('Werkstoffe')">🔧 Werkstoffe</button>
+        <button class="quiz-filter-btn" data-topic="Fügen" onclick="setQuizTopic('Fügen')">🔗 Fügen</button>
+        <button class="quiz-filter-btn" data-topic="Pneumatik" onclick="setQuizTopic('Pneumatik')">💨 Pneumatik</button>
+        <button class="quiz-filter-btn" data-topic="Qualität" onclick="setQuizTopic('Qualität')">✅ Qualität</button>
+      </div>
+      <button type="button" onclick="quizStart()" class="btn-primary">Quiz starten</button>
     </div>
   </div>
 
@@ -782,7 +1394,7 @@ html.lang-de .en-only { display: none !important; }
       <div id="q-text" class="quiz-question"></div>
       <div id="q-opts" class="quiz-opts"></div>
       <div id="q-exp" class="quiz-explanation" style="display:none"></div>
-      <button id="q-next" onclick="quizNext()" class="quiz-next-btn" style="display:none">Weiter →</button>
+      <button type="button" id="q-next" onclick="quizNext()" class="quiz-next-btn" style="display:none">Weiter →</button>
     </div>
   </div>
 
@@ -791,8 +1403,9 @@ html.lang-de .en-only { display: none !important; }
       <div class="quiz-score-big" id="end-score">0</div>
       <div class="quiz-score-sub" id="end-sub">von 20 Fragen richtig</div>
       <div class="quiz-end-hs" id="end-hs"></div>
+      <div id="end-topic-breakdown" style="margin:.75rem 0;text-align:left;"></div>
       <button onclick="quizStart()" class="btn-primary" style="margin-bottom:.75rem">Neue Runde</button>
-      <button onclick="showScreen('s-dash')" class="btn-primary" style="background:var(--bg3);color:var(--tx);margin-top:.5rem">Zum Dashboard</button>
+      <button type="button" onclick="showScreen('s-dash')" class="btn-primary" style="background:var(--bg3);color:var(--tx);margin-top:.5rem">Zum Dashboard</button>
     </div>
   </div>
 
@@ -804,7 +1417,7 @@ html.lang-de .en-only { display: none !important; }
   <div class="formula-cat-title"><span class="de-only">⚙️ Kräfte & Mechanik</span><span class="en-only">⚙️ Forces & Mechanics</span></div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'F = m × a')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'F = m × a')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Kräfte</div>
     <div class="formula-name"><span class="de-only">Kraft</span><span class="en-only">Force</span></div>
     <div class="formula-eq">F = m × a</div>
@@ -812,7 +1425,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'M = F × r')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'M = F × r')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Kräfte</div>
     <div class="formula-name"><span class="de-only">Drehmoment</span><span class="en-only">Torque</span></div>
     <div class="formula-eq">M = F × r</div>
@@ -820,7 +1433,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'P = M × ω = M × 2π × n/60')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'P = M × ω = M × 2π × n/60')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Kräfte</div>
     <div class="formula-name"><span class="de-only">Mechanische Leistung</span><span class="en-only">Mechanical Power</span></div>
     <div class="formula-eq">P = M × ω = M × 2π × n/60</div>
@@ -828,7 +1441,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'p = F / A')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'p = F / A')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Kräfte</div>
     <div class="formula-name"><span class="de-only">Druck</span><span class="en-only">Pressure</span></div>
     <div class="formula-eq">p = F / A</div>
@@ -836,7 +1449,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'F = p × A × 10  (p[bar], A[cm²], F[N])')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'F = p × A × 10  (p[bar], A[cm²], F[N])')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Kräfte</div>
     <div class="formula-name"><span class="de-only">Hydraulikkraft</span><span class="en-only">Hydraulic Force</span></div>
     <div class="formula-eq">F [N] = p [bar] × A [cm²] × 10</div>
@@ -844,7 +1457,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'c = F / s  [N/mm]')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'c = F / s  [N/mm]')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Kräfte</div>
     <div class="formula-name"><span class="de-only">Federkonstante</span><span class="en-only">Spring Constant</span></div>
     <div class="formula-eq">c = F / s</div>
@@ -854,7 +1467,7 @@ html.lang-de .en-only { display: none !important; }
   <div class="formula-cat-title"><span class="de-only">🔩 Zerspanung</span><span class="en-only">🔩 Machining</span></div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'v_c = (π × d × n) / 1000  [m/min]')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'v_c = (π × d × n) / 1000  [m/min]')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Zerspanung</div>
     <div class="formula-name"><span class="de-only">Schnittgeschwindigkeit</span><span class="en-only">Cutting Speed</span></div>
     <div class="formula-eq">v_c = (π × d × n) / 1000</div>
@@ -862,7 +1475,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'n = (v_c × 1000) / (π × d)  [U/min]')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'n = (v_c × 1000) / (π × d)  [U/min]')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Zerspanung</div>
     <div class="formula-name"><span class="de-only">Drehzahl</span><span class="en-only">Rotational Speed</span></div>
     <div class="formula-eq">n = (v_c × 1000) / (π × d)</div>
@@ -870,7 +1483,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'v_f = f × n  [mm/min]')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'v_f = f × n  [mm/min]')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Zerspanung</div>
     <div class="formula-name"><span class="de-only">Vorschubgeschwindigkeit</span><span class="en-only">Feed Rate</span></div>
     <div class="formula-eq">v_f = f × n</div>
@@ -878,7 +1491,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'Q = v_c × a_p × f  [cm³/min]')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'Q = v_c × a_p × f  [cm³/min]')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Zerspanung</div>
     <div class="formula-name"><span class="de-only">Spanungsvolumen</span><span class="en-only">Material Removal Rate</span></div>
     <div class="formula-eq">Q = v_c × a_p × f</div>
@@ -886,7 +1499,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'T = C / v_c^n  (Standzeit nach Taylor)')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'T = C / v_c^n  (Standzeit nach Taylor)')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Zerspanung</div>
     <div class="formula-name"><span class="de-only">Standzeit (Taylor)</span><span class="en-only">Tool Life (Taylor)</span></div>
     <div class="formula-eq">T = C / v_c^n</div>
@@ -896,7 +1509,7 @@ html.lang-de .en-only { display: none !important; }
   <div class="formula-cat-title"><span class="de-only">⚖️ Toleranzen & Passungen</span><span class="en-only">⚖️ Tolerances & Fits</span></div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'Toleranz T = ES - EI (Bohrung) | T = es - ei (Welle)')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'Toleranz T = ES - EI (Bohrung) | T = es - ei (Welle)')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Toleranzen</div>
     <div class="formula-name"><span class="de-only">Toleranz</span><span class="en-only">Tolerance</span></div>
     <div class="formula-eq">T = ES − EI = es − ei</div>
@@ -904,7 +1517,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'Grenzspiel: S_max = ES - ei | S_min = EI - es')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'Grenzspiel: S_max = ES - ei | S_min = EI - es')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Toleranzen</div>
     <div class="formula-name"><span class="de-only">Grenzspiel / Grenzübermaß</span><span class="en-only">Limit Clearance / Limit Interference</span></div>
     <div class="formula-eq">S_max = ES − ei | S_min = EI − es</div>
@@ -912,7 +1525,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'Abmaß: ES = Obermaß Bohrung | EI = Untermaß Bohrung | es = Obermaß Welle | ei = Untermaß Welle')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'Abmaß: ES = Obermaß Bohrung | EI = Untermaß Bohrung | es = Obermaß Welle | ei = Untermaß Welle')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Toleranzen</div>
     <div class="formula-name"><span class="de-only">Abmaß-Definitionen</span><span class="en-only">Deviation Definitions</span></div>
     <div class="formula-eq">ES / EI (Bohrung) · es / ei (Welle)</div>
@@ -922,7 +1535,7 @@ html.lang-de .en-only { display: none !important; }
   <div class="formula-cat-title"><span class="de-only">💧 Hydraulik & Pneumatik</span><span class="en-only">💧 Hydraulics & Pneumatics</span></div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'F2/F1 = A2/A1  (Pascalsches Prinzip)')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'F2/F1 = A2/A1  (Pascalsches Prinzip)')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Hydraulik</div>
     <div class="formula-name"><span class="de-only">Druckübersetzung</span><span class="en-only">Pressure Intensification</span></div>
     <div class="formula-eq">F2 / F1 = A2 / A1</div>
@@ -930,7 +1543,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'Q = A × v  [L/min] — A[cm²], v[m/s]')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'Q = A × v  [L/min] — A[cm²], v[m/s]')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Hydraulik</div>
     <div class="formula-name"><span class="de-only">Volumenstrom</span><span class="en-only">Flow Rate</span></div>
     <div class="formula-eq">Q = A × v</div>
@@ -938,7 +1551,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'F [kN] = p [bar] × A [cm²] / 100')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'F [kN] = p [bar] × A [cm²] / 100')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Hydraulik</div>
     <div class="formula-name"><span class="de-only">Kolbenkraft</span><span class="en-only">Piston Force</span></div>
     <div class="formula-eq">F [kN] = p [bar] × A [cm²] / 100</div>
@@ -946,7 +1559,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'v = Q / A  — v[m/s], Q[m³/s], A[m²]')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'v = Q / A  — v[m/s], Q[m³/s], A[m²]')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Hydraulik</div>
     <div class="formula-name"><span class="de-only">Zylindergeschwindigkeit</span><span class="en-only">Cylinder Speed</span></div>
     <div class="formula-eq">v = Q / A</div>
@@ -956,7 +1569,7 @@ html.lang-de .en-only { display: none !important; }
   <div class="formula-cat-title"><span class="de-only">🔧 Getriebe & Antrieb</span><span class="en-only">🔧 Gearbox & Drive</span></div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'i = n1/n2 = z2/z1 = d2/d1')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'i = n1/n2 = z2/z1 = d2/d1')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Getriebe</div>
     <div class="formula-name"><span class="de-only">Übersetzungsverhältnis</span><span class="en-only">Gear Ratio</span></div>
     <div class="formula-eq">i = n1/n2 = z2/z1 = d2/d1</div>
@@ -964,7 +1577,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'n2 = n1 / i  [U/min]')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'n2 = n1 / i  [U/min]')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Getriebe</div>
     <div class="formula-name"><span class="de-only">Abtriebsdrehzahl</span><span class="en-only">Output Speed</span></div>
     <div class="formula-eq">n2 = n1 / i</div>
@@ -972,7 +1585,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'M2 = M1 × i × η')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'M2 = M1 × i × η')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Getriebe</div>
     <div class="formula-name"><span class="de-only">Abtriebsdrehmoment</span><span class="en-only">Output Torque</span></div>
     <div class="formula-eq">M2 = M1 × i × η</div>
@@ -980,7 +1593,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'η = P_ab / P_zu × 100%')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'η = P_ab / P_zu × 100%')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge">Getriebe</div>
     <div class="formula-name"><span class="de-only">Wirkungsgrad</span><span class="en-only">Efficiency</span></div>
     <div class="formula-eq">η = P_ab / P_zu × 100%</div>
@@ -993,8 +1606,8 @@ html.lang-de .en-only { display: none !important; }
 <main id="s-ap" class="screen">
 
   <div class="inner-tabs">
-    <button class="inner-tab on" onclick="apSwitch('ap1')">AP 1</button>
-    <button class="inner-tab" onclick="apSwitch('ap2')">AP 2</button>
+    <button type="button" class="inner-tab on" onclick="apSwitch('ap1')">AP 1</button>
+    <button type="button" class="inner-tab" onclick="apSwitch('ap2')">AP 2</button>
   </div>
 
   <!-- AP1 Panel -->
@@ -1077,7 +1690,7 @@ html.lang-de .en-only { display: none !important; }
       <div class="calc-field"><label>F [N]</label><input type="number" id="dm-f" placeholder="Kraft"></div>
       <div class="calc-field"><label>r [m]</label><input type="number" id="dm-r" placeholder="Hebelarm"></div>
     </div>
-    <button class="calc-go" onclick="calcDrehmoment()">BERECHNEN</button>
+    <button type="button" class="calc-go" onclick="calcDrehmoment()">BERECHNEN</button>
     <div class="calc-result-box" id="dm-res"></div>
     <div class="calc-error" id="dm-err"></div>
   </div>
@@ -1090,7 +1703,7 @@ html.lang-de .en-only { display: none !important; }
       <div class="calc-field"><label>M [Nm]</label><input type="number" id="ml-m" placeholder="Drehmoment"></div>
       <div class="calc-field"><label>n [U/min]</label><input type="number" id="ml-n" placeholder="Drehzahl"></div>
     </div>
-    <button class="calc-go" onclick="calcMechLeistung()">BERECHNEN</button>
+    <button type="button" class="calc-go" onclick="calcMechLeistung()">BERECHNEN</button>
     <div class="calc-result-box" id="ml-res"></div>
     <div class="calc-error" id="ml-err"></div>
   </div>
@@ -1108,7 +1721,7 @@ html.lang-de .en-only { display: none !important; }
       <div class="calc-field"><label>z1 (Zähne)</label><input type="number" id="gt-z1" placeholder="Antriebsrad"></div>
       <div class="calc-field"><label>z2 (Zähne)</label><input type="number" id="gt-z2" placeholder="Abtriebsrad"></div>
     </div>
-    <button class="calc-go" onclick="calcGetriebe()">BERECHNEN</button>
+    <button type="button" class="calc-go" onclick="calcGetriebe()">BERECHNEN</button>
     <div class="calc-result-box" id="gt-res"></div>
     <div class="calc-error" id="gt-err"></div>
   </div>
@@ -1124,7 +1737,7 @@ html.lang-de .en-only { display: none !important; }
       <div class="calc-field"><label>F [N]</label><input type="number" id="hy-f" placeholder="Kraft"></div>
       <div class="calc-field"><label>A [cm²]</label><input type="number" id="hy-a" placeholder="Fläche"></div>
     </div>
-    <button class="calc-go" onclick="calcHydraulik()">BERECHNEN</button>
+    <button type="button" class="calc-go" onclick="calcHydraulik()">BERECHNEN</button>
     <div class="calc-result-box" id="hy-res"></div>
     <div class="calc-error" id="hy-err"></div>
   </div>
@@ -1154,7 +1767,7 @@ html.lang-de .en-only { display: none !important; }
         </select>
       </div>
     </div>
-    <button class="calc-go" onclick="calcAnzug()">BERECHNEN</button>
+    <button type="button" class="calc-go" onclick="calcAnzug()">BERECHNEN</button>
     <div class="calc-result-box" id="az-res"></div>
   </div>
 
@@ -1167,11 +1780,172 @@ html.lang-de .en-only { display: none !important; }
       <div class="calc-field"><label>P_zu [W]</label><input type="number" id="wg-pzu" placeholder="Aufnahme"></div>
       <div class="calc-field"><label>P_ab [W]</label><input type="number" id="wg-pab" placeholder="Abgabe"></div>
     </div>
-    <button class="calc-go" onclick="calcWirkungsgrad()">BERECHNEN</button>
+    <button type="button" class="calc-go" onclick="calcWirkungsgrad()">BERECHNEN</button>
     <div class="calc-result-box" id="wg-res"></div>
     <div class="calc-error" id="wg-err"></div>
   </div>
 
+</main>
+
+<!-- ===================== SCREEN 7: AP1-SIMULATION ===================== -->
+<main id="s-sim" class="screen">
+
+  <!-- Start-View -->
+  <div id="sim-start">
+    <div class="quiz-hero">
+      <span class="quiz-hero-icon">🎓</span>
+      <h2>AP1-Simulation</h2>
+      <p>20 Fragen · 90 Minuten Zeitlimit · Industriemechaniker</p>
+      <div class="quiz-hs-badge" id="sim-hs-badge">Kein Ergebnis gespeichert</div>
+      <button type="button" class="btn-primary" onclick="simStart()">Simulation starten</button>
+    </div>
+    <div class="card" style="margin-top:.75rem;">
+      <div class="sec-title">ℹ️ Hinweise</div>
+      <p style="font-size:13px;color:var(--tx2);line-height:1.6;">Die Simulation entspricht dem Schwierigkeitsgrad der echten AP1. Alle 20 Fragen müssen in 90 Minuten beantwortet werden. Das Ergebnis wird gespeichert.</p>
+    </div>
+  </div>
+
+  <!-- Quiz-View -->
+  <div id="sim-quiz" style="display:none;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
+      <span class="quiz-counter" id="sim-counter" style="margin:0;">Frage 1 / 20</span>
+      <span id="sim-timer" style="font-family:var(--mo);font-size:14px;font-weight:700;color:var(--ok);">90:00</span>
+    </div>
+    <div class="quiz-progress-wrap">
+      <div class="quiz-progress-bar" id="sim-progress" style="width:5%"></div>
+    </div>
+    <div class="quiz-card">
+      <div class="quiz-question" id="sim-question"></div>
+      <div class="quiz-opts" id="sim-opts"></div>
+      <div class="quiz-explanation" id="sim-explanation" style="display:none;"></div>
+      <button type="button" class="quiz-next-btn" id="sim-next-btn" onclick="simNext()" style="display:none;">Nächste Frage →</button>
+    </div>
+  </div>
+
+  <!-- End-View -->
+  <div id="sim-end" style="display:none;">
+    <div class="quiz-end-card">
+      <div class="quiz-score-big" id="sim-score-big">—</div>
+      <div class="quiz-score-sub" id="sim-score-sub"></div>
+      <div class="quiz-end-hs" id="sim-end-hs"></div>
+      <button type="button" class="btn-primary" onclick="simRestart()" style="margin-bottom:.75rem;">Nochmal</button>
+      <button type="button" onclick="simBack()" style="background:var(--bg3);color:var(--tx2);border:1px solid var(--br);border-radius:12px;padding:.75rem 1.5rem;font-size:15px;font-weight:700;cursor:pointer;width:100%;max-width:300px;display:block;margin:0 auto;font-family:var(--sa);">← Zurück</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- ===================== SCREEN 8: SPACED REPETITION ===================== -->
+<main id="s-sr" class="screen">
+  <div id="sr-dash-view">
+    <div class="sec-title">🧠 <span class="de-only">Spaced Repetition</span><span class="en-only">Spaced Repetition</span></div>
+    <div class="sr-stat-row" id="sr-stat-row">
+      <div class="sr-stat"><div class="sr-stat-v" id="sr-v-due" style="color:#ff453a">—</div><div class="sr-stat-l">Fällig</div></div>
+      <div class="sr-stat"><div class="sr-stat-v" id="sr-v-new" style="color:#3d8ef8">—</div><div class="sr-stat-l">Neu</div></div>
+      <div class="sr-stat"><div class="sr-stat-v" id="sr-v-learned" style="color:#30d158">—</div><div class="sr-stat-l">Gelernt</div></div>
+      <div class="sr-stat"><div class="sr-stat-v" id="sr-v-total" style="color:var(--tx2)">—</div><div class="sr-stat-l">Gesamt</div></div>
+    </div>
+    <div class="sr-mode-row" id="sr-mode-row">
+      <button type="button" class="sr-mode-btn active" id="sr-mode-flip" onclick="setSRMode('flip')">🃏 Karteikarte</button>
+      <button type="button" class="sr-mode-btn" id="sr-mode-fill" onclick="setSRMode('fill')">✏️ Lückentext</button>
+    </div>
+    <div id="sr-start-area"></div>
+    <div class="sr-notify-row" id="torNotifyRow">
+      <button type="button" class="sr-notify-btn" id="torNotifyBtn" onclick="torToggleNotify()">🔔 Erinnerungen aktivieren</button>
+      <span class="sr-notify-hint" id="torNotifyHint"></span>
+    </div>
+    <div style="margin-top:1.25rem;">
+      <div class="sr-section-title"><span class="de-only">So funktioniert's</span><span class="en-only">How It Works</span></div>
+      <div style="background:var(--bg2);border:1px solid var(--br);border-radius:var(--r2);padding:1rem;">
+        <div style="display:flex;flex-direction:column;gap:.6rem;font-size:13px;color:var(--tx2);line-height:1.5;">
+          <div>🃏 <span class="de-only">Karte anschauen → umdrehen → Schwierigkeit bewerten</span><span class="en-only">View card → flip → rate difficulty</span></div>
+          <div>🧠 <span class="de-only">Der SM-2-Algorithmus plant die nächste Wiederholung automatisch</span><span class="en-only">The SM-2 algorithm schedules the next review automatically</span></div>
+          <div>📅 <span class="de-only">Täglich 20 Karten — in 4 Wochen alles gelernt</span><span class="en-only">20 cards per day — everything learned in 4 weeks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="sr-session-view" style="display:none;">
+    <!-- Progress bar -->
+    <div class="sr-prog-wrap">
+      <div class="sr-prog-bar-track">
+        <div class="sr-prog-bar-fill" id="sr-prog-bar" style="width:0%"></div>
+      </div>
+      <div class="sr-prog-label" id="sr-prog-txt"></div>
+    </div>
+
+    <!-- Flip card -->
+    <div class="sr-flip-wrap">
+      <div class="sr-flip" id="sr-flip" onclick="torSRFlip()">
+        <div class="sr-front">
+          <div class="sr-card-tag" id="sr-card-tag"></div>
+          <div class="sr-card-q" id="sr-card-q"></div>
+          <div class="sr-card-hint" id="sr-card-hint">
+            <span class="de-only">Tippen zum Umdrehen</span>
+            <span class="en-only">Tap to flip</span>
+          </div>
+        </div>
+        <div class="sr-back">
+          <div class="sr-card-tag"><span class="de-only">Antwort</span><span class="en-only">Answer</span></div>
+          <div class="sr-card-a" id="sr-card-a"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grade buttons -->
+
+    <div id="sr-fill-area" style="display:none;">
+      <div class="sr-fill-area-wrap">
+        <div class="sr-fill-q-card">
+          <div class="sr-fill-q-tag" id="sr-fill-tag"></div>
+          <div class="sr-fill-q-text" id="sr-fill-q"></div>
+        </div>
+        <div class="sr-fill-input-row">
+  <textarea id="sr-fill-input" class="sr-fill-input" placeholder="Deine Antwort…" rows="3"></textarea>
+  <button type="button" class="sr-mic-btn" id="sr-mic-btn" onclick="srStartVoice()" title="Spracheingabe starten" aria-label="Spracheingabe">🎙️</button>
+</div>
+        <button type="button" class="sr-fill-submit" id="sr-fill-submit" onclick="srFillSubmit()">✓ Antwort prüfen</button>
+        <div id="sr-fill-answer" style="display:none;">
+          <div class="sr-fill-answer-box">
+            <div class="sr-fill-answer-label">Musterlösung</div>
+            <div id="sr-fill-answer-text" class="sr-fill-answer-text"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="sr-grade-area" style="display:none;">
+      <p class="sr-grade-prompt"><span class="de-only">Wie gut wusstest du das?</span><span class="en-only">How well did you know this?</span></p>
+      <div class="sr-grade-row">
+        <button type="button" class="sr-grade-btn bad" onclick="torSRGrade(1)">
+          <span class="sr-grade-btn-label de-only">Wieder</span>
+          <span class="sr-grade-btn-label en-only">Again</span>
+          <span class="sr-grade-btn-note">+1 Tag</span>
+        </button>
+        <button type="button" class="sr-grade-btn ok" onclick="torSRGrade(3)">
+          <span class="sr-grade-btn-label de-only">Schwer</span>
+          <span class="sr-grade-btn-label en-only">Hard</span>
+          <span class="sr-grade-btn-note de-only">+kurz</span>
+          <span class="sr-grade-btn-note en-only">+soon</span>
+        </button>
+        <button type="button" class="sr-grade-btn good" onclick="torSRGrade(5)">
+          <span class="sr-grade-btn-label de-only">Gut</span>
+          <span class="sr-grade-btn-label en-only">Got it</span>
+          <span class="sr-grade-btn-note de-only">+länger</span>
+          <span class="sr-grade-btn-note en-only">+longer</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="sr-done-view" style="display:none;">
+    <div class="sr-done">
+      <span class="sr-done-emoji">🎉</span>
+      <div class="sr-done-title"><span class="de-only">Sitzung abgeschlossen!</span><span class="en-only">Session Complete!</span></div>
+      <div class="sr-done-sub" id="sr-done-sub"></div>
+      <button type="button" class="sr-start-btn" style="margin-top:1.5rem;" onclick="torSRBackToDash()"><span class="de-only">← Zurück zur Übersicht</span><span class="en-only">← Back to overview</span></button>
+    </div>
+  </div>
 </main>
 
 <!-- ===================== APP-SWITCHER DRAWER ===================== -->
@@ -1179,49 +1953,49 @@ html.lang-de .en-only { display: none !important; }
 <div class="drawer" id="drawer">
   <div class="drawer-hdr">
     <span class="drawer-title">⊞ Arc Studio</span>
-    <button class="drawer-close" onclick="drawerClose()">✕</button>
+    <button type="button" class="drawer-close" aria-label="Menü schließen" onclick="drawerClose()">✕</button>
   </div>
   <div class="drawer-apps">
-    <a class="drawer-app" href="VOLTECH-mechatronik-pro.html">
-      <span class="drawer-app-icon">⚙️</span>
-      <div><div class="drawer-app-name">Mechatronik Pro</div><div class="drawer-app-sub">Mechatroniker-Ausbildung</div></div>
-    </a>
-    <a class="drawer-app" href="VOLTECH-lern-basis.html">
-      <span class="drawer-app-icon">📚</span>
-      <div><div class="drawer-app-name">Lernmodus</div><div class="drawer-app-sub">Karteikarten & Grundlagen</div></div>
-    </a>
-    <a class="drawer-app" href="VOLTECH-lern-extra.html">
-      <span class="drawer-app-icon">🎤</span>
-      <div><div class="drawer-app-name">AP2-Extra</div><div class="drawer-app-sub">Mündliche Prüfungsvorbereitung</div></div>
-    </a>
-    <a class="drawer-app" href="VOLTECH-sps.html">
-      <span class="drawer-app-icon">🔌</span>
-      <div><div class="drawer-app-name">SPS-Trainer</div><div class="drawer-app-sub">Speicherprogrammierbare Steuerung</div></div>
-    </a>
-    <a class="drawer-app" href="VOLTECH-berichtsheft.html">
-      <span class="drawer-app-icon">📓</span>
-      <div><div class="drawer-app-name">Berichtsheft</div><div class="drawer-app-sub">Ausbildungsnachweise</div></div>
-    </a>
-    <a class="drawer-app" href="VOLTECH-tools2.html">
-      <span class="drawer-app-icon">🧰</span>
-      <div><div class="drawer-app-name">Lerntools</div><div class="drawer-app-sub">Rechner & Hilfsmittel</div></div>
+    <a class="drawer-app" href="voltiq.html">
+      <span class="drawer-app-icon">⚡</span>
+      <div><div class="drawer-app-name">VOLTIQ</div><div class="drawer-app-sub">Mechatroniker</div></div>
     </a>
     <a class="drawer-app" href="VOLTECH-ampere.html">
-      <span class="drawer-app-icon">⚡</span>
-      <div><div class="drawer-app-name">AMPERE</div><div class="drawer-app-sub">Elektroniker Betriebstechnik</div></div>
+      <span class="drawer-app-icon">🔌</span>
+      <div><div class="drawer-app-name">AMPERE</div><div class="drawer-app-sub">Elektroniker EfB</div></div>
     </a>
     <a class="drawer-app active" href="#">
-      <span class="drawer-app-icon">🔧</span>
-      <div><div class="drawer-app-name">TORQUE</div><div class="drawer-app-sub">Industriemechaniker Betriebstechnik</div></div>
+      <span class="drawer-app-icon">⚙️</span>
+      <div><div class="drawer-app-name">TORQUE</div><div class="drawer-app-sub">Industriemechaniker</div></div>
       <span class="drawer-app-badge">Aktiv</span>
     </a>
-    <a class="drawer-app" href="VOLTECH-ki.html">
-      <span class="drawer-app-icon">🧠</span>
-      <div><div class="drawer-app-name">KI-Assistent</div><div class="drawer-app-sub">Offline Wissensdatenbank</div></div>
+    <a class="drawer-app" href="FISI-core.html">
+      <span class="drawer-app-icon">💻</span>
+      <div><div class="drawer-app-name">FISI-Core</div><div class="drawer-app-sub">Fachinformatiker</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-ki-tutor.html?app=torque">
+      <span class="drawer-app-icon">🤖</span>
+      <div><div class="drawer-app-name">KI-Tutor</div><div class="drawer-app-sub">IHK-Fachtutor · offline</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-english.html">
+      <span class="drawer-app-icon">🇬🇧</span>
+      <div><div class="drawer-app-name">Technical English</div><div class="drawer-app-sub">Fachvokabular · IHK</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-achievements.html">
+      <span class="drawer-app-icon">🏆</span>
+      <div><div class="drawer-app-name">Achievements</div><div class="drawer-app-sub"></div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-forum.html">
+      <span class="drawer-app-icon">💬</span>
+      <div><div class="drawer-app-name">Forum</div><div class="drawer-app-sub">Azubi-Community</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-whats-new.html">
+      <span class="drawer-app-icon">🗺️</span>
+      <div><div class="drawer-app-name">Roadmap</div><div class="drawer-app-sub"></div></div>
     </a>
   </div>
   <div class="drawer-footer">
-    <a href="index.html" style="color:var(--ac)">Arc Studio Website ↗</a>
+    <a href="index.html" style="color:var(--ac)">🏠 Arc Studio ↗</a>
   </div>
 </div>
 
@@ -1229,32 +2003,36 @@ html.lang-de .en-only { display: none !important; }
 <script>
 // ── Theme Toggle ─────────────────────────────────────────────
 (function(){
-  var KEY = 'tor_theme';
-  var isLight = localStorage.getItem(KEY) === 'light';
-  function apply(l) {
-    document.documentElement.classList.toggle('lm', l);
-    var b = document.getElementById('thm-btn');
-    if(b) b.textContent = l ? '☀️' : '🌙';
+  var KEY='arc_theme';
+  var isDark=localStorage.getItem(KEY)==='dark';
+  function apply(d){
+    document.documentElement.classList.toggle('dm',d);
+    var b=document.getElementById('thm-btn');
+    if(b)b.textContent=d?'☀️':'🌙';
   }
-  if(isLight) document.documentElement.classList.add('lm');
-  window.thmToggle = function() {
-    isLight = !isLight;
-    localStorage.setItem(KEY, isLight ? 'light' : 'dark');
-    apply(isLight);
+  apply(isDark);
+  window.thmToggle=function(){
+    isDark=!isDark;
+    localStorage.setItem(KEY,isDark?'dark':'light');
+    apply(isDark);
   };
-  apply(isLight);
 })();
 
 // ── Screen Navigation ────────────────────────────────────────
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('on'); });
-  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('on'); });
+  document.querySelectorAll('.bnav-btn').forEach(function(b) { b.classList.remove('on'); });
   var sc = document.getElementById(id);
   if(sc) sc.classList.add('on');
   var tb = document.querySelector('[data-screen="' + id + '"]');
   if(tb) tb.classList.add('on');
+  document.querySelectorAll('.bnav-btn').forEach(function(b){ b.removeAttribute('aria-current'); });
+  document.querySelectorAll('.bnav-btn[data-screen="' + id + '"]').forEach(function(b){ b.setAttribute('aria-current','page'); });
   window.scrollTo(0, 0);
 }
+document.querySelectorAll('.bnav-btn[data-screen]').forEach(function(btn) {
+  btn.addEventListener('click', function() { showScreen(this.dataset.screen); });
+});
 
 // ── Drawer ───────────────────────────────────────────────────
 function drawerOpen() {
@@ -1281,97 +2059,136 @@ var currentLang = localStorage.getItem('arc_lang') || 'de';
 
 // ── Quiz Array ───────────────────────────────────────────────
 var QUIZ = [
-  { c:1,
+  { c:1, topic:'Toleranz',
     de:{q:'Was bedeutet die Toleranzangabe H7 bei einer Bohrung?',opts:['Übergangspassung mit Spielanteil','Einheitsbohrung: Unterabmaß = 0, obere Abweichung positiv','Einheitswelle mit Übermaß','Presspassung Klasse 7'],e:'H = Einheitsbohrung (Unterabmaß immer 0). Die Zahl 7 = Grundtoleranz IT7. Das Obermaß ist positiv → Bohrung immer etwas größer als Nennmaß.'},
-    en:{q:'What does the tolerance designation H7 mean for a bore?',opts:['Transition fit with clearance portion','Hole basis: lower deviation = 0, upper deviation positive','Shaft basis with interference','Press fit class 7'],e:'H = hole basis (lower deviation always 0). The number 7 = fundamental tolerance IT7. Upper deviation is positive → bore is always slightly larger than nominal dimension.'}},
-  { c:2,
+    en:{q:'What does the tolerance designation H7 mean for a bore?',opts:['Transition fit with clearance portion','Hole basis: lower deviation = 0, upper deviation positive','Shaft basis with interference','Press fit class 7'],e:'H = hole basis (lower deviation always 0). The number 7 = fundamental tolerance IT7. Upper deviation is positive → bore is always slightly larger than nominal dimension.'},
+    tr:{q:'H7 tolerans işareti bir delik için ne anlama gelir?',opts:['Boşluklu geçiş uyumu','Delik bazlı: alt sapma = 0, üst sapma pozitif','Şaft bazlı fazlalık uyumu','7. sınıf pres uyumu'],e:'H = delik bazlı tolerans (alt sapma her zaman 0). 7 sayısı = IT7 temel toleransı. Üst sapma pozitif → delik her zaman nominal ölçüden biraz büyük.'},
+    ru:{q:'Что означает обозначение допуска H7 для отверстия?',opts:['Переходная посадка с зазором','Основное отверстие: нижнее отклонение = 0, верхнее положительное','Основной вал с натягом','Прессовая посадка класс 7'],e:'H = основное отверстие (нижнее отклонение всегда 0). Цифра 7 = квалитет IT7. Верхнее отклонение положительное → отверстие всегда немного больше номинального.'},
+    ar:{q:'ماذا يعني الرمز H7 في مواصفات التفاوت للثقب؟',opts:['تطابق انتقالي مع جزء تخليص','تفاوت قاعدة الثقب: الانحراف السفلي = 0، الانحراف العلوي موجب','تفاوت قاعدة العمود مع تداخل','تطابق ضغطي الفئة 7'],e:'H = قاعدة الثقب (الانحراف السفلي دائمًا 0). الرقم 7 = درجة التفاوت الأساسية IT7. الانحراف العلوي موجب → الثقب دائمًا أكبر قليلًا من القياس الاسمي.'}},
+  { c:2, topic:'Werkstoffe',
     de:{q:'Welche Festigkeitsklasse hat die höchste Zugfestigkeit?',opts:['8.8','10.9','12.9','6.8'],e:'12.9: Zugfestigkeit 1200 N/mm², Streckgrenze 90% = 1080 N/mm². Erste Zahl × 100 = Zugfestigkeit [N/mm²], zweite Zahl × 10% = Streckgrenzverhältnis.'},
-    en:{q:'Which property class has the highest tensile strength?',opts:['8.8','10.9','12.9','6.8'],e:'12.9: tensile strength 1200 N/mm², yield strength 90% = 1080 N/mm². First digit × 100 = tensile strength [N/mm²], second digit × 10% = yield strength ratio.'}},
-  { c:1,
+    en:{q:'Which property class has the highest tensile strength?',opts:['8.8','10.9','12.9','6.8'],e:'12.9: tensile strength 1200 N/mm², yield strength 90% = 1080 N/mm². First digit × 100 = tensile strength [N/mm²], second digit × 10% = yield strength ratio.'},
+    tr:{q:'Hangi mukavemet sınıfı en yüksek çekme mukavemetine sahiptir?',opts:['8.8','10.9','12.9','6.8'],e:'12.9: çekme mukavemeti 1200 N/mm², akma %90 = 1080 N/mm². İlk rakam × 100 = çekme mukavemeti, ikinci × %10 = akma oranı.'},
+    ru:{q:'Какой класс прочности имеет наибольшую прочность на разрыв?',opts:['8.8','10.9','12.9','6.8'],e:'12.9: прочность на разрыв 1200 Н/мм², предел текучести 90% = 1080 Н/мм². Первая цифра × 100 = прочность, вторая × 10% = коэффициент текучести.'},
+    ar:{q:'أي فئة مقاومة تمتلك أعلى قوة شد؟',opts:['8.8','10.9','12.9','6.8'],e:'12.9: قوة الشد 1200 N/mm²، حد الخضوع 90% = 1080 N/mm². الرقم الأول × 100 = قوة الشد، الثاني × 10% = نسبة الخضوع.'}},
+  { c:1, topic:'Mechanik',
     de:{q:'Wie lautet die Formel für die Schnittgeschwindigkeit beim Drehen?',opts:['v_c = d × n / 1000','v_c = π × d × n / 1000','v_c = 2π × d × n','v_c = d × n / π'],e:'v_c = (π × d × n) / 1000 [m/min]. d = Werkstückdurchmesser [mm], n = Drehzahl [U/min]. Faktor 1000 wandelt mm → m um.'},
-    en:{q:'What is the formula for cutting speed in turning?',opts:['v_c = d × n / 1000','v_c = π × d × n / 1000','v_c = 2π × d × n','v_c = d × n / π'],e:'v_c = (π × d × n) / 1000 [m/min]. d = workpiece diameter [mm], n = rotational speed [rpm]. Factor 1000 converts mm → m.'}},
-  { c:1,
+    en:{q:'What is the formula for cutting speed in turning?',opts:['v_c = d × n / 1000','v_c = π × d × n / 1000','v_c = 2π × d × n','v_c = d × n / π'],e:'v_c = (π × d × n) / 1000 [m/min]. d = workpiece diameter [mm], n = rotational speed [rpm]. Factor 1000 converts mm → m.'},
+    tr:{q:'Tornalama için kesme hızı formülü nedir?',opts:['v_c = d × n / 1000','v_c = π × d × n / 1000','v_c = 2π × d × n','v_c = d × n / π'],e:'v_c = (π × d × n) / 1000 [m/dak]. d = iş parçası çapı [mm], n = devir sayısı [d/dak].'},
+    ru:{q:'Какова формула скорости резания при токарной обработке?',opts:['v_c = d × n / 1000','v_c = π × d × n / 1000','v_c = 2π × d × n','v_c = d × n / π'],e:'v_c = (π × d × n) / 1000 [м/мин]. d = диаметр заготовки [мм], n = частота вращения [об/мин].'},
+    ar:{q:'ما صيغة سرعة القطع في الخراطة؟',opts:['v_c = d × n / 1000','v_c = π × d × n / 1000','v_c = 2π × d × n','v_c = d × n / π'],e:'v_c = (π × d × n) / 1000 [م/دقيقة]. d = قطر قطعة العمل [مم]، n = سرعة الدوران [دورة/دقيقة].'}},
+  { c:1, topic:'Pneumatik',
     de:{q:'Was beschreibt das Pascalsche Gesetz?',opts:['Druck nimmt mit der Tiefe ab','Druck pflanzt sich in ruhenden Flüssigkeiten gleichmäßig in alle Richtungen fort','Volumen bleibt bei Druckerhöhung konstant','Flüssigkeiten sind kompressibel'],e:'Pascal: p = F/A. In einer eingeschlossenen Flüssigkeit pflanzt sich ein Druck ungeschwächt in alle Richtungen fort — Grundprinzip der Hydraulik.'},
-    en:{q:'What does Pascal\'s Law describe?',opts:['Pressure decreases with depth','Pressure is transmitted equally in all directions in a confined fluid','Volume remains constant when pressure increases','Fluids are compressible'],e:'Pascal: p = F/A. In a confined fluid, pressure is transmitted undiminished in all directions — the fundamental principle of hydraulics.'}},
-  { c:2,
+    en:{q:'What does Pascal\'s Law describe?',opts:['Pressure decreases with depth','Pressure is transmitted equally in all directions in a confined fluid','Volume remains constant when pressure increases','Fluids are compressible'],e:'Pascal: p = F/A. In a confined fluid, pressure is transmitted undiminished in all directions — the fundamental principle of hydraulics.'},
+    tr:{q:'Pascal Yasası neyi tanımlar?',opts:['Basınç derinlikle azalır','Basınç durgun sıvılarda her yöne eşit iletilir','Basınç artışında hacim sabit kalır','Sıvılar sıkıştırılabilir'],e:'Pascal: p = F/A. Kapalı bir sıvıda basınç tüm yönlere eksiksiz iletilir — hidroliğin temel ilkesi.'},
+    ru:{q:'Что описывает закон Паскаля?',opts:['Давление убывает с глубиной','Давление передаётся равномерно во все стороны в покоящейся жидкости','Объём остаётся постоянным при росте давления','Жидкости сжимаемы'],e:'Паскаль: p = F/A. В замкнутой жидкости давление передаётся без потерь во все стороны — основной принцип гидравлики.'},
+    ar:{q:'ماذا يصف قانون باسكال؟',opts:['الضغط ينخفض مع العمق','الضغط ينتقل بالتساوي في جميع الاتجاهات في السائل الساكن','الحجم يبقى ثابتًا عند زيادة الضغط','السوائل قابلة للضغط'],e:'باسكال: p = F/A. في سائل محاصر، ينتقل الضغط دون خسارة في جميع الاتجاهات — المبدأ الأساسي للهيدروليك.'}},
+  { c:2, topic:'Mechanik',
     de:{q:'Was ist ein Rillenkugellager geeignet für?',opts:['Nur radiale Kräfte','Nur axiale Kräfte','Radiale und begrenzte axiale Kräfte','Sehr hohe axiale Kräfte'],e:'Rillenkugellager (Typ 6xxx) nehmen radiale Hauptlasten und begrenzte Axialkräfte auf. Für reine Axialkräfte: Axialkugellager. Für hohe kombinierte Lasten: Kegelrollenlager.'},
-    en:{q:'What is a deep groove ball bearing suitable for?',opts:['Radial forces only','Axial forces only','Radial and limited axial forces','Very high axial forces'],e:'Deep groove ball bearings (type 6xxx) take mainly radial loads and limited axial forces. For purely axial forces: thrust ball bearings. For high combined loads: tapered roller bearings.'}},
-  { c:2,
+    en:{q:'What is a deep groove ball bearing suitable for?',opts:['Radial forces only','Axial forces only','Radial and limited axial forces','Very high axial forces'],e:'Deep groove ball bearings (type 6xxx) take mainly radial loads and limited axial forces. For purely axial forces: thrust ball bearings. For high combined loads: tapered roller bearings.'},
+    tr:{q:'Derin oluklu rulman hangi amaç için uygundur?',opts:['Yalnızca radyal kuvvetler','Yalnızca eksenel kuvvetler','Radyal ve sınırlı eksenel kuvvetler','Çok yüksek eksenel kuvvetler'],e:'Derin oluklu rulmanlar (6xxx tipi) esas radyal yükleri ve sınırlı eksenel kuvvetleri karşılar.'},
+    ru:{q:'Для чего подходит радиальный шарикоподшипник?',opts:['Только радиальные силы','Только осевые силы','Радиальные и ограниченные осевые силы','Очень большие осевые силы'],e:'Радиальные шарикоподшипники (тип 6xxx) воспринимают радиальные нагрузки и ограниченные осевые усилия.'},
+    ar:{q:'لأي غرض يُناسب المحمل الكروي العميق الأخدود؟',opts:['قوى شعاعية فقط','قوى محورية فقط','قوى شعاعية ومحورية محدودة','قوى محورية عالية جداً'],e:'المحامل الكروية (نوع 6xxx) تتحمل الأحمال الشعاعية وقوى محورية محدودة.'}},
+  { c:2, topic:'Toleranz',
     de:{q:'Welche Passungsart ergibt immer Spiel zwischen Welle und Bohrung?',opts:['H7/k6','H7/p6','H7/f7','H7/s6'],e:'H7/f7 = Spielpassung. f-Welle liegt unterhalb der h-Nulllinie → immer Spiel. H7/k6 = Übergangspassung, H7/p6 und H7/s6 = Presspassung.'},
-    en:{q:'Which fit always produces clearance between shaft and bore?',opts:['H7/k6','H7/p6','H7/f7','H7/s6'],e:'H7/f7 = clearance fit. f-shaft lies below the zero line → always clearance. H7/k6 = transition fit, H7/p6 and H7/s6 = interference fit.'}},
-  { c:2,
+    en:{q:'Which fit always produces clearance between shaft and bore?',opts:['H7/k6','H7/p6','H7/f7','H7/s6'],e:'H7/f7 = clearance fit. f-shaft lies below the zero line → always clearance. H7/k6 = transition fit, H7/p6 and H7/s6 = interference fit.'},
+    tr:{q:'Hangi uyum türü mil ile delik arasında her zaman boşluk sağlar?',opts:['H7/k6','H7/p6','H7/f7','H7/s6'],e:'H7/f7 = boşluklu uyum. f-mili her zaman sıfır çizgisinin altında → her zaman boşluk.'},
+    ru:{q:'Какой вид посадки всегда даёт зазор между валом и отверстием?',opts:['H7/k6','H7/p6','H7/f7','H7/s6'],e:'H7/f7 = посадка с зазором. f-вал всегда ниже нулевой линии → всегда зазор.'},
+    ar:{q:'أي نوع تطابق يُعطي دائمًا تخليصًا بين العمود والثقب؟',opts:['H7/k6','H7/p6','H7/f7','H7/s6'],e:'H7/f7 = تطابق تخليص. العمود f دائمًا أسفل الخط الصفري → تخليص دائمًا.'}},
+  { c:2, topic:'Qualität',
     de:{q:'Was misst ein Mikrometer?',opts:['Längen bis 2000mm','Längen mit 0,01mm Auflösung','Längen mit 0,001mm Auflösung','Winkel bis 0,01°'],e:'Mikrometer (Bügelmessschraube): Auflösung 0,001mm (mit Nonius). Messbereich: je nach Ausführung 0-25mm, 25-50mm etc. Messuhr: 0,001-0,01mm.'},
-    en:{q:'What does a micrometer measure?',opts:['Lengths up to 2000 mm','Lengths with 0.01 mm resolution','Lengths with 0.001 mm resolution','Angles up to 0.01°'],e:'Micrometer (outside micrometer): resolution 0.001 mm (with vernier). Measuring range: depending on type 0-25 mm, 25-50 mm etc. Dial indicator: 0.001-0.01 mm.'}},
-  { c:1,
+    en:{q:'What does a micrometer measure?',opts:['Lengths up to 2000 mm','Lengths with 0.01 mm resolution','Lengths with 0.001 mm resolution','Angles up to 0.01°'],e:'Micrometer (outside micrometer): resolution 0.001 mm (with vernier). Measuring range: depending on type 0-25 mm, 25-50 mm etc. Dial indicator: 0.001-0.01 mm.'},
+    tr:{q:'Mikrometre ne ölçer?',opts:['2000 mm\'ye kadar uzunluklar','0,01 mm çözünürlüklü uzunluklar','0,001 mm çözünürlüklü uzunluklar','0,01° kadar açılar'],e:'Mikrometre (vida mikrometresi): çözünürlük 0,001 mm (verniyerli). Ölçüm aralığı 0-25 mm, 25-50 mm vb.'},
+    ru:{q:'Что измеряет микрометр?',opts:['Длины до 2000 мм','Длины с разрешением 0,01 мм','Длины с разрешением 0,001 мм','Углы до 0,01°'],e:'Микрометр: разрешение 0,001 мм (с нониусом). Диапазон 0-25 мм, 25-50 мм и т. д.'},
+    ar:{q:'ماذا يقيس الميكرومتر؟',opts:['أطوال حتى 2000 مم','أطوال بدقة 0.01 مم','أطوال بدقة 0.001 مم','زوايا حتى 0.01 درجة'],e:'الميكرومتر: دقة 0.001 مم (مع النونيوس). مدى القياس 0-25 مم، 25-50 مم إلخ.'}},
+  { c:1, topic:'Mechanik',
     de:{q:'Was bedeutet G00 in einem CNC-Programm?',opts:['Programmende','Eilgang ohne Konturschnitt','Linearinterpolation mit Vorschub','Kreisinterpolation im Uhrzeigersinn'],e:'G00 = Eilgang (Positionierung): maximale Maschinengeschwindigkeit, kein Materialabtrag. G01 = Linearinterpolation mit F-Wort. G02/G03 = Kreisinterpolation.'},
     en:{q:'What does G00 mean in a CNC programme?',opts:['Programme end','Rapid traverse without cutting','Linear interpolation with feed rate','Circular interpolation clockwise'],e:'G00 = rapid traverse (positioning): maximum machine speed, no material removal. G01 = linear interpolation with F-word. G02/G03 = circular interpolation.'}},
-  { c:1,
+  { c:1, topic:'Pneumatik',
     de:{q:'Welches Symbol wird für ein Druckbegrenzungsventil in Hydraulikschaltplänen verwendet?',opts:['Quadrat mit Pfeil diagonal','Rechteck mit Feder und Kegel nach ISO 1219','Kreis mit X','Raute mit Pfeil'],e:'DBV nach ISO 1219: Quadrat mit Feder (Einstellfeder) und Schließkegel. Öffnet wenn p_ein > Einstelldruck → Rücklauf zu Tank. Schützt System vor Überdruck.'},
     en:{q:'Which symbol is used for a pressure relief valve in hydraulic circuit diagrams?',opts:['Square with diagonal arrow','Rectangle with spring and cone per ISO 1219','Circle with X','Diamond with arrow'],e:'Pressure relief valve per ISO 1219: square with spring (adjusting spring) and closing cone. Opens when inlet pressure exceeds set pressure → returns to tank. Protects system from overpressure.'}},
-  { c:1,
+  { c:1, topic:'Toleranz',
     de:{q:'Was versteht man unter IT7 im ISO-Toleranzsystem?',opts:['Toleranzlage T, Klasse 7','Grundtoleranz Klasse 7 — mittlere Qualität für Maschinenbau','Oberflächengüte Ra 7','Prüfklasse 7 nach ISO'],e:'IT = International Tolerance Grade. IT1-IT4: Präzision (Lehren), IT5-IT7: Maschinenbau (Lager, Getriebe), IT8-IT11: Allgemeiner Maschinenbau, IT12-IT18: Rohteilzustand.'},
     en:{q:'What is IT7 in the ISO tolerance system?',opts:['Tolerance position T, class 7','Fundamental tolerance grade 7 — medium quality for mechanical engineering','Surface roughness Ra 7','Inspection class 7 per ISO'],e:'IT = International Tolerance Grade. IT1-IT4: precision (gauges), IT5-IT7: mechanical engineering (bearings, gearboxes), IT8-IT11: general engineering, IT12-IT18: rough/unmachined.'}},
-  { c:1,
+  { c:1, topic:'Fügen',
     de:{q:'Wie ist die Schraube der Festigkeitsklasse 8.8 zu interpretieren?',opts:['Zugfestigkeit 80 N/mm², Streckgrenze 80%','Zugfestigkeit 800 N/mm², Streckgrenze 80% = 640 N/mm²','Durchmesser 8mm, 8 Gewindegänge','8 Nm Anzugsmoment bei 8mm Gewinde'],e:'Erste Zahl × 100 = Zugfestigkeit: 8 × 100 = 800 N/mm². Zweite Zahl × 10% der Zugfestigkeit = Streckgrenze: 8 × 10% × 800 = 640 N/mm².'},
     en:{q:'How is a bolt of property class 8.8 interpreted?',opts:['Tensile strength 80 N/mm², yield strength 80%','Tensile strength 800 N/mm², yield strength 80% = 640 N/mm²','Diameter 8 mm, 8 thread turns','8 Nm tightening torque for 8 mm thread'],e:'First digit × 100 = tensile strength: 8 × 100 = 800 N/mm². Second digit × 10% of tensile strength = yield strength: 8 × 10% × 800 = 640 N/mm².'}},
-  { c:1,
+  { c:1, topic:'Qualität',
     de:{q:'Was ist der Unterschied zwischen Wartung und Instandsetzung nach DIN 31051?',opts:['Kein Unterschied','Wartung ist präventiv (Soll-Zustand erhalten), Instandsetzung ist reaktiv (Soll-Zustand wiederherstellen)','Wartung kostet mehr','Instandsetzung ist präventiv'],e:'DIN 31051: Wartung = Maßnahmen zur Verzögerung des Abbaus (Öl wechseln, schmieren). Inspektion = Zustand beurteilen. Instandsetzung = Schaden beheben. Verbesserung = über Sollzustand hinaus.'},
     en:{q:'What is the difference between maintenance and repair per DIN 31051?',opts:['No difference','Maintenance is preventive (preserving required state), repair is reactive (restoring required state)','Maintenance costs more','Repair is preventive'],e:'DIN 31051: Maintenance = measures to slow deterioration (oil change, lubrication). Inspection = assess condition. Repair = rectify damage. Improvement = exceed required state.'}},
-  { c:1,
+  { c:1, topic:'Mechanik',
     de:{q:'Wie berechnet sich das Übersetzungsverhältnis eines Getriebes?',opts:['i = n2/n1 = z1/z2','i = n1/n2 = z2/z1','i = n1 × n2','i = z1 × z2 / n'],e:'i = n1/n2 = z2/z1. Antrieb (1), Abtrieb (2). Mehr Zähne am Abtriebsrad → Untersetzung (i > 1). Weniger Zähne → Übersetzung (i < 1). Drehmoment × i steigt bei Untersetzung.'},
     en:{q:'How is the gear ratio of a gearbox calculated?',opts:['i = n2/n1 = z1/z2','i = n1/n2 = z2/z1','i = n1 × n2','i = z1 × z2 / n'],e:'i = n1/n2 = z2/z1. Drive (1), output (2). More teeth on output gear → reduction (i > 1). Fewer teeth → overdrive (i < 1). Torque × i increases with reduction.'}},
-  { c:0,
+  { c:0, topic:'Pneumatik',
     de:{q:'Was bedeutet ISO VG 46 bei Hydrauliköl?',opts:['Viskositätsklasse, kinematische Viskosität ≈ 46 mm²/s bei 40°C','pH-Wert 46','Additivgehalt 46%','Produktionsnummer'],e:'ISO VG (Viscosity Grade): kinematische Viskosität in mm²/s (cSt) bei 40°C. VG 32 (leicht), VG 46 (mittel), VG 68 (schwer), VG 100 (sehr schwer). Je höher, desto dickflüssiger.'},
     en:{q:'What does ISO VG 46 mean for hydraulic oil?',opts:['Viscosity grade, kinematic viscosity ≈ 46 mm²/s at 40°C','pH value 46','Additive content 46%','Production number'],e:'ISO VG (Viscosity Grade): kinematic viscosity in mm²/s (cSt) at 40°C. VG 32 (light), VG 46 (medium), VG 68 (heavy), VG 100 (very heavy). Higher = more viscous.'}},
-  { c:1,
+  { c:1, topic:'Qualität',
     de:{q:'Was prüft die Gutlehre (Go-Seite) einer Grenzlehre?',opts:['Ob das Maß kleiner als das Mindestmaß ist','Ob das Werkstück passt (im Toleranzbereich — Gutseite muss durchgehen)','Ob das Maß größer als das Höchstmaß ist','Die Oberflächenrauheit'],e:'Go-Seite = Gutlehre = entspricht dem Mindestmaß (Bohrung) bzw. Höchstmaß (Welle). Muss durchgehen — sonst zu klein/zu groß. Not-Go = entspricht Höchstmaß (Bohrung), darf NICHT durchgehen.'},
     en:{q:'What does the Go side of a limit gauge check?',opts:['Whether the dimension is smaller than the minimum','Whether the workpiece is within tolerance (Go side must pass through)','Whether the dimension is larger than the maximum','The surface roughness'],e:'Go side = corresponds to the minimum dimension (bore) or maximum dimension (shaft). Must pass through — otherwise too small/too large. Not-Go = corresponds to maximum (bore), must NOT pass through.'}},
-  { c:2,
+  { c:2, topic:'Mechanik',
     de:{q:'Welche Zerspanungsart erzeugt rotationssymmetrische Werkstücke?',opts:['Fräsen','Bohren','Drehen','Schleifen'],e:'Drehen: Werkstück rotiert (Hauptbewegung), Werkzeug führt Vorschubbewegung aus. Ergebnis: Zylinder, Kegel, Planflächen. Fräsen: Werkzeug rotiert, Werkstück bewegt sich.'},
     en:{q:'Which machining process produces rotationally symmetrical workpieces?',opts:['Milling','Drilling','Turning','Grinding'],e:'Turning: workpiece rotates (main movement), tool performs feed movement. Result: cylinders, cones, flat surfaces. Milling: tool rotates, workpiece moves.'}},
-  { c:1,
+  { c:1, topic:'Pneumatik',
     de:{q:'Was ist ein einfachwirkender Pneumatikzylinder?',opts:['Zylinder mit zwei Luftanschlüssen','Zylinder der nur in eine Richtung durch Druckluft bewegt wird, Rückzug durch Feder','Zylinder ohne Kolbenstange','Zylinder mit einstellbarer Geschwindigkeit'],e:'Einfachwirkend: Ein Luftanschluss (Druckhub), Rückzug durch eingebaute Feder. Doppeltwirkend: Zwei Anschlüsse — Druck- und Zughub durch Druckluft.'},
     en:{q:'What is a single-acting pneumatic cylinder?',opts:['Cylinder with two air connections','Cylinder moved in one direction by compressed air only, return by spring','Cylinder without piston rod','Cylinder with adjustable speed'],e:'Single-acting: one air connection (pressure stroke), return by internal spring. Double-acting: two connections — both pressure and pull strokes by compressed air.'}},
-  { c:1,
+  { c:1, topic:'Pneumatik',
     de:{q:'Wie groß ist die Kraft eines Hydraulikzylinders bei p=100 bar und d=80mm?',opts:['≈ 25 kN','≈ 50 kN','≈ 100 kN','≈ 200 kN'],e:'A = π × r² = π × 40² = 5027 mm² = 50,27 cm². F = p × A = 100 bar × 50,27 cm² = 5027 kgf ≈ 50 kN. (1 bar × 1 cm² = 10 N)'},
     en:{q:'What force does a hydraulic cylinder produce at p=100 bar and d=80 mm?',opts:['≈ 25 kN','≈ 50 kN','≈ 100 kN','≈ 200 kN'],e:'A = π × r² = π × 40² = 5027 mm² = 50.27 cm². F = p × A = 100 bar × 50.27 cm² = 5027 kgf ≈ 50 kN. (1 bar × 1 cm² = 10 N)'}},
-  { c:1,
+  { c:1, topic:'Toleranz',
     de:{q:'Was beschreibt Ra bei Oberflächenangaben?',opts:['Maximale Rautiefe','Arithmetischer Mittenrauwert — Mittelwert aller Profilabweichungen','Rauheitsklasse nach ISO','Welligkeit der Oberfläche'],e:'Ra = arithmetischer Mittenrauwert [µm]: Mittelwert der absoluten Abweichungen vom Mittelwert über die Messstrecke. Rz = gemittelte Rautiefe (5 Einzelmessstrecken). Ra ≈ Rz / 4-7.'},
     en:{q:'What does Ra describe in surface finish specifications?',opts:['Maximum roughness depth','Arithmetic mean roughness — mean of all profile deviations','Roughness class per ISO','Waviness of the surface'],e:'Ra = arithmetic mean roughness [µm]: mean of absolute deviations from the mean over the measuring length. Rz = mean roughness depth (5 individual sections). Ra ≈ Rz / 4-7.'}},
-  { c:2,
+  { c:2, topic:'Toleranz',
     de:{q:'Welche Toleranz hat eine H7-Bohrung mit Nennmaß 50 mm nach ISO?',opts:['±0,025 mm','0/+0,025 mm','0/+0,030 mm','+0,010/+0,040 mm'],e:'H7 bei 50 mm (Gruppe 30–50 mm): ES = +25 µm, EI = 0. Also 50,000 – 50,025 mm. IT7 = 25 µm für diese Nenndurchmessergruppe.'},
     en:{q:'What is the tolerance of an H7 bore with nominal size 50 mm per ISO?',opts:['±0.025 mm','0/+0.025 mm','0/+0.030 mm','+0.010/+0.040 mm'],e:'H7 at 50 mm (group 30–50 mm): ES = +25 µm, EI = 0. So 50.000 – 50.025 mm. IT7 = 25 µm for this nominal diameter group.'}},
-  { c:0,
+  { c:0, topic:'Fügen',
     de:{q:'Was ist Kriechen (Relaxation) bei Schraubenverbindungen?',opts:['Zeitabhängige Verformung unter konstanter Spannung, führt zu Vorspannkraftverlust','Korrosion der Schraubenoberfläche','Selbstlösen durch Vibration','Überdehnung beim Anziehen'],e:'Kriechen/Relaxation: Unter konstanter Spannung nimmt die Dehnung zu → Vorspannkraft sinkt. Besonders bei weichen Dichtungen, Kunststoff-Zwischenlagen oder erhöhter Temperatur.'},
     en:{q:'What is relaxation (creep) in bolted joints?',opts:['Time-dependent deformation under constant stress, leading to loss of preload','Corrosion of the bolt surface','Self-loosening due to vibration','Overextension during tightening'],e:'Relaxation/creep: under constant stress, deformation increases → preload decreases. Especially with soft gaskets, plastic inserts or elevated temperatures.'}},
-  { c:1,
+  { c:1, topic:'Mechanik',
     de:{q:'Welche Lagerluft hat ein Rillenkugellager der Reihe C3?',opts:['Normale Lagerluft (CN)','Erhöhte Lagerluft (C3 > CN)','Verringerte Lagerluft (C2 < CN)','Spielfreie Vorspannung'],e:'C3 = erhöhtes Radialspiel gegenüber Normal (CN). Verwendet bei: thermisch beanspruchten Lagern, Presspassung auf Welle, Elektromotoren. C2 = verringertes Spiel.'},
     en:{q:'What internal clearance does a C3 series deep groove ball bearing have?',opts:['Normal clearance (CN)','Increased clearance (C3 > CN)','Reduced clearance (C2 < CN)','Preloaded without clearance'],e:'C3 = increased radial clearance compared to normal (CN). Used for: thermally loaded bearings, interference fit on shaft, electric motors. C2 = reduced clearance.'}},
-  { c:2,
+  { c:2, topic:'Pneumatik',
     de:{q:'Was ist Kavitation in Hydrauliksystemen?',opts:['Überhitzung des Hydrauliköls','Leckage an Dichtungen','Dampfblasenbildung bei Druckunterschreitung, die beim Kollabieren Schäden verursacht','Ölverschmutzung durch Metallpartikel'],e:'Kavitation: Wenn der statische Druck unter den Dampfdruck des Öls fällt → Blasenbildung. Beim Zusammenbruch der Blasen: Druckspitzen, Materialschäden (Pitting), Lärm, Vibrationen.'},
     en:{q:'What is cavitation in hydraulic systems?',opts:['Overheating of hydraulic oil','Leakage at seals','Formation of vapour bubbles when pressure drops below vapour pressure, causing damage when they collapse','Oil contamination by metal particles'],e:'Cavitation: when static pressure falls below the oil\'s vapour pressure → bubble formation. When bubbles collapse: pressure spikes, material damage (pitting), noise, vibrations.'}},
-  { c:0,
+  { c:0, topic:'Mechanik',
     de:{q:'Was beschreibt die Schnitttiefe (ap) beim Fräsen?',opts:['Tiefe des Schnitts in Richtung Werkzeugachse','Vorschubbewegung des Tisches','Breite des gefrästen Bereichs','Drehzahl des Fräsers'],e:'ap = axiale Schnitttiefe (in Richtung Fräserachse). ae = radiale Schnitttiefe (Eingriffsbreite). Beide zusammen bestimmen das Spanvolumen und die Schnittkräfte.'},
     en:{q:'What does the depth of cut (ap) describe in milling?',opts:['Depth of cut in the direction of the tool axis','Feed movement of the table','Width of the milled area','Rotational speed of the cutter'],e:'ap = axial depth of cut (in direction of cutter axis). ae = radial depth of cut (engagement width). Both together determine material removal rate and cutting forces.'}},
-  { c:1,
+  { c:1, topic:'Qualität',
     de:{q:'Welche Norm regelt technische Zeichnungen in Deutschland?',opts:['ISO 9001','DIN ISO 128','DIN 276','VDI 2222'],e:'DIN ISO 128: Grundlagen der Darstellung in technischen Zeichnungen (Linienarten, Ansichten, Schnitte). DIN EN ISO 286: Toleranzen. DIN 6784: Oberflächenzeichen.'},
     en:{q:'Which standard governs technical drawings in Germany?',opts:['ISO 9001','DIN ISO 128','DIN 276','VDI 2222'],e:'DIN ISO 128: Fundamentals of representation in technical drawings (line types, views, sections). DIN EN ISO 286: tolerances. DIN 6784: surface symbols.'}},
-  { c:3,
+  { c:3, topic:'Qualität',
     de:{q:'Was ist eine Stichprobe bei der statistischen Qualitätsprüfung?',opts:['100%-Prüfung aller Teile','Prüfung jedes zweiten Teils','Zufällig ausgewählte Prüfmenge zur Schätzung der Grundgesamtheit','Prüfung der ersten 10 Teile'],e:'Stichprobe: repräsentative Teilmenge der Grundgesamtheit. AQL (Acceptable Quality Level) gibt max. zulässigen Fehleranteil an. Stichprobenumfang nach ISO 2859.'},
     en:{q:'What is a sample in statistical quality inspection?',opts:['100% inspection of all parts','Inspection of every second part','A randomly selected inspection quantity to estimate the population','Inspection of the first 10 parts'],e:'Sample: representative subset of the population. AQL (Acceptable Quality Level) specifies the maximum permissible defect rate. Sample size per ISO 2859.'}},
-  { c:2,
+  { c:2, topic:'Mechanik',
     de:{q:'Was ist der Vorteil von Wälzlagern gegenüber Gleitlagern?',opts:['Geeigneter für extrem hohe Drehzahlen','Leiser bei hohen Drehzahlen','Geringere Anlaufreibung und standardisierte Abmessungen','Kein Schmiermittel erforderlich'],e:'Wälzlager: geringere Anlaufreibung (μ ≈ 0,001-0,005 vs. 0,05-0,15 Gleitlager), genormte Abmessungen, einfacher Austausch. Gleitlager: besser bei Stößen, sehr hohen Drehzahlen.'},
     en:{q:'What is the advantage of rolling bearings over plain bearings?',opts:['Suitable for extremely high speeds','Quieter at high speeds','Lower starting friction and standardised dimensions','No lubricant required'],e:'Rolling bearings: lower starting friction (μ ≈ 0.001-0.005 vs 0.05-0.15 for plain bearings), standardised dimensions, easy replacement. Plain bearings: better under shock loads, very high speeds.'}},
-  { c:1,
+  { c:1, topic:'Werkstoffe',
     de:{q:'Was versteht man unter Verschleißschutz durch Härtung?',opts:['Aufbringen einer weichen Schutzschicht','Erhöhen der Oberflächenhärte durch Wärmebehandlung oder Legierungszusätze','Polieren der Oberfläche auf Ra < 0,1 µm','Beschichten mit Lack'],e:'Einsatzhärten: Kohlenstoffanreicherung der Randzone + Härten. Induktionshärten: lokales Erwärmen + Abschrecken. Nitrieren: Stickstoffeinlagerung ohne Abschrecken. Ziel: harte Oberfläche, zäher Kern.'},
     en:{q:'What is meant by wear protection through hardening?',opts:['Applying a soft protective layer','Increasing surface hardness through heat treatment or alloying','Polishing the surface to Ra < 0.1 µm','Coating with paint'],e:'Case hardening: carbon enrichment of surface zone + hardening. Induction hardening: local heating + quenching. Nitriding: nitrogen diffusion without quenching. Goal: hard surface, tough core.'}},
-  { c:0,
+  { c:0, topic:'Qualität',
     de:{q:'Welche Schmierstoffklasse bezeichnet ein Fett nach NLGI?',opts:['NLGI 2 = mittelharte Konsistenz (häufigste Klasse)','NLGI 0 = härtestes Fett','NLGI 6 = flüssiges Öl','NLGI 3 = Schmierpaste'],e:'NLGI (National Lubricating Grease Institute): 000 = sehr flüssig ... 6 = sehr hart. NLGI 2 ist am häufigsten (Kugellager, Wälzlager). NLGI 0-1 für Zahnräder.'},
-    en:{q:'Which lubricant class designates a grease per NLGI?',opts:['NLGI 2 = medium consistency (most common grade)','NLGI 0 = hardest grease','NLGI 6 = liquid oil','NLGI 3 = lubricating paste'],e:'NLGI (National Lubricating Grease Institute): 000 = very fluid ... 6 = very hard. NLGI 2 most common (ball bearings, rolling bearings). NLGI 0-1 for gears.'}}
+    en:{q:'Which lubricant class designates a grease per NLGI?',opts:['NLGI 2 = medium consistency (most common grade)','NLGI 0 = hardest grease','NLGI 6 = liquid oil','NLGI 3 = lubricating paste'],e:'NLGI (National Lubricating Grease Institute): 000 = very fluid ... 6 = very hard. NLGI 2 most common (ball bearings, rolling bearings). NLGI 0-1 for gears.'}},
+  { c:1, topic:'Fügen',
+    de:{q:'Was ist der Unterschied zwischen Hartlöten und Weichlöten?',opts:['Kein Unterschied, nur andere Bezeichnung','Hartlöten > 450 °C Lotschmelztemperatur; Weichlöten ≤ 450 °C','Weichlöten ist immer fester als Hartlöten','Hartlöten wird nur für Kupfer verwendet'],e:'Weichlöten (≤ 450 °C): Zinn-Blei- oder bleifreie Lote, für Elektronik und kleine Verbindungen. Hartlöten (> 450 °C): Silber-, Messing- oder Kupferlote, höhere Festigkeit, für Rohrleitungen und Metalle.'},
+    en:{q:'What is the difference between brazing and soldering?',opts:['No difference, just different names','Brazing > 450 °C filler melting point; soldering ≤ 450 °C','Soldering is always stronger than brazing','Brazing is only used for copper'],e:'Soldering (≤ 450 °C): tin-lead or lead-free filler, for electronics and small joints. Brazing (> 450 °C): silver, brass or copper fillers, higher strength, for pipework and metals.'}},
+  { c:2, topic:'Fügen',
+    de:{q:'Welche Schutzgase werden beim MIG/MAG-Schweißen eingesetzt?',opts:['Nur Stickstoff (N₂)','Nur Argon (Ar)','CO₂ oder Ar/CO₂-Gemisch (MAG) bzw. reines Argon (MIG)','Sauerstoff (O₂) zum Verbrennen'],e:'MAG (Metall-Aktivgas): CO₂ oder Ar+CO₂ für Stahl. MIG (Metall-Inertgas): reines Argon für Aluminium und Edelstahl. Das Schutzgas verhindert Oxidation der Schweißnaht.'},
+    en:{q:'Which shielding gases are used in MIG/MAG welding?',opts:['Nitrogen (N₂) only','Argon (Ar) only','CO₂ or Ar/CO₂ mix (MAG) or pure argon (MIG)','Oxygen (O₂) for combustion'],e:'MAG (Metal Active Gas): CO₂ or Ar+CO₂ for steel. MIG (Metal Inert Gas): pure argon for aluminium and stainless steel. Shielding gas prevents oxidation of the weld.'}},
+  { c:3, topic:'Fügen',
+    de:{q:'Was versteht man unter einer Presspassung?',opts:['Spiel zwischen Welle und Nabe','Gleiches Maß von Welle und Nabe ohne Kraft','Übergangspassung mit leichter Kraft','Übermaß der Welle gegenüber der Nabe — Verbindung durch Kraft oder Wärme'],e:'Presspassung (Übermaßpassung): Wellenaußenmaß > Naben-Innenmaß. Verbindung durch Einpressen (Längspresskraft) oder Erwärmen der Nabe / Abkühlen der Welle. Reibschlüssige Verbindung, kein Spiel.'},
+    en:{q:'What is understood by an interference fit?',opts:['Clearance between shaft and hub','Identical dimensions of shaft and hub without force','Transition fit with slight force','Shaft oversize relative to hub — joined by force or heat'],e:'Interference fit: shaft OD > hub ID. Joined by pressing (longitudinal force) or heating the hub / cooling the shaft. Force-fit connection, no clearance.'}},
+  { c:0, topic:'Werkstoffe',
+    de:{q:'Was ist der Unterschied zwischen unlegierten und legierten Stählen?',opts:['Unlegierte Stähle enthalten nur Eisen und Kohlenstoff; legierte enthalten zusätzlich Legierungselemente wie Cr, Ni, Mo','Unlegierte Stähle sind immer weicher','Legierte Stähle enthalten kein Kohlenstoff','Kein technischer Unterschied'],e:'Unlegiert: Fe + C (< 0,5 % Legierungsanteile). Legiert: zusätzliche Elemente wie Cr (Korrosionsschutz), Ni (Zähigkeit), Mo (Warmfestigkeit), V (Härtbarkeit). Hochlegiert: Summe Legierungselemente > 5 %.'},
+    en:{q:'What is the difference between unalloyed and alloyed steels?',opts:['Unalloyed steels contain only iron and carbon; alloyed steels additionally contain alloying elements like Cr, Ni, Mo','Unalloyed steels are always softer','Alloyed steels contain no carbon','No technical difference'],e:'Unalloyed: Fe + C (< 0.5 % alloying content). Alloyed: additional elements such as Cr (corrosion resistance), Ni (toughness), Mo (heat resistance), V (hardenability). Highly alloyed: sum of alloying elements > 5 %.'}},
+  { c:2, topic:'Werkstoffe',
+    de:{q:'Welche Eigenschaft kennzeichnet thermoplastische Kunststoffe?',opts:['Einmalig härtbar, danach nicht mehr formbar','Immer elastisch und gummiartig','Aushärtend durch chemische Vernetzung','Aufschmelzbar und wiederholt umformbar (Recyclierbarkeit)'],e:'Thermoplaste (z.B. PE, PP, PVC, PA): schmelzen bei Erwärmung, erstarren beim Abkühlen → wiederholt formbar und recyclierbar. Duroplaste: einmalig ausgehärtet (vernetzt). Elastomere: gummielastisch.'},
+    en:{q:'What property characterises thermoplastic polymers?',opts:['Hardenable once, then no longer mouldable','Always elastic and rubber-like','Curing through chemical cross-linking','Can be melted and repeatedly reshaped (recyclability)'],e:'Thermoplastics (e.g. PE, PP, PVC, PA): melt on heating, solidify on cooling → repeatedly mouldable and recyclable. Thermosets: cured once (cross-linked). Elastomers: rubber-elastic.'}},
+  { c:1, topic:'Qualität',
+    de:{q:'Was besagt das Ursache-Wirkungs-Diagramm (Ishikawa)?',opts:['Zeigt den zeitlichen Ablauf der Fertigung','Stellt Ursachen für einen Fehler strukturiert nach Kategorien dar (6 M)','Listet alle Lieferanten nach Priorität','Vergleicht Soll- mit Ist-Abmaßen'],e:'Ishikawa-Diagramm (Fischgrätdiagramm): Fehler (Wirkung) am Kopf, Ursachen als Äste nach 6 M: Mensch, Maschine, Material, Methode, Mitwelt, Messung. Werkzeug der Qualitätssicherung (QS).'},
+    en:{q:'What does the cause-and-effect diagram (Ishikawa) show?',opts:['Shows the time sequence of production','Displays causes of a defect structured by categories (6 M)','Lists all suppliers by priority','Compares nominal to actual dimensions'],e:'Ishikawa diagram (fishbone diagram): defect (effect) at the head, causes as branches by 6 M: Man, Machine, Material, Method, Milieu, Measurement. Quality assurance (QA) tool.'}}
 ];
 
 // ── Quiz Logic ───────────────────────────────────────────────
-var quizQ = [], quizIdx = 0, quizScore = 0;
+var quizQ = [], quizIdx = 0, quizScore = 0, quizResults = [];
 
 function shuffle(arr) {
   var a = arr.slice();
@@ -1382,10 +2199,18 @@ function shuffle(arr) {
   return a;
 }
 
+var quizTopic = 'all';
+function setQuizTopic(t){
+  quizTopic=t;
+  document.querySelectorAll('.quiz-filter-btn').forEach(function(b){b.classList.toggle('active',b.dataset.topic===t);});
+}
+
 function quizStart() {
-  quizQ = shuffle(QUIZ).slice(0, 20);
+  var pool = quizTopic==='all' ? QUIZ : QUIZ.filter(function(q){return q.topic===quizTopic;});
+  quizQ = shuffle(pool).slice(0, Math.min(20, pool.length));
   quizIdx = 0;
   quizScore = 0;
+  quizResults = [];
   document.getElementById('quiz-start').style.display = 'none';
   document.getElementById('quiz-end').style.display = 'none';
   document.getElementById('quiz-run').style.display = 'block';
@@ -1397,8 +2222,8 @@ function showQuestion(idx) {
   var l = currentLang || 'de';
   var ql = q[l] || q['de'];
   document.getElementById('q-text').textContent = ql.q;
-  document.getElementById('q-counter').textContent = l === 'en' ? 'Question ' + (idx + 1) + ' / 20' : 'Frage ' + (idx + 1) + ' / 20';
-  document.getElementById('q-prog').style.width = ((idx / 20) * 100) + '%';
+  document.getElementById('q-counter').textContent = l === 'en' ? 'Question ' + (idx + 1) + ' / ' + quizQ.length : 'Frage ' + (idx + 1) + ' / ' + quizQ.length;
+  document.getElementById('q-prog').style.width = ((idx / quizQ.length) * 100) + '%';
   document.getElementById('q-exp').style.display = 'none';
   document.getElementById('q-exp').textContent = '';
   document.getElementById('q-next').style.display = 'none';
@@ -1422,14 +2247,19 @@ function quizAnswer(chosenBtn, isCorrect, explanation, optsEl, shuffledOpts, cor
   var btns = optsEl.querySelectorAll('.quiz-opt');
   btns.forEach(function(b) { b.disabled = true; });
 
+  var currentTopic = quizQ[quizIdx] ? quizQ[quizIdx].topic : 'Sonstige';
+  quizResults.push({ topic: currentTopic, correct: isCorrect });
+
   if(isCorrect) {
     chosenBtn.classList.add('correct');
     quizScore++;
+    if(navigator.vibrate) navigator.vibrate(50);
   } else {
     chosenBtn.classList.add('wrong');
     btns.forEach(function(b, i) {
       if(shuffledOpts[i].orig === correctOrig) b.classList.add('correct');
     });
+    if(navigator.vibrate) navigator.vibrate([80,30,80]);
   }
 
   var expEl = document.getElementById('q-exp');
@@ -1440,7 +2270,7 @@ function quizAnswer(chosenBtn, isCorrect, explanation, optsEl, shuffledOpts, cor
 
 function quizNext() {
   quizIdx++;
-  if(quizIdx < 20) {
+  if(quizIdx < quizQ.length) {
     showQuestion(quizIdx);
   } else {
     quizEnd();
@@ -1451,14 +2281,54 @@ function quizEnd() {
   document.getElementById('quiz-run').style.display = 'none';
   document.getElementById('quiz-end').style.display = 'block';
   document.getElementById('end-score').textContent = quizScore;
-  document.getElementById('end-sub').textContent = 'von 20 Fragen richtig (' + Math.round(quizScore/20*100) + '%)';
+  document.getElementById('end-sub').textContent = 'von ' + quizQ.length + ' Fragen richtig (' + Math.round(quizScore/quizQ.length*100) + '%)';
 
   var prev = parseInt(localStorage.getItem('tor_quiz_hs') || '0');
   var isNew = quizScore > prev;
   if(isNew) localStorage.setItem('tor_quiz_hs', quizScore);
-  document.getElementById('end-hs').textContent = isNew ? '🏆 Neuer Highscore!' : ('Highscore: ' + prev + '/20');
+  document.getElementById('end-hs').textContent = isNew ? '🏆 Neuer Highscore!' : ('Highscore: ' + prev + '/' + quizQ.length);
+
+  // ── Per-topic tracking ──────────────────────────────────────
+  var topicMap = {};
+  quizResults.forEach(function(r) {
+    if (!topicMap[r.topic]) topicMap[r.topic] = {correct:0, total:0};
+    topicMap[r.topic].total++;
+    if (r.correct) topicMap[r.topic].correct++;
+  });
+
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem('tor_topic_perf') || '{}'); } catch(e) {}
+  Object.keys(topicMap).forEach(function(t) {
+    if (!saved[t]) saved[t] = {correct:0, total:0};
+    saved[t].correct += topicMap[t].correct;
+    saved[t].total   += topicMap[t].total;
+  });
+  localStorage.setItem('tor_topic_perf', JSON.stringify(saved));
+
+  // ── Show topic breakdown ────────────────────────────────────
+  var bdEl = document.getElementById('end-topic-breakdown');
+  if (bdEl && Object.keys(topicMap).length > 0) {
+    var topics = Object.keys(topicMap).sort(function(a,b){ return topicMap[a].correct/topicMap[a].total - topicMap[b].correct/topicMap[b].total; });
+    var html = '<div style="font-size:11px;color:var(--tx2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:.4rem;">Themen-Auswertung</div>';
+    topics.forEach(function(t) {
+      var d = topicMap[t];
+      var pct = Math.round(d.correct / d.total * 100);
+      var color = pct >= 80 ? 'var(--ok)' : pct >= 50 ? 'var(--warn)' : 'var(--err)';
+      html += '<div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem;">' +
+        '<div style="flex:1;font-size:13px;color:var(--tx);">' + t + '</div>' +
+        '<div style="width:80px;height:6px;background:var(--bg3);border-radius:99px;overflow:hidden;">' +
+          '<div style="width:' + pct + '%;height:100%;background:' + color + ';border-radius:99px;transition:width .4s;"></div>' +
+        '</div>' +
+        '<div style="font-size:12px;font-weight:600;color:' + color + ';min-width:32px;text-align:right;">' + d.correct + '/' + d.total + '</div>' +
+      '</div>';
+    });
+    bdEl.innerHTML = html;
+  }
+
+  if(Math.round(quizScore/quizQ.length*100) >= 70) launchConfetti();
 
   updateDashStats();
+  checkStreakMilestone('tor_streak');
 }
 
 // ── Daily Question ───────────────────────────────────────────
@@ -1589,7 +2459,131 @@ function apUpdateProgress(type) {
   updateDashStats();
   apLoad('ap1');
   apLoad('ap2');
+  simLoad();
 })();
+
+// ── AP1-SIMULATION ──────────────────────────────────────────
+var SIM_QUESTIONS = [
+  {q:"Welches Drehmoment erzeugt eine Kraft von 200 N an einem Hebelarm von 0,4 m?",opts:["80 Nm","500 Nm","50 Nm","0,002 Nm"],ans:0,exp:"M = F × r = 200 N × 0,4 m = 80 Nm. Drehmoment ist Kraft mal Hebelarm (Abstand zur Drehachse)."},
+  {q:"Was gibt die Zugfestigkeit R_m eines Werkstoffs an?",opts:["Die Spannung bei der erste Risse entstehen","Die maximale Spannung die ein Werkstoff aushält bevor er bricht","Die Streckgrenze für plastische Verformung","Den Elastizitätsmodul"],ans:1,exp:"Zugfestigkeit R_m: Maximale Nennspannung im Zugversuch bis zum Bruch. Streckgrenze R_e: Beginn plastischer Verformung. E-Modul: Steifigkeit im elastischen Bereich."},
+  {q:"Welche Toleranzklasse hat die Bohrung bei der Angabe Ø 50 H7?",opts:["H7 ist der Welle zugeordnet","H7 bedeutet Grundabmaß = 0, Bohrung liegt über Nennmaß","H7 bedeutet maximale Untermaßtoleranz","Toleranzklasse 7 für Außenmaße"],ans:1,exp:"Großbuchstaben = Bohrung, Kleinbuchstaben = Welle. H = Grundabmaß Null (unteres Abmaß = 0), Bohrung liegt immer auf oder über Nennmaß. 7 = Toleranzgrad (IT7)."},
+  {q:"Was ist eine Spielpassung?",opts:["Bohrung ist immer kleiner als Welle","Zwischen Bohrung und Welle liegt immer Spiel vor","Bohrung und Welle haben dasselbe Nennmaß","Welle sitzt fest in der Bohrung"],ans:1,exp:"Spielpassung: Kleinste Bohrung > Größte Welle → immer Spiel. Übermaßpassung (Presspassung): Größte Bohrung < Kleinste Welle. Übergangspassung: Spiel oder Übermaß möglich."},
+  {q:"Welches Fertigungsverfahren erzeugt Rotationssymmetrie durch einen rotierenden Werkstoff?",opts:["Fräsen","Bohren","Drehen","Schleifen"],ans:2,exp:"Drehen: Werkstück rotiert, Werkzeug (Drehmeißel) führt Vorschubbewegung aus → Rotationssymmetrie. Fräsen: Werkzeug rotiert. Bohren: Werkzeug rotiert, axiale Bewegung."},
+  {q:"Welche Rauheitsangabe R_a bezeichnet den arithmetischen Mittelwert der Profilordinaten?",opts:["R_z","R_t","R_a","R_q"],ans:2,exp:"R_a = arithmetischer Mittenrauwert (Mittelwert der absoluten Abweichungen vom Mittelprofil). R_z = gemittelte Rautiefe. R_t = Gesamthöhe des Rauheitsprofils."},
+  {q:"Was ist der Zweck eines Radialdichtringes (Simmerring)?",opts:["Axiale Kräfte aufnehmen","Lager vor Verschmutzung schützen und Öl nach innen halten","Spieleinstellung bei Lagern","Schwingungen dämpfen"],ans:1,exp:"Simmerring: Dynamische Dichtung für rotierende Wellen. Hält Schmierstoff (Öl/Fett) innen, dichtet gegen Schmutz und Wasser von außen ab. Dichtkante liegt auf der Welle an."},
+  {q:"Welche Lagerart nimmt ausschließlich Axialkräfte auf?",opts:["Zylinderrollenlager","Rillenkugellager","Axial-Rillenkugellager","Pendelkugellager"],ans:2,exp:"Axial-Rillenkugellager: Nur Axialkräfte (in Wellenrichtung). Rillenkugellager: Radial- und geringe Axialkräfte. Zylinderrollenlager: Hohe Radialkräfte, kaum Axialkräfte."},
+  {q:"Welche Schraubensicherung ist formschlüssig?",opts:["Klebstoffsicherung (z.B. Loctite)","Federring","Sicherungsblech mit Nase","Klemmschrauben"],ans:2,exp:"Formschlüssige Sicherungen: Sicherungsblech, Splint, Kronenmutter mit Splint. Kraftschlüssige: Federscheibe, Tellerfeder. Stoffschlüssige: Klebstoff, Schweißpunkt."},
+  {q:"Was versteht man unter dem Hebelgesetz?",opts:["F₁ × l₁ = F₂ × l₂","F₁ + F₂ = F₃","F = m × a","M = I × α"],ans:0,exp:"Hebelgesetz: F₁ × l₁ = F₂ × l₂. Gleichgewicht wenn die Momente gleich sind. Anwendung: Schere, Wippe, Brechstange, Bremsbacken."},
+  {q:"Wie wird der Wirkungsgrad η einer Maschine berechnet?",opts:["η = P_ab / P_zu × 100 %","η = P_zu - P_ab","η = P_ab + P_verlust","η = F × v / P_el"],ans:0,exp:"η = P_ab / P_zu × 100 %. Gibt an wie viel Prozent der zugeführten Leistung nutzbar abgegeben wird. η < 100 % wegen Reibung, Wärme, Schall."},
+  {q:"Was beschreibt das Hook'sche Gesetz?",opts:["Die Druckverteilung in Flüssigkeiten","Den linearen Zusammenhang zwischen Spannung und Dehnung","Das Verhalten von Fluiden unter Druck","Die Reibungskraft an Gleitflächen"],ans:1,exp:"Hook'sches Gesetz: σ = E × ε (Spannung = E-Modul × Dehnung). Gilt nur im elastischen Bereich. E-Modul für Stahl ≈ 210.000 MPa (210 GPa)."},
+  {q:"Welche Schutzausrüstung ist beim Drehen zwingend erforderlich?",opts:["Gehörschutz und Handschuhe","Schutzbrille (Späne) und geschlossene Schuhe","Atemschutzmaske und Helm","Vollschutzanzug"],ans:1,exp:"Beim Drehen: Schutzbrille (Späne- und Kühlmittelschutz), Sicherheitsschuhe. Handschuhe sind verboten bei rotierenden Teilen (Einzugsgefahr)! Haare und Kleidung sichern."},
+  {q:"Was ist der Unterschied zwischen Gleit- und Wälzlager?",opts:["Gleitlager hat Wälzkörper, Wälzlager hat Gleitflächen","Gleitlager: Flächenkontakt; Wälzlager: Punktkontakt über Kugeln/Rollen","Kein wesentlicher Unterschied","Gleitlager nur für Axialkräfte"],ans:1,exp:"Gleitlager: Flächenkontakt, Schmierfilm, geräuscharm, hohe Drehzahlen möglich. Wälzlager: Wälzkörper (Kugeln/Rollen), Punktkontakt, normgerecht austauschbar, höhere Reibung beim Anlauf."},
+  {q:"Welche Bohrungsbearbeitung erzeugt die höchste Maßgenauigkeit?",opts:["Spiralbohren","Senken","Reiben","Gewindeschneiden"],ans:2,exp:"Reiben (Räumen): Höchste Maßgenauigkeit (IT6-IT7), sehr gute Oberflächengüte. Bohren: IT11-IT12. Senken: Anfasen oder Vertiefen für Schraubenköpfe."},
+  {q:"Was ist ein Pneumatikventil 5/2 Wegeventil?",opts:["5 Anschlüsse, 2 Schaltstellungen","5 Schaltstellungen, 2 Anschlüsse","5 Ausgänge, 2 Eingänge","5-Wege mit 2 Druckstufen"],ans:0,exp:"5/2-Wegeventil: 5 Anschlüsse (1=Druck, 2+4=Arbeitsanschlüsse, 3+5=Entlüftung), 2 stabile Schaltstellungen. Typisch für doppelwirkende Zylinder."},
+  {q:"Wie berechnet man die Schnittgeschwindigkeit v_c beim Drehen?",opts:["v_c = n × f","v_c = π × d × n / 1000","v_c = a_p × f × n","v_c = F_c / A"],ans:1,exp:"v_c = π × d × n / 1000 [m/min]. d = Werkstückdurchmesser [mm], n = Drehzahl [U/min]. Umformen nach n: n = (v_c × 1000) / (π × d)."},
+  {q:"Was versteht man unter Instandhaltung nach DIN 31051?",opts:["Nur Reparatur nach Ausfall","Inspektion, Wartung, Instandsetzung und Verbesserung","Nur vorbeugende Maßnahmen","Qualitätskontrolle der Produktion"],ans:1,exp:"DIN 31051: Instandhaltung = Inspektion (Ist-Zustand feststellen) + Wartung (Soll-Zustand erhalten) + Instandsetzung (Soll-Zustand wiederherstellen) + Verbesserung."},
+  {q:"Was gibt der Begriff 'Schnittiefe a_p' beim Fräsen an?",opts:["Die Vorschubgeschwindigkeit","Den Spanwinkel des Werkzeugs","Die Tiefe des Eingriffs in das Werkstück","Den Zerspanungsdruck"],ans:2,exp:"Schnittiefe a_p (axiale Zustellung): Tiefe des Werkzeugeingriffs in das Werkstück in Richtung der Werkzeugachse. Ae = radiale Zustellung (Eingriffsbreite)."},
+  {q:"Welches Maß gilt bei der Angabe 50 ±0,1?",opts:["Nennmaß 50, Toleranz ±0,1, Istmaß muss 49,9–50,1 betragen","Nennmaß 50,1, Toleranz 0,1","Nennmaß 49,9, Obermaß 0,2","Nennmaß 50, Untermaß -0,2"],ans:0,exp:"50 ±0,1: Nennmaß = 50. Oberes Abmaß = +0,1 (Höchstmaß 50,1). Unteres Abmaß = -0,1 (Mindestmaß 49,9). Toleranz T = 0,2 mm."}
+];
+
+var simState = {
+  idx: 0, correct: 0, wrong: 0, answered: false,
+  questions: [], timer: null, seconds: 90*60
+};
+
+function simLoad() {
+  var stored = localStorage.getItem('tor_sim_hs');
+  var el = document.getElementById('sim-hs-badge');
+  if (el && stored) {
+    var hs; try { hs = JSON.parse(stored); } catch(e) { hs = null; }
+    el.textContent = '🏆 Bestleistung: ' + hs.score + '/20 (' + hs.pct + '%) — ' + hs.date;
+  }
+}
+
+function simStart() {
+  simState.idx = 0; simState.correct = 0; simState.wrong = 0; simState.seconds = 90*60;
+  simState.questions = SIM_QUESTIONS.slice().sort(function(){return Math.random()-.5;});
+  document.getElementById('sim-start').style.display = 'none';
+  document.getElementById('sim-end').style.display = 'none';
+  document.getElementById('sim-quiz').style.display = 'block';
+  simRenderQ(); simStartTimer();
+}
+
+function simStartTimer() {
+  if (simState.timer) clearInterval(simState.timer);
+  simState.timer = setInterval(function(){
+    simState.seconds--;
+    var m = Math.floor(simState.seconds/60), s = simState.seconds%60;
+    var el = document.getElementById('sim-timer');
+    if(el) el.textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+    if(el) el.style.color = simState.seconds<300?'var(--err)':simState.seconds<600?'var(--warn)':'var(--ok)';
+    if(simState.seconds<=0){clearInterval(simState.timer);simEnd();}
+  }, 1000);
+}
+
+function simRenderQ() {
+  var q = simState.questions[simState.idx];
+  document.getElementById('sim-counter').textContent = 'Frage '+(simState.idx+1)+' / 20';
+  document.getElementById('sim-progress').style.width = ((simState.idx/20)*100)+'%';
+  document.getElementById('sim-question').textContent = q.q;
+  document.getElementById('sim-explanation').style.display = 'none';
+  document.getElementById('sim-next-btn').style.display = 'none';
+  simState.answered = false;
+  var opts = document.getElementById('sim-opts'); opts.innerHTML = '';
+  q.opts.forEach(function(opt,i){
+    var btn = document.createElement('button');
+    btn.className = 'quiz-opt'; btn.textContent = opt;
+    btn.onclick = function(){simAnswer(i);}; opts.appendChild(btn);
+  });
+}
+
+function simAnswer(i) {
+  if(simState.answered) return; simState.answered = true;
+  var q = simState.questions[simState.idx];
+  var btns = document.querySelectorAll('#sim-opts .quiz-opt');
+  btns.forEach(function(b){b.disabled=true;});
+  if(i===q.ans){btns[i].classList.add('correct');simState.correct++;}
+  else{btns[i].classList.add('wrong');btns[q.ans].classList.add('correct');simState.wrong++;}
+  var exp = document.getElementById('sim-explanation');
+  exp.textContent = q.exp; exp.style.display = 'block';
+  document.getElementById('sim-next-btn').style.display = 'block';
+}
+
+function simNext() {
+  simState.idx++;
+  if(simState.idx>=20){simEnd();return;}
+  simRenderQ();
+}
+
+function simEnd() {
+  if(simState.timer) clearInterval(simState.timer);
+  document.getElementById('sim-quiz').style.display = 'none';
+  document.getElementById('sim-end').style.display = 'block';
+  var pct = Math.round((simState.correct/20)*100);
+  var grade = pct>=92?'1':pct>=81?'2':pct>=67?'3':pct>=50?'4':pct>=30?'5':'6';
+  document.getElementById('sim-score-big').textContent = simState.correct+'/20';
+  document.getElementById('sim-score-sub').textContent = pct+'% · Note '+grade+' (Richtig: '+simState.correct+', Falsch: '+simState.wrong+')';
+  var stored = localStorage.getItem('tor_sim_hs');
+  var prev = stored ? JSON.parse(stored) : null;
+  var isNew = !prev || simState.correct > prev.correct;
+  if(isNew){
+    var d = new Date().toLocaleDateString('de-DE');
+    localStorage.setItem('tor_sim_hs', JSON.stringify({score:simState.correct,pct:pct,date:d,correct:simState.correct}));
+    document.getElementById('sim-end-hs').textContent = '🏆 Neuer Highscore!';
+  } else {
+    document.getElementById('sim-end-hs').textContent = 'Highscore: '+prev.score+'/20';
+  }
+}
+
+function simRestart() { document.getElementById('sim-end').style.display='none'; simStart(); }
+
+function simBack() {
+  if(simState.timer) clearInterval(simState.timer);
+  document.getElementById('sim-quiz').style.display='none';
+  document.getElementById('sim-end').style.display='none';
+  document.getElementById('sim-start').style.display='block';
+  simLoad();
+}
 
 // ── Calculators ─────────────────────────────────────────────
 
@@ -1730,26 +2724,39 @@ function calcWirkungsgrad() {
   );
 }
 
-// ── Language Toggle ──────────────────────────────────────────
-(function initLang() {
-  if (currentLang === 'en') {
-    document.documentElement.classList.add('lang-en');
-    document.documentElement.classList.remove('lang-de');
-    var btn = document.getElementById('lang-btn');
-    if (btn) btn.textContent = 'DE';
-  } else {
-    document.documentElement.classList.add('lang-de');
-    document.documentElement.classList.remove('lang-en');
-  }
-})();
-function toggleLang() {
-  currentLang = currentLang === 'de' ? 'en' : 'de';
-  localStorage.setItem('arc_lang', currentLang);
-  document.documentElement.classList.toggle('lang-en', currentLang === 'en');
-  document.documentElement.classList.toggle('lang-de', currentLang === 'de');
-  var btn = document.getElementById('lang-btn');
-  if (btn) btn.textContent = currentLang === 'de' ? 'EN' : 'DE';
+// ── 5-Language System ─────────────────────────────────────────
+var LANGS=['de','en','tr','ru','ar'];
+var LANG_FLAGS={de:'🇩🇪',en:'🇬🇧',tr:'🇹🇷',ru:'🇷🇺',ar:'🇸🇦'};
+function openLangModal(){document.getElementById('langModal').style.display='flex';updateLangPills();}
+function closeLangModal(){document.getElementById('langModal').style.display='none';}
+function updateLangPills(){
+  document.querySelectorAll('.lang-pill').forEach(function(p){
+    p.classList.toggle('active',p.dataset.lang===currentLang);
+  });
 }
+function applyLang(l){
+  var html=document.documentElement;
+  LANGS.forEach(function(x){html.classList.remove('lang-'+x);});
+  html.classList.add('lang-'+l);
+  currentLang=l;
+  localStorage.setItem('arc_lang',l);
+}
+function applyTranslations(){}
+function setLang(l){
+  currentLang=l;
+  localStorage.setItem('arc_lang',l);
+  document.documentElement.className=document.documentElement.className.replace(/\blang-\w+/g,'').trim()+' lang-'+l;
+  var btn=document.getElementById('langBtn');
+  if(btn) btn.textContent=LANG_FLAGS[l]||'🌐';
+  updateLangPills();
+  applyTranslations();
+  closeLangModal();
+}
+(function initLang(){
+  applyLang(currentLang);
+  var btn=document.getElementById('langBtn');
+  if(btn) btn.textContent=LANG_FLAGS[currentLang]||'🌐';
+})();
 </script>
 
 <!-- PWA Service Worker -->
@@ -1757,7 +2764,7 @@ function toggleLang() {
 var isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:';
 if(!isLocal) {
   if('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('pwa/sw.js', {scope: '/'}).catch(function(){});
+    navigator.serviceWorker.register('/pwa/sw.js', {scope: '/'}).catch(function(){});
   }
 }
 </script>
@@ -1774,6 +2781,538 @@ if(!isLocal) {
     body: JSON.stringify({page: p, lang: l})
   }).catch(function(){});
 })();
+</script>
+<script>
+// ══════════════════════════════════════════════════════
+// SPACED REPETITION — TORQUE (Industriemechaniker)
+// SM-2 Algorithm · localStorage: tor_sr_data
+// ══════════════════════════════════════════════════════
+var TOR_SR_CARDS = [
+  {id:'t01',tag:'Formel',q:'Zugkraft berechnen (F = ?)',a:'F = m × a (Newton; Masse × Beschleunigung)'},
+  {id:'t02',tag:'Formel',q:'Mechanische Leistung',a:'P = F × v (Kraft × Geschwindigkeit) oder P = M × ω'},
+  {id:'t03',tag:'Formel',q:'Drehmoment',a:'M = F × r (Kraft × Hebelarm) in Nm'},
+  {id:'t04',tag:'Formel',q:'Übersetzungsverhältnis Getriebe',a:'i = n₁/n₂ = z₂/z₁ (Zähnezahl / Drehzahl)'},
+  {id:'t05',tag:'Formel',q:'Wirkungsgrad η',a:'η = P_ab / P_zu = (M_ab × n_ab) / (M_zu × n_zu)'},
+  {id:'t06',tag:'Formel',q:'Druck berechnen',a:'p = F / A (Pascal = N/m²)'},
+  {id:'t07',tag:'Formel',q:'Spannung im Werkstoff (Zugbeanspruchung)',a:'σ = F / A (N/mm²); muss < zul. Spannung bleiben'},
+  {id:'t08',tag:'Formel',q:'Dehnung ε (Strain)',a:'ε = ΔL / L₀ (dimensionslos; ΔL = Verlängerung)'},
+  {id:'t09',tag:'Formel',q:'Hookesches Gesetz',a:'σ = E × ε (E = Elastizitätsmodul in N/mm²)'},
+  {id:'t10',tag:'Formel',q:'Flächenträgheitsmoment Rechteck',a:'I = (b × h³) / 12 (mm⁴) — für Biegeberechnung'},
+  {id:'t11',tag:'Toleranz',q:'Was bedeutet ISO-Passungsfeld H7?',a:'H = Bohrungstoleranz (Lage A-Z), 7 = Toleranzgrad (IT7). H7 = Einheitsbohrung mit positivem Abmaß'},
+  {id:'t12',tag:'Toleranz',q:'Spielpassung: Beispiel?',a:'Bohrung H7 + Welle g6 → Welle immer kleiner als Bohrung → freies Drehen möglich'},
+  {id:'t13',tag:'Toleranz',q:'Übermaßpassung (Presspassung): Beispiel?',a:'Bohrung H7 + Welle p6 → Welle größer als Bohrung → kraftschlüssige Verbindung'},
+  {id:'t14',tag:'Toleranz',q:'Was ist Rz (Rauheit)?',a:'Gemittelte Rautiefe: Mittelwert der 5 größten Rautiefen in Messstrecke (µm)'},
+  {id:'t15',tag:'Toleranz',q:'Geradheitstoleranz vs. Ebenheitstoleranz?',a:'Geradheit: 1D-Abweichung einer Linie. Ebenheit: 2D-Abweichung einer Fläche. Beide in mm'},
+  {id:'t16',tag:'Werkstoff',q:'Werkstoffkennzeichnung S235JR: Was bedeutet S?',a:'S = Structural steel (Baustahl). 235 = Streckgrenze in N/mm². JR = Zähigkeit bei Raumtemperatur'},
+  {id:'t17',tag:'Werkstoff',q:'Was ist der Unterschied Stahl / Gusseisen?',a:'Stahl: C < 2,06 % (schmiedbar, schweißbar). Gusseisen: C > 2,06 % (spröde, nicht schmiedbar)'},
+  {id:'t18',tag:'Werkstoff',q:'Härteprüfung nach Vickers (HV)?',a:'Diamant-Pyramide eindrücken → Diagonale messen → HV = 0,102 × F/A. Für alle Werkstoffe geeignet'},
+  {id:'t19',tag:'Werkstoff',q:'Was ist Anlassen (Vergüten Schritt 2)?',a:'Erwärmen gehärteten Stahls unter Ac₁ → Sprödigkeit reduzieren, Zähigkeit erhöhen'},
+  {id:'t20',tag:'Werkstoff',q:'Einsatzhärten: Zweck?',a:'Randzone aufkohlen (C-Gehalt erhöhen) → harte Oberfläche + zäher Kern'},
+  {id:'t21',tag:'Fügen',q:'Was ist ein Stumpfstoß beim Schweißen?',a:'Beide Werkstücke stoßen an der Stirnfläche zusammen — kein Überstand. Vollständige Durchschweißung nötig'},
+  {id:'t22',tag:'Fügen',q:'MIG vs. MAG Schweißen?',a:'MIG: Metall-Inertgas (Argon) für NE-Metalle. MAG: Metall-Aktivgas (CO₂/Gemisch) für Stahl'},
+  {id:'t23',tag:'Fügen',q:'Was ist Lötspalt (Hartlöten)?',a:'0,05–0,2 mm optimaler Spalt → Kapillarwirkung füllt Lot → Maximale Festigkeit'},
+  {id:'t24',tag:'Fügen',q:'Anzugsmoment berechnen (Schraube)?',a:'M_A = F_V × 0,16 × d₂ × (P/(πd₂) + µ_G) + 0,5 × µ_K × (d_K + d_W)/2 × F_V — vereinfacht: M_A ≈ k × d × F_V'},
+  {id:'t25',tag:'Fügen',q:'Klemmkraft vs. Vorspannkraft Schraube?',a:'Vorspannkraft F_V = Kraft beim Anziehen. Klemmkraft F_KL = verbleibende Kraft nach Setzung (F_KL < F_V)'},
+  {id:'t26',tag:'Pneumatik',q:'Doppeltwirkender Zylinder: Kolbenkraft (Ausfahren)?',a:'F = p × A_K (p = Druck, A_K = Kolbenfläche = π/4 × d²)'},
+  {id:'t27',tag:'Pneumatik',q:'Doppeltwirkender Zylinder: Kolbenkraft (Einfahren)?',a:'F = p × A_Ring = p × (A_K - A_Stange). Geringer als Ausfahrkraft!'},
+  {id:'t28',tag:'Pneumatik',q:'Was macht ein 5/2-Wegeventil?',a:'5 Anschlüsse (P, A, B, R1, R2), 2 Schaltstellungen — steuert doppeltwirkenden Zylinder'},
+  {id:'t29',tag:'Hydraulik',q:'Hydraulik vs. Pneumatik: größter Vorteil Hydraulik?',a:'Viel höhere Drücke (bis 400 bar vs. ~10 bar) → höhere Kräfte bei kleineren Zylindern'},
+  {id:'t30',tag:'Hydraulik',q:'Was ist ein Druckregelventil?',a:'Hält Druck im System konstant — öffnet bei Überdruck und lässt Öl in Tank zurück (Sicherheitsventil)'},
+  {id:'t31',tag:'Qualität',q:'Was ist Cpk-Wert?',a:'Prozessfähigkeitsindex. Cpk ≥ 1,33 = gut. Berücksichtigt Lage UND Streuung des Prozesses'},
+  {id:'t32',tag:'Qualität',q:'Was misst ein Lehrdorn?',a:'Prüft Bohrungsdurchmesser — Gutseite (GO) muss passen, Ausschussseite (NOGO) darf NICHT passen'},
+  {id:'t33',tag:'Qualität',q:'Poka Yoke: Prinzip?',a:'Fehlervermeidung durch technische Maßnahmen, die falsche Montage physisch unmöglich machen'},
+  {id:'t34',tag:'Qualität',q:'Was ist FMEA?',a:'Fehlermöglichkeits- und Einflussanalyse: proaktive Risikoanalyse (Fehlerart × Häufigkeit × Entdeckung = RPZ)'},
+  {id:'t35',tag:'Wartung',q:'Was ist präventive Instandhaltung?',a:'Geplante Wartung in festen Intervallen — bevor Ausfall eintritt (z.B. Ölwechsel alle 500h)'},
+  {id:'t36',tag:'Wartung',q:'Was ist prädiktive Wartung?',a:'Zustandsbasiert: Messung von Vibration, Temperatur etc. → Wartung NUR wenn Grenzwert erreicht'},
+  {id:'t37',tag:'Wartung',q:'MTBF und MTTR: Was bedeuten sie?',a:'MTBF = Mean Time Between Failures (mittlere Betriebsdauer). MTTR = Mean Time To Repair (mittlere Reparaturzeit)'},
+  {id:'t38',tag:'Formel',q:'Stromstärke Hydraulikpumpe: Volumenstrom Q?',a:'Q = V_g × n (geometrisches Fördervolumen × Drehzahl) in l/min'},
+  {id:'t39',tag:'Werkstoff',q:'Streckgrenze R_e vs. Zugfestigkeit R_m?',a:'R_e: Spannung bei Beginn plastischer Verformung. R_m: maximale Zugspannung vor Bruch. R_m > R_e'},
+  {id:'t40',tag:'Fügen',q:'Passfeder vs. Keil: Unterschied?',a:'Passfeder: lose sitzend → nur Drehmoment übertragen. Keil: getrieben → Drehmoment + axiale Kraft'},
+  {id:'t41',tag:'Formel',q:'Reibungskraft berechnen (F_R = ?)',a:'F_R = µ × F_N (Reibungszahl × Normalkraft). µ_Gleit < µ_Haft; Einheit: Newton'},
+  {id:'t42',tag:'Formel',q:'Biegebeanspruchung berechnen (σ_b = ?)',a:'σ_b = M_b / W_b (Biegemoment / Widerstandsmoment). Einheit: N/mm². W_b = π × d³ / 32 für Kreisquerschnitt'},
+  {id:'t43',tag:'Formel',q:'Flächenpressung berechnen (p = ?)',a:'p = F / A (Kraft / tragende Fläche). Einheit: N/mm² (MPa). Muss kleiner als zulässige Flächenpressung p_zul bleiben'},
+  {id:'t44',tag:'Formel',q:'Thermische Längenänderung (ΔL = ?)',a:'ΔL = L₀ × α × ΔT (Ausgangslänge × linearer Ausdehnungskoeffizient × Temperaturdifferenz). Stahl: α ≈ 11,5 × 10⁻⁶ /K'},
+  {id:'t45',tag:'Formel',q:'Druckübersetzung Hydraulik: Kraft­verhältnis?',a:'F₂ / F₁ = A₂ / A₁ (Kräfte verhalten sich wie die Kolbenflächen — Pascalsches Gesetz)'},
+  {id:'t46',tag:'Toleranz',q:'Was ist die Grundtoleranz IT6?',a:'IT6 = mittlere Fertigungsqualität (Feinbearbeitung). Für Nenndurchmesser 50 mm ca. 16 µm. Verwendet für Passungen in Getrieben und Lagern'},
+  {id:'t47',tag:'Toleranz',q:'Unterschied Maßtoleranz vs. Formtoleranz?',a:'Maßtoleranz: begrenzt Abweichung eines Maßes (z.B. ⌀50 ±0,02). Formtoleranz: begrenzt Gestaltabweichung (z.B. Rundheit, Ebenheit) unabhängig vom Maß'},
+  {id:'t48',tag:'Toleranz',q:'Was ist Zylindrizitätstoleranz?',a:'Formtoleranz die Rundheit + Geradheit + Parallelität der Mantellinien zusammenfasst. Symbol: ⌀ im Toleranzrahmen. Toleranzzone = Ringspalt zwischen zwei koaxialen Zylindern'},
+  {id:'t49',tag:'Werkstoff',q:'Was ist Normglühen?',a:'Erwärmen auf ca. 30–50 °C über Ac₃ → Halten → Luftabkühlung. Ziel: gleichmäßiges, feinkörniges Gefüge, Beseitigung von Guss- oder Schmiedegefüge'},
+  {id:'t50',tag:'Werkstoff',q:'Unterschied Weichglühen vs. Spannungsarmglühen?',a:'Weichglühen: ~700 °C, Gefüge einebnen → bessere Zerspanbarkeit. Spannungsarmglühen: 450–650 °C, keine Gefügeänderung → nur Eigenspannungen abbauen'},
+  {id:'t51',tag:'Werkstoff',q:'Austenitischer Stahl: Merkmale?',a:'Cr-Ni-Legierung (z.B. 1.4301 = V2A). Nicht magnetisch, nicht härtbar durch Abschrecken, sehr korrosionsbeständig, zäh bei tiefen Temperaturen'},
+  {id:'t52',tag:'Fügen',q:'Unterschied Hartlöten / Weichlöten?',a:'Weichlöten: < 450 °C (Zinn-Lot) → Elektronik, Kupferrohre. Hartlöten: > 450 °C (Silber-/Messing-Lot) → hohe Festigkeit, tragende Verbindungen'},
+  {id:'t53',tag:'Fügen',q:'Was ist Reibschweißen?',a:'Rotationsreibung erzeugt Wärme an Fügezone → Axialdruckkraft presst Teile zusammen → Schweißung ohne Zusatzwerkstoff und ohne Schutzgas. Für artfremde Werkstoffe geeignet'},
+  {id:'t54',tag:'Fügen',q:'Kleben vs. Schweißen: Vor- und Nachteile?',a:'Kleben: spannungsarm, verschiedene Werkstoffe, flächig. Nachteil: Wärmeempfindlich, Alterung, Lösung schwierig. Schweißen: hohe Festigkeit, dauerhaft, aber Wärmeverzug, nur ähnliche Werkstoffe'},
+  {id:'t55',tag:'Pneumatik',q:'5/2-Wegeventil: Funktion?',a:'5 Anschlüsse (P=Druck, A+B=Arbeit, R1+R2=Entlüftung), 2 stabile Schaltstellungen. Steuert doppeltwirkenden Zylinder in beide Richtungen'},
+  {id:'t56',tag:'Pneumatik',q:'Druckregelventil vs. Stromregelventil?',a:'Druckregelventil: hält Druck konstant (begrenzt maximalen Druck). Stromregelventil: begrenzt Volumenstrom → steuert Geschwindigkeit des Zylinders'},
+  {id:'t57',tag:'Pneumatik',q:'Einfachwirkend vs. doppeltwirkender Zylinder?',a:'Einfachwirkend: 1 Druckanschluss, Rückzug durch Feder → einfache Anwendungen. Doppeltwirkend: 2 Anschlüsse, Druck in beide Richtungen → höhere Kraft, präzisere Steuerung'},
+  {id:'t58',tag:'Qualität',q:'Was ist ein Ursache-Wirkungs-Diagramm (Ishikawa)?',a:'Fishbone-Diagramm: Visualisiert mögliche Ursachen eines Fehlers in Kategorien (6M: Mensch, Maschine, Material, Methode, Mitwelt, Messung). Werkzeug der Qualitätsanalyse'},
+  {id:'t59',tag:'Qualität',q:'Was ist FMEA (Fehlermöglichkeits- und Einflussanalyse)?',a:'Proaktive Risikoanalyse vor Serienstart. RPZ = Bedeutung × Auftretenswahrscheinlichkeit × Entdeckungswahrscheinlichkeit. RPZ > 100 → Maßnahmen erforderlich'},
+  {id:'t60',tag:'Wartung',q:'Präventive vs. korrektive Instandhaltung?',a:'Präventiv: geplante Wartung in festen Intervallen (verhindert Ausfall). Korrektiv: Reparatur nach eingetretenem Ausfall (reaktiv). Präventiv senkt Gesamtkosten bei kritischen Anlagen'}
+];
+
+var torSRData = (function(){try{return JSON.parse(localStorage.getItem('tor_sr_data')||"{}")}catch(e){return {}}})();;
+var torSRSession = [], torSRIdx = 0, torSROK = 0, torSRFail = 0, torSRFlipped = false;
+
+function torSaveSR(){ AppStore.set('tor_sr_data', torSRData); }
+function torGetSR(id){
+  if(!torSRData[id]) torSRData[id]={ef:2.5,interval:0,due:0,reps:0};
+  return torSRData[id];
+}
+function torNextInterval(sr, q){
+  var newEf = sr.ef + (0.1 - (5-q)*(0.08+(5-q)*0.02));
+  if(newEf<1.3) newEf=1.3;
+  var ni;
+  if(q<3){ ni=1; sr.reps=0; }
+  else { if(sr.reps===0) ni=1; else if(sr.reps===1) ni=6; else ni=Math.round(sr.interval*newEf); sr.reps++; }
+  sr.ef=Math.round(newEf*100)/100; sr.interval=ni; sr.due=Date.now()+ni*86400000;
+  return sr;
+}
+function torDueCards(){ var now=Date.now(); return TOR_SR_CARDS.filter(function(c){ return torGetSR(c.id).due<=now; }); }
+function torNewCards(){ return TOR_SR_CARDS.filter(function(c){ return torGetSR(c.id).reps===0; }); }
+
+function initTorSR(){
+  var due=torDueCards(), newC=torNewCards(), learned=TOR_SR_CARDS.filter(function(c){return torGetSR(c.id).reps>0;}).length;
+  document.getElementById('sr-v-due').textContent=due.length;
+  document.getElementById('sr-v-new').textContent=newC.length;
+  document.getElementById('sr-v-learned').textContent=learned;
+  document.getElementById('sr-v-total').textContent=TOR_SR_CARDS.length;
+  var total=Math.min(due.length+Math.min(newC.length,10),20);
+  var area=document.getElementById('sr-start-area');
+  if(total===0){
+    area.innerHTML='<div style="text-align:center;padding:1.5rem 0;"><div style="font-size:36px;margin-bottom:.5rem;">🎉</div><div style="font-size:16px;font-weight:700;color:#30d158;margin-bottom:.5rem;">Alle Karten für heute erledigt!</div><div style="font-size:12px;color:var(--tx3);">Komm morgen wieder.</div></div>';
+  } else {
+    area.innerHTML='<button type="button" class="sr-start-btn" id="sr-start-btn">→ LERNSITZUNG STARTEN ('+total+' Karten)</button><button type="button" class="sr-reset-btn" id="sr-reset-btn">↺ Fortschritt zurücksetzen</button>';
+    document.getElementById('sr-start-btn').onclick=startTorSR;
+    document.getElementById('sr-reset-btn').onclick=function(){ if(confirm('SR-Fortschritt zurücksetzen?')){ torSRData={}; torSaveSR(); initTorSR(); }};
+  }
+  document.getElementById('sr-dash-view').style.display='';
+  document.getElementById('sr-session-view').style.display='none';
+  document.getElementById('sr-done-view').style.display='none';
+  torInitNotify();
+}
+
+function startTorSR(){
+  var due=torDueCards(), newC=torNewCards();
+  var sess=due.concat(newC.slice(0,Math.max(0,20-due.length))).slice(0,20);
+  for(var i=sess.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=sess[i];sess[i]=sess[j];sess[j]=t;}
+  torSRSession=sess; torSRIdx=0; torSROK=0; torSRFail=0; torSRFlipped=false;
+  document.getElementById('sr-dash-view').style.display='none';
+  document.getElementById('sr-session-view').style.display='';
+  document.getElementById('sr-done-view').style.display='none';
+  renderTorCard();
+}
+
+function renderTorCard(){
+  if(torSRIdx>=torSRSession.length){ showTorDone(); return; }
+  // ── fill mode ──
+  if (srMode === 'fill') {
+    var _c = torSRSession[torSRIdx];
+    var _l = currentLang || 'de';
+    srFillRender((_c.qt&&_c.qt[_l])?_c.qt[_l]:_c.q, (_c.at&&_c.at[_l])?_c.at[_l]:_c.a, _c.tag);
+    document.getElementById('sr-grade-area').style.display = 'none';
+    return;
+  }
+  document.getElementById('sr-fill-area').style.display = 'none';
+  var _fw = document.querySelector('.sr-flip-wrap');
+  if (_fw) _fw.style.display = '';
+  // ── end fill mode ──
+  var c=torSRSession[torSRIdx];
+  var _prog = torSRSession.length > 0 ? torSRIdx / torSRSession.length : 0;
+  document.getElementById('sr-prog-bar').style.width = Math.round(_prog * 100) + '%';
+  document.getElementById('sr-prog-txt').textContent = (torSRIdx + 1) + ' / ' + torSRSession.length + '  ·  ✓ ' + torSROK + '  ✗ ' + torSRFail;
+  document.getElementById('sr-card-tag').textContent=c.tag;
+  var _l = currentLang || 'de';
+  document.getElementById('sr-card-q').textContent=(c.qt && c.qt[_l]) ? c.qt[_l] : c.q;
+  document.getElementById('sr-card-a').textContent=(c.at && c.at[_l]) ? c.at[_l] : c.a;
+  var flip=document.getElementById('sr-flip');
+  flip.classList.remove('flipped');
+  torSRFlipped=false;
+  document.getElementById('sr-grade-area').style.display='none';
+  document.getElementById('sr-card-hint').style.display='';
+}
+
+function torSRFlip(){
+  if(torSRFlipped) return;
+  torSRFlipped=true;
+  document.getElementById('sr-flip').classList.add('flipped');
+  document.getElementById('sr-grade-area').style.display='';
+  document.getElementById('sr-card-hint').style.display='none';
+}
+
+function torSRGrade(q){
+  var c=torSRSession[torSRIdx];
+  var sr=torGetSR(c.id);
+  torNextInterval(sr,q);
+  torSaveSR();
+  if(q>=3){ torSROK++; if(navigator.vibrate) navigator.vibrate(30); }
+  else { torSRFail++; if(navigator.vibrate) navigator.vibrate([60,30,60]); }
+  torSRIdx++;
+  renderTorCard();
+}
+
+function showTorDone(){
+  document.getElementById('sr-session-view').style.display='none';
+  document.getElementById('sr-done-view').style.display='';
+  document.getElementById('sr-done-sub').innerHTML='<strong>'+torSROK+'</strong> gewusst · <strong>'+torSRFail+'</strong> wiederholen<br><span style="color:var(--tx3);font-size:12px;margin-top:.5rem;display:block;">Der Algorithmus plant deine nächsten Wiederholungen.</span>';
+}
+
+function torSRBackToDash(){ initTorSR(); }
+
+// Hook into showScreen to init SR
+var _origShowScreenTor = window.showScreen;
+window.showScreen = function(id){
+  _origShowScreenTor(id);
+  if(id==='s-sr') initTorSR();
+};
+
+// ── TORQUE PUSH NOTIFICATIONS ──────────────────────────────────
+function torInitNotify() {
+  var enabled = localStorage.getItem('tor_notify') === '1';
+  var btn = document.getElementById('torNotifyBtn');
+  var hint = document.getElementById('torNotifyHint');
+  if (!btn) return;
+  if (enabled) {
+    btn.textContent = '🔔 Erinnerungen aktiv';
+    btn.classList.add('active');
+    hint.textContent = 'Du wirst täglich erinnert, deine Karten zu lernen.';
+  } else {
+    btn.textContent = '🔔 Erinnerungen aktivieren';
+    btn.classList.remove('active');
+    hint.textContent = '';
+  }
+}
+function torToggleNotify() {
+  var enabled = localStorage.getItem('tor_notify') === '1';
+  if (enabled) {
+    localStorage.removeItem('tor_notify');
+    torInitNotify();
+    return;
+  }
+  if (!('Notification' in window)) {
+    alert('Dein Browser unterstützt keine Benachrichtigungen.');
+    return;
+  }
+  Notification.requestPermission().then(function(perm) {
+    if (perm === 'granted') {
+      localStorage.setItem('tor_notify', '1');
+      torInitNotify();
+      torCheckAndNotify();
+    } else {
+      alert('Benachrichtigungen wurden blockiert. Bitte in den Browser-Einstellungen erlauben.');
+    }
+  });
+}
+function torCheckAndNotify() {
+  if (localStorage.getItem('tor_notify') !== '1') return;
+  if (Notification.permission !== 'granted') return;
+  var lastNotify = localStorage.getItem('tor_last_notify');
+  var today = new Date().toDateString();
+  if (lastNotify === today) return;
+  var data = JSON.parse(localStorage.getItem('tor_sr_data') || '{}');
+  var now = Date.now();
+  var dueCount = 0;
+  Object.values(data).forEach(function(c) { if (!c.due || c.due <= now) dueCount++; });
+  if (dueCount === 0) return;
+  localStorage.setItem('tor_last_notify', today);
+  var title = 'TORQUE \u2013 ' + dueCount + ' Karte' + (dueCount > 1 ? 'n' : '') + ' f\u00e4llig';
+  var body = 'Deine Lernkarten warten. Jetzt kurz \u00fcben!';
+  if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+    navigator.serviceWorker.controller.postMessage({
+      type: 'SHOW_REMINDER', title: title, body: body, url: 'VOLTECH-torque.html#sr'
+    });
+  } else if (Notification.permission === 'granted') {
+    new Notification(title, { body: body, icon: 'pwa/icon-192.png' });
+  }
+}
+
+// Hash-based deep link: VOLTECH-torque.html#sr → direkt SR-Tab öffnen
+(function(){
+  if(location.hash === '#sr') {
+    window.showScreen('s-sr');
+  }
+  torCheckAndNotify();
+})();
+
+// ── Konfetti-Animation ──────────────────────────────────────
+function launchConfetti() {
+  var colors = ['#6366f1','#22c55e','#f59e0b','#ec4899','#06b6d4'];
+  var container = document.createElement('div');
+  container.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden;';
+  document.body.appendChild(container);
+  for(var i = 0; i < 60; i++) {
+    (function(i) {
+      setTimeout(function() {
+        var p = document.createElement('div');
+        var size = Math.random() * 8 + 5;
+        var color = colors[Math.floor(Math.random() * colors.length)];
+        var left = Math.random() * 100;
+        var duration = Math.random() * 1.5 + 1;
+        p.style.cssText = 'position:absolute;width:'+size+'px;height:'+size+'px;background:'+color+';border-radius:'+(Math.random()>0.5?'50%':'2px')+';left:'+left+'%;top:-20px;opacity:1;transition:transform '+duration+'s ease-in, opacity '+duration+'s ease-in;';
+        container.appendChild(p);
+        requestAnimationFrame(function() {
+          var finalY = 60 + Math.random() * 60;
+          var finalX = (Math.random() - 0.5) * 200;
+          var rot = Math.random() * 720 - 360;
+          p.style.transform = 'translateY('+finalY+'vh) translateX('+finalX+'px) rotate('+rot+'deg)';
+          p.style.opacity = '0';
+        });
+        setTimeout(function() { if(p.parentNode) p.parentNode.removeChild(p); }, (duration + 0.5) * 1000);
+      }, i * 25);
+    })(i);
+  }
+  setTimeout(function() { if(container.parentNode) container.parentNode.removeChild(container); }, 4000);
+}
+
+// ── Streak-Meilenstein Toast ────────────────────────────────
+function checkStreakMilestone(streakKey) {
+  var streak = parseInt(localStorage.getItem(streakKey) || '0');
+  var milestones = [3, 7, 14, 30];
+  if(milestones.indexOf(streak) !== -1) {
+    var toast = document.createElement('div');
+    toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1c1c1e;color:#fff;padding:12px 22px;border-radius:12px;font-size:15px;font-weight:600;z-index:10000;box-shadow:0 4px 20px rgba(0,0,0,.4);pointer-events:none;opacity:0;transition:opacity .3s;';
+    toast.textContent = '\uD83D\uDD25 ' + streak + ' Tage Streak! Weiter so!';
+    document.body.appendChild(toast);
+    requestAnimationFrame(function(){ toast.style.opacity = '1'; });
+    launchConfetti();
+    setTimeout(function(){
+      toast.style.opacity = '0';
+      setTimeout(function(){ if(toast.parentNode) toast.parentNode.removeChild(toast); }, 400);
+    }, 3000);
+  }
+}
+</script>
+<script>
+/* AppStore — offline-first sync (arc-studio.org/sync.php) */
+if(typeof AppStore==='undefined'){var AppStore=(function(){
+  var EP='https://arc-studio.org/sync.php',DB=4000,TP='arc_sync_ts_',DK='arc_device_id';
+  var SK=['amp_sr_data','tor_sr_data','vt_sr_data','vt_streak','vt_lern_prog','vt_fc_known','vt_fc_unknown','vt_quiz_hist','arc_achievements','arc_custom_sets','bh_profile','bh_weeks','bh_vorlagen','arc_lang','vt_ap1','ap1_best'];
+  var _t=null,_sy=false,_p=false;
+  function _uuid(){return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c){var r=Math.random()*16|0;return(c==='x'?r:(r&0x3)|0x8).toString(16);});}
+  function _did(){var id=localStorage.getItem(DK);if(!id){id=_uuid();localStorage.setItem(DK,id);}return id;}
+  function get(k,d){try{var r=localStorage.getItem(k);return r!==null?JSON.parse(r):d;}catch(e){return d;}}
+  function set(k,v){try{localStorage.setItem(k,JSON.stringify(v));localStorage.setItem(TP+k,Date.now()+'');}catch(e){}if(SK.indexOf(k)!==-1){clearTimeout(_t);_t=setTimeout(sync,DB);}}
+  function sync(){if(!navigator.onLine)return;if(_sy){_p=true;return;}_sy=true;_p=false;var push={};SK.forEach(function(k){var r=localStorage.getItem(k);if(r===null)return;var ts=parseInt(localStorage.getItem(TP+k)||'0',10);if(ts>0)push[k]={payload:r,updated_at:ts};});fetch(EP,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({device_id:_did(),push:push,pull_keys:SK})}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(d){if(!d.ok||!d.pulled)return;Object.keys(d.pulled).forEach(function(k){var rem=d.pulled[k];var lts=parseInt(localStorage.getItem(TP+k)||'0',10);if(parseInt(rem.updated_at,10)>lts){try{localStorage.setItem(k,rem.payload);localStorage.setItem(TP+k,rem.updated_at+'');}catch(e){}}});}).catch(function(){}).finally(function(){_sy=false;if(_p)sync();});}
+  window.addEventListener('online',sync);
+  if(navigator.onLine)setTimeout(sync,1500);
+  return{get:get,set:set,sync:sync,deviceId:_did,SYNC_KEYS:SK};
+})();}
+</script>
+
+<script>
+// ── Return Banner ──────────────────────────────────────────────
+(function(){
+  var v=parseInt(localStorage.getItem('tor_visits')||'0')+1;
+  localStorage.setItem('tor_visits',v);
+  if(v>=2) document.getElementById('returnBanner').classList.add('show');
+})();
+
+// ── Quick Stats ────────────────────────────────────────────────
+(function(){
+  var streak=parseInt(localStorage.getItem('tor_streak')||'0');
+  document.getElementById('qsStreak').textContent=streak;
+  try{
+    var sr=JSON.parse(localStorage.getItem('tor_sr_data')||'[]');
+    var now=Date.now();
+    var due=sr.filter(function(c){return !c.nextReview||c.nextReview<=now;}).length;
+    document.getElementById('qsSR').textContent=due;
+  }catch(e){}
+  var d=new Date();
+  document.getElementById('qsDate').textContent=d.getDate()+'.'+(d.getMonth()+1)+'.';
+})();
+
+// ── Backup Panel ───────────────────────────────────────────────
+var TOR_BACKUP_KEYS=[
+  {key:'tor_sr_data',label:'SR-Karten',app:'🔩'},
+  {key:'tor_streak',label:'Lernstreak',app:'🔩'},
+  {key:'tor_quiz_hist',label:'Quiz-Verlauf',app:'🔩'},
+  {key:'tor_ap_checks',label:'AP-Checkliste',app:'🔩'},
+  {key:'tor_visits',label:'Besuchszähler',app:'🔩'},
+  {key:'arc_custom_sets',label:'Eigene Sets',app:'✏️'},
+  {key:'bh_profile',label:'BH Profil',app:'📓'},
+  {key:'bh_weeks',label:'BH Wochen',app:'📓'},
+  {key:'arc_lang',label:'Sprache',app:'🌐'},
+];
+function torRenderBackupKeys(){
+  var el=document.getElementById('backupKeyList');
+  if(!el)return;
+  el.innerHTML=TOR_BACKUP_KEYS.map(function(k){
+    var has=localStorage.getItem(k.key)!==null;
+    return '<span class="bk-tag'+(has?' has-data':'')+'">'+k.app+' '+k.label+'</span>';
+  }).join('');
+}
+function torExportBackup(){
+  var data={_version:1,_app:'TORQUE',_date:new Date().toISOString()};
+  TOR_BACKUP_KEYS.forEach(function(k){
+    var v=localStorage.getItem(k.key);
+    if(v!==null)data[k.key]=v;
+  });
+  var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='torque-backup-'+new Date().toISOString().slice(0,10)+'.json';
+  a.click();
+}
+function torImportBackup(e){
+  var file=e.target.files[0];
+  if(!file)return;
+  var reader=new FileReader();
+  reader.onload=function(ev){
+    try{
+      var data=JSON.parse(ev.target.result);
+      TOR_BACKUP_KEYS.forEach(function(k){
+        if(data[k.key]!==undefined)localStorage.setItem(k.key,data[k.key]);
+      });
+      torRenderBackupKeys();
+      alert('Import erfolgreich!');
+    }catch(err){alert('Fehler beim Import: '+err.message);}
+  };
+  reader.readAsText(file);
+}
+document.addEventListener('DOMContentLoaded',torRenderBackupKeys);
+
+// ── Sync Panel ─────────────────────────────────────────────────
+var TOR_SYNC_EP='https://arc-studio.org/cloudsync.php';
+var TOR_SYNC_KEYS=['tor_sr_data','tor_streak','tor_quiz_hist','tor_ap_checks','arc_lang'];
+function torShowHome(){document.getElementById('syncHome').classList.add('active');document.getElementById('syncActive').classList.remove('active');document.getElementById('syncJoin').classList.remove('active');}
+function torShowJoin(){document.getElementById('syncHome').classList.remove('active');document.getElementById('syncJoin').classList.add('active');document.getElementById('syncActive').classList.remove('active');}
+function torShowActive(){document.getElementById('syncHome').classList.remove('active');document.getElementById('syncJoin').classList.remove('active');document.getElementById('syncActive').classList.add('active');}
+function torGetSyncPayload(){var d={};TOR_SYNC_KEYS.forEach(function(k){var v=localStorage.getItem(k);if(v)d[k]=v;});return d;}
+function torApplySyncPayload(d){TOR_SYNC_KEYS.forEach(function(k){if(d[k])localStorage.setItem(k,d[k]);});}
+function torSyncCreate(){
+  var code=Math.random().toString(36).substr(2,6).toUpperCase();
+  localStorage.setItem('tor_sync_code',code);
+  fetch(TOR_SYNC_EP,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'create',code:code,data:torGetSyncPayload()})})
+    .then(function(r){return r.json();})
+    .then(function(){document.getElementById('torSyncCodeDisplay').textContent=code;torShowActive();document.getElementById('torSyncStatus').textContent='Code erstellt!'})
+    .catch(function(){alert('Sync-Fehler. Bitte prüfe deine Verbindung.');});
+}
+function torSyncPush(){
+  var code=localStorage.getItem('tor_sync_code');if(!code)return;
+  fetch(TOR_SYNC_EP,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'update',code:code,data:torGetSyncPayload()})})
+    .then(function(r){return r.json();})
+    .then(function(){document.getElementById('torSyncStatus').textContent='Hochgeladen ✓ '+new Date().toLocaleTimeString();})
+    .catch(function(){alert('Upload fehlgeschlagen.');});
+}
+function torSyncPull(){
+  var code=localStorage.getItem('tor_sync_code');if(!code)return;
+  fetch(TOR_SYNC_EP+'?action=get&code='+code)
+    .then(function(r){return r.json();})
+    .then(function(d){if(d.data){torApplySyncPayload(d.data);document.getElementById('torSyncStatus').textContent='Heruntergeladen ✓ '+new Date().toLocaleTimeString();}})
+    .catch(function(){alert('Download fehlgeschlagen.');});
+}
+function torSyncJoin(){
+  var code=document.getElementById('torJoinCode').value.trim().toUpperCase();
+  if(code.length<4)return;
+  fetch(TOR_SYNC_EP+'?action=get&code='+code)
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(d.data){torApplySyncPayload(d.data);localStorage.setItem('tor_sync_code',code);document.getElementById('torSyncCodeDisplay').textContent=code;torShowActive();document.getElementById('torSyncStatus').textContent='Verbunden ✓';}
+      else{alert('Code nicht gefunden.');}
+    })
+    .catch(function(){alert('Verbindung fehlgeschlagen.');});
+}
+function torSyncLeave(){localStorage.removeItem('tor_sync_code');torShowHome();}
+document.addEventListener('DOMContentLoaded',function(){
+  var code=localStorage.getItem('tor_sync_code');
+  if(code){document.getElementById('torSyncCodeDisplay').textContent=code;torShowActive();}
+});
+
+// ── What's New Toast ───────────────────────────────────────────
+(function(){
+  var V='6.2';
+  if(localStorage.getItem('tor_wn_seen')!==V){
+    setTimeout(function(){document.getElementById('whatsNewToast').classList.remove('hidden');},1200);
+  }
+})();
+
+
+// ── Lückentext Mode ───────────────────────────────────────────────
+var srMode = localStorage.getItem('sr_mode') || 'flip';
+var srFillCurrentAnswer = '';
+
+function setSRMode(m) {
+  srMode = m;
+  localStorage.setItem('sr_mode', m);
+  var fb = document.getElementById('sr-mode-flip');
+  var tb = document.getElementById('sr-mode-fill');
+  if (fb) fb.classList.toggle('active', m === 'flip');
+  if (tb) tb.classList.toggle('active', m === 'fill');
+}
+
+function srFillRender(q, a, tag) {
+  document.getElementById('sr-fill-tag').textContent = tag || '';
+  document.getElementById('sr-fill-q').textContent = q || '';
+  var inp = document.getElementById('sr-fill-input');
+  if (inp) { inp.value = ''; inp.disabled = false; }
+  document.getElementById('sr-fill-answer').style.display = 'none';
+  document.getElementById('sr-fill-area').style.display = 'block';
+  var sb = document.getElementById('sr-fill-submit');
+  if (sb) sb.disabled = false;
+  var _fwr = document.querySelector('.sr-flip-wrap');
+  if (_fwr) _fwr.style.display = 'none';
+  srFillCurrentAnswer = a || '';
+}
+
+(function(){ setSRMode(srMode); })();
+
+function srFillSubmit() {
+  document.getElementById('sr-fill-answer-text').textContent = srFillCurrentAnswer;
+  document.getElementById('sr-fill-answer').style.display = 'block';
+  var inp = document.getElementById('sr-fill-input');
+  if (inp) inp.disabled = true;
+  var sb = document.getElementById('sr-fill-submit');
+  if (sb) sb.disabled = true;
+  torSRFlipped = true;
+  document.getElementById('sr-grade-area').style.display = '';
+}
+</script>
+
+<div class="whats-new-toast hidden" id="whatsNewToast">
+  <div class="wnt-header"><strong>🔩 TORQUE v6.2</strong><button class="wnt-close" aria-label="Schließen" onclick="document.getElementById('whatsNewToast').classList.add('hidden');localStorage.setItem('tor_wn_seen','6.2')">✕</button></div>
+  <div class="wnt-body">Backup-Panel, Cloud Sync, Quick-Stats und 5-Sprachen-System hinzugefügt!</div>
+</div>
+
+<!-- Language Modal -->
+<div class="modal-overlay" id="langModal" onclick="if(event.target===this)closeLangModal()">
+  <div class="modal-sheet">
+    <div class="modal-header">
+      <h2 style="margin:0;font-size:1.1rem">🌐 Sprache wählen</h2>
+      <button class="modal-close" onclick="closeLangModal()">✕</button>
+    </div>
+    <div class="lang-pill-grid">
+      <button class="lang-pill" data-lang="de" onclick="setLang('de')"><span class="lang-flag">🇩🇪</span><span class="lang-code">DE</span><span class="lang-name">Deutsch</span></button>
+      <button class="lang-pill" data-lang="en" onclick="setLang('en')"><span class="lang-flag">🇬🇧</span><span class="lang-code">EN</span><span class="lang-name">English</span></button>
+      <button class="lang-pill" data-lang="tr" onclick="setLang('tr')"><span class="lang-flag">🇹🇷</span><span class="lang-code">TR</span><span class="lang-name">Türkçe</span></button>
+      <button class="lang-pill" data-lang="ru" onclick="setLang('ru')"><span class="lang-flag">🇷🇺</span><span class="lang-code">RU</span><span class="lang-name">Русский</span></button>
+      <button class="lang-pill" data-lang="ar" onclick="setLang('ar')"><span class="lang-flag">🇸🇦</span><span class="lang-code">AR</span><span class="lang-name">العربية</span></button>
+    </div>
+  </div>
+</div>
+<script>
+// ── Spracheingabe (Web Speech API) ────────────────────────────────────────────
+function srStartVoice() {
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var btn = document.getElementById('sr-mic-btn');
+  if(!SR) {
+    if(btn) { btn.title='Nicht unterstützt in diesem Browser'; btn.style.opacity='.3'; }
+    return;
+  }
+  var rec = new SR();
+  var langMap = {de:'de-DE',en:'en-US',tr:'tr-TR',ru:'ru-RU',ar:'ar-SA'};
+  rec.lang = langMap[localStorage.getItem('arc_lang')||'de'] || 'de-DE';
+  rec.interimResults = false;
+  rec.maxAlternatives = 1;
+  if(btn) btn.classList.add('listening');
+  rec.onresult = function(e) {
+    var t = e.results[0][0].transcript;
+    var inp = document.getElementById('sr-fill-input');
+    if(inp && !inp.disabled) inp.value = t;
+    if(btn) btn.classList.remove('listening');
+  };
+  rec.onerror = function() { if(btn) btn.classList.remove('listening'); };
+  rec.onend   = function() { if(btn) btn.classList.remove('listening'); };
+  rec.start();
+}
 </script>
 </body>
 </html>

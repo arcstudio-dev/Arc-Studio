@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="de" class="lang-de theme-english">
+<head>
+<meta charset="UTF-8">
+<script>if(localStorage.getItem('arc_theme')==='dark')document.documentElement.classList.add('dm');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#0a0a0f">
+<meta name="apple-mobile-web-app-title" content="Technical English">
+<title>Technical English — Fachvokabular für IHK-Prüfungen</title>
+<link rel="manifest" href="pwa/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TECHNICAL ENGLISH — Design Tokens · Green Theme #22c55e
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+:root {
+  --bg:  #ffffff;
+  --bg2: #f0fdf4;
+  --bg3: #dcfce7;
+  --bg4: #bbf7d0;
+
+  --sep:  rgba(34,197,94,.07);
+  --brd:  rgba(34,197,94,.13);
+  --brd2: rgba(34,197,94,.22);
+
+  --tx:  #052e16;
+  --tx2: #166534;
+  --tx3: #6b7280;
+  --tx4: rgba(5,46,22,.08);
+
+  --ac:  #22c55e;
+  --acd: #16a34a;
+  --acg: rgba(34,197,94,.10);
+  --acb: rgba(34,197,94,.25);
+
+  --ok:   #34d399;  --ok-g:  rgba(52,211,153,.14);   --ok-b:  rgba(52,211,153,.25);
+  --warn: #ff9f0a;  --warn-g:rgba(251,191,36,.12);
+  --err:  #f87171;  --err-g: rgba(248,113,113,.12);
+  --pur:  #a78bfa;
+  --blue: #3b82f6;
+
+  --font-sans:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
+  --font-mono:'SF Mono','JetBrains Mono','Fira Code',monospace;
+
+  --fg: var(--tx);
+  --fs-xs:   10px;  --fs-sm: 12px;  --fs-md: 13px;  --fs-base: 15px;
+  --fs-lg:   17px;  --fs-xl: 20px;  --fs-2xl: 24px;
+  --fw-medium: 500; --fw-semi: 600; --fw-bold: 700;
+  --lh-snug: 1.3;   --lh-base: 1.5; --lh-relaxed: 1.65;
+
+  --sp-1:4px;  --sp-2:8px;   --sp-3:12px; --sp-4:16px;
+  --sp-5:20px; --sp-6:24px;  --sp-8:32px;
+
+  --r-xs: 6px;  --r-sm: 8px;   --r-md: 12px; --r-lg: 16px;
+  --r-xl: 20px; --r-full: 9999px;
+  --r: var(--r-md); --r2: var(--r-lg); --r3: var(--r-xl);
+
+  --shadow-sm: 0 1px 4px rgba(0,0,0,.08);
+  --shadow-md: 0 4px 20px rgba(0,0,0,.10);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,.15);
+
+  --t-fast: .12s ease; --t-base: .2s ease; --t-slow: .32s cubic-bezier(.16,1,.3,1);
+
+  --max-w: 640px; --touch: 44px;
+  --br: var(--brd); --br2: var(--brd2);
+  --sa: var(--font-sans); --mo: var(--font-mono);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  background: var(--bg); color: var(--tx);
+  font-family: var(--sa); scroll-padding-top: 52px;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  background: var(--bg); color: var(--tx);
+  min-height: 100vh; overflow-x: hidden;
+}
+
+body::before {
+  content:''; position:fixed; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none; z-index:0; opacity:.06;
+}
+
+/* ── DARK MODE ─────────────────────────────────────────────── */
+.dm {
+  color-scheme: dark;
+  --bg:#0a0a0f; --bg2:#0d1a0f; --bg3:#111f13; --bg4:#162718;
+  --tx:#f0fdf4; --tx2:#86efac; --tx3:#6b7280; --tx4:rgba(255,255,255,.08);
+  --sep:rgba(34,197,94,.08); --brd:rgba(34,197,94,.14); --brd2:rgba(34,197,94,.24);
+  --br:rgba(34,197,94,.14); --br2:rgba(34,197,94,.24);
+  --border:rgba(34,197,94,.14);
+  --shadow-sm:0 1px 4px rgba(0,0,0,.5); --shadow-md:0 4px 20px rgba(0,0,0,.55);
+  --shadow-lg:0 16px 48px rgba(0,0,0,.65);
+  --sh:0 1px 4px rgba(0,0,0,.5),0 4px 16px rgba(0,0,0,.45);
+}
+.dm .hdr { background:rgba(10,10,15,.92) !important; }
+.dm .bnav { background:rgba(10,10,15,.97) !important; border-top:1px solid rgba(255,255,255,.07) !important; }
+.dm .bnav-btn { color:rgba(255,255,255,.35); }
+.dm .bnav-btn.on { color:var(--ac); background:rgba(34,197,94,.08); }
+.dm .drawer { background:#0f1a12 !important; }
+.dm .drawer-overlay { background:rgba(0,0,0,.7); }
+.dm body { background:#08080f !important; }
+.dm .hdr, .dm header { background:rgba(8,8,15,.94) !important; border-bottom-color:rgba(255,255,255,.07) !important; }
+.dm .card, .dm .stat-card, .dm .quiz-card { background:#0d1a0f !important; border:1px solid rgba(34,197,94,.1) !important; }
+.dm .card:hover { border-color:rgba(34,197,94,.3) !important; }
+.dm input, .dm textarea, .dm select {
+  background:#1a2e1c !important; border-color:rgba(34,197,94,.18) !important;
+  color:#f0fdf4 !important; color-scheme:dark !important;
+}
+.dm input:focus, .dm textarea:focus, .dm select:focus {
+  border-color:rgba(34,197,94,.5) !important;
+  box-shadow:0 0 0 3px rgba(34,197,94,.15) !important;
+  outline:none !important;
+}
+.dm input::placeholder, .dm textarea::placeholder { color:rgba(240,253,244,.3) !important; }
+
+/* ── LIGHT MODE POLISH ─────────────────────────────────────── */
+.hdr {
+  background:rgba(255,255,255,.92) !important;
+  backdrop-filter:saturate(180%) blur(24px) !important;
+  -webkit-backdrop-filter:saturate(180%) blur(24px) !important;
+  box-shadow:0 1px 12px rgba(0,0,0,.06) !important;
+  border-bottom-color:rgba(34,197,94,.1) !important;
+}
+input, textarea, select {
+  background:#ffffff !important;
+  border-color:rgba(34,197,94,.2) !important;
+  color:#052e16 !important;
+}
+input:focus, textarea:focus, select:focus {
+  border-color:#22c55e !important;
+  box-shadow:0 0 0 3px rgba(34,197,94,.14) !important;
+}
+
+/* ── HEADER ────────────────────────────────────────────────── */
+.hdr {
+  position:sticky; top:0; z-index:100;
+  backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--sep);
+  padding:.75rem 1rem;
+  display:flex; align-items:center; gap:.65rem;
+}
+.hdr-mark {
+  width:32px; height:32px; border-radius:7px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:20px;
+}
+.hdr-wordmark { flex:1; }
+.hdr-wordmark h1 { font-size:17px; font-weight:700; letter-spacing:-.3px; line-height:1.1; }
+.hdr-wordmark p { font-size:10px; color:var(--tx3); font-weight:500; letter-spacing:.2px; margin-top:1px; }
+.hdr-actions { display:flex; gap:.4rem; }
+.hdr-btn {
+  width:44px; height:44px; border-radius:var(--r-sm);
+  background:var(--bg3); border:1px solid var(--brd);
+  color:var(--tx2); font-size:16px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:background var(--t-fast), color var(--t-fast); flex-shrink:0;
+}
+.hdr-btn:hover { background:var(--bg4); color:var(--tx); }
+.hdr-btn:active { opacity:.7; }
+
+/* ── BOTTOM NAV ─────────────────────────────────────────────── */
+.bnav {
+  position:fixed; bottom:0; left:0; right:0;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:saturate(180%) blur(28px);
+  -webkit-backdrop-filter:saturate(180%) blur(28px);
+  border-top:1px solid var(--sep);
+  display:flex; padding:.3rem .3rem calc(.3rem + env(safe-area-inset-bottom));
+  z-index:40; gap:2px;
+}
+.bnav-btn {
+  flex:1; font-size:9.5px; font-weight:600;
+  padding:.5rem .2rem .45rem; border:none; background:transparent;
+  cursor:pointer; color:var(--tx3); border-radius:var(--r-sm);
+  display:flex; flex-direction:column; align-items:center; gap:3px;
+  min-height:var(--touch);
+  letter-spacing:.02em; -webkit-tap-highlight-color:transparent;
+  text-transform:uppercase; transition:color var(--t-fast), background var(--t-fast);
+}
+.bnav-btn:active { opacity:.65; transform:scale(.95); }
+.bnav-btn.on { color:var(--ac); background:var(--acg); }
+.bnav-icon { font-size:20px; line-height:1; display:block; transition:transform .25s cubic-bezier(.34,1.56,.64,1); }
+.bnav-btn.on .bnav-icon { transform:translateY(-2px) scale(1.12); }
+
+/* ── SCREENS ────────────────────────────────────────────────── */
+.screen { display:none; padding:1rem; max-width:640px; margin:0 auto; padding-bottom:90px; }
+.screen.on { display:block; animation:fadeUp .25s ease both; }
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(8px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ── CARDS ──────────────────────────────────────────────────── */
+.card {
+  background:var(--bg2); border:1px solid var(--br);
+  border-radius:var(--r2); padding:1rem;
+  margin-bottom:.75rem; transition:border-color .2s;
+}
+.card:hover { border-color:var(--br2); }
+
+.sec-title {
+  font-size:11px; font-weight:700; color:var(--tx3);
+  text-transform:uppercase; letter-spacing:.8px;
+  margin:1.25rem 0 .6rem;
+}
+.sec-title:first-child { margin-top:0; }
+
+/* ── HOME STATS ─────────────────────────────────────────────── */
+.stats-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:.5rem; margin-bottom:.75rem;
+}
+.stat-card {
+  background:var(--bg2); border:1px solid var(--br);
+  border-radius:var(--r); padding:.75rem; text-align:center;
+}
+.stat-value {
+  font-size:24px; font-weight:700; color:var(--ac);
+  font-family:var(--mo); line-height:1.2;
+}
+.stat-label { font-size:11px; color:var(--tx3); margin-top:2px; font-weight:500; }
+
+/* ── QUICK ACCESS ───────────────────────────────────────────── */
+.quick-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:.5rem; margin-bottom:.75rem;
+}
+.quick-card {
+  background:var(--bg2); border:1px solid var(--br);
+  border-radius:var(--r); padding:1rem;
+  cursor:pointer; transition:background .15s, border-color .15s;
+  text-align:left; display:flex; flex-direction:column; gap:.3rem;
+}
+.quick-card:hover { background:var(--bg3); border-color:var(--acb); }
+.quick-card:active { opacity:.75; transform:scale(.97); }
+.quick-icon { font-size:24px; }
+.quick-name { font-size:13px; font-weight:700; color:var(--tx); }
+.quick-sub { font-size:11px; color:var(--tx3); }
+
+/* ── HERO BANNER ────────────────────────────────────────────── */
+.hero-banner {
+  background:linear-gradient(135deg, rgba(34,197,94,.12) 0%, rgba(22,163,74,.05) 100%);
+  border:1px solid var(--acb);
+  border-radius:var(--r2); padding:1.25rem;
+  margin-bottom:.75rem;
+  display:flex; align-items:center; gap:1rem;
+}
+.hero-emoji { font-size:40px; flex-shrink:0; }
+.hero-text h2 { font-size:18px; font-weight:800; letter-spacing:-.3px; color:var(--tx); }
+.hero-text p { font-size:13px; color:var(--tx3); margin-top:.25rem; line-height:1.4; }
+
+/* ── DIRECTION TOGGLE ───────────────────────────────────────── */
+.dir-toggle {
+  display:flex; gap:.4rem; margin-bottom:1rem;
+  background:var(--bg2); border:1px solid var(--br);
+  border-radius:var(--r-full); padding:.25rem; width:fit-content;
+}
+.dir-btn {
+  padding:.4rem .9rem; border-radius:var(--r-full);
+  border:none; background:transparent;
+  color:var(--tx3); font-size:12px; font-weight:600;
+  cursor:pointer; transition:background .15s, color .15s;
+  font-family:var(--sa);
+}
+.dir-btn.on { background:var(--ac); color:#fff; }
+
+/* ── SR FLASHCARD ───────────────────────────────────────────── */
+.sr-prog-wrap { margin-bottom:1.25rem; width:100%; max-width:480px; margin-left:auto; margin-right:auto; }
+.sr-prog-bar-track { height:3px; background:rgba(34,197,94,.12); border-radius:99px; overflow:hidden; margin-bottom:.6rem; }
+.sr-prog-bar-fill { height:100%; background:var(--ac); border-radius:99px; transition:width .3s ease; }
+.sr-prog-label { font-family:var(--mo); font-size:10px; color:var(--tx3); text-align:right; letter-spacing:.05em; }
+
+.sr-flip-wrap { perspective:1200px; width:100%; max-width:480px; margin:0 auto 1.5rem; }
+.sr-flip {
+  position:relative; width:100%; min-height:280px;
+  transform-style:preserve-3d;
+  transition:transform .5s cubic-bezier(.33,1,.68,1);
+  cursor:pointer; border-radius:20px;
+}
+.sr-flip.flipped { transform:rotateY(180deg); }
+.sr-front, .sr-back {
+  position:absolute; inset:0;
+  backface-visibility:hidden; -webkit-backface-visibility:hidden;
+  border-radius:20px; padding:2rem 1.75rem 1.5rem;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center; min-height:280px;
+}
+.sr-front {
+  background:#0d1a0f; border:1px solid rgba(34,197,94,.15);
+  box-shadow:0 24px 64px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.04);
+}
+.dm .sr-front { background:#0d1a0f; border-color:rgba(34,197,94,.2); }
+html:not(.dm) .sr-front {
+  background:linear-gradient(160deg,#f0fdf4 0%,#ffffff 100%);
+  border:1px solid rgba(34,197,94,.2);
+  box-shadow:0 8px 32px rgba(34,197,94,.08);
+}
+.sr-back {
+  background:linear-gradient(160deg, rgba(34,197,94,.12) 0%, rgba(22,163,74,.04) 100%);
+  border:1px solid var(--acb);
+  box-shadow:0 24px 64px rgba(0,0,0,.4), 0 0 48px rgba(34,197,94,.08), inset 0 1px 0 rgba(34,197,94,.1);
+  transform:rotateY(180deg);
+}
+.sr-card-tag {
+  font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--ac); background:var(--acg); border:1px solid var(--acb);
+  border-radius:20px; padding:.25rem .75rem; margin-bottom:1.25rem; align-self:center;
+}
+.sr-card-q {
+  font-size:clamp(17px,4vw,22px); font-weight:700; line-height:1.35;
+  color:var(--tx); letter-spacing:-.3px;
+  flex:1; display:flex; align-items:center;
+}
+html:not(.dm) .sr-front .sr-card-q { color:#052e16; }
+.sr-card-a {
+  font-size:clamp(14px,3vw,17px); line-height:1.6;
+  color:var(--tx); font-family:var(--mo); font-weight:600;
+}
+.sr-card-hint {
+  font-size:10px; color:var(--tx3); margin-top:auto; padding-top:1.25rem;
+  letter-spacing:.06em; text-transform:uppercase;
+  display:flex; align-items:center; gap:6px;
+}
+.sr-card-hint::before { content:'↕'; font-size:13px; }
+
+.sr-grade-prompt {
+  font-family:var(--mo); font-size:10px; color:var(--tx3);
+  text-align:center; margin-bottom:.85rem;
+  text-transform:uppercase; letter-spacing:.08em;
+}
+.sr-grade-row { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:.75rem; }
+.sr-grade-btn {
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+  min-height:64px; padding:1rem .5rem;
+  border-radius:16px; border:1px solid; background:transparent;
+  cursor:pointer; transition:transform .1s ease, background .15s;
+  -webkit-tap-highlight-color:transparent; user-select:none; font-family:var(--sa);
+}
+.sr-grade-btn:active { transform:scale(.94); }
+.sr-grade-btn-label { font-size:14px; font-weight:700; letter-spacing:-.2px; }
+.sr-grade-btn-note { font-family:var(--mo); font-size:10px; opacity:.55; letter-spacing:.03em; }
+.sr-grade-btn.bad  { border-color:rgba(255,69,58,.3);  color:#ff453a; background:rgba(255,69,58,.06); }
+.sr-grade-btn.bad:active  { background:rgba(255,69,58,.16); }
+.sr-grade-btn.ok   { border-color:rgba(255,214,10,.3); color:#ffd60a; background:rgba(255,214,10,.05); }
+.sr-grade-btn.ok:active   { background:rgba(255,214,10,.14); }
+.sr-grade-btn.good { border-color:rgba(48,209,88,.3);  color:#30d158; background:rgba(48,209,88,.06); }
+.sr-grade-btn.good:active { background:rgba(48,209,88,.16); }
+
+.sr-done { text-align:center; padding:2.5rem 1rem; }
+.sr-done-emoji { font-size:52px; margin-bottom:.75rem; display:block; }
+.sr-done-title { font-size:22px; font-weight:800; margin-bottom:.5rem; letter-spacing:-.4px; }
+.sr-done-sub { font-size:14px; color:var(--tx3); line-height:1.6; }
+
+.sr-stat-row { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:1.25rem; }
+.sr-stat { background:var(--bg2); border:1px solid var(--br); border-radius:var(--r); padding:.75rem .5rem; text-align:center; }
+.sr-stat-v { font-family:var(--mo); font-size:22px; font-weight:700; line-height:1; color:var(--ac); }
+.sr-stat-l { font-size:10px; color:var(--tx3); margin-top:4px; letter-spacing:.04em; text-transform:uppercase; }
+
+.sr-start-btn {
+  width:100%; padding:.85rem; background:var(--ac); color:#fff;
+  border:none; border-radius:var(--r2); font-family:var(--sa);
+  font-size:15px; font-weight:700; cursor:pointer; letter-spacing:-.2px;
+  transition:opacity .15s; margin-bottom:.5rem;
+}
+.sr-start-btn:hover { opacity:.88; }
+.sr-start-btn:active { opacity:.78; }
+.sr-reset-btn {
+  width:100%; padding:.6rem; background:transparent; color:var(--tx3);
+  border:1px solid var(--br); border-radius:var(--r); font-family:var(--sa);
+  font-size:13px; cursor:pointer; margin-top:4px;
+}
+
+/* ── QUIZ ───────────────────────────────────────────────────── */
+.quiz-hero {
+  text-align:center; padding:2rem 1rem;
+  background:var(--bg2); border:1px solid var(--br);
+  border-radius:var(--r2); margin-bottom:1rem;
+}
+.quiz-hero-icon { font-size:48px; display:block; margin-bottom:.75rem; }
+.quiz-hero h2 { font-size:22px; font-weight:700; margin-bottom:.35rem; }
+.quiz-hero p { font-size:14px; color:var(--tx2); margin-bottom:1.25rem; }
+.quiz-hs-badge {
+  display:inline-flex; align-items:center; gap:.4rem;
+  background:var(--acg); color:var(--ac); border:1px solid var(--acb);
+  border-radius:20px; padding:.3rem .8rem;
+  font-size:12px; font-weight:600; margin-bottom:1.25rem;
+}
+.quiz-filter { display:flex; flex-wrap:wrap; gap:.4rem; margin:.5rem 0 1rem; justify-content:center; }
+.quiz-filter-btn {
+  padding:.3rem .75rem; border-radius:20px; border:1px solid var(--sep);
+  background:var(--bg3); color:var(--tx2); font-size:11px; font-weight:600;
+  cursor:pointer; transition:all .2s; min-height:32px; font-family:var(--sa);
+}
+.quiz-filter-btn:hover { border-color:var(--brd2); }
+.quiz-filter-btn.active { background:var(--acg); border-color:rgba(34,197,94,.4); color:var(--ac); }
+
+.btn-primary {
+  background:var(--ac); color:#fff; border:none; border-radius:12px;
+  padding:.75rem 1.5rem; font-size:15px; font-weight:700;
+  cursor:pointer; font-family:var(--sa); min-height:48px; width:100%; max-width:300px;
+  transition:background .15s; display:block; margin:0 auto;
+}
+.btn-primary:hover { background:var(--acd); }
+
+.quiz-progress-wrap { background:var(--bg3); border-radius:4px; height:4px; margin-bottom:.75rem; overflow:hidden; }
+.quiz-progress-bar { height:4px; background:var(--ac); border-radius:4px; transition:width .3s; }
+.quiz-counter { font-size:12px; color:var(--tx3); font-weight:600; text-align:right; margin-bottom:.75rem; }
+.quiz-card {
+  background:var(--bg2); border:1px solid var(--br);
+  border-radius:var(--r2); padding:1.25rem;
+}
+.quiz-question { font-size:16px; font-weight:600; line-height:1.45; margin-bottom:1rem; color:var(--tx); }
+.quiz-opts { display:flex; flex-direction:column; gap:.5rem; margin-bottom:.75rem; }
+.quiz-opt {
+  background:var(--bg3); border:1px solid var(--br);
+  border-radius:10px; padding:.75rem 1rem;
+  font-size:14px; font-weight:500; color:var(--tx);
+  cursor:pointer; text-align:left; font-family:var(--sa);
+  min-height:44px; transition:background .15s, color .15s, border-color .15s;
+  line-height:1.3;
+}
+.quiz-opt:hover:not(:disabled) { border-color:var(--ac); }
+.quiz-opt.correct { border-color:var(--ok); background:var(--ok-g); color:var(--ok); }
+.quiz-opt.wrong   { border-color:var(--err); background:var(--err-g); color:var(--err); }
+.quiz-opt:disabled { cursor:default; }
+.quiz-next-btn {
+  background:var(--ac); color:#fff; border:none; border-radius:10px;
+  padding:.7rem 1.25rem; font-size:14px; font-weight:700;
+  cursor:pointer; font-family:var(--sa); min-height:44px; width:100%;
+  transition:background .15s;
+}
+.quiz-next-btn:hover { background:var(--acd); }
+.quiz-end-card {
+  text-align:center; background:var(--bg2); border:1px solid var(--br);
+  border-radius:var(--r2); padding:2rem 1.25rem;
+}
+.quiz-score-big { font-size:56px; font-weight:700; color:var(--ac); font-family:var(--mo); line-height:1; }
+.quiz-score-sub { font-size:14px; color:var(--tx2); margin:.35rem 0 1rem; }
+.quiz-end-hs { font-size:13px; color:var(--tx3); margin-bottom:1.5rem; }
+
+/* ── WORDLIST ───────────────────────────────────────────────── */
+.wl-search-wrap { margin-bottom:.75rem; }
+.wl-search {
+  width:100%; padding:.65rem 1rem; border-radius:var(--r-full);
+  border:1px solid var(--br); font-size:14px; font-family:var(--sa);
+  background:var(--bg2); color:var(--tx); outline:none;
+  transition:border-color .15s;
+}
+.wl-search:focus { border-color:var(--ac); }
+.wl-filters { display:flex; gap:.35rem; flex-wrap:wrap; margin-bottom:.75rem; }
+.wl-filter-btn {
+  padding:.3rem .7rem; border-radius:20px; border:1px solid var(--sep);
+  background:var(--bg3); color:var(--tx3); font-size:11px; font-weight:600;
+  cursor:pointer; font-family:var(--sa); min-height:32px;
+  transition:all .2s;
+}
+.wl-filter-btn.active { background:var(--acg); border-color:var(--acb); color:var(--ac); }
+.wl-count { font-size:11px; color:var(--tx3); margin-bottom:.5rem; }
+.vocab-list { display:flex; flex-direction:column; gap:.35rem; }
+.vocab-item {
+  background:var(--bg2); border:1px solid var(--br);
+  border-radius:var(--r); padding:.7rem 1rem;
+  display:flex; align-items:center; gap:.75rem;
+  transition:border-color .15s;
+}
+.vocab-item:hover { border-color:var(--br2); }
+.vocab-badge {
+  font-size:9px; font-weight:800; letter-spacing:.08em;
+  padding:.2rem .5rem; border-radius:5px;
+  text-transform:uppercase; flex-shrink:0; min-width:52px; text-align:center;
+}
+.badge-ampere { background:rgba(251,146,60,.12); color:#fb923c; border:1px solid rgba(251,146,60,.2); }
+.badge-torque { background:rgba(20,184,166,.12); color:#14b8a6; border:1px solid rgba(20,184,166,.2); }
+.badge-voltiq { background:rgba(99,102,241,.12); color:#6366f1; border:1px solid rgba(99,102,241,.2); }
+.badge-fisi   { background:rgba(59,130,246,.12);  color:#3b82f6; border:1px solid rgba(59,130,246,.2); }
+.vocab-de { font-size:14px; font-weight:600; color:var(--tx); flex:1; }
+.vocab-en { font-size:12px; color:var(--ac); font-family:var(--mo); font-weight:500; }
+
+/* ── DRAWER ─────────────────────────────────────────────────── */
+.drawer-overlay {
+  position:fixed; inset:0; z-index:200;
+  background:rgba(0,0,0,.6); opacity:0; pointer-events:none; transition:opacity .2s;
+}
+.drawer-overlay.on { opacity:1; pointer-events:all; }
+.drawer {
+  position:fixed; top:0; right:0; bottom:0; z-index:201;
+  width:min(300px,85vw); background:var(--bg2);
+  border-left:1px solid var(--br);
+  transform:translateX(100%); transition:transform .22s cubic-bezier(.22,.61,.36,1);
+  display:flex; flex-direction:column; overflow-y:auto;
+}
+.drawer.on { transform:translateX(0); }
+.drawer-hdr {
+  padding:1rem; border-bottom:1px solid var(--sep);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.drawer-title { font-size:14px; font-weight:700; color:var(--tx); }
+.drawer-close {
+  width:44px; height:44px; min-height:44px; min-width:44px; border-radius:8px;
+  background:var(--bg3); border:none; color:var(--tx2);
+  font-size:16px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+}
+.drawer-apps { padding:.5rem 0; flex:1; }
+.drawer-app {
+  display:flex; align-items:center; gap:.75rem;
+  padding:.7rem 1rem; cursor:pointer; text-decoration:none;
+  color:var(--tx); transition:background .15s;
+}
+.drawer-app:hover { background:var(--bg3); }
+.drawer-app.active { color:var(--ac); }
+.drawer-app-icon { font-size:20px; width:28px; text-align:center; flex-shrink:0; }
+.drawer-app-name { font-size:14px; font-weight:500; }
+.drawer-app-sub { font-size:11px; color:var(--tx3); }
+.drawer-app-badge {
+  margin-left:auto; background:var(--ac); color:#fff;
+  border-radius:10px; padding:1px 7px; font-size:10px; font-weight:700;
+}
+.drawer-footer {
+  padding:.5rem 1rem .75rem;
+  border-top:1px solid rgba(0,0,0,.07); margin-top:.25rem;
+}
+.dm .drawer-footer { border-top-color:rgba(255,255,255,.07); }
+.drawer-footer a {
+  color:var(--ac); text-decoration:none;
+  font-size:13px; font-weight:500;
+  display:flex; align-items:center; gap:.3rem;
+}
+.drawer-footer a:hover { color:var(--acd); }
+
+/* ── RESPONSIVE ─────────────────────────────────────────────── */
+@media (max-width:400px) {
+  .stats-grid { grid-template-columns:1fr 1fr; }
+  .quick-grid  { grid-template-columns:1fr 1fr; }
+  .sr-stat-row { grid-template-columns:1fr 1fr; }
+}
+@media (min-width:768px) {
+  .screen { max-width:720px; padding-left:1.5rem; padding-right:1.5rem; }
+  .stats-grid { grid-template-columns:repeat(3,1fr); }
+  .quick-grid  { grid-template-columns:repeat(3,1fr); }
+  .sr-grade-row { grid-template-columns:repeat(3,1fr); }
+}
+
+/* ── UTILITY ────────────────────────────────────────────────── */
+.mt05 { margin-top:.5rem; }
+.mt1  { margin-top:1rem; }
+.hidden { display:none !important; }
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="hdr">
+  <div class="hdr-mark">🇬🇧</div>
+  <div class="hdr-wordmark">
+    <h1>Technical English</h1>
+    <p>Fachvokabular · IHK-Prüfung</p>
+  </div>
+  <div class="hdr-actions">
+    <button class="hdr-btn" id="thm-btn" onclick="thmToggle()" title="Theme wechseln" aria-label="Theme wechseln">🌙</button>
+    <button class="hdr-btn" onclick="drawerOpen()" title="App-Menü" aria-label="App-Menü öffnen">☰</button>
+  </div>
+</header>
+
+<!-- ===================== SCREENS ===================== -->
+
+<!-- HOME -->
+<main class="screen on" id="s-home">
+  <div class="hero-banner">
+    <div class="hero-emoji">🇬🇧</div>
+    <div class="hero-text">
+      <h2>Technical English</h2>
+      <p>Englische Fachbegriffe für FISI, AMPERE, TORQUE & VOLTIQ — optimal für internationale Prüfungen.</p>
+    </div>
+  </div>
+
+  <p class="sec-title">Dein Fortschritt</p>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value" id="home-learned">0</div>
+      <div class="stat-label">Gelernt</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="home-streak">0</div>
+      <div class="stat-label">🔥 Streak</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="home-due">0</div>
+      <div class="stat-label">Fällig heute</div>
+    </div>
+  </div>
+
+  <p class="sec-title">Schnellzugriff</p>
+  <div class="quick-grid">
+    <div class="quick-card" onclick="showScreen('s-sr')">
+      <span class="quick-icon">📚</span>
+      <div class="quick-name">Vokabeln lernen</div>
+      <div class="quick-sub">Spaced Repetition</div>
+    </div>
+    <div class="quick-card" onclick="showScreen('s-quiz')">
+      <span class="quick-icon">❓</span>
+      <div class="quick-name">Quiz</div>
+      <div class="quick-sub">Multiple Choice</div>
+    </div>
+    <div class="quick-card" onclick="showScreen('s-words')">
+      <span class="quick-icon">📖</span>
+      <div class="quick-name">Wortliste</div>
+      <div class="quick-sub">Alle 95 Vokabeln</div>
+    </div>
+    <div class="quick-card" onclick="showScreen('s-sr'); setTimeout(()=>document.getElementById('sr-direction-en').click(),100)">
+      <span class="quick-icon">🔄</span>
+      <div class="quick-name">EN → DE</div>
+      <div class="quick-sub">Englisch erkennen</div>
+    </div>
+  </div>
+
+  <p class="sec-title">Lernbereiche</p>
+  <div class="card">
+    <div style="display:flex;flex-direction:column;gap:.5rem;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:.4rem 0;border-bottom:1px solid var(--sep);">
+        <div style="display:flex;align-items:center;gap:.5rem;">
+          <span class="vocab-badge badge-fisi">FISI</span>
+          <span style="font-size:13px;font-weight:600;">Fachinformatik</span>
+        </div>
+        <span style="font-size:12px;font-family:var(--mo);color:var(--ac);">25</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:.4rem 0;border-bottom:1px solid var(--sep);">
+        <div style="display:flex;align-items:center;gap:.5rem;">
+          <span class="vocab-badge badge-ampere">AMPERE</span>
+          <span style="font-size:13px;font-weight:600;">Elektrotechnik</span>
+        </div>
+        <span style="font-size:12px;font-family:var(--mo);color:var(--ac);">25</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:.4rem 0;border-bottom:1px solid var(--sep);">
+        <div style="display:flex;align-items:center;gap:.5rem;">
+          <span class="vocab-badge badge-torque">TORQUE</span>
+          <span style="font-size:13px;font-weight:600;">Industriemechanik</span>
+        </div>
+        <span style="font-size:12px;font-family:var(--mo);color:var(--ac);">25</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:.4rem 0;">
+        <div style="display:flex;align-items:center;gap:.5rem;">
+          <span class="vocab-badge badge-voltiq">VOLTIQ</span>
+          <span style="font-size:13px;font-weight:600;">Mechatronik</span>
+        </div>
+        <span style="font-size:12px;font-family:var(--mo);color:var(--ac);">20</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- SR LERNEN -->
+<main class="screen" id="s-sr">
+  <!-- Dashboard view -->
+  <div id="sr-dashboard">
+    <p class="sec-title" style="margin-top:0">Spaced Repetition</p>
+    <div class="sr-stat-row">
+      <div class="sr-stat"><div class="sr-stat-v" id="sr-total">95</div><div class="sr-stat-l">Gesamt</div></div>
+      <div class="sr-stat"><div class="sr-stat-v" id="sr-due-count">0</div><div class="sr-stat-l">Fällig</div></div>
+      <div class="sr-stat"><div class="sr-stat-v" id="sr-learned-count">0</div><div class="sr-stat-l">Gelernt</div></div>
+    </div>
+
+    <p class="sec-title">Lernrichtung</p>
+    <div class="dir-toggle" style="margin-bottom:1rem;">
+      <button class="dir-btn on" id="sr-direction-de" onclick="setSRDir('de')">🇩🇪 → 🇬🇧</button>
+      <button class="dir-btn" id="sr-direction-en" onclick="setSRDir('en')">🇬🇧 → 🇩🇪</button>
+    </div>
+
+    <p class="sec-title">Filter</p>
+    <div class="quiz-filter" id="sr-filter-btns">
+      <button class="quiz-filter-btn active" onclick="setSRFilter('all',this)">Alle</button>
+      <button class="quiz-filter-btn" onclick="setSRFilter('FISI',this)">FISI</button>
+      <button class="quiz-filter-btn" onclick="setSRFilter('AMPERE',this)">AMPERE</button>
+      <button class="quiz-filter-btn" onclick="setSRFilter('TORQUE',this)">TORQUE</button>
+      <button class="quiz-filter-btn" onclick="setSRFilter('VOLTIQ',this)">VOLTIQ</button>
+    </div>
+
+    <button class="sr-start-btn" onclick="startSR()">📚 Lernsitzung starten</button>
+    <button class="sr-reset-btn" onclick="resetSRData()">🗑 Fortschritt zurücksetzen</button>
+  </div>
+
+  <!-- Card view -->
+  <div id="sr-session" class="hidden">
+    <div class="sr-prog-wrap">
+      <div class="sr-prog-bar-track"><div class="sr-prog-bar-fill" id="sr-prog-fill" style="width:0%"></div></div>
+      <div class="sr-prog-label" id="sr-prog-label">0 / 0</div>
+    </div>
+
+    <div class="sr-flip-wrap">
+      <div class="sr-flip" id="sr-flip" onclick="flipCard()">
+        <div class="sr-front">
+          <span class="sr-card-tag" id="sr-card-tag">FISI</span>
+          <div class="sr-card-q" id="sr-card-q">Begriff</div>
+          <div class="sr-card-hint">Tippen zum Umdrehen</div>
+        </div>
+        <div class="sr-back">
+          <span class="sr-card-tag" id="sr-card-tag-back">FISI</span>
+          <div class="sr-card-a" id="sr-card-a">Antwort</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sr-grade-area" class="hidden">
+      <p class="sr-grade-prompt">Wie gut wusstest du das?</p>
+      <div class="sr-grade-row">
+        <button type="button" class="sr-grade-btn bad"  onclick="engSRGrade(1)">
+          <span class="sr-grade-btn-label">Nochmal</span>
+          <span class="sr-grade-btn-note">+1 Tag</span>
+        </button>
+        <button type="button" class="sr-grade-btn ok"   onclick="engSRGrade(3)">
+          <span class="sr-grade-btn-label">Gut</span>
+          <span class="sr-grade-btn-note">+bald</span>
+        </button>
+        <button type="button" class="sr-grade-btn good" onclick="engSRGrade(5)">
+          <span class="sr-grade-btn-label">Perfekt</span>
+          <span class="sr-grade-btn-note">+länger</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Done view -->
+  <div id="sr-done-view" class="hidden">
+    <div class="sr-done">
+      <span class="sr-done-emoji">🎉</span>
+      <div class="sr-done-title">Sitzung abgeschlossen!</div>
+      <div class="sr-done-sub" id="sr-done-sub"></div>
+      <button type="button" class="sr-start-btn" style="margin-top:1.5rem;" onclick="backToSRDash()">← Zurück zur Übersicht</button>
+    </div>
+  </div>
+</main>
+
+<!-- QUIZ -->
+<main class="screen" id="s-quiz">
+  <!-- Start view -->
+  <div id="quiz-start">
+    <div class="quiz-hero">
+      <span class="quiz-hero-icon">🧠</span>
+      <h2>Vokabel-Quiz</h2>
+      <p>Teste dein Wissen: Wähle die richtige englische Übersetzung</p>
+      <div class="quiz-hs-badge">🏆 Highscore: <span id="quiz-hs-display">0</span> / 10</div>
+      <div class="quiz-filter" id="quiz-filter-btns">
+        <button class="quiz-filter-btn active" onclick="setQuizFilter('all',this)">Alle</button>
+        <button class="quiz-filter-btn" onclick="setQuizFilter('FISI',this)">FISI</button>
+        <button class="quiz-filter-btn" onclick="setQuizFilter('AMPERE',this)">AMPERE</button>
+        <button class="quiz-filter-btn" onclick="setQuizFilter('TORQUE',this)">TORQUE</button>
+        <button class="quiz-filter-btn" onclick="setQuizFilter('VOLTIQ',this)">VOLTIQ</button>
+      </div>
+      <button class="btn-primary" onclick="startQuiz()">Quiz starten</button>
+    </div>
+  </div>
+
+  <!-- Running view -->
+  <div id="quiz-running" class="hidden">
+    <div class="quiz-progress-wrap"><div class="quiz-progress-bar" id="quiz-prog-bar" style="width:0%"></div></div>
+    <div class="quiz-counter" id="quiz-counter">Frage 1 / 10</div>
+    <div class="quiz-card">
+      <div class="quiz-question" id="quiz-question">Frage lädt...</div>
+      <div class="quiz-opts" id="quiz-opts"></div>
+      <button class="quiz-next-btn hidden" id="quiz-next-btn" onclick="quizNext()">Weiter →</button>
+    </div>
+  </div>
+
+  <!-- End view -->
+  <div id="quiz-end" class="hidden">
+    <div class="quiz-end-card">
+      <div class="quiz-score-big" id="quiz-final-score">0</div>
+      <div class="quiz-score-sub">von 10 richtig</div>
+      <div class="quiz-end-hs" id="quiz-end-hs">Kein Highscore</div>
+      <button class="btn-primary" style="margin-bottom:.75rem;" onclick="startQuiz()">Nochmal spielen</button>
+      <button class="btn-primary" style="background:var(--bg3);color:var(--tx2);border:1px solid var(--br);" onclick="document.getElementById('quiz-start').classList.remove('hidden');document.getElementById('quiz-end').classList.add('hidden');">← Zurück</button>
+    </div>
+  </div>
+</main>
+
+<!-- WORTLISTE -->
+<main class="screen" id="s-words">
+  <p class="sec-title" style="margin-top:0">Wortliste</p>
+  <div class="wl-search-wrap">
+    <input type="search" class="wl-search" id="wl-search" placeholder="🔍  Suche auf Deutsch oder Englisch…" oninput="renderWordlist()">
+  </div>
+  <div class="wl-filters">
+    <button class="wl-filter-btn active" onclick="setWLFilter('all',this)">Alle</button>
+    <button class="wl-filter-btn" onclick="setWLFilter('FISI',this)">FISI</button>
+    <button class="wl-filter-btn" onclick="setWLFilter('AMPERE',this)">AMPERE</button>
+    <button class="wl-filter-btn" onclick="setWLFilter('TORQUE',this)">TORQUE</button>
+    <button class="wl-filter-btn" onclick="setWLFilter('VOLTIQ',this)">VOLTIQ</button>
+  </div>
+  <div class="wl-count" id="wl-count">95 Vokabeln</div>
+  <div class="vocab-list" id="vocab-list"></div>
+</main>
+
+<!-- ===================== BOTTOM NAV ===================== -->
+<nav class="bnav" aria-label="Hauptnavigation">
+  <button class="bnav-btn on" data-screen="s-home" aria-label="Home">
+    <span class="bnav-icon">🏠</span>Home
+  </button>
+  <button class="bnav-btn" data-screen="s-sr" aria-label="Lernen">
+    <span class="bnav-icon">📚</span>Lernen
+  </button>
+  <button class="bnav-btn" data-screen="s-quiz" aria-label="Quiz">
+    <span class="bnav-icon">❓</span>Quiz
+  </button>
+  <button class="bnav-btn" data-screen="s-words" aria-label="Wortliste">
+    <span class="bnav-icon">📖</span>Wortliste
+  </button>
+</nav>
+
+<!-- ===================== APP-SWITCHER DRAWER ===================== -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="drawerClose()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-hdr">
+    <span class="drawer-title">⊞ Arc Studio</span>
+    <button type="button" class="drawer-close" aria-label="Menü schließen" onclick="drawerClose()">✕</button>
+  </div>
+  <div class="drawer-apps">
+    <a class="drawer-app" href="voltiq.html">
+      <span class="drawer-app-icon">⚡</span>
+      <div><div class="drawer-app-name">VOLTIQ</div><div class="drawer-app-sub">Mechatroniker</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-ampere.html">
+      <span class="drawer-app-icon">🔌</span>
+      <div><div class="drawer-app-name">AMPERE</div><div class="drawer-app-sub">Elektroniker EfB</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-torque.html">
+      <span class="drawer-app-icon">⚙️</span>
+      <div><div class="drawer-app-name">TORQUE</div><div class="drawer-app-sub">Industriemechaniker</div></div>
+    </a>
+    <a class="drawer-app" href="FISI-core.html">
+      <span class="drawer-app-icon">💻</span>
+      <div><div class="drawer-app-name">FISI-Core</div><div class="drawer-app-sub">Fachinformatiker</div></div>
+    </a>
+    <a class="drawer-app active" href="#">
+      <span class="drawer-app-icon">🇬🇧</span>
+      <div><div class="drawer-app-name">Technical English</div><div class="drawer-app-sub">Fachvokabular · IHK</div></div>
+      <span class="drawer-app-badge">Aktiv</span>
+    </a>
+    <a class="drawer-app" href="VOLTECH-ki-tutor.html">
+      <span class="drawer-app-icon">🤖</span>
+      <div><div class="drawer-app-name">KI-Tutor</div><div class="drawer-app-sub">IHK-Fachtutor · offline</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-achievements.html">
+      <span class="drawer-app-icon">🏆</span>
+      <div><div class="drawer-app-name">Achievements</div><div class="drawer-app-sub"></div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-forum.html">
+      <span class="drawer-app-icon">💬</span>
+      <div><div class="drawer-app-name">Forum</div><div class="drawer-app-sub">Azubi-Community</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-whats-new.html">
+      <span class="drawer-app-icon">🗺️</span>
+      <div><div class="drawer-app-name">Roadmap</div><div class="drawer-app-sub"></div></div>
+    </a>
+  </div>
+  <div class="drawer-footer">
+    <a href="index.html">🏠 Arc Studio ↗</a>
+  </div>
+</div>
+
+<!-- ===================== JAVASCRIPT ===================== -->
+<script>
+'use strict';
+
+/* ── VOCAB DATA ──────────────────────────────────────────────── */
+var VOCAB = [
+  // AMPERE — Elektrotechnik (25)
+  {de:'Wechselstrom',            en:'alternating current (AC)',           app:'AMPERE'},
+  {de:'Gleichstrom',             en:'direct current (DC)',                app:'AMPERE'},
+  {de:'Widerstand',              en:'resistance',                         app:'AMPERE'},
+  {de:'Spannung',                en:'voltage',                            app:'AMPERE'},
+  {de:'Strom',                   en:'current (amperage)',                 app:'AMPERE'},
+  {de:'Leistung',                en:'power',                              app:'AMPERE'},
+  {de:'Kondensator',             en:'capacitor',                          app:'AMPERE'},
+  {de:'Spule',                   en:'inductor (coil)',                    app:'AMPERE'},
+  {de:'Transformator',           en:'transformer',                        app:'AMPERE'},
+  {de:'Leitungsschutzschalter',  en:'circuit breaker',                    app:'AMPERE'},
+  {de:'Fehlerstromschutzschalter', en:'residual current device (RCD)',    app:'AMPERE'},
+  {de:'Schutzleiter',            en:'protective earth (PE)',              app:'AMPERE'},
+  {de:'Nullleiter',              en:'neutral conductor',                  app:'AMPERE'},
+  {de:'Phase',                   en:'live conductor',                     app:'AMPERE'},
+  {de:'Erdung',                  en:'grounding / earthing',               app:'AMPERE'},
+  {de:'Kurzschluss',             en:'short circuit',                      app:'AMPERE'},
+  {de:'Überlast',                en:'overload',                           app:'AMPERE'},
+  {de:'Schütz',                  en:'contactor',                          app:'AMPERE'},
+  {de:'Sicherung',               en:'fuse',                               app:'AMPERE'},
+  {de:'Klemme',                  en:'terminal',                           app:'AMPERE'},
+  {de:'Sammelschiene',           en:'busbar',                             app:'AMPERE'},
+  {de:'Messgerät',               en:'measuring instrument',               app:'AMPERE'},
+  {de:'Isolationswiderstand',    en:'insulation resistance',              app:'AMPERE'},
+  {de:'Nennspannung',            en:'rated voltage',                      app:'AMPERE'},
+  {de:'Bemessungsstrom',         en:'rated current',                      app:'AMPERE'},
+
+  // TORQUE — Industriemechanik (25)
+  {de:'Drehmoment',              en:'torque',                             app:'TORQUE'},
+  {de:'Hebelarm',                en:'lever arm',                          app:'TORQUE'},
+  {de:'Übersetzungsverhältnis',  en:'gear ratio',                         app:'TORQUE'},
+  {de:'Passung',                 en:'fit (tolerance)',                    app:'TORQUE'},
+  {de:'Spielpassung',            en:'clearance fit',                      app:'TORQUE'},
+  {de:'Presspassung',            en:'interference fit (press fit)',        app:'TORQUE'},
+  {de:'Übergangspassung',        en:'transition fit',                     app:'TORQUE'},
+  {de:'Toleranz',                en:'tolerance',                          app:'TORQUE'},
+  {de:'Bohrung',                 en:'bore (hole)',                        app:'TORQUE'},
+  {de:'Welle',                   en:'shaft',                              app:'TORQUE'},
+  {de:'Kehlnaht',                en:'fillet weld',                        app:'TORQUE'},
+  {de:'Stumpfnaht',              en:'butt weld',                          app:'TORQUE'},
+  {de:'Zugfestigkeit',           en:'tensile strength',                   app:'TORQUE'},
+  {de:'Streckgrenze',            en:'yield strength',                     app:'TORQUE'},
+  {de:'Bruchdehnung',            en:'elongation at break',                app:'TORQUE'},
+  {de:'Härte',                   en:'hardness',                           app:'TORQUE'},
+  {de:'Druckluft',               en:'compressed air',                     app:'TORQUE'},
+  {de:'Zylinder',                en:'cylinder',                           app:'TORQUE'},
+  {de:'Kolben',                  en:'piston',                             app:'TORQUE'},
+  {de:'Ventil',                  en:'valve',                              app:'TORQUE'},
+  {de:'Volumenstrom',            en:'flow rate',                          app:'TORQUE'},
+  {de:'Druckabfall',             en:'pressure drop',                      app:'TORQUE'},
+  {de:'Werkzeugmaschine',        en:'machine tool',                       app:'TORQUE'},
+  {de:'Spanwinkel',              en:'rake angle',                         app:'TORQUE'},
+  {de:'Schnittgeschwindigkeit',  en:'cutting speed',                      app:'TORQUE'},
+
+  // VOLTIQ — Mechatronik (20)
+  {de:'Steuerung',               en:'control (system)',                   app:'VOLTIQ'},
+  {de:'Regelung',                en:'closed-loop control',                app:'VOLTIQ'},
+  {de:'Sollwert',                en:'setpoint',                           app:'VOLTIQ'},
+  {de:'Istwert',                 en:'actual value',                       app:'VOLTIQ'},
+  {de:'Regelabweichung',         en:'control error',                      app:'VOLTIQ'},
+  {de:'Frequenzumrichter',       en:'frequency inverter (VFD)',           app:'VOLTIQ'},
+  {de:'Asynchronmotor',          en:'induction motor',                    app:'VOLTIQ'},
+  {de:'Synchronmotor',           en:'synchronous motor',                  app:'VOLTIQ'},
+  {de:'Schlupf',                 en:'slip',                               app:'VOLTIQ'},
+  {de:'Encoder',                 en:'encoder',                            app:'VOLTIQ'},
+  {de:'Geber',                   en:'transducer / sensor',                app:'VOLTIQ'},
+  {de:'Speicherprogrammierbare Steuerung', en:'programmable logic controller (PLC)', app:'VOLTIQ'},
+  {de:'Eingang',                 en:'input',                              app:'VOLTIQ'},
+  {de:'Ausgang',                 en:'output',                             app:'VOLTIQ'},
+  {de:'Merker',                  en:'flag / marker bit',                  app:'VOLTIQ'},
+  {de:'Zeitglied',               en:'timer',                              app:'VOLTIQ'},
+  {de:'Zähler',                  en:'counter',                            app:'VOLTIQ'},
+  {de:'Betriebsmittel',          en:'equipment / operating means',        app:'VOLTIQ'},
+  {de:'Schaltplan',              en:'circuit diagram',                    app:'VOLTIQ'},
+  {de:'Klemmleiste',             en:'terminal strip',                     app:'VOLTIQ'},
+
+  // FISI — Fachinformatik (25)
+  {de:'Netzwerkmaske',           en:'subnet mask',                        app:'FISI'},
+  {de:'Standardgateway',         en:'default gateway',                    app:'FISI'},
+  {de:'Domäne',                  en:'domain',                             app:'FISI'},
+  {de:'Benutzer',                en:'user',                               app:'FISI'},
+  {de:'Gruppe',                  en:'group',                              app:'FISI'},
+  {de:'Gruppenrichtlinie',       en:'group policy (GPO)',                 app:'FISI'},
+  {de:'Dateiserver',             en:'file server',                        app:'FISI'},
+  {de:'Druckserver',             en:'print server',                       app:'FISI'},
+  {de:'Sicherung',               en:'backup',                             app:'FISI'},
+  {de:'Wiederherstellung',       en:'restore / recovery',                 app:'FISI'},
+  {de:'Brandmauer',              en:'firewall',                           app:'FISI'},
+  {de:'Verschlüsselung',         en:'encryption',                         app:'FISI'},
+  {de:'Zertifikat',              en:'certificate',                        app:'FISI'},
+  {de:'Protokoll',               en:'protocol',                           app:'FISI'},
+  {de:'Schnittstelle',           en:'interface',                          app:'FISI'},
+  {de:'Betriebssystem',          en:'operating system',                   app:'FISI'},
+  {de:'Virtualisierung',         en:'virtualization',                     app:'FISI'},
+  {de:'Arbeitsspeicher',         en:'RAM (random access memory)',          app:'FISI'},
+  {de:'Festplatte',              en:'hard disk drive (HDD)',               app:'FISI'},
+  {de:'Zwischenspeicher',        en:'cache',                              app:'FISI'},
+  {de:'Paketfilter',             en:'packet filter',                      app:'FISI'},
+  {de:'Datensicherung',          en:'data backup',                        app:'FISI'},
+  {de:'Zugriffsrecht',           en:'access permission',                  app:'FISI'},
+  {de:'Authentifizierung',       en:'authentication',                     app:'FISI'},
+  {de:'Autorisierung',           en:'authorization',                      app:'FISI'}
+];
+
+/* ── LOCAL STORAGE KEYS ──────────────────────────────────────── */
+var KEY_SR     = 'eng_sr_data';
+var KEY_STREAK = 'eng_streak';
+var KEY_HS     = 'eng_quiz_hs';
+
+/* ── THEME TOGGLE ────────────────────────────────────────────── */
+(function(){
+  var KEY = 'arc_theme';
+  var isDark = localStorage.getItem(KEY) === 'dark';
+  function apply(d) {
+    document.documentElement.classList.toggle('dm', d);
+    var b = document.getElementById('thm-btn');
+    if(b) b.textContent = d ? '☀️' : '🌙';
+  }
+  apply(isDark);
+  window.thmToggle = function() {
+    isDark = !isDark;
+    localStorage.setItem(KEY, isDark ? 'dark' : 'light');
+    apply(isDark);
+  };
+})();
+
+/* ── SCREEN NAVIGATION ───────────────────────────────────────── */
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('on'); });
+  document.querySelectorAll('.bnav-btn').forEach(function(b){ b.classList.remove('on'); b.removeAttribute('aria-current'); });
+  var sc = document.getElementById(id);
+  if(sc) sc.classList.add('on');
+  var tb = document.querySelector('.bnav-btn[data-screen="' + id + '"]');
+  if(tb){ tb.classList.add('on'); tb.setAttribute('aria-current','page'); }
+  window.scrollTo(0,0);
+  if(id === 's-words') renderWordlist();
+  if(id === 's-home')  updateHomeStats();
+  if(id === 's-sr')    updateSRDash();
+  if(id === 's-quiz')  updateQuizHS();
+}
+document.querySelectorAll('.bnav-btn[data-screen]').forEach(function(btn){
+  btn.addEventListener('click', function(){ showScreen(this.dataset.screen); });
+});
+
+/* ── DRAWER ──────────────────────────────────────────────────── */
+function drawerOpen() {
+  document.getElementById('drawer').classList.add('on');
+  document.getElementById('drawer-overlay').classList.add('on');
+}
+function drawerClose() {
+  document.getElementById('drawer').classList.remove('on');
+  document.getElementById('drawer-overlay').classList.remove('on');
+}
+
+/* ── SM-2 ALGORITHM ──────────────────────────────────────────── */
+function sm2(card, grade) {
+  // grade: 1=bad, 3=ok, 5=perfect
+  var ef = card.ef || 2.5;
+  var interval = card.interval || 0;
+  var reps = card.reps || 0;
+
+  if(grade < 3) {
+    reps = 0;
+    interval = 1;
+  } else {
+    if(reps === 0) interval = 1;
+    else if(reps === 1) interval = 6;
+    else interval = Math.round(interval * ef);
+    reps++;
+  }
+  ef = ef + (0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02));
+  if(ef < 1.3) ef = 1.3;
+
+  var now = Date.now();
+  var next = now + interval * 86400000;
+  return { ef: ef, interval: interval, reps: reps, nextDue: next, lastReview: now };
+}
+
+function getSRData() {
+  try { return JSON.parse(localStorage.getItem(KEY_SR)) || {}; }
+  catch(e) { return {}; }
+}
+function saveSRData(data) {
+  localStorage.setItem(KEY_SR, JSON.stringify(data));
+}
+function getCardKey(vocab) {
+  return vocab.app + '_' + vocab.de.replace(/\s+/g,'_');
+}
+function isDue(card) {
+  if(!card) return true;
+  return !card.nextDue || Date.now() >= card.nextDue;
+}
+function countDue() {
+  var data = getSRData();
+  return VOCAB.filter(function(v){ return isDue(data[getCardKey(v)]); }).length;
+}
+function countLearned() {
+  var data = getSRData();
+  return VOCAB.filter(function(v){
+    var c = data[getCardKey(v)];
+    return c && c.reps > 0;
+  }).length;
+}
+
+/* ── HOME STATS ──────────────────────────────────────────────── */
+function updateHomeStats() {
+  document.getElementById('home-learned').textContent = countLearned();
+  document.getElementById('home-streak').textContent  = localStorage.getItem(KEY_STREAK) || 0;
+  document.getElementById('home-due').textContent     = countDue();
+}
+
+/* ── STREAK ──────────────────────────────────────────────────── */
+function updateStreak() {
+  var today = new Date().toDateString();
+  var last  = localStorage.getItem('eng_streak_date');
+  var streak = parseInt(localStorage.getItem(KEY_STREAK) || '0', 10);
+  if(last !== today) {
+    var yesterday = new Date(Date.now() - 86400000).toDateString();
+    if(last === yesterday) streak++;
+    else streak = 1;
+    localStorage.setItem(KEY_STREAK, streak);
+    localStorage.setItem('eng_streak_date', today);
+  }
+}
+
+/* ── SR DASHBOARD ────────────────────────────────────────────── */
+function updateSRDash() {
+  document.getElementById('sr-total').textContent        = VOCAB.length;
+  document.getElementById('sr-due-count').textContent    = countDue();
+  document.getElementById('sr-learned-count').textContent = countLearned();
+}
+
+/* ── SR STATE ────────────────────────────────────────────────── */
+var srQueue   = [];
+var srIndex   = 0;
+var srDir     = 'de';  // 'de'=DE->EN, 'en'=EN->DE
+var srFilter  = 'all';
+var srFlipped = false;
+var srSession = { done:0, total:0 };
+
+function setSRDir(dir) {
+  srDir = dir;
+  document.getElementById('sr-direction-de').classList.toggle('on', dir === 'de');
+  document.getElementById('sr-direction-en').classList.toggle('on', dir === 'en');
+}
+function setSRFilter(f, btn) {
+  srFilter = f;
+  document.querySelectorAll('#sr-filter-btns .quiz-filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+}
+
+function startSR() {
+  var data = getSRData();
+  var pool = VOCAB.filter(function(v){
+    if(srFilter !== 'all' && v.app !== srFilter) return false;
+    return isDue(data[getCardKey(v)]);
+  });
+  if(!pool.length) {
+    pool = VOCAB.filter(function(v){
+      return srFilter === 'all' || v.app === srFilter;
+    });
+  }
+  // Shuffle
+  srQueue = pool.slice().sort(function(){ return Math.random() - .5; });
+  srIndex = 0;
+  srSession.done = 0;
+  srSession.total = srQueue.length;
+
+  document.getElementById('sr-dashboard').classList.add('hidden');
+  document.getElementById('sr-done-view').classList.add('hidden');
+  document.getElementById('sr-session').classList.remove('hidden');
+  showSRCard();
+}
+
+function showSRCard() {
+  if(srIndex >= srQueue.length) {
+    finishSR();
+    return;
+  }
+  var v = srQueue[srIndex];
+  srFlipped = false;
+  document.getElementById('sr-flip').classList.remove('flipped');
+  document.getElementById('sr-grade-area').classList.add('hidden');
+
+  var badge = v.app;
+  document.getElementById('sr-card-tag').textContent      = badge;
+  document.getElementById('sr-card-tag-back').textContent = badge;
+
+  if(srDir === 'de') {
+    document.getElementById('sr-card-q').textContent = v.de;
+    document.getElementById('sr-card-a').textContent = v.en;
+  } else {
+    document.getElementById('sr-card-q').textContent = v.en;
+    document.getElementById('sr-card-a').textContent = v.de;
+  }
+
+  var pct = srSession.total > 0 ? Math.round((srSession.done / srSession.total) * 100) : 0;
+  document.getElementById('sr-prog-fill').style.width = pct + '%';
+  document.getElementById('sr-prog-label').textContent = srSession.done + ' / ' + srSession.total;
+}
+
+function flipCard() {
+  if(srFlipped) return;
+  srFlipped = true;
+  document.getElementById('sr-flip').classList.add('flipped');
+  document.getElementById('sr-grade-area').classList.remove('hidden');
+}
+
+function engSRGrade(grade) {
+  var v = srQueue[srIndex];
+  var key = getCardKey(v);
+  var data = getSRData();
+  var card = data[key] || {};
+  var updated = sm2(card, grade);
+  data[key] = updated;
+  saveSRData(data);
+
+  srSession.done++;
+  srIndex++;
+  showSRCard();
+  updateStreak();
+}
+
+function finishSR() {
+  document.getElementById('sr-session').classList.add('hidden');
+  document.getElementById('sr-done-view').classList.remove('hidden');
+  document.getElementById('sr-done-sub').textContent =
+    srSession.done + ' Karten durchgearbeitet. Nächste Sitzung morgen oder wenn Karten fällig sind.';
+  updateSRDash();
+  updateHomeStats();
+}
+
+function backToSRDash() {
+  document.getElementById('sr-done-view').classList.add('hidden');
+  document.getElementById('sr-session').classList.add('hidden');
+  document.getElementById('sr-dashboard').classList.remove('hidden');
+}
+
+function resetSRData() {
+  if(!confirm('Gesamten SR-Fortschritt für Technical English zurücksetzen?')) return;
+  localStorage.removeItem(KEY_SR);
+  localStorage.removeItem(KEY_STREAK);
+  localStorage.removeItem('eng_streak_date');
+  updateSRDash();
+  updateHomeStats();
+}
+
+/* ── QUIZ ────────────────────────────────────────────────────── */
+var quizFilter    = 'all';
+var quizQuestions = [];
+var quizCurrent   = 0;
+var quizScore     = 0;
+var quizAnswered  = false;
+
+function setQuizFilter(f, btn) {
+  quizFilter = f;
+  document.querySelectorAll('#quiz-filter-btns .quiz-filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+}
+
+function updateQuizHS() {
+  var hs = parseInt(localStorage.getItem(KEY_HS) || '0', 10);
+  document.getElementById('quiz-hs-display').textContent = hs;
+}
+
+function buildQuizQuestions() {
+  var pool = quizFilter === 'all' ? VOCAB : VOCAB.filter(function(v){ return v.app === quizFilter; });
+  if(pool.length < 4) pool = VOCAB;
+  var shuffled = pool.slice().sort(function(){ return Math.random() - .5; });
+  var qs = shuffled.slice(0, 10);
+  return qs.map(function(v) {
+    var wrong = pool.filter(function(w){ return w.en !== v.en; }).sort(function(){ return Math.random() - .5; }).slice(0,3);
+    var opts = wrong.concat([v]).sort(function(){ return Math.random() - .5; });
+    return { question: 'Was bedeutet "' + v.de + '"?', correct: v.en, options: opts.map(function(o){ return o.en; }), app: v.app };
+  });
+}
+
+function startQuiz() {
+  quizQuestions = buildQuizQuestions();
+  quizCurrent   = 0;
+  quizScore     = 0;
+  quizAnswered  = false;
+
+  document.getElementById('quiz-start').classList.add('hidden');
+  document.getElementById('quiz-end').classList.add('hidden');
+  document.getElementById('quiz-running').classList.remove('hidden');
+  showQuizQuestion();
+}
+
+function showQuizQuestion() {
+  if(quizCurrent >= quizQuestions.length) {
+    endQuiz();
+    return;
+  }
+  var q = quizQuestions[quizCurrent];
+  quizAnswered = false;
+
+  document.getElementById('quiz-prog-bar').style.width = (quizCurrent / quizQuestions.length * 100) + '%';
+  document.getElementById('quiz-counter').textContent = 'Frage ' + (quizCurrent+1) + ' / ' + quizQuestions.length;
+  document.getElementById('quiz-question').textContent = q.question;
+
+  var optsEl = document.getElementById('quiz-opts');
+  optsEl.innerHTML = '';
+  q.options.forEach(function(opt) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'quiz-opt';
+    btn.textContent = opt;
+    btn.onclick = function(){ quizAnswer(opt, btn, q.correct); };
+    optsEl.appendChild(btn);
+  });
+  document.getElementById('quiz-next-btn').classList.add('hidden');
+}
+
+function quizAnswer(chosen, btn, correct) {
+  if(quizAnswered) return;
+  quizAnswered = true;
+
+  document.querySelectorAll('.quiz-opt').forEach(function(b){
+    b.disabled = true;
+    if(b.textContent === correct) b.classList.add('correct');
+  });
+  if(chosen !== correct) {
+    btn.classList.add('wrong');
+  } else {
+    quizScore++;
+  }
+  document.getElementById('quiz-next-btn').classList.remove('hidden');
+}
+
+function quizNext() {
+  quizCurrent++;
+  showQuizQuestion();
+}
+
+function endQuiz() {
+  document.getElementById('quiz-running').classList.add('hidden');
+  document.getElementById('quiz-end').classList.remove('hidden');
+  document.getElementById('quiz-final-score').textContent = quizScore;
+
+  var hs = parseInt(localStorage.getItem(KEY_HS) || '0', 10);
+  var newHs = false;
+  if(quizScore > hs) {
+    hs = quizScore;
+    localStorage.setItem(KEY_HS, hs);
+    newHs = true;
+  }
+  var emoji = quizScore >= 9 ? '🏆' : quizScore >= 7 ? '⭐' : quizScore >= 5 ? '👍' : '📚';
+  document.getElementById('quiz-end-hs').textContent = newHs
+    ? emoji + ' Neuer Highscore: ' + hs + ' / 10!'
+    : 'Highscore: ' + hs + ' / 10';
+  updateQuizHS();
+  updateStreak();
+}
+
+/* ── WORDLIST ────────────────────────────────────────────────── */
+var wlFilter = 'all';
+
+function setWLFilter(f, btn) {
+  wlFilter = f;
+  document.querySelectorAll('.wl-filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderWordlist();
+}
+
+function renderWordlist() {
+  var search = (document.getElementById('wl-search').value || '').toLowerCase().trim();
+  var list = VOCAB.filter(function(v) {
+    if(wlFilter !== 'all' && v.app !== wlFilter) return false;
+    if(search) {
+      return v.de.toLowerCase().includes(search) || v.en.toLowerCase().includes(search);
+    }
+    return true;
+  });
+
+  document.getElementById('wl-count').textContent = list.length + ' Vokabeln';
+
+  var badgeClass = {AMPERE:'badge-ampere', TORQUE:'badge-torque', VOLTIQ:'badge-voltiq', FISI:'badge-fisi'};
+  var container = document.getElementById('vocab-list');
+  container.innerHTML = list.map(function(v) {
+    var bc = badgeClass[v.app] || '';
+    return '<div class="vocab-item">' +
+      '<span class="vocab-badge ' + bc + '">' + v.app + '</span>' +
+      '<span class="vocab-de">' + v.de + '</span>' +
+      '<span class="vocab-en">' + v.en + '</span>' +
+      '</div>';
+  }).join('');
+}
+
+/* ── INIT ────────────────────────────────────────────────────── */
+updateHomeStats();
+updateQuizHS();
+</script>
+</body>
+</html>

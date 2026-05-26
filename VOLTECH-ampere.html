@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="de" class="lang-de">
+<html lang="de" class="lang-de theme-ampere">
 <head>
 <meta charset="UTF-8">
+<script>if(localStorage.getItem('arc_theme')==='dark')document.documentElement.classList.add('dm');</script>
+<script>if(!localStorage.getItem('arc_onboarding_done'))window.location.replace('VOLTECH-onboarding.html');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="AMPERE — IHK-Lern-App für Elektroniker für Betriebstechnik. Quiz, Formeln, SR-Karten, AP1-Simulator. Kostenlos & offline.">
+<meta property="og:title" content="AMPERE · Elektroniker für Betriebstechnik">
+<meta property="og:description" content="IHK-Vorbereitung für Elektroniker. Kostenlos, offline, kein Account.">
+<meta property="og:url" content="https://arc-studio.org/VOLTECH-ampere.html">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="theme-color" content="#050507">
 <title>AMPERE — Elektroniker Betriebstechnik</title>
 <link rel="manifest" href="pwa/manifest.json">
@@ -12,32 +18,104 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ARC STUDIO — UNIFIED DESIGN TOKENS v1.0 · AMPERE Theme
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 :root {
-  --bg: #050507;
-  --bg2: #0f0f13;
-  --bg3: #17171d;
-  --bg4: #1f1f27;
-  --sep: rgba(255,255,255,.06);
-  --br: rgba(255,255,255,.08);
-  --tx: #f0f0f5;
-  --tx2: #a0a0b0;
-  --tx3: #505060;
-  --ac: #f97316;
+  /* ── Surfaces ─────────────────────────────────────────────── */
+  --bg:  #ffffff;
+  --bg2: #f8f5ff;
+  --bg3: #f3f0fa;
+  --bg4: #ede8f8;
+
+  /* ── Borders ──────────────────────────────────────────────── */
+  --sep:  rgba(122,14,200,.06);
+  --brd:  rgba(122,14,200,.10);
+  --brd2: rgba(122,14,200,.18);
+
+  /* ── Text ─────────────────────────────────────────────────── */
+  --tx:  #1a1a2e;
+  --tx2: #6b7280;
+  --tx3: #9ca3af;
+  --tx4: rgba(26,26,46,.08);
+
+  /* ── Accent (AMPERE: Orange) ──────────────────────────────── */
+  --ac:  #f97316;
   --acd: #ea6c0a;
   --acg: rgba(249,115,22,.12);
-  --ok: #30d158;
-  --err: #ff453a;
-  --warn: #ffd60a;
-  --r: 12px;
-  --r2: 16px;
-  --r3: 20px;
-  --sa: 'Inter', system-ui, sans-serif;
-  --mo: 'JetBrains Mono', monospace;
+  --acb: rgba(249,115,22,.28);
+
+  /* ── Semantic Status ──────────────────────────────────────── */
+  --ok:   #30d158;  --ok-g:  rgba(48,209,88,.14);   --ok-b:  rgba(48,209,88,.25);
+  --warn: #ff9f0a;  --warn-g:rgba(255,159,10,.12);
+  --err:  #ff453a;  --err-g: rgba(255,69,58,.12);
+  --pur:  #bf5af2;
+  --teal: #40c8e0;
+
+  /* ── Typography ───────────────────────────────────────────── */
+  --font-sans:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'SF Mono','Fira Code',monospace;
+  --fs-xs:   10px;
+  --fs-sm:   12px;
+  --fs-md:   13px;
+  --fs-base: 15px;
+  --fs-lg:   17px;
+  --fs-xl:   20px;
+  --fs-2xl:  24px;
+  --fw-medium: 500;
+  --fw-semi:   600;
+  --fw-bold:   700;
+  --lh-snug:   1.3;
+  --lh-base:   1.5;
+  --lh-relaxed:1.65;
+
+  /* ── Spacing (4px grid) ───────────────────────────────────── */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+
+  /* ── Border Radius ────────────────────────────────────────── */
+  --r-xs:   6px;
+  --r-sm:   8px;
+  --r-md:  12px;
+  --r-lg:  16px;
+  --r-xl:  20px;
+  --r-full:9999px;
+
+  /* ── Shadows ──────────────────────────────────────────────── */
+  --shadow-sm: 0 1px 4px rgba(0,0,0,.08);
+  --shadow-md: 0 4px 20px rgba(0,0,0,.10);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,.15);
+
+  /* ── Transitions ──────────────────────────────────────────── */
+  --t-fast: .12s ease;
+  --t-base: .2s ease;
+  --t-slow: .32s cubic-bezier(.16,1,.3,1);
+
+  /* ── Layout ───────────────────────────────────────────────── */
+  --max-w: 640px;
+  --touch: 44px;
+
+  /* ── Legacy aliases (zero breaking changes) ───────────────── */
+  --br:  var(--brd);
+  --br2: var(--brd2);
+  --r:   var(--r-md);
+  --r2:  var(--r-lg);
+  --r3:  var(--r-xl);
+  --sa:  var(--font-sans);
+  --mo:  var(--font-mono);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { background: var(--bg); color: var(--tx); font-family: var(--sa); }
+html {
+  background: var(--bg); color: var(--tx); font-family: var(--sa);
+  scroll-padding-top: 52px; /* Sticky header compensation */
+}
 
 body {
   -webkit-font-smoothing: antialiased;
@@ -47,13 +125,28 @@ body {
   overflow-x: hidden;
 }
 
-/* Light Mode */
-.lm { --bg:#f5f5f7; --bg2:#ffffff; --bg3:#e8e8ed; --bg4:#d8d8de;
-      --tx:#1a1a1f; --tx2:#3a3a4a; --tx3:#7a7a90; }
-.lm .hdr { background: rgba(245,245,247,.9); }
-.lm .tabs { background: rgba(245,245,247,.95); }
-.lm .drawer-overlay { background: rgba(0,0,0,.4); }
-.lm .drawer { background: var(--bg2); }
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.08;
+}
+
+/* Light Mode */.dm {
+  color-scheme: dark;
+  --bg:#0a0a0f; --bg2:#0f0f17; --bg3:#171720; --bg4:#1e1e2a;
+  --tx:#f0f0f5; --tx2:#a0a0b0; --tx3:#606070; --tx4:rgba(255,255,255,.08);
+  --sep:rgba(255,255,255,.06); --brd:rgba(255,255,255,.09); --brd2:rgba(255,255,255,.14);
+  --br:rgba(255,255,255,.09); --br2:rgba(255,255,255,.14);
+  --border:rgba(255,255,255,.09);
+  --shadow-sm:0 1px 4px rgba(0,0,0,.5); --shadow-md:0 4px 20px rgba(0,0,0,.55); --shadow-lg:0 16px 48px rgba(0,0,0,.65);
+  --sh:0 1px 4px rgba(0,0,0,.5),0 4px 16px rgba(0,0,0,.45); --sh2:0 2px 8px rgba(0,0,0,.6),0 12px 40px rgba(0,0,0,.5);
+}
+.dm .hdr { background:rgba(10,10,15,.92); }
+.dm .bnav { background:rgba(10,10,15,.94); border-top: 1px solid rgba(255,255,255,.08); }
+.dm .bnav-btn { color: rgba(255,255,255,.35); }
+.dm .bnav-btn.on { color: var(--ac); background: rgba(99,102,241,.07); }
+.dm .drawer-overlay { background: rgba(255,255,255,.35); }
+.dm .drawer { background: var(--bg2); }
 
 /* Header */
 .hdr {
@@ -74,54 +167,59 @@ body {
 .hdr-wordmark p { font-size: 10px; color: var(--tx3); font-weight: 500; letter-spacing: .2px; margin-top: 1px; }
 .hdr-actions { display: flex; gap: .4rem; }
 .hdr-btn {
-  width: 36px; height: 36px; border-radius: 10px;
-  background: var(--bg3); border: 1px solid var(--br);
+  width: 44px; height: 44px; border-radius: var(--r-sm);
+  background: var(--bg3); border: 1px solid var(--brd);
   color: var(--tx2); font-size: 16px; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  transition: all .15s;
+  transition: background var(--t-fast), color var(--t-fast);
+  flex-shrink: 0;
 }
 .hdr-btn:hover { background: var(--bg4); color: var(--tx); }
+.hdr-btn:active { opacity: .7; }
 
-/* Tab Bar */
-.tabs {
-  position: sticky; top: 57px; z-index: 90;
-  background: rgba(5,5,7,.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--sep);
-  display: flex;
-  overflow-x: auto;
-  scrollbar-width: none;
-  padding: 0 .5rem;
+/* ── BOTTOM NAV ── */
+.bnav {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(10,10,15,.94);
+  backdrop-filter: saturate(180%) blur(28px);
+  -webkit-backdrop-filter: saturate(180%) blur(28px);
+  border-top: 1px solid rgba(255,255,255,.08);
+  display: flex; padding: .3rem .3rem calc(.3rem + env(safe-area-inset-bottom));
+  z-index: 40; gap: 2px;
 }
-.tabs::-webkit-scrollbar { display: none; }
-.tab-btn {
-  flex-shrink: 0;
-  font-size: 12px; font-weight: 600;
-  padding: .65rem .85rem;
-  border: none; background: transparent;
-  color: var(--tx3); cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: all .15s;
-  display: flex; align-items: center; gap: .4rem;
-  white-space: nowrap; min-height: 44px;
-  font-family: var(--sa);
+.bnav-btn {
+  flex: 1; font-size: 9.5px; font-weight: 600;
+  padding: .5rem .2rem .45rem; border: none; background: transparent;
+  cursor: pointer; color: var(--tx3); border-radius: var(--r-sm);
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  min-height: var(--touch); /* 44px touch target */
+  letter-spacing: .02em; -webkit-tap-highlight-color: transparent;
+  text-transform: uppercase; transition: color var(--t-fast), background var(--t-fast);
 }
-.tab-btn.on { color: var(--ac); border-bottom-color: var(--ac); }
-.tab-btn:hover:not(.on) { color: var(--tx2); }
+.bnav-btn:active { opacity: .65; transform: scale(.95); }
+.bnav-btn.on { color: var(--ac); background: var(--acg); }
+.bnav-icon { font-size: 20px; line-height: 1; display: block;
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1); }
+.bnav-btn.on .bnav-icon { transform: translateY(-2px) scale(1.12); }
 
 /* Screens */
-.screen { display: none; padding: 1rem; max-width: 640px; margin: 0 auto; padding-bottom: 2rem; }
-.screen.on { display: block; }
+.screen { display: none; padding: 1rem; max-width: 640px; margin: 0 auto; padding-bottom: 90px; animation: none; }
+.screen.on { display: block; animation: fadeUp .25s ease both; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 /* Cards */
 .card {
   background: var(--bg2);
   border: 1px solid var(--br);
-  border-radius: var(--r2);
+  border-radius: var(--r2, 14px);
   padding: 1rem;
   margin-bottom: .75rem;
+  transition: border-color .2s;
 }
+.card:hover { border-color: var(--br2); }
 
 /* Section titles */
 .sec-title {
@@ -150,13 +248,13 @@ body {
 }
 .dq-toggle {
   background: var(--acg); color: var(--ac);
-  border: 1px solid rgba(249,115,22,.3);
-  border-radius: 8px; padding: .5rem .85rem;
+  border: 1px solid var(--acb);
+  border-radius: var(--r-sm); padding: .5rem .85rem;
   font-size: 13px; font-weight: 600; cursor: pointer;
-  font-family: var(--sa); min-height: 36px;
-  transition: all .15s;
+  font-family: var(--sa); min-height: var(--touch);
+  transition: background var(--t-fast), border-color var(--t-fast);
 }
-.dq-toggle:hover { background: rgba(249,115,22,.2); }
+.dq-toggle:hover { background: var(--acb); }
 .dq-answer {
   background: var(--bg3); border-radius: 8px;
   padding: .75rem; margin-top: .75rem;
@@ -186,10 +284,10 @@ body {
 .lf-quick-card {
   background: var(--bg2); border: 1px solid var(--br);
   border-radius: var(--r); padding: .75rem;
-  cursor: pointer; transition: all .15s;
+  cursor: pointer; transition: background .15s, color .15s, border-color .15s, opacity .15s;
   text-align: left;
 }
-.lf-quick-card:hover { background: var(--bg3); border-color: rgba(249,115,22,.3); }
+.lf-quick-card:hover { background: var(--bg3); border-color: var(--acb); }
 .lf-quick-icon { font-size: 18px; margin-bottom: .3rem; display: block; }
 .lf-quick-name { font-size: 12px; font-weight: 600; color: var(--tx); line-height: 1.3; }
 .lf-quick-sub { font-size: 10px; color: var(--tx3); margin-top: 2px; }
@@ -240,13 +338,17 @@ details[open] .lf-arrow { transform: rotate(90deg); color: var(--ac); }
   background: var(--bg2); border: 1px solid var(--br);
   border-radius: var(--r2); margin-bottom: 1rem;
 }
+.quiz-filter{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0 1rem;justify-content:center;}
+.quiz-filter-btn{padding:.3rem .75rem;border-radius:20px;border:1px solid var(--sep);background:var(--bg3);color:var(--tx2);font-size:11px;font-weight:600;cursor:pointer;transition:all .2s;min-height:32px;}
+.quiz-filter-btn:hover{background:var(--bg3);border-color:var(--brd2);}
+.quiz-filter-btn.active{background:var(--acg);border-color:rgba(99,102,241,.4);color:var(--ac);}
 .quiz-hero-icon { font-size: 48px; display: block; margin-bottom: .75rem; }
 .quiz-hero h2 { font-size: 22px; font-weight: 700; margin-bottom: .35rem; }
 .quiz-hero p { font-size: 14px; color: var(--tx2); margin-bottom: 1.5rem; }
 .quiz-hs-badge {
   display: inline-flex; align-items: center; gap: .4rem;
   background: var(--acg); color: var(--ac);
-  border: 1px solid rgba(249,115,22,.2);
+  border: 1px solid var(--acb);
   border-radius: 20px; padding: .3rem .8rem;
   font-size: 12px; font-weight: 600; margin-bottom: 1.25rem;
 }
@@ -290,12 +392,12 @@ details[open] .lf-arrow { transform: rotate(90deg); color: var(--ac); }
   border-radius: 10px; padding: .75rem 1rem;
   font-size: 14px; font-weight: 500; color: var(--tx);
   cursor: pointer; text-align: left; font-family: var(--sa);
-  min-height: 44px; transition: all .15s; line-height: 1.3;
+  min-height: 44px; transition: background .15s, color .15s, border-color .15s, opacity .15s; line-height: 1.3;
 }
 .quiz-opt:hover:not(:disabled) { border-color: var(--ac); color: var(--tx); }
 .quiz-opt.chosen { border-color: var(--ac); background: var(--acg); color: var(--ac); }
-.quiz-opt.correct { border-color: var(--ok); background: rgba(48,209,88,.12); color: var(--ok); }
-.quiz-opt.wrong { border-color: var(--err); background: rgba(255,69,58,.1); color: var(--err); }
+.quiz-opt.correct { border-color: var(--ok); background: var(--ok-g); color: var(--ok); }
+.quiz-opt.wrong { border-color: var(--err); background: var(--err-g); color: var(--err); }
 .quiz-opt:disabled { cursor: default; }
 .quiz-explanation {
   background: var(--bg3); border-radius: 10px;
@@ -357,7 +459,7 @@ details[open] .lf-arrow { transform: rotate(90deg); color: var(--ac); }
   border-radius: 6px; width: 28px; height: 28px;
   font-size: 12px; cursor: pointer; color: var(--tx3);
   display: flex; align-items: center; justify-content: center;
-  transition: all .15s; font-family: var(--sa);
+  transition: background .15s, color .15s, border-color .15s, opacity .15s; font-family: var(--sa);
 }
 .formula-copy:hover { color: var(--ac); border-color: var(--ac); background: var(--acg); }
 
@@ -366,11 +468,11 @@ details[open] .lf-arrow { transform: rotate(90deg); color: var(--ac); }
   display: flex; gap: .4rem; margin-bottom: 1rem;
 }
 .inner-tab {
-  padding: .55rem 1.1rem; border-radius: 20px;
-  border: 1px solid var(--br); background: var(--bg2);
+  padding: .55rem 1.1rem; border-radius: var(--r-full);
+  border: 1px solid var(--brd); background: var(--bg2);
   color: var(--tx2); font-size: 13px; font-weight: 600;
-  cursor: pointer; font-family: var(--sa); min-height: 36px;
-  transition: all .15s;
+  cursor: pointer; font-family: var(--sa); min-height: var(--touch);
+  transition: background var(--t-fast), border-color var(--t-fast), color var(--t-fast);
 }
 .inner-tab.on { background: var(--ac); color: #fff; border-color: var(--ac); }
 .inner-tab:hover:not(.on) { border-color: var(--ac); color: var(--ac); }
@@ -401,7 +503,7 @@ details[open] .lf-arrow { transform: rotate(90deg); color: var(--ac); }
   border-radius: var(--r); padding: .75rem;
   cursor: pointer; transition: border-color .15s;
 }
-.ap-item:hover { border-color: rgba(249,115,22,.3); }
+.ap-item:hover { border-color: var(--acb); }
 .ap-check {
   width: 18px; height: 18px; accent-color: var(--ac);
   cursor: pointer; flex-shrink: 0; margin-top: 1px;
@@ -441,6 +543,7 @@ details[open] .lf-arrow { transform: rotate(90deg); color: var(--ac); }
   background: var(--bg3); border: none; color: var(--tx2);
   font-size: 16px; cursor: pointer; display: flex;
   align-items: center; justify-content: center;
+  min-height:44px;min-width:44px;
 }
 .drawer-apps { padding: .5rem 0; flex: 1; }
 .drawer-app {
@@ -480,6 +583,16 @@ details[open] .lf-arrow { transform: rotate(90deg); color: var(--ac); }
   .lf-grid { grid-template-columns: 1fr 1fr; }
   .formula-eq { font-size: 13px; }
 }
+@media (min-width: 768px) {
+  .screen { max-width: 720px; padding-left: 1.5rem; padding-right: 1.5rem; }
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  .lf-grid { grid-template-columns: repeat(3, 1fr); }
+  .sr-grade-row { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1024px) {
+  .screen { max-width: 800px; }
+  .lf-grid { grid-template-columns: repeat(4, 1fr); }
+}
 
 /* ── Calculator ─────────────────────────────────── */
 .calc-card{background:var(--bg2);border:1px solid var(--br);border-radius:12px;padding:1rem;margin-bottom:1rem;}
@@ -490,10 +603,10 @@ details[open] .lf-arrow { transform: rotate(90deg); color: var(--ac); }
 .calc-field label{display:block;font-size:10px;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;}
 .calc-field input,.calc-field select{width:100%;box-sizing:border-box;background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:.5rem .7rem;font-size:14px;color:var(--tx);outline:none;font-family:var(--sa);-webkit-appearance:none;appearance:none;}
 .calc-field input:focus,.calc-field select:focus{border-color:var(--ac);}
-.calc-field input[readonly]{color:var(--ac);font-weight:700;background:rgba(249,115,22,.07);border-color:rgba(249,115,22,.25);}
+.calc-field input[readonly]{color:var(--ac);font-weight:700;background:var(--acg);border-color:var(--acb);}
 .calc-go{width:100%;background:var(--ac);color:#fff;border:none;border-radius:8px;padding:.65rem;font-size:13px;font-weight:700;cursor:pointer;margin:.5rem 0 .25rem;letter-spacing:.02em;}
 .calc-go:active{opacity:.85;}
-.calc-result-box{background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.2);border-radius:8px;padding:.75rem 1rem;display:none;margin-top:.4rem;}
+.calc-result-box{background:var(--acg);border:1px solid var(--acb);border-radius:8px;padding:.75rem 1rem;display:none;margin-top:.4rem;}
 .calc-result-box.show{display:block;}
 .calc-result-val{font-size:22px;font-weight:800;color:var(--ac);}
 .calc-result-unit{font-size:13px;color:var(--tx3);margin-left:.25rem;}
@@ -506,8 +619,437 @@ details[open] .lf-arrow { transform: rotate(90deg); color: var(--ac); }
 /* ── Language ──────────────────────────────────── */
 html.lang-en .de-only { display: none !important; }
 html.lang-de .en-only { display: none !important; }
-.lang-btn { font-size: 12px; font-weight: 700; padding: .35rem .65rem; border-radius: 8px; background: var(--bg3); border: 1px solid var(--br); color: var(--tx2); cursor: pointer; letter-spacing: .04em; }
+html.lang-tr .de-only, html.lang-tr .en-only, html.lang-tr .ru-only, html.lang-tr .ar-only { display: none !important; }
+html.lang-ru .de-only, html.lang-ru .en-only, html.lang-ru .tr-only, html.lang-ru .ar-only { display: none !important; }
+html.lang-ar .de-only, html.lang-ar .en-only, html.lang-ar .tr-only, html.lang-ar .ru-only { display: none !important; }
+html.lang-de .tr-only, html.lang-de .ru-only, html.lang-de .ar-only { display: none !important; }
+html.lang-en .tr-only, html.lang-en .ru-only, html.lang-en .ar-only { display: none !important; }
+html.lang-ar { direction: rtl; }
+html.lang-ar .hdr { flex-direction: row-reverse; }
+html.lang-ar .hdr-logo { flex-direction: row-reverse; }
+html.lang-ar .bnav { direction: rtl; }
+html.lang-ar .drawer { direction: rtl; }
+
+.lang-btn { font-size: 16px; font-weight: 700; padding: .35rem .5rem; border-radius: 8px; background: var(--bg3); border: 1px solid var(--br); color: var(--tx2); cursor: pointer; letter-spacing: .04em; min-height:44px;min-width:44px; }
 .lang-btn:hover { background: var(--bg4); }
+
+.lang-modal-overlay { position:fixed; inset:0; z-index:9000; background:rgba(0,0,0,.7); backdrop-filter:blur(8px); opacity:0; pointer-events:none; transition:opacity .2s; }
+.lang-modal-overlay.on { opacity:1; pointer-events:all; }
+.lang-modal { position:fixed; bottom:0; left:0; right:0; z-index:9001; background:#0f0f18; border-top:1px solid rgba(255,255,255,.12); border-radius:22px 22px 0 0; padding:0 1rem calc(1.5rem + env(safe-area-inset-bottom)); transform:translateY(100%); transition:transform .3s cubic-bezier(.32,0,.67,0); }
+.lang-modal.on { transform:translateY(0); transition:transform .36s cubic-bezier(.33,1,.68,1); }
+.lang-modal-handle { width:36px; height:4px; border-radius:2px; background:rgba(255,255,255,.12); margin:12px auto 1rem; }
+.lang-modal-title { font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.3); text-align:center; margin-bottom:1rem; font-family:var(--font-mono,'JetBrains Mono',monospace); }
+.lang-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+.lang-option { display:flex; flex-direction:column; align-items:center; gap:5px; padding:.7rem .2rem; border-radius:12px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.04); cursor:pointer; transition:all .15s; }
+.lang-option:hover { background:rgba(255,255,255,.08); }
+.lang-option.active { border-color:var(--ac); background:var(--acg); }
+.lang-flag { font-size:26px; line-height:1; }
+.lang-code { font-family:var(--font-mono,'JetBrains Mono',monospace); font-size:9px; font-weight:700; color:rgba(255,255,255,.35); }
+.lang-option.active .lang-code { color:var(--ac); }
+.lang-name { font-size:8px; color:rgba(255,255,255,.25); }
+/* ── SPACED REPETITION ── */
+.sr-stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:1.25rem;}
+.sr-stat{background:var(--bg2);border:1px solid var(--br);border-radius:var(--r);padding:.75rem .5rem;text-align:center;}
+.sr-stat-v{font-family:var(--mo);font-size:22px;font-weight:700;line-height:1;}
+.sr-stat-l{font-size:10px;color:var(--tx3);margin-top:4px;letter-spacing:.04em;text-transform:uppercase;}
+.sr-section-title{font-size:13px;font-weight:700;color:var(--tx2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.75rem;}
+.sr-start-btn{width:100%;padding:.85rem;background:var(--ac);color:#fff;border:none;border-radius:var(--r2);font-family:var(--sa);font-size:15px;font-weight:700;cursor:pointer;letter-spacing:-.2px;transition:opacity .15s;}
+.sr-start-btn:active{opacity:.8;}
+.sr-start-btn:hover{opacity:.88;}
+.sr-reset-btn{width:100%;padding:.6rem;background:transparent;color:var(--tx3);border:1px solid var(--br);border-radius:var(--r);font-family:var(--sa);font-size:13px;cursor:pointer;margin-top:8px;}
+.sr-notify-row { margin: 1rem 0 0; display:flex; flex-direction:column; align-items:center; gap:.4rem; }
+.sr-notify-btn { background: var(--acg); border:1px solid var(--acb); color:var(--ac); padding:.5rem 1.2rem; border-radius:20px; font-size:.85rem; cursor:pointer; }
+.sr-notify-btn.active { background:var(--acb); }
+.sr-notify-hint { font-size:.75rem; color:var(--tx2,#aaa); }
+/* ── Return Banner ──────────────────────────────────────── */
+.return-banner{display:none;align-items:center;gap:10px;background:linear-gradient(135deg,var(--ac),var(--acd));color:#fff;padding:12px 16px;border-radius:12px;margin:0 0 16px;font-size:.9rem;cursor:pointer;animation:slideDown .4s ease}
+.return-banner.show{display:flex}
+.return-banner-icon{font-size:1.4rem}
+.return-banner-text strong{display:block;font-size:1rem}
+@keyframes slideDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── Quick-Stats Strip ─────────────────────────────────── */
+.quick-stats{display:flex;gap:8px;overflow-x:auto;padding:0 0 8px;margin:0 0 20px;scrollbar-width:none}
+.quick-stats::-webkit-scrollbar{display:none}
+.qs-card{flex:0 0 auto;background:var(--bg2);border:1px solid var(--brd);border-radius:12px;padding:10px 16px;text-align:center;min-width:100px}
+.qs-val{font-size:1.4rem;font-weight:700;color:var(--ac)}
+.qs-lbl{font-size:.72rem;color:var(--sep);margin-top:2px}
+
+/* ── Forum Spotlight ──────────────────────────────────── */
+.forum-spotlight{background:linear-gradient(135deg,#ff6b0015,#ff9f0a10);border:1px solid #ff6b0030;border-radius:16px;padding:16px 20px;margin:0 0 20px;display:flex;align-items:center;gap:14px;cursor:pointer;text-decoration:none}
+.forum-spotlight:hover{border-color:var(--ac)}
+.fs-icon{font-size:2rem;flex-shrink:0}
+.fs-text strong{display:block;font-size:1rem;color:var(--fg)}
+.fs-text span{font-size:.82rem;color:var(--sep)}
+.fs-arrow{margin-left:auto;color:var(--ac);font-size:1.2rem}
+
+/* ── Backup Panel ─────────────────────────────────────── */
+.backup-panel{background:var(--bg2);border:1px solid var(--brd);border-radius:16px;padding:20px;margin:20px 0}
+.backup-panel h3{margin:0 0 4px;font-size:1rem}
+.backup-panel p{margin:0 0 16px;font-size:.82rem;color:var(--sep)}
+.backup-btns{display:flex;gap:10px;flex-wrap:wrap}
+.backup-btn{flex:1;min-width:120px;padding:12px;background:var(--bg3);border:1px solid var(--brd);border-radius:10px;color:var(--fg);font-size:.88rem;cursor:pointer;text-align:center}
+.backup-btn:hover{background:var(--bg4)}
+.backup-btn.primary{background:var(--ac);color:#fff;border-color:transparent}
+.backup-btn.primary:hover{background:var(--acd)}
+.backup-keys{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px}
+.bk-tag{padding:4px 10px;background:var(--bg3);border:1px solid var(--brd);border-radius:20px;font-size:.75rem;color:var(--sep)}
+.bk-tag.has-data{border-color:var(--ok);color:var(--ok)}
+
+/* ── Sync Panel ───────────────────────────────────────── */
+.sync-panel{background:var(--bg2);border:1px solid var(--brd);border-radius:16px;padding:20px;margin:20px 0}
+.sync-panel h3{margin:0 0 4px;font-size:1rem}
+.sync-panel p{margin:0 0 16px;font-size:.82rem;color:var(--sep)}
+.sync-views>div{display:none}
+.sync-views>div.active{display:block}
+.sync-input{width:100%;padding:10px 12px;background:var(--bg3);border:1px solid var(--brd);border-radius:10px;color:var(--fg);font-size:.9rem;margin-bottom:10px;box-sizing:border-box}
+.sync-btn{width:100%;padding:12px;background:var(--ac);color:#fff;border:none;border-radius:10px;font-size:.9rem;cursor:pointer;margin-bottom:8px}
+.sync-btn:hover{background:var(--acd)}
+.sync-btn.sec{background:var(--bg3);color:var(--fg);border:1px solid var(--brd)}
+.sync-btn.sec:hover{background:var(--bg4)}
+.sync-code-display{text-align:center;padding:20px;background:var(--bg3);border-radius:12px;margin-bottom:12px}
+.sync-code-display .code{font-size:2rem;font-weight:700;letter-spacing:.2em;color:var(--ac);font-family:var(--font-mono)}
+.sync-status{font-size:.8rem;color:var(--sep);text-align:center;margin-top:8px}
+
+/* ── What's New Toast ─────────────────────────────────── */
+.whats-new-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--bg2);border:1px solid var(--ac);border-radius:16px;padding:14px 20px;max-width:340px;width:calc(100% - 40px);z-index:900;box-shadow:0 8px 32px #0008;animation:slideUp .4s ease}
+.whats-new-toast.hidden{display:none}
+.wnt-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.wnt-header strong{font-size:.95rem}
+.wnt-close{background:none;border:none;color:var(--sep);font-size:1.2rem;cursor:pointer;padding:4px}
+.wnt-body{font-size:.82rem;color:var(--sep);line-height:1.5}
+@keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+/* ── SR Flashcard — Industrial Redesign ─────────────────── */
+.sr-flip-wrap{
+  perspective:1200px;
+  width:100%;
+  max-width:480px;
+  margin:0 auto 1.5rem;
+}
+.sr-flip{
+  position:relative;
+  width:100%;
+  min-height:300px;
+  transform-style:preserve-3d;
+  transition:transform .5s cubic-bezier(.33,1,.68,1);
+  cursor:pointer;
+  border-radius:20px;
+}
+.sr-flip.flipped{transform:rotateY(180deg);}
+.sr-front,.sr-back{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  border-radius:20px;
+  padding:2rem 1.75rem 1.5rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  min-height:300px;
+}
+.sr-front{
+  background:#111118;
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 24px 64px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.06);
+}
+.sr-back{
+  background:linear-gradient(160deg,var(--acg) 0%,rgba(249,115,22,.04) 100%);
+  border:1px solid var(--acb);
+  box-shadow:0 24px 64px rgba(0,0,0,.65),0 0 48px rgba(249,115,22,.08),inset 0 1px 0 rgba(249,115,22,.1);
+  transform:rotateY(180deg);
+}
+.sr-card-tag{
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--tx3);
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;
+  padding:.25rem .75rem;
+  margin-bottom:1.5rem;
+  align-self:center;
+}
+.sr-back .sr-card-tag{color:var(--ac);background:var(--acg);border-color:var(--acb);}
+.sr-card-q{
+  font-size:clamp(18px,4vw,22px);
+  font-weight:700;
+  line-height:1.35;
+  color:var(--tx);
+  letter-spacing:-.4px;
+  flex:1;
+  display:flex;
+  align-items:center;
+}
+.sr-card-a{
+  font-size:clamp(14px,3vw,16px);
+  line-height:1.65;
+  color:var(--tx);
+  font-family:var(--mo);
+}
+.sr-card-hint{
+  font-size:10px;
+  color:var(--tx3);
+  margin-top:auto;
+  padding-top:1.25rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.sr-card-hint::before{content:'↕';font-size:13px;}
+
+/* Progress bar */
+.sr-prog-wrap{margin-bottom:1.25rem;width:100%;max-width:480px;margin-left:auto;margin-right:auto;}
+.sr-prog-bar-track{height:3px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden;margin-bottom:.6rem;}
+.sr-prog-bar-fill{height:100%;background:var(--ac);border-radius:99px;transition:width .3s ease;}
+.sr-prog-label{font-family:var(--mo);font-size:10px;color:var(--tx3);text-align:right;letter-spacing:.05em;}
+
+/* Grade buttons */
+.sr-grade-prompt{
+  font-family:var(--mo);
+  font-size:10px;
+  color:var(--tx3);
+  text-align:center;
+  margin-bottom:.85rem;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.sr-grade-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:.75rem;}
+.sr-grade-btn{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  min-height:64px;
+  padding:1rem .5rem;
+  border-radius:16px;
+  border:1px solid;
+  background:transparent;
+  cursor:pointer;
+  transition:transform .1s ease,background .15s;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+}
+.sr-grade-btn:active{transform:scale(.94);}
+.sr-grade-btn-label{font-size:14px;font-weight:700;letter-spacing:-.2px;}
+.sr-grade-btn-note{font-family:var(--mo);font-size:10px;opacity:.55;letter-spacing:.03em;}
+.sr-grade-btn.bad{border-color:rgba(255,69,58,.3);color:#ff453a;background:rgba(255,69,58,.06);}
+.sr-grade-btn.bad:active{background:rgba(255,69,58,.16);}
+.sr-grade-btn.ok{border-color:rgba(255,214,10,.3);color:#ffd60a;background:rgba(255,214,10,.05);}
+.sr-grade-btn.ok:active{background:rgba(255,214,10,.14);}
+.sr-grade-btn.good{border-color:rgba(48,209,88,.3);color:#30d158;background:rgba(48,209,88,.06);}
+.sr-grade-btn.good:active{background:rgba(48,209,88,.16);}
+
+/* Done screen */
+.sr-done{text-align:center;padding:2.5rem 1rem;}
+.sr-done-emoji{font-size:48px;margin-bottom:.75rem;display:block;}
+.sr-done-title{font-size:22px;font-weight:800;margin-bottom:.5rem;letter-spacing:-.4px;}
+.sr-done-sub{font-size:14px;color:var(--tx3);line-height:1.6;}
+
+/* ── ARC STUDIO BRAND LIGHT MODE */
+.hdr {
+  background: rgba(255,255,255,.92) !important;
+  backdrop-filter: saturate(180%) blur(24px) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(24px) !important;
+  box-shadow: 0 1px 12px rgba(0,0,0,.06) !important;
+  border-bottom-color: rgba(122,14,200,.08) !important;
+}
+.app-tile:hover, .card:hover, .dash-card:hover {
+  box-shadow: 0 8px 24px rgba(122,14,200,.10), 0 0 0 1px rgba(122,14,200,.06) !important;
+}
+input, textarea, select {
+  background: #ffffff !important;
+  border-color: rgba(122,14,200,.15) !important;
+  color: #1a1a2e !important;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: #7a0ec8 !important;
+  box-shadow: 0 0 0 3px rgba(122,14,200,.12) !important;
+}
+.drawer { box-shadow: -4px 0 32px rgba(0,0,0,.12) !important; }
+
+/* ── DARK MODE: Inputs, Selects, Checkboxes ──────────────────── */
+.dm input,
+.dm input[type=text],
+.dm input[type=number],
+.dm input[type=date],
+.dm input[type=time],
+.dm input[type=email],
+.dm input[type=password],
+.dm input[type=search],
+.dm input[type=url],
+.dm textarea,
+.dm select {
+  background: #1a1a28 !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: #f0f0f5 !important;
+  color-scheme: dark !important;
+}
+.dm input::placeholder,
+.dm textarea::placeholder { color: rgba(240,240,245,.35) !important; }
+.dm input:focus,
+.dm textarea:focus,
+.dm select:focus {
+  border-color: rgba(122,14,200,.6) !important;
+  box-shadow: 0 0 0 3px rgba(122,14,200,.18) !important;
+  outline: none !important;
+}
+.dm input[type=checkbox],
+.dm input[type=radio] {
+  accent-color: #7a0ec8 !important;
+  color-scheme: dark !important;
+}
+.dm input[type=range] {
+  accent-color: #7a0ec8 !important;
+  color-scheme: dark !important;
+}
+/* ── DARK MODE: Polish ───────────────────────────────────────── */
+.dm * { scrollbar-color: rgba(122,14,200,.4) rgba(255,255,255,.05); }
+.dm ::selection { background: rgba(122,14,200,.35); color: #fff; }
+html { transition: background-color .25s ease, color .25s ease; }
+
+/* ── DARK MODE POLISH ──────────────────────────────────────── */
+.dm body {
+  background: #08080f !important;
+}
+.dm .hdr,
+.dm header,
+.dm nav {
+  background: rgba(8,8,15,.94) !important;
+  border-bottom-color: rgba(255,255,255,.07) !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,.06) !important;
+  backdrop-filter: saturate(120%) blur(20px) !important;
+  -webkit-backdrop-filter: saturate(120%) blur(20px) !important;
+}
+.dm .card,
+.dm .dash-card,
+.dm .app-tile,
+.dm .stat-card,
+.dm .quiz-card,
+.dm .lern-card,
+.dm .info-card,
+.dm .feature-card,
+.dm .tool-card,
+.dm .week-card,
+.dm .bento-cell {
+  background: #0f0f1a !important;
+  border: 1px solid rgba(255,255,255,.07) !important;
+}
+.dm .card:hover,
+.dm .dash-card:hover,
+.dm .app-tile:hover,
+.dm .tool-card:hover {
+  border-color: rgba(122,14,200,.4) !important;
+  box-shadow: 0 0 0 1px rgba(122,14,200,.2), 0 8px 24px rgba(0,0,0,.4) !important;
+}
+.dm .badge,
+.dm .chip,
+.dm .tag,
+.dm .pill,
+.dm .label {
+  background: rgba(255,255,255,.07) !important;
+  color: var(--tx2) !important;
+  border-color: rgba(255,255,255,.1) !important;
+}
+.dm .bnav,
+.dm .nav,
+.dm .tab-bar,
+.dm .bottom-nav {
+  background: rgba(8,8,15,.97) !important;
+  border-top-color: rgba(255,255,255,.07) !important;
+  box-shadow: 0 -1px 0 rgba(255,255,255,.06) !important;
+}
+.dm .drawer,
+.dm .modal,
+.dm .sheet,
+.dm .popup,
+.dm .dropdown,
+.dm .panel {
+  background: #0f0f1a !important;
+  border-color: rgba(255,255,255,.08) !important;
+  box-shadow: 0 24px 64px rgba(0,0,0,.6) !important;
+}
+.dm .toast,
+.dm .snack,
+.dm .alert {
+  background: #1a1a28 !important;
+  border-color: rgba(255,255,255,.1) !important;
+  color: var(--tx) !important;
+}
+.dm a:not(.btn):not([class*="btn"]):not([class*="card"]) {
+  color: #c084fc;
+}
+.dm a:not(.btn):not([class*="btn"]):not([class*="card"]):hover {
+  color: #e879f9;
+}
+.dm code,
+.dm pre,
+.dm .code-block {
+  background: rgba(255,255,255,.05) !important;
+  border-color: rgba(255,255,255,.08) !important;
+  color: #c4b5fd !important;
+}
+.dm table thead {
+  background: rgba(255,255,255,.05) !important;
+}
+.dm table tr:nth-child(even) {
+  background: rgba(255,255,255,.025) !important;
+}
+.dm table td,
+.dm table th {
+  border-color: rgba(255,255,255,.07) !important;
+}
+.dm hr,
+.dm .divider,
+.dm .sep {
+  border-color: rgba(255,255,255,.07) !important;
+  background: rgba(255,255,255,.07) !important;
+}
+/* ── Lückentext Mode ── */
+.sr-mode-row{display:flex;gap:8px;margin-bottom:1rem;}
+.sr-mode-btn{flex:1;padding:.55rem;background:var(--bg2);border:1px solid var(--br);border-radius:var(--r);font-size:13px;font-weight:600;cursor:pointer;color:var(--tx2);font-family:var(--sa);transition:all .15s;}
+.sr-mode-btn.active{background:rgba(202,138,4,.12);border-color:rgba(202,138,4,.4);color:var(--ac);}
+.sr-fill-area-wrap{width:100%;max-width:480px;margin:0 auto;}
+.sr-fill-q-card{background:var(--bg2);border:1px solid var(--br);border-radius:var(--r2);padding:1.5rem 1.25rem;margin-bottom:1rem;text-align:center;}
+.sr-fill-q-tag{font-size:9px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--ac);background:rgba(202,138,4,.1);border:1px solid rgba(202,138,4,.2);border-radius:99px;padding:3px 10px;display:inline-block;margin-bottom:.75rem;}
+.sr-fill-q-text{font-size:clamp(17px,3.5vw,21px);font-weight:700;line-height:1.4;color:var(--tx);}
+.sr-fill-input{width:100%;padding:.9rem 1rem;font-size:15px;font-family:var(--sa);background:var(--bg2);border:2px solid var(--br2);border-radius:var(--r2);color:var(--tx);outline:none;resize:vertical;min-height:72px;transition:border-color .2s;display:block;}
+.sr-fill-input:focus{border-color:var(--ac);}
+.sr-fill-input:disabled{opacity:.55;cursor:not-allowed;}
+.sr-fill-submit{width:100%;padding:.85rem;background:var(--ac);color:#fff;border:none;border-radius:var(--r2);font-family:var(--sa);font-size:15px;font-weight:700;cursor:pointer;letter-spacing:-.2px;margin-top:.75rem;transition:opacity .15s;display:block;}
+.sr-fill-submit:active{opacity:.8;}
+.sr-fill-submit:disabled{opacity:.45;cursor:not-allowed;}
+
+.sr-fill-input-row { position:relative; }
+.sr-mic-btn {
+  position:absolute; right:8px; bottom:8px;
+  width:36px; height:36px; border-radius:50%;
+  border:none; background:var(--acg); color:var(--ac);
+  cursor:pointer; font-size:18px; display:flex;
+  align-items:center; justify-content:center;
+  transition:background var(--t-fast), transform var(--t-fast);
+  z-index:2;
+}
+.sr-mic-btn:hover { background:var(--acb); transform:scale(1.1); }
+.sr-mic-btn.listening {
+  background:rgba(255,69,58,.15); color:#ff453a;
+  animation:mic-pulse 1s ease infinite;
+}
+@keyframes mic-pulse {
+  0%,100%{ transform:scale(1); }
+  50%{ transform:scale(1.18); }
+}
+.sr-fill-answer-box{background:var(--bg2);border:1px solid var(--br);border-left:3px solid var(--ac);border-radius:var(--r2);padding:1rem 1.25rem;margin-top:1rem;}
+.sr-fill-answer-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--tx3);margin-bottom:.4rem;font-weight:600;}
+.sr-fill-answer-text{font-size:15px;line-height:1.55;color:var(--tx);}
 </style>
 </head>
 <body>
@@ -522,88 +1064,120 @@ html.lang-de .en-only { display: none !important; }
   </div>
   <div class="hdr-wordmark">
     <h1>AMP<span style="color:var(--ac)">ERE</span></h1>
-    <p><span class="de-only">Elektroniker · Betriebstechnik</span><span class="en-only">Industrial Electrician · Operations Technology</span></p>
+    <p><span class="de-only">Elektroniker · Betriebstechnik</span><span class="en-only">Industrial Electrician · Operations Technology</span><span class="tr-only">Endüstriyel Elektrikçi</span><span class="ru-only">Электротехника · Производство</span><span class="ar-only">تقنية الكهرباء الصناعية</span></p>
   </div>
   <div class="hdr-actions">
-    <button class="hdr-btn" id="thm-btn" onclick="thmToggle()" title="Theme wechseln">🌙</button>
-    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
-    <button class="hdr-btn" onclick="drawerOpen()" title="App-Switcher">⊞</button>
+    <button type="button" class="hdr-btn" id="thm-btn" onclick="thmToggle()" title="Theme wechseln" aria-label="Theme wechseln">🌙</button>
+    <button type="button" class="lang-btn" id="lang-btn" onclick="openLangModal()" aria-label="Sprache wählen">🌐</button>
+    <button type="button" class="hdr-btn" onclick="drawerOpen()" title="App-Switcher" aria-label="App-Switcher öffnen">⊞</button>
   </div>
 </header>
 
-<!-- Tab Bar -->
-<nav class="tabs" id="tab-bar">
-  <button class="tab-btn on" data-screen="s-dash" onclick="showScreen(this.dataset.screen)"><span class="de-only">🏠 Dashboard</span><span class="en-only">🏠 Dashboard</span></button>
-  <button class="tab-btn" data-screen="s-lern" onclick="showScreen(this.dataset.screen)"><span class="de-only">📖 Lernfelder</span><span class="en-only">📖 Learning Areas</span></button>
-  <button class="tab-btn" data-screen="s-quiz" onclick="showScreen(this.dataset.screen)"><span class="de-only">❓ Quiz</span><span class="en-only">❓ Quiz</span></button>
-  <button class="tab-btn" data-screen="s-form" onclick="showScreen(this.dataset.screen)"><span class="de-only">🔢 Formeln</span><span class="en-only">🔢 Formulas</span></button>
-  <button class="tab-btn" data-screen="s-ap" onclick="showScreen(this.dataset.screen)"><span class="de-only">✅ AP-Check</span><span class="en-only">✅ Exam Check</span></button>
-  <button class="tab-btn" data-screen="s-calc" onclick="showScreen(this.dataset.screen)"><span class="de-only">🧮 Rechner</span><span class="en-only">🧮 Calculator</span></button>
+<!-- Bottom Nav -->
+<nav class="bnav">
+  <button type="button" class="bnav-btn on" data-screen="s-dash" aria-current="page"><span class="bnav-icon">🏠</span><span class="de-only">Home</span><span class="en-only">Home</span><span class="tr-only">Ana Sayfa</span><span class="ru-only">Главная</span><span class="ar-only">الرئيسية</span></button>
+  <button type="button" class="bnav-btn" data-screen="s-lern"><span class="bnav-icon">📖</span><span class="de-only">Lernen</span><span class="en-only">Learn</span><span class="tr-only">Öğren</span><span class="ru-only">Учёба</span><span class="ar-only">تعلم</span></button>
+  <button type="button" class="bnav-btn" data-screen="s-quiz"><span class="bnav-icon">❓</span>Quiz</button>
+  <button type="button" class="bnav-btn" data-screen="s-form"><span class="bnav-icon">🔢</span><span class="de-only">Formeln</span><span class="en-only">Formulas</span><span class="tr-only">Formüller</span><span class="ru-only">Формулы</span><span class="ar-only">الصيغ</span></button>
+  <button type="button" class="bnav-btn" data-screen="s-ap"><span class="bnav-icon">✅</span>AP-Check</button>
+  <button type="button" class="bnav-btn" data-screen="s-calc"><span class="bnav-icon">🧮</span><span class="de-only">Rechner</span><span class="en-only">Calc</span><span class="tr-only">Hesap</span><span class="ru-only">Калькулятор</span><span class="ar-only">حاسبة</span></button>
+  <button type="button" class="bnav-btn" data-screen="s-sim"><span class="bnav-icon">🎓</span>AP1-Sim</button>
+  <button type="button" class="bnav-btn" data-screen="s-sr"><span class="bnav-icon">🧠</span>SR</button>
 </nav>
 
 <!-- ===================== SCREEN 1: DASHBOARD ===================== -->
 <main id="s-dash" class="screen on">
 
+<!-- Return Banner -->
+<div class="return-banner" id="returnBanner" onclick="document.getElementById('returnBanner').style.display='none'">
+  <span class="return-banner-icon">⚡</span>
+  <div class="return-banner-text"><strong>Willkommen zurück!</strong>Dein Lernfortschritt wartet auf dich.</div>
+</div>
+
+<!-- Quick-Stats Strip -->
+<div class="quick-stats" id="quickStats">
+  <div class="qs-card"><div class="qs-val" id="qsStreak">0</div><div class="qs-lbl">🔥 Streak</div></div>
+  <div class="qs-card"><div class="qs-val" id="qsSR">0</div><div class="qs-lbl">📚 SR fällig</div></div>
+  <div class="qs-card"><div class="qs-val" id="qsDate">—</div><div class="qs-lbl">📅 Heute</div></div>
+</div>
+
+<!-- Forum Spotlight -->
+<a class="forum-spotlight" href="VOLTECH-forum.html">
+  <span class="fs-icon">💬</span>
+  <div class="fs-text"><strong>VOLTECH Forum</strong><span>Fragen, Tipps & Community für Elektroniker</span></div>
+  <span class="fs-arrow">›</span>
+</a>
+
   <div class="dq-card">
-    <div class="dq-label">⚡ <span class="de-only">Frage des Tages</span><span class="en-only">Daily Question</span></div>
+    <div class="dq-label">⚡ <span class="de-only">Frage des Tages</span><span class="en-only">Daily Question</span><span class="tr-only">Günün Sorusu</span><span class="ru-only">Вопрос дня</span><span class="ar-only">سؤال اليوم</span></div>
     <div class="dq-question" id="dq-q">Lade...</div>
-    <button class="dq-toggle" id="dq-toggle" onclick="dqReveal()"><span class="de-only">Antwort zeigen</span><span class="en-only">Show Answer</span></button>
+    <button type="button" class="dq-toggle" id="dq-toggle" onclick="dqReveal()"><span class="de-only">Antwort zeigen</span><span class="en-only">Show Answer</span><span class="tr-only">Cevabı göster</span><span class="ru-only">Показать ответ</span><span class="ar-only">أظهر الإجابة</span></button>
     <div class="dq-answer" id="dq-answer" style="display:none"></div>
   </div>
 
-  <div class="sec-title">📊 <span class="de-only">Dein Fortschritt</span><span class="en-only">Your Progress</span></div>
+  <div class="sec-title">📊 <span class="de-only">Dein Fortschritt</span><span class="en-only">Your Progress</span><span class="tr-only">İlerlemeniz</span><span class="ru-only">Ваш прогресс</span><span class="ar-only">تقدمك</span></div>
   <div class="stats-grid">
     <div class="stat-card">
       <div class="stat-value" id="stat-cards">0</div>
-      <div class="stat-label"><span class="de-only">Gelernte Formeln</span><span class="en-only">Learned Formulas</span></div>
+      <div class="stat-label"><span class="de-only">Gelernte Formeln</span><span class="en-only">Learned Formulas</span><span class="tr-only">Öğrenilen Formüller</span><span class="ru-only">Изученные формулы</span><span class="ar-only">الصيغ المُتعلَّمة</span></div>
     </div>
     <div class="stat-card">
       <div class="stat-value" id="stat-hs">—</div>
-      <div class="stat-label"><span class="de-only">Quiz Highscore</span><span class="en-only">Quiz Highscore</span></div>
+      <div class="stat-label"><span class="de-only">Quiz Highscore</span><span class="en-only">Quiz Highscore</span><span class="tr-only">Quiz Rekoru</span><span class="ru-only">Рекорд теста</span><span class="ar-only">أعلى نتيجة</span></div>
     </div>
     <div class="stat-card">
       <div class="stat-value" id="stat-streak">0</div>
-      <div class="stat-label"><span class="de-only">Tages-Streak 🔥</span><span class="en-only">Daily Streak 🔥</span></div>
+      <div class="stat-label"><span class="de-only">Tages-Streak 🔥</span><span class="en-only">Daily Streak 🔥</span><span class="tr-only">Günlük Seri 🔥</span><span class="ru-only">Серия дней 🔥</span><span class="ar-only">السلسلة اليومية 🔥</span></div>
     </div>
     <div class="stat-card">
       <div class="stat-value">35</div>
-      <div class="stat-label"><span class="de-only">Fragen gesamt</span><span class="en-only">Total Questions</span></div>
+      <div class="stat-label"><span class="de-only">Fragen gesamt</span><span class="en-only">Total Questions</span><span class="tr-only">Toplam Soru</span><span class="ru-only">Всего вопросов</span><span class="ar-only">مجموع الأسئلة</span></div>
     </div>
   </div>
 
   <div class="sec-title">📚 Lernfelder Übersicht</div>
   <div class="lf-grid">
-    <button class="lf-quick-card" onclick="openLf('lf1')">
+    <button type="button" class="lf-quick-card" onclick="openLf('lf1')">
       <span class="lf-quick-icon">⚡</span>
       <div class="lf-quick-name">LF 1</div>
       <div class="lf-quick-sub"><span class="de-only">Grundlagen & Installation</span><span class="en-only">Fundamentals & Installation</span></div>
     </button>
-    <button class="lf-quick-card" onclick="openLf('lf2')">
+    <button type="button" class="lf-quick-card" onclick="openLf('lf2')">
       <span class="lf-quick-icon">🔌</span>
       <div class="lf-quick-name">LF 2</div>
       <div class="lf-quick-sub"><span class="de-only">Anlagen errichten & prüfen</span><span class="en-only">Electrical Installation & Testing</span></div>
     </button>
-    <button class="lf-quick-card" onclick="openLf('lf3')">
+    <button type="button" class="lf-quick-card" onclick="openLf('lf3')">
       <span class="lf-quick-icon">🎛️</span>
       <div class="lf-quick-name">LF 3</div>
       <div class="lf-quick-sub"><span class="de-only">Steuerungstechnik</span><span class="en-only">Control Engineering</span></div>
     </button>
-    <button class="lf-quick-card" onclick="openLf('lf4')">
+    <button type="button" class="lf-quick-card" onclick="openLf('lf4')">
       <span class="lf-quick-icon">⚙️</span>
       <div class="lf-quick-name">LF 4</div>
       <div class="lf-quick-sub"><span class="de-only">Antriebstechnik</span><span class="en-only">Drive Technology</span></div>
     </button>
-    <button class="lf-quick-card" onclick="openLf('lf5')">
+    <button type="button" class="lf-quick-card" onclick="openLf('lf5')">
       <span class="lf-quick-icon">🏭</span>
       <div class="lf-quick-name">LF 5</div>
       <div class="lf-quick-sub"><span class="de-only">Energietechnik</span><span class="en-only">Energy Technology</span></div>
     </button>
-    <button class="lf-quick-card" onclick="openLf('lf6')">
+    <button type="button" class="lf-quick-card" onclick="openLf('lf6')">
       <span class="lf-quick-icon">🔧</span>
       <div class="lf-quick-name">LF 6</div>
       <div class="lf-quick-sub"><span class="de-only">Instandhaltung</span><span class="en-only">Maintenance</span></div>
     </button>
   </div>
+
+  <div class="sec-title">🔗 <span class="de-only">Schnellzugriff</span><span class="en-only">Quick Access</span><span class="tr-only">Hızlı Erişim</span><span class="ru-only">Быстрый доступ</span><span class="ar-only">وصول سريع</span></div>
+  <a href="VOLTECH-berichtsheft.html" style="display:flex;align-items:center;gap:.75rem;background:var(--bg2);border:1px solid var(--sep);border-radius:var(--r);padding:.9rem 1rem;text-decoration:none;color:var(--tx);margin-bottom:.5rem;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(99,102,241,.3)'" onmouseout="this.style.borderColor=''">
+    <span style="font-size:24px;">📓</span>
+    <div>
+      <div style="font-size:13px;font-weight:700;"><span class="de-only">Berichtsheft</span><span class="en-only">Training Report</span><span class="tr-only">Eğitim Raporu</span><span class="ru-only">Отчёт по практике</span><span class="ar-only">تقرير التدريب</span></div>
+      <div style="font-size:11px;color:var(--tx3);"><span class="de-only">Ausbildungsnachweise für Elektroniker/in EfB</span><span class="en-only">Training log for electricians</span><span class="tr-only">Elektrikçi eğitim kayıtları</span><span class="ru-only">Журнал практики электрика</span><span class="ar-only">سجل تدريب الكهربائي</span></div>
+    </div>
+    <span style="margin-left:auto;color:var(--tx3);">→</span>
+  </a>
 
 </main>
 
@@ -769,9 +1343,17 @@ html.lang-de .en-only { display: none !important; }
     <div class="quiz-hero">
       <span class="quiz-hero-icon">❓</span>
       <h2>Prüfungstraining</h2>
-      <p>35 Fragen · Multiple Choice · 20 pro Runde</p>
+      <p>55 Fragen · Multiple Choice · Themenfilter · 20 pro Runde</p>
       <div class="quiz-hs-badge" id="hs-badge">🏆 Highscore: —</div>
-      <button onclick="quizStart()" class="btn-primary">Quiz starten</button>
+      <div class="quiz-filter">
+        <button class="quiz-filter-btn active" data-topic="all" onclick="setQuizTopic('all')">⚡ Alle</button>
+        <button class="quiz-filter-btn" data-topic="Elektrotechnik" onclick="setQuizTopic('Elektrotechnik')">🔌 Elektrotechnik</button>
+        <button class="quiz-filter-btn" data-topic="Schutz" onclick="setQuizTopic('Schutz')">🛡️ Schutz</button>
+        <button class="quiz-filter-btn" data-topic="Motoren" onclick="setQuizTopic('Motoren')">⚙️ Motoren</button>
+        <button class="quiz-filter-btn" data-topic="SPS" onclick="setQuizTopic('SPS')">💻 SPS</button>
+        <button class="quiz-filter-btn" data-topic="Normen" onclick="setQuizTopic('Normen')">📋 Normen</button>
+      </div>
+      <button type="button" onclick="quizStart()" class="btn-primary">Quiz starten</button>
     </div>
   </div>
 
@@ -784,7 +1366,7 @@ html.lang-de .en-only { display: none !important; }
       <div id="q-text" class="quiz-question"></div>
       <div id="q-opts" class="quiz-opts"></div>
       <div id="q-exp" class="quiz-explanation" style="display:none"></div>
-      <button id="q-next" onclick="quizNext()" class="quiz-next-btn" style="display:none">Weiter →</button>
+      <button type="button" id="q-next" onclick="quizNext()" class="quiz-next-btn" style="display:none">Weiter →</button>
     </div>
   </div>
 
@@ -793,8 +1375,9 @@ html.lang-de .en-only { display: none !important; }
       <div class="quiz-score-big" id="end-score">0</div>
       <div class="quiz-score-sub" id="end-sub">von 20 Fragen richtig</div>
       <div class="quiz-end-hs" id="end-hs"></div>
+      <div id="end-topic-breakdown" style="margin:.75rem 0;text-align:left;"></div>
       <button onclick="quizStart()" class="btn-primary" style="margin-bottom:.75rem">Neue Runde</button>
-      <button onclick="showScreen('s-dash')" class="btn-primary" style="background:var(--bg3);color:var(--tx);margin-top:.5rem"><span class="de-only">Zum Dashboard</span><span class="en-only">Back to Dashboard</span></button>
+      <button type="button" onclick="showScreen('s-dash')" class="btn-primary" style="background:var(--bg3);color:var(--tx);margin-top:.5rem"><span class="de-only">Zum Dashboard</span><span class="en-only">Back to Dashboard</span><span class="tr-only">Panele Dön</span><span class="ru-only">На главную</span><span class="ar-only">إلى لوحة التحكم</span></button>
     </div>
   </div>
 
@@ -806,7 +1389,7 @@ html.lang-de .en-only { display: none !important; }
   <div class="formula-cat-title"><span class="de-only">⚡ Gleichstrom</span><span class="en-only">⚡ Direct Current</span></div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'U = R × I')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'U = R × I')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Gleichstrom</span><span class="en-only">Direct Current</span></div>
     <div class="formula-name"><span class="de-only">Ohmsches Gesetz</span><span class="en-only">Ohm's Law</span></div>
     <div class="formula-eq">U = R × I</div>
@@ -814,7 +1397,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'P = U × I = U²/R = I²×R')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'P = U × I = U²/R = I²×R')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Gleichstrom</span><span class="en-only">Direct Current</span></div>
     <div class="formula-name"><span class="de-only">Elektrische Leistung</span><span class="en-only">Electric Power</span></div>
     <div class="formula-eq">P = U × I = U²/R = I²×R</div>
@@ -822,7 +1405,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'W = P × t')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'W = P × t')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Gleichstrom</span><span class="en-only">Direct Current</span></div>
     <div class="formula-name"><span class="de-only">Elektrische Energie</span><span class="en-only">Electrical Energy</span></div>
     <div class="formula-eq">W = P × t</div>
@@ -830,7 +1413,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'R_ges = R1 + R2 + ... + Rn')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'R_ges = R1 + R2 + ... + Rn')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Gleichstrom</span><span class="en-only">Direct Current</span></div>
     <div class="formula-name"><span class="de-only">Reihenschaltung Widerstände</span><span class="en-only">Series Resistors</span></div>
     <div class="formula-eq">R_ges = R1 + R2 + ... + Rn</div>
@@ -838,7 +1421,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'1/R_ges = 1/R1 + 1/R2 | R = R1×R2/(R1+R2)')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'1/R_ges = 1/R1 + 1/R2 | R = R1×R2/(R1+R2)')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Gleichstrom</span><span class="en-only">Direct Current</span></div>
     <div class="formula-name"><span class="de-only">Parallelschaltung Widerstände</span><span class="en-only">Parallel Resistors</span></div>
     <div class="formula-eq">1/R_ges = 1/R1 + 1/R2 + ...</div>
@@ -846,7 +1429,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'U2 = U_ges × R2/(R1+R2)')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'U2 = U_ges × R2/(R1+R2)')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Gleichstrom</span><span class="en-only">Direct Current</span></div>
     <div class="formula-name"><span class="de-only">Spannungsteiler</span><span class="en-only">Voltage Divider</span></div>
     <div class="formula-eq">U2 = U_ges × R2/(R1+R2)</div>
@@ -854,7 +1437,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'R = ρ × l / A = l / (κ × A) | ρ(Cu)=0,0178 Ω·mm²/m')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'R = ρ × l / A = l / (κ × A) | ρ(Cu)=0,0178 Ω·mm²/m')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Gleichstrom</span><span class="en-only">Direct Current</span></div>
     <div class="formula-name"><span class="de-only">Leitungswiderstand</span><span class="en-only">Conductor Resistance</span></div>
     <div class="formula-eq">R = ρ × l / A = l / (κ × A)</div>
@@ -862,7 +1445,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'ΔU = 2 × I × R_Ltg (einphasig) | ΔU = √3 × I × R_Ltg (Drehstrom)')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'ΔU = 2 × I × R_Ltg (einphasig) | ΔU = √3 × I × R_Ltg (Drehstrom)')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Gleichstrom</span><span class="en-only">Direct Current</span></div>
     <div class="formula-name"><span class="de-only">Spannungsfall</span><span class="en-only">Voltage Drop</span></div>
     <div class="formula-eq">ΔU = 2 × I × R_Ltg (einphasig)</div>
@@ -872,7 +1455,7 @@ html.lang-de .en-only { display: none !important; }
   <div class="formula-cat-title"><span class="de-only">〜 Wechselstrom</span><span class="en-only">〜 Alternating Current</span></div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'U_eff = U_max / √2 ≈ 0,707 × U_max')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'U_eff = U_max / √2 ≈ 0,707 × U_max')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Wechselstrom</span><span class="en-only">Alternating Current</span></div>
     <div class="formula-name"><span class="de-only">Effektivwert</span><span class="en-only">RMS Value</span></div>
     <div class="formula-eq">U_eff = U_max / √2 ≈ 0,707 × U_max</div>
@@ -880,7 +1463,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'X_L = 2π × f × L')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'X_L = 2π × f × L')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Wechselstrom</span><span class="en-only">Alternating Current</span></div>
     <div class="formula-name"><span class="de-only">Induktiver Widerstand</span><span class="en-only">Inductive Reactance</span></div>
     <div class="formula-eq">X_L = 2π × f × L</div>
@@ -888,7 +1471,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'X_C = 1 / (2π × f × C)')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'X_C = 1 / (2π × f × C)')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Wechselstrom</span><span class="en-only">Alternating Current</span></div>
     <div class="formula-name"><span class="de-only">Kapazitiver Widerstand</span><span class="en-only">Capacitive Reactance</span></div>
     <div class="formula-eq">X_C = 1 / (2π × f × C)</div>
@@ -896,7 +1479,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'Z = √(R² + X²)')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'Z = √(R² + X²)')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Wechselstrom</span><span class="en-only">Alternating Current</span></div>
     <div class="formula-name"><span class="de-only">Scheinwiderstand (Impedanz)</span><span class="en-only">Impedance</span></div>
     <div class="formula-eq">Z = √(R² + X²)</div>
@@ -904,7 +1487,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'cos φ = P/S = R/Z')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'cos φ = P/S = R/Z')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Wechselstrom</span><span class="en-only">Alternating Current</span></div>
     <div class="formula-name"><span class="de-only">Leistungsfaktor</span><span class="en-only">Power Factor</span></div>
     <div class="formula-eq">cos φ = P/S = R/Z</div>
@@ -912,7 +1495,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'S² = P² + Q² | P[W] Q[VAr] S[VA]')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'S² = P² + Q² | P[W] Q[VAr] S[VA]')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Wechselstrom</span><span class="en-only">Alternating Current</span></div>
     <div class="formula-name"><span class="de-only">Leistungsdreieck</span><span class="en-only">Power Triangle</span></div>
     <div class="formula-eq">S² = P² + Q²</div>
@@ -922,7 +1505,7 @@ html.lang-de .en-only { display: none !important; }
   <div class="formula-cat-title"><span class="de-only">⚙️ Motor</span><span class="en-only">⚙️ Machines</span></div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'n_s = (60 × f) / p')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'n_s = (60 × f) / p')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Motor</span><span class="en-only">Machines</span></div>
     <div class="formula-name"><span class="de-only">Synchrondrehzahl</span><span class="en-only">Synchronous Speed</span></div>
     <div class="formula-eq">n_s = (60 × f) / p</div>
@@ -930,7 +1513,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'s = (n_s - n) / n_s × 100%')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'s = (n_s - n) / n_s × 100%')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Motor</span><span class="en-only">Machines</span></div>
     <div class="formula-name"><span class="de-only">Schlupf</span><span class="en-only">Slip</span></div>
     <div class="formula-eq">s = (n_s − n) / n_s × 100%</div>
@@ -938,7 +1521,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'P = M × ω = M × 2π × n/60')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'P = M × ω = M × 2π × n/60')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Motor</span><span class="en-only">Machines</span></div>
     <div class="formula-name"><span class="de-only">Mechanische Leistung</span><span class="en-only">Mechanical Power</span></div>
     <div class="formula-eq">P = M × ω = M × 2π × n/60</div>
@@ -946,7 +1529,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'η = P_ab / P_zu × 100%')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'η = P_ab / P_zu × 100%')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Motor</span><span class="en-only">Machines</span></div>
     <div class="formula-name"><span class="de-only">Wirkungsgrad</span><span class="en-only">Efficiency</span></div>
     <div class="formula-eq">η = P_ab / P_zu × 100%</div>
@@ -954,7 +1537,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'I_Y = I_Δ / 3 (Stern-Dreieck-Anlauf)')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'I_Y = I_Δ / 3 (Stern-Dreieck-Anlauf)')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Motor</span><span class="en-only">Machines</span></div>
     <div class="formula-name"><span class="de-only">Anlaufstrom Stern-Dreieck</span><span class="en-only">Star-Delta Starting Current</span></div>
     <div class="formula-eq">I_Y = I_Δ / 3</div>
@@ -964,7 +1547,7 @@ html.lang-de .en-only { display: none !important; }
   <div class="formula-cat-title"><span class="de-only">🔄 Transformator</span><span class="en-only">🔄 Transformer</span></div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'ü = U1/U2 = N1/N2 = I2/I1')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'ü = U1/U2 = N1/N2 = I2/I1')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Transformator</span><span class="en-only">Transformer</span></div>
     <div class="formula-name"><span class="de-only">Übersetzungsverhältnis</span><span class="en-only">Turns Ratio</span></div>
     <div class="formula-eq">ü = U1/U2 = N1/N2 = I2/I1</div>
@@ -972,7 +1555,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'I0 ≈ 3-10% von I_N')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'I0 ≈ 3-10% von I_N')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Transformator</span><span class="en-only">Transformer</span></div>
     <div class="formula-name"><span class="de-only">Leerlaufstrom</span><span class="en-only">No-Load Current</span></div>
     <div class="formula-eq">I0 ≈ 3–10% von I_N</div>
@@ -980,7 +1563,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'u_k = U_k/U_N × 100% (typisch 4-6%)')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'u_k = U_k/U_N × 100% (typisch 4-6%)')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Transformator</span><span class="en-only">Transformer</span></div>
     <div class="formula-name"><span class="de-only">Kurzschlussspannung</span><span class="en-only">Short-Circuit Voltage</span></div>
     <div class="formula-eq">u_k = U_k / U_N × 100%</div>
@@ -988,7 +1571,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'η = P2/(P2 + P_Fe + P_Cu) × 100%')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'η = P2/(P2 + P_Fe + P_Cu) × 100%')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Transformator</span><span class="en-only">Transformer</span></div>
     <div class="formula-name"><span class="de-only">Wirkungsgrad Trafo</span><span class="en-only">Transformer Efficiency</span></div>
     <div class="formula-eq">η = P2 / (P2 + P_Fe + P_Cu) × 100%</div>
@@ -998,7 +1581,7 @@ html.lang-de .en-only { display: none !important; }
   <div class="formula-cat-title"><span class="de-only">🔌 Leitungsberechnung</span><span class="en-only">🔌 Cable Calculation</span></div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'A_min nach Tabelle (I_zul ≥ I_B)')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'A_min nach Tabelle (I_zul ≥ I_B)')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Leitung</span><span class="en-only">Cable</span></div>
     <div class="formula-name"><span class="de-only">Querschnitt Wärmegrenze</span><span class="en-only">Cross-Section Thermal Limit</span></div>
     <div class="formula-eq">I_zul ≥ I_B</div>
@@ -1006,7 +1589,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'A = (2 × I × L) / (κ × ΔU_zul) | κ(Cu)=56, κ(Al)=35 m/Ω·mm²')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'A = (2 × I × L) / (κ × ΔU_zul) | κ(Cu)=56, κ(Al)=35 m/Ω·mm²')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Leitung</span><span class="en-only">Cable</span></div>
     <div class="formula-name"><span class="de-only">Querschnitt Spannungsfall</span><span class="en-only">Cross-Section Voltage Drop</span></div>
     <div class="formula-eq">A = (2 × I × L) / (κ × ΔU_zul)</div>
@@ -1014,7 +1597,7 @@ html.lang-de .en-only { display: none !important; }
   </div>
 
   <div class="formula-card">
-    <button class="formula-copy" onclick="copyFormula(this,'Z_S ≤ U_0 / I_a (Schleifenimpedanz)')" title="Kopieren">⎘</button>
+    <button type="button" class="formula-copy" onclick="copyFormula(this,'Z_S ≤ U_0 / I_a (Schleifenimpedanz)')" title="Kopieren">⎘</button>
     <div class="formula-cat-badge"><span class="de-only">Leitung</span><span class="en-only">Cable</span></div>
     <div class="formula-name"><span class="de-only">Prüfwert Schleifenimpedanz</span><span class="en-only">Loop Impedance Test Value</span></div>
     <div class="formula-eq">Z_S ≤ U_0 / I_a</div>
@@ -1027,8 +1610,8 @@ html.lang-de .en-only { display: none !important; }
 <main id="s-ap" class="screen">
 
   <div class="inner-tabs">
-    <button class="inner-tab on" onclick="apSwitch('ap1')">AP 1</button>
-    <button class="inner-tab" onclick="apSwitch('ap2')">AP 2</button>
+    <button type="button" class="inner-tab on" onclick="apSwitch('ap1')">AP 1</button>
+    <button type="button" class="inner-tab" onclick="apSwitch('ap2')">AP 2</button>
   </div>
 
   <!-- AP1 Panel -->
@@ -1111,7 +1694,7 @@ html.lang-de .en-only { display: none !important; }
       <div class="calc-field"><label>I [A]</label><input type="number" id="ohm-i" placeholder="Strom"></div>
       <div class="calc-field"><label>R [Ω]</label><input type="number" id="ohm-r" placeholder="Widerstand"></div>
     </div>
-    <button class="calc-go" onclick="calcOhm()">BERECHNEN</button>
+    <button type="button" class="calc-go" onclick="calcOhm()">BERECHNEN</button>
     <div class="calc-result-box" id="ohm-res"></div>
     <div class="calc-error" id="ohm-err"></div>
   </div>
@@ -1125,7 +1708,7 @@ html.lang-de .en-only { display: none !important; }
       <div class="calc-field"><label>U [V]</label><input type="number" id="pow-u" placeholder="Spannung"></div>
       <div class="calc-field"><label>I [A]</label><input type="number" id="pow-i" placeholder="Strom"></div>
     </div>
-    <button class="calc-go" onclick="calcPower()">BERECHNEN</button>
+    <button type="button" class="calc-go" onclick="calcPower()">BERECHNEN</button>
     <div class="calc-result-box" id="pow-res"></div>
     <div class="calc-error" id="pow-err"></div>
   </div>
@@ -1152,7 +1735,7 @@ html.lang-de .en-only { display: none !important; }
         </select>
       </div>
     </div>
-    <button class="calc-go" onclick="calcResistors()">BERECHNEN</button>
+    <button type="button" class="calc-go" onclick="calcResistors()">BERECHNEN</button>
     <div class="calc-result-box" id="rs-res"></div>
     <div class="calc-error" id="rs-err"></div>
   </div>
@@ -1169,7 +1752,7 @@ html.lang-de .en-only { display: none !important; }
       <div class="calc-field"><label>N1 (Windungen)</label><input type="number" id="tr-n1" placeholder="Primärwicklung"></div>
       <div class="calc-field"><label>N2 (Windungen)</label><input type="number" id="tr-n2" placeholder="Sekundärwicklung"></div>
     </div>
-    <button class="calc-go" onclick="calcTrafo()">BERECHNEN</button>
+    <button type="button" class="calc-go" onclick="calcTrafo()">BERECHNEN</button>
     <div class="calc-result-box" id="tr-res"></div>
     <div class="calc-error" id="tr-err"></div>
   </div>
@@ -1196,7 +1779,7 @@ html.lang-de .en-only { display: none !important; }
         </select>
       </div>
     </div>
-    <button class="calc-go" onclick="calcKabel()">BERECHNEN</button>
+    <button type="button" class="calc-go" onclick="calcKabel()">BERECHNEN</button>
     <div class="calc-result-box" id="kq-res"></div>
     <div class="calc-error" id="kq-err"></div>
   </div>
@@ -1210,11 +1793,229 @@ html.lang-de .en-only { display: none !important; }
       <div class="calc-field"><label>P_zu [W]</label><input type="number" id="wg-pzu" placeholder="Aufnahme"></div>
       <div class="calc-field"><label>P_ab [W]</label><input type="number" id="wg-pab" placeholder="Abgabe"></div>
     </div>
-    <button class="calc-go" onclick="calcWirkungsgrad()">BERECHNEN</button>
+    <button type="button" class="calc-go" onclick="calcWirkungsgrad()">BERECHNEN</button>
     <div class="calc-result-box" id="wg-res"></div>
     <div class="calc-error" id="wg-err"></div>
   </div>
 
+</main>
+
+<!-- ===================== SCREEN 7: AP1-SIMULATION ===================== -->
+<main id="s-sim" class="screen">
+
+  <!-- Start-View -->
+  <div id="sim-start">
+    <div class="quiz-hero">
+      <span class="quiz-hero-icon">🎓</span>
+      <h2>AP1-Simulation</h2>
+      <p>20 Fragen · 90 Minuten Zeitlimit · Elektroniker Betriebstechnik</p>
+      <div class="quiz-hs-badge" id="sim-hs-badge">Kein Ergebnis gespeichert</div>
+      <button type="button" class="btn-primary" onclick="simStart()">Simulation starten</button>
+    </div>
+    <div class="card" style="margin-top:.75rem;">
+      <div class="sec-title">ℹ️ Hinweise</div>
+      <p style="font-size:13px;color:var(--tx2);line-height:1.6;">Die Simulation entspricht dem Schwierigkeitsgrad der echten AP1. Alle 20 Fragen müssen in 90 Minuten beantwortet werden. Das Ergebnis wird gespeichert.</p>
+    </div>
+  </div>
+
+  <!-- Quiz-View -->
+  <div id="sim-quiz" style="display:none;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
+      <span class="quiz-counter" id="sim-counter" style="margin:0;">Frage 1 / 20</span>
+      <span id="sim-timer" style="font-family:var(--mo);font-size:14px;font-weight:700;color:var(--ok);">90:00</span>
+    </div>
+    <div class="quiz-progress-wrap">
+      <div class="quiz-progress-bar" id="sim-progress" style="width:5%"></div>
+    </div>
+    <div class="quiz-card">
+      <div class="quiz-question" id="sim-question"></div>
+      <div class="quiz-opts" id="sim-opts"></div>
+      <div class="quiz-explanation" id="sim-explanation" style="display:none;"></div>
+      <button type="button" class="quiz-next-btn" id="sim-next-btn" onclick="simNext()" style="display:none;">Nächste Frage →</button>
+    </div>
+  </div>
+
+  <!-- End-View -->
+  <div id="sim-end" style="display:none;">
+    <div class="quiz-end-card">
+      <div class="quiz-score-big" id="sim-score-big">—</div>
+      <div class="quiz-score-sub" id="sim-score-sub"></div>
+      <div class="quiz-end-hs" id="sim-end-hs"></div>
+      <button type="button" class="btn-primary" onclick="simRestart()" style="margin-bottom:.75rem;">Nochmal</button>
+      <button type="button" onclick="simBack()" style="background:var(--bg3);color:var(--tx2);border:1px solid var(--br);border-radius:12px;padding:.75rem 1.5rem;font-size:15px;font-weight:700;cursor:pointer;width:100%;max-width:300px;display:block;margin:0 auto;font-family:var(--sa);">← Zurück</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- ===================== SCREEN 8: SPACED REPETITION ===================== -->
+<main id="s-sr" class="screen">
+  <div id="sr-dash-view">
+    <div class="sec-title">🧠 <span class="de-only">Spaced Repetition</span><span class="en-only">Spaced Repetition</span></div>
+    <div class="sr-stat-row" id="sr-stat-row">
+      <div class="sr-stat"><div class="sr-stat-v" id="sr-v-due" style="color:#ff453a">—</div><div class="sr-stat-l">Fällig</div></div>
+      <div class="sr-stat"><div class="sr-stat-v" id="sr-v-new" style="color:#3d8ef8">—</div><div class="sr-stat-l">Neu</div></div>
+      <div class="sr-stat"><div class="sr-stat-v" id="sr-v-learned" style="color:#30d158">—</div><div class="sr-stat-l">Gelernt</div></div>
+      <div class="sr-stat"><div class="sr-stat-v" id="sr-v-total" style="color:var(--tx2)">—</div><div class="sr-stat-l">Gesamt</div></div>
+    </div>
+    <div class="sr-mode-row" id="sr-mode-row">
+      <button type="button" class="sr-mode-btn active" id="sr-mode-flip" onclick="setSRMode('flip')">🃏 Karteikarte</button>
+      <button type="button" class="sr-mode-btn" id="sr-mode-fill" onclick="setSRMode('fill')">✏️ Lückentext</button>
+    </div>
+    <div id="sr-start-area"></div>
+    <div class="sr-notify-row" id="ampNotifyRow">
+      <button type="button" class="sr-notify-btn" id="ampNotifyBtn" onclick="ampToggleNotify()">🔔 Erinnerungen aktivieren</button>
+      <span class="sr-notify-hint" id="ampNotifyHint"></span>
+    </div>
+    <div style="margin-top:1.25rem;">
+      <div class="sr-section-title"><span class="de-only">So funktioniert's</span><span class="en-only">How It Works</span><span class="tr-only">Nasıl Çalışır</span><span class="ru-only">Как это работает</span><span class="ar-only">كيف يعمل</span></div>
+      <div style="background:var(--bg2);border:1px solid var(--br);border-radius:var(--r2);padding:1rem;">
+        <div style="display:flex;flex-direction:column;gap:.6rem;font-size:13px;color:var(--tx2);line-height:1.5;">
+          <div>🃏 <span class="de-only">Karte anschauen → umdrehen → Schwierigkeit bewerten</span><span class="en-only">View card → flip → rate difficulty</span></div>
+          <div>🧠 <span class="de-only">Der SM-2-Algorithmus plant die nächste Wiederholung automatisch</span><span class="en-only">The SM-2 algorithm schedules the next review automatically</span></div>
+          <div>📅 <span class="de-only">Täglich 20 Karten — in 4 Wochen alles gelernt</span><span class="en-only">20 cards per day — everything learned in 4 weeks</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="sr-session-view" style="display:none;">
+    <!-- Progress bar -->
+    <div class="sr-prog-wrap">
+      <div class="sr-prog-bar-track">
+        <div class="sr-prog-bar-fill" id="sr-prog-bar" style="width:0%"></div>
+      </div>
+      <div class="sr-prog-label" id="sr-prog-txt"></div>
+    </div>
+
+    <!-- Flip card -->
+    <div class="sr-flip-wrap">
+      <div class="sr-flip" id="sr-flip" onclick="srFlip()">
+        <div class="sr-front">
+          <div class="sr-card-tag" id="sr-card-tag"></div>
+          <div class="sr-card-q" id="sr-card-q"></div>
+          <div class="sr-card-hint" id="sr-card-hint">
+            <span class="de-only">Tippen zum Umdrehen</span>
+            <span class="en-only">Tap to flip</span>
+            <span class="tr-only">Çevirmek için dokun</span>
+            <span class="ru-only">Нажмите, чтобы перевернуть</span>
+            <span class="ar-only">اضغط للقلب</span>
+          </div>
+        </div>
+        <div class="sr-back">
+          <div class="sr-card-tag"><span class="de-only">Antwort</span><span class="en-only">Answer</span><span class="tr-only">Cevap</span><span class="ru-only">Ответ</span><span class="ar-only">الإجابة</span></div>
+          <div class="sr-card-a" id="sr-card-a"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grade buttons -->
+
+    <div id="sr-fill-area" style="display:none;">
+      <div class="sr-fill-area-wrap">
+        <div class="sr-fill-q-card">
+          <div class="sr-fill-q-tag" id="sr-fill-tag"></div>
+          <div class="sr-fill-q-text" id="sr-fill-q"></div>
+        </div>
+        <div class="sr-fill-input-row">
+  <textarea id="sr-fill-input" class="sr-fill-input" placeholder="Deine Antwort…" rows="3"></textarea>
+  <button type="button" class="sr-mic-btn" id="sr-mic-btn" onclick="srStartVoice()" title="Spracheingabe starten" aria-label="Spracheingabe">🎙️</button>
+</div>
+        <button type="button" class="sr-fill-submit" id="sr-fill-submit" onclick="srFillSubmit()">✓ Antwort prüfen</button>
+        <div id="sr-fill-answer" style="display:none;">
+          <div class="sr-fill-answer-box">
+            <div class="sr-fill-answer-label">Musterlösung</div>
+            <div id="sr-fill-answer-text" class="sr-fill-answer-text"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="sr-grade-area" style="display:none;">
+      <p class="sr-grade-prompt"><span class="de-only">Wie gut wusstest du das?</span><span class="en-only">How well did you know this?</span><span class="tr-only">Bunu ne kadar iyi biliyordun?</span><span class="ru-only">Насколько хорошо вы это знали?</span><span class="ar-only">كيف كانت إجابتك؟</span></p>
+      <div class="sr-grade-row">
+        <button type="button" class="sr-grade-btn bad" onclick="srGrade(1)">
+          <span class="sr-grade-btn-label de-only">Wieder</span>
+          <span class="sr-grade-btn-label en-only">Again</span>
+          <span class="sr-grade-btn-label tr-only">Tekrar</span>
+          <span class="sr-grade-btn-label ru-only">Снова</span>
+          <span class="sr-grade-btn-label ar-only">مجدداً</span>
+          <span class="sr-grade-btn-note">+1 Tag</span>
+        </button>
+        <button type="button" class="sr-grade-btn ok" onclick="srGrade(3)">
+          <span class="sr-grade-btn-label de-only">Schwer</span>
+          <span class="sr-grade-btn-label en-only">Hard</span>
+          <span class="sr-grade-btn-label tr-only">Zor</span>
+          <span class="sr-grade-btn-label ru-only">Сложно</span>
+          <span class="sr-grade-btn-label ar-only">صعب</span>
+          <span class="sr-grade-btn-note de-only">+kurz</span>
+          <span class="sr-grade-btn-note en-only">+soon</span>
+          <span class="sr-grade-btn-note tr-only">+yakın</span>
+          <span class="sr-grade-btn-note ru-only">+скоро</span>
+          <span class="sr-grade-btn-note ar-only">+قريباً</span>
+        </button>
+        <button type="button" class="sr-grade-btn good" onclick="srGrade(5)">
+          <span class="sr-grade-btn-label de-only">Gut</span>
+          <span class="sr-grade-btn-label en-only">Got it</span>
+          <span class="sr-grade-btn-label tr-only">İyi</span>
+          <span class="sr-grade-btn-label ru-only">Знаю</span>
+          <span class="sr-grade-btn-label ar-only">جيد</span>
+          <span class="sr-grade-btn-note de-only">+länger</span>
+          <span class="sr-grade-btn-note en-only">+longer</span>
+          <span class="sr-grade-btn-note tr-only">+uzun</span>
+          <span class="sr-grade-btn-note ru-only">+дольше</span>
+          <span class="sr-grade-btn-note ar-only">+أطول</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="sr-done-view" style="display:none;">
+    <div class="sr-done">
+      <span class="sr-done-emoji">🎉</span>
+      <div class="sr-done-title"><span class="de-only">Sitzung abgeschlossen!</span><span class="en-only">Session Complete!</span><span class="tr-only">Oturum Tamamlandı!</span><span class="ru-only">Сессия завершена!</span><span class="ar-only">اكتملت الجلسة!</span></div>
+      <div class="sr-done-sub" id="sr-done-sub"></div>
+      <button type="button" class="sr-start-btn" style="margin-top:1.5rem;" onclick="srBackToDash()"><span class="de-only">← Zurück zur Übersicht</span><span class="en-only">← Back to overview</span><span class="tr-only">← Genel bakışa dön</span><span class="ru-only">← Назад к обзору</span><span class="ar-only">← العودة للنظرة العامة</span></button>
+    </div>
+  </div>
+
+<!-- Backup Panel -->
+<section class="backup-panel" id="backupPanel">
+  <h3>💾 Datensicherung</h3>
+  <p>Exportiere oder importiere alle deine Lernfortschritte</p>
+  <div class="backup-btns">
+    <button class="backup-btn primary" onclick="ampExportBackup()">⬇ Exportieren</button>
+    <button class="backup-btn" onclick="document.getElementById('ampImportFile').click()">⬆ Importieren</button>
+  </div>
+  <input type="file" id="ampImportFile" accept=".json" style="display:none" onchange="ampImportBackup(event)">
+  <div class="backup-keys" id="backupKeyList"></div>
+</section>
+
+<!-- Sync Panel -->
+<section class="sync-panel" id="syncPanel">
+  <h3>☁️ Cloud Sync</h3>
+  <p>Synchronisiere deinen Fortschritt zwischen Geräten</p>
+  <div class="sync-views">
+    <div class="active" id="syncHome">
+      <button class="sync-btn" onclick="ampSyncCreate()">Neuen Sync-Code erstellen</button>
+      <button class="sync-btn sec" onclick="ampShowJoin()">Mit Code verbinden</button>
+    </div>
+    <div id="syncActive">
+      <div class="sync-code-display">
+        <div style="font-size:.8rem;color:var(--sep);margin-bottom:6px">Dein Sync-Code</div>
+        <div class="code" id="ampSyncCodeDisplay">—</div>
+      </div>
+      <button class="sync-btn" onclick="ampSyncPush()">⬆ Hochladen</button>
+      <button class="sync-btn sec" onclick="ampSyncPull()">⬇ Herunterladen</button>
+      <button class="sync-btn sec" onclick="ampSyncLeave()">Verbindung trennen</button>
+      <div class="sync-status" id="ampSyncStatus"></div>
+    </div>
+    <div id="syncJoin">
+      <input class="sync-input" id="ampJoinCode" placeholder="Sync-Code eingeben" maxlength="8">
+      <button class="sync-btn" onclick="ampSyncJoin()">Verbinden</button>
+      <button class="sync-btn sec" onclick="ampShowHome()">Abbrechen</button>
+    </div>
+  </div>
+</section>
 </main>
 
 <!-- ===================== APP-SWITCHER DRAWER ===================== -->
@@ -1222,85 +2023,90 @@ html.lang-de .en-only { display: none !important; }
 <div class="drawer" id="drawer">
   <div class="drawer-hdr">
     <span class="drawer-title">⊞ Arc Studio</span>
-    <button class="drawer-close" onclick="drawerClose()">✕</button>
+    <button type="button" class="drawer-close" aria-label="Menü schließen" onclick="drawerClose()">✕</button>
   </div>
   <div class="drawer-apps">
-    <a class="drawer-app" href="VOLTECH-mechatronik-pro.html">
-      <span class="drawer-app-icon">⚙️</span>
-      <div><div class="drawer-app-name">Mechatronik Pro</div><div class="drawer-app-sub">Mechatroniker-Ausbildung</div></div>
-    </a>
-    <a class="drawer-app" href="VOLTECH-lern-basis.html">
-      <span class="drawer-app-icon">📚</span>
-      <div><div class="drawer-app-name">Lernmodus</div><div class="drawer-app-sub">Karteikarten & Grundlagen</div></div>
-    </a>
-    <a class="drawer-app" href="VOLTECH-lern-extra.html">
-      <span class="drawer-app-icon">🎤</span>
-      <div><div class="drawer-app-name">AP2-Extra</div><div class="drawer-app-sub">Mündliche Prüfungsvorbereitung</div></div>
-    </a>
-    <a class="drawer-app" href="VOLTECH-sps.html">
-      <span class="drawer-app-icon">🔌</span>
-      <div><div class="drawer-app-name">SPS-Trainer</div><div class="drawer-app-sub">Speicherprogrammierbare Steuerung</div></div>
-    </a>
-    <a class="drawer-app" href="VOLTECH-berichtsheft.html">
-      <span class="drawer-app-icon">📓</span>
-      <div><div class="drawer-app-name">Berichtsheft</div><div class="drawer-app-sub">Ausbildungsnachweise</div></div>
-    </a>
-    <a class="drawer-app" href="VOLTECH-tools2.html">
-      <span class="drawer-app-icon">🧰</span>
-      <div><div class="drawer-app-name">Lerntools</div><div class="drawer-app-sub">Rechner & Hilfsmittel</div></div>
+    <a class="drawer-app" href="voltiq.html">
+      <span class="drawer-app-icon">⚡</span>
+      <div><div class="drawer-app-name">VOLTIQ</div><div class="drawer-app-sub">Mechatroniker</div></div>
     </a>
     <a class="drawer-app active" href="#">
-      <span class="drawer-app-icon">⚡</span>
-      <div><div class="drawer-app-name">AMPERE</div><div class="drawer-app-sub">Elektroniker Betriebstechnik</div></div>
+      <span class="drawer-app-icon">🔌</span>
+      <div><div class="drawer-app-name">AMPERE</div><div class="drawer-app-sub">Elektroniker EfB</div></div>
       <span class="drawer-app-badge">Aktiv</span>
     </a>
     <a class="drawer-app" href="VOLTECH-torque.html">
       <span class="drawer-app-icon">⚙️</span>
-      <div><div class="drawer-app-name">TORQUE</div><div class="drawer-app-sub">Industriemechaniker AP1/AP2</div></div>
+      <div><div class="drawer-app-name">TORQUE</div><div class="drawer-app-sub">Industriemechaniker</div></div>
     </a>
-    <a class="drawer-app" href="VOLTECH-ki.html">
-      <span class="drawer-app-icon">🧠</span>
-      <div><div class="drawer-app-name">KI-Assistent</div><div class="drawer-app-sub">Offline Wissensdatenbank</div></div>
+    <a class="drawer-app" href="FISI-core.html">
+      <span class="drawer-app-icon">💻</span>
+      <div><div class="drawer-app-name">FISI-Core</div><div class="drawer-app-sub">Fachinformatiker</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-ki-tutor.html?app=ampere">
+      <span class="drawer-app-icon">🤖</span>
+      <div><div class="drawer-app-name">KI-Tutor</div><div class="drawer-app-sub">IHK-Fachtutor · offline</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-english.html">
+      <span class="drawer-app-icon">🇬🇧</span>
+      <div><div class="drawer-app-name">Technical English</div><div class="drawer-app-sub">Fachvokabular · IHK</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-achievements.html">
+      <span class="drawer-app-icon">🏆</span>
+      <div><div class="drawer-app-name">Achievements</div><div class="drawer-app-sub"></div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-forum.html">
+      <span class="drawer-app-icon">💬</span>
+      <div><div class="drawer-app-name">Forum</div><div class="drawer-app-sub">Azubi-Community</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-whats-new.html">
+      <span class="drawer-app-icon">🗺️</span>
+      <div><div class="drawer-app-name">Roadmap</div><div class="drawer-app-sub"></div></div>
     </a>
   </div>
   <div class="drawer-footer">
-    <a href="index.html">Arc Studio Website ↗</a>
+    <a href="index.html">🏠 Arc Studio ↗</a>
   </div>
 </div>
 
 <!-- ===================== JAVASCRIPT ===================== -->
 <script>
 // ── Language (declare early so all code below can use currentLang) ──
+var LANGS = ['de','en','tr','ru','ar'];
 var currentLang = localStorage.getItem('arc_lang') || 'de';
 
 // ── Theme Toggle ────────────────────────────────────────────
 (function(){
-  var KEY = 'amp_theme';
-  var isLight = localStorage.getItem(KEY) === 'light';
-  function apply(l) {
-    document.documentElement.classList.toggle('lm', l);
-    var b = document.getElementById('thm-btn');
-    if(b) b.textContent = l ? '☀️' : '🌙';
+  var KEY='arc_theme';
+  var isDark=localStorage.getItem(KEY)==='dark';
+  function apply(d){
+    document.documentElement.classList.toggle('dm',d);
+    var b=document.getElementById('thm-btn');
+    if(b)b.textContent=d?'☀️':'🌙';
   }
-  if(isLight) document.documentElement.classList.add('lm');
-  window.thmToggle = function() {
-    isLight = !isLight;
-    localStorage.setItem(KEY, isLight ? 'light' : 'dark');
-    apply(isLight);
+  apply(isDark);
+  window.thmToggle=function(){
+    isDark=!isDark;
+    localStorage.setItem(KEY,isDark?'dark':'light');
+    apply(isDark);
   };
-  apply(isLight);
 })();
 
 // ── Screen Navigation ───────────────────────────────────────
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('on'); });
-  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('on'); });
+  document.querySelectorAll('.bnav-btn').forEach(function(b) { b.classList.remove('on'); });
   var sc = document.getElementById(id);
   if(sc) sc.classList.add('on');
   var tb = document.querySelector('[data-screen="' + id + '"]');
   if(tb) tb.classList.add('on');
+  document.querySelectorAll('.bnav-btn').forEach(function(b){ b.removeAttribute('aria-current'); });
+  document.querySelectorAll('.bnav-btn[data-screen="' + id + '"]').forEach(function(b){ b.setAttribute('aria-current','page'); });
   window.scrollTo(0, 0);
 }
+document.querySelectorAll('.bnav-btn[data-screen]').forEach(function(btn) {
+  btn.addEventListener('click', function() { showScreen(this.dataset.screen); });
+});
 
 // ── Drawer ──────────────────────────────────────────────────
 function drawerOpen() {
@@ -1324,115 +2130,139 @@ function openLf(id) {
 
 // ── Quiz Array ──────────────────────────────────────────────
 var QUIZ = [
-  { c:0,
+  { c:0, topic:'Schutz',
     de:{q:'Was bedeutet die Schutzart IP54?',opts:['Staubgeschützt und spritzwassergeschützt','Wasserdicht und stoßfest','Druckwasserdicht und staubdicht','Feuchtigkeitsgeschützt und schlagfest'],e:'Erste Ziffer 5 = Staubgeschützt (kein schädlicher Staub), zweite Ziffer 4 = Spritzwassergeschützt (aus allen Richtungen).'},
-    en:{q:'What does protection class IP54 mean?',opts:['Dust-protected and splash-proof','Waterproof and shock-resistant','Pressure-waterproof and dust-tight','Moisture-protected and impact-resistant'],e:'First digit 5 = Dust-protected (no harmful dust ingress), second digit 4 = Splash-proof (from all directions).'}},
-  { c:1,
+    en:{q:'What does protection class IP54 mean?',opts:['Dust-protected and splash-proof','Waterproof and shock-resistant','Pressure-waterproof and dust-tight','Moisture-protected and impact-resistant'],e:'First digit 5 = Dust-protected (no harmful dust ingress), second digit 4 = Splash-proof (from all directions).'},
+    tr:{q:'IP54 koruma sınıfı ne anlama gelir?',opts:['Toza karşı korumalı ve sıçrayan suya karşı korumalı','Su geçirmez ve darbeye dayanıklı','Basınçlı suya ve toza karşı dayanıklı','Neme ve darbeye karşı korumalı'],e:'İlk rakam 5 = Toza karşı korumalı (zararlı toz girişi yok), ikinci rakam 4 = Sıçrayan suya karşı korumalı (her yönden).'},
+    ru:{q:'Что означает степень защиты IP54?',opts:['Пылезащищённый и брызгозащищённый','Водонепроницаемый и ударопрочный','Защита от напорной воды и пыли','Влагозащищённый и ударопрочный'],e:'Первая цифра 5 = пылезащищённый (без вредного проникновения пыли), вторая цифра 4 = брызгозащищённый (со всех сторон).'},
+    ar:{q:'ماذا تعني درجة الحماية IP54؟',opts:['محمي من الغبار ورذاذ الماء','مقاوم للماء والصدمات','مقاوم للماء تحت الضغط والغبار','محمي من الرطوبة والصدمات'],e:'الرقم الأول 5 = محمي من الغبار (لا يدخل غبار ضار)، الرقم الثاني 4 = محمي من رذاذ الماء من جميع الاتجاهات.'}},
+  { c:1, topic:'Schutz',
     de:{q:'Welcher Auslösestrom hat ein personenschützender FI-Schutzschalter?',opts:['10 mA','30 mA','100 mA','300 mA'],e:'30 mA ist der Standardwert für Personenschutz. Ab ca. 30 mA können Herzrhythmusstörungen auftreten.'},
-    en:{q:'What is the trip current of a personal protection RCD?',opts:['10 mA','30 mA','100 mA','300 mA'],e:'30 mA is the standard value for personal protection. From approx. 30 mA, cardiac arrhythmias can occur.'}},
-  { c:1,
+    en:{q:'What is the trip current of a personal protection RCD?',opts:['10 mA','30 mA','100 mA','300 mA'],e:'30 mA is the standard value for personal protection. From approx. 30 mA, cardiac arrhythmias can occur.'},
+    tr:{q:'Kişi koruma amacıyla kullanılan kaçak akım rölesi kaç mA\'da devreyi keser?',opts:['10 mA','30 mA','100 mA','300 mA'],e:'30 mA, kişisel koruma için standart değerdir. Yaklaşık 30 mA\'dan itibaren kalp ritim bozuklukları oluşabilir.'},
+    ru:{q:'При каком токе срабатывает УЗО для защиты людей?',opts:['10 мА','30 мА','100 мА','300 мА'],e:'30 мА — стандартное значение для защиты людей. Начиная примерно с 30 мА возможны нарушения сердечного ритма.'},
+    ar:{q:'ما هو تيار عمل قاطع التفاضل (RCD) لحماية الأشخاص؟',opts:['10 مللي أمبير','30 مللي أمبير','100 مللي أمبير','300 مللي أمبير'],e:'30 مللي أمبير هو القيمة القياسية لحماية الأشخاص. من حوالي 30 مللي أمبير يمكن أن تحدث اضطرابات في ضربات القلب.'}},
+  { c:1, topic:'Motoren',
     de:{q:'Was ist die Synchrondrehzahl eines 4-poligen Motors bei 50 Hz?',opts:['3000 U/min','1500 U/min','1000 U/min','750 U/min'],e:'n_s = (60 × f) / p = (60 × 50) / 2 = 1500 U/min. 4 Pole = 2 Polpaare (p = 2).'},
-    en:{q:'What is the synchronous speed of a 4-pole motor at 50 Hz?',opts:['3000 rpm','1500 rpm','1000 rpm','750 rpm'],e:'n_s = (60 × f) / p = (60 × 50) / 2 = 1500 rpm. 4 poles = 2 pole pairs (p = 2).'}},
-  { c:1,
+    en:{q:'What is the synchronous speed of a 4-pole motor at 50 Hz?',opts:['3000 rpm','1500 rpm','1000 rpm','750 rpm'],e:'n_s = (60 × f) / p = (60 × 50) / 2 = 1500 rpm. 4 poles = 2 pole pairs (p = 2).'},
+    tr:{q:'50 Hz\'de 4 kutuplu bir motorun senkron hızı nedir?',opts:['3000 d/dak','1500 d/dak','1000 d/dak','750 d/dak'],e:'n_s = (60 × f) / p = (60 × 50) / 2 = 1500 d/dak. 4 kutup = 2 kutup çifti (p = 2).'},
+    ru:{q:'Какова синхронная скорость 4-полюсного двигателя при 50 Гц?',opts:['3000 об/мин','1500 об/мин','1000 об/мин','750 об/мин'],e:'n_s = (60 × f) / p = (60 × 50) / 2 = 1500 об/мин. 4 полюса = 2 пары полюсов (p = 2).'},
+    ar:{q:'ما هي السرعة المتزامنة لمحرك رباعي الأقطاب عند 50 هرتز؟',opts:['3000 د/دقيقة','1500 د/دقيقة','1000 د/دقيقة','750 د/دقيقة'],e:'n_s = (60 × f) / p = (60 × 50) / 2 = 1500 دورة/دقيقة. 4 أقطاب = زوجان من الأقطاب (p = 2).'}},
+  { c:1, topic:'Schutz',
     de:{q:'Welche Schutzklasse hat ein Gerät mit Schutzisolierung (doppelte Isolation)?',opts:['Schutzklasse I','Schutzklasse II','Schutzklasse III','Schutzklasse 0'],e:'SK II = doppelte oder verstärkte Isolierung. Kein Schutzleiteranschluss erforderlich. Symbol: Quadrat im Quadrat.'},
-    en:{q:'Which protection class applies to a device with double insulation?',opts:['Protection Class I','Protection Class II','Protection Class III','Protection Class 0'],e:'Class II = double or reinforced insulation. No protective earth connection required. Symbol: square within a square.'}},
-  { c:0,
+    en:{q:'Which protection class applies to a device with double insulation?',opts:['Protection Class I','Protection Class II','Protection Class III','Protection Class 0'],e:'Class II = double or reinforced insulation. No protective earth connection required. Symbol: square within a square.'},
+    tr:{q:'Çift yalıtımlı (koruyucu yalıtım) bir cihaz hangi koruma sınıfına aittir?',opts:['Koruma Sınıfı I','Koruma Sınıfı II','Koruma Sınıfı III','Koruma Sınıfı 0'],e:'SK II = çift veya güçlendirilmiş yalıtım. Topraklama iletkeni bağlantısı GEREKMİYOR. Sembol: kare içinde kare.'},
+    ru:{q:'Какой класс защиты у устройства с двойной изоляцией?',opts:['Класс защиты I','Класс защиты II','Класс защиты III','Класс защиты 0'],e:'КЗ II = двойная или усиленная изоляция. Защитный проводник НЕ требуется. Символ: квадрат в квадрате.'},
+    ar:{q:'ما هي درجة الحماية للجهاز ذي العزل المزدوج؟',opts:['درجة الحماية I','درجة الحماية II','درجة الحماية III','درجة الحماية 0'],e:'الدرجة II = عزل مضاعف أو معزز. موصل الحماية غير مطلوب. الرمز: مربع داخل مربع.'}},
+  { c:0, topic:'Elektrotechnik',
     de:{q:'Wie lautet das Übersetzungsverhältnis eines Transformators?',opts:['ü = U1/U2 = N1/N2 = I2/I1','ü = U2/U1 = N1/N2','ü = I1/I2 = U1/U2','ü = P1/P2'],e:'ü = U1/U2 = N1/N2 = I2/I1. Achtung: Beim Strom ist es umgekehrt — hohe Spannung = geringer Strom.'},
-    en:{q:'What is the transformation ratio of a transformer?',opts:['ü = U1/U2 = N1/N2 = I2/I1','ü = U2/U1 = N1/N2','ü = I1/I2 = U1/U2','ü = P1/P2'],e:'ü = U1/U2 = N1/N2 = I2/I1. Note: for current it is inverted — high voltage = low current.'}},
-  { c:2,
+    en:{q:'What is the transformation ratio of a transformer?',opts:['ü = U1/U2 = N1/N2 = I2/I1','ü = U2/U1 = N1/N2','ü = I1/I2 = U1/U2','ü = P1/P2'],e:'ü = U1/U2 = N1/N2 = I2/I1. Note: for current it is inverted — high voltage = low current.'},
+    tr:{q:'Bir transformatörün dönüşüm oranı nasıldır?',opts:['ü = U1/U2 = N1/N2 = I2/I1','ü = U2/U1 = N1/N2','ü = I1/I2 = U1/U2','ü = P1/P2'],e:'ü = U1/U2 = N1/N2 = I2/I1. Dikkat: Akımda ters orantı geçerlidir — yüksek gerilim = düşük akım.'},
+    ru:{q:'Каков коэффициент трансформации трансформатора?',opts:['ü = U1/U2 = N1/N2 = I2/I1','ü = U2/U1 = N1/N2','ü = I1/I2 = U1/U2','ü = P1/P2'],e:'ü = U1/U2 = N1/N2 = I2/I1. Внимание: для тока соотношение обратное — высокое напряжение = малый ток.'},
+    ar:{q:'ما هي نسبة تحويل المحول الكهربائي؟',opts:['ü = U1/U2 = N1/N2 = I2/I1','ü = U2/U1 = N1/N2','ü = I1/I2 = U1/U2','ü = P1/P2'],e:'ü = U1/U2 = N1/N2 = I2/I1. تنبيه: التيار يعكس الاتجاه — جهد عالٍ = تيار منخفض.'}},
+  { c:2, topic:'Schutz',
     de:{q:'Was prüfen die 5 Sicherheitsregeln nach VDE 0105?',opts:['Geräte auf Beschädigungen','Schutzleiter auf Durchgang','Freischalten, Sichern, Spannungsfreiheit, Erden, Abdecken','Isolationswiderstand und Schleifenimpedanz'],e:'Die 5 Sicherheitsregeln: 1. Freischalten, 2. Gegen Wiedereinschalten sichern, 3. Spannungsfreiheit feststellen, 4. Erden und kurzschließen, 5. Benachbarte spannungsführende Teile abdecken.'},
-    en:{q:'What do the 5 safety rules according to VDE 0105 cover?',opts:['Check devices for damage','Check protective conductor continuity','Isolate, secure, verify dead, earth, cover','Measure insulation resistance and loop impedance'],e:'The 5 safety rules: 1. Isolate, 2. Secure against re-energisation, 3. Verify absence of voltage, 4. Earth and short-circuit, 5. Cover adjacent live parts.'}},
-  { c:1,
+    en:{q:'What do the 5 safety rules according to VDE 0105 cover?',opts:['Check devices for damage','Check protective conductor continuity','Isolate, secure, verify dead, earth, cover','Measure insulation resistance and loop impedance'],e:'The 5 safety rules: 1. Isolate, 2. Secure against re-energisation, 3. Verify absence of voltage, 4. Earth and short-circuit, 5. Cover adjacent live parts.'},
+    tr:{q:'VDE 0105\'e göre 5 güvenlik kuralı neyi kapsar?',opts:['Cihazları hasar açısından kontrol etmek','Koruma iletkeninin sürekliliğini kontrol etmek','Devre dışı bırakma, kilitleme, gerilim yokluğu, topraklama, örtme','İzolasyon direnci ve döngü empedansı ölçmek'],e:'5 Güvenlik Kuralı: 1. Devre dışı bırak, 2. Yeniden devreye alınmaya karşı kilitle, 3. Gerilim yokluğunu kontrol et, 4. Toprakla ve kısa devre yap, 5. Komşu gerilimli parçaları ört.'},
+    ru:{q:'Что охватывают 5 правил безопасности по VDE 0105?',opts:['Проверка устройств на повреждения','Проверка непрерывности защитного проводника','Обесточить, заблокировать, убедиться в отсутствии напряжения, заземлить, закрыть','Измерение сопротивления изоляции и импеданса петли'],e:'5 правил безопасности: 1. Обесточить, 2. Заблокировать от повторного включения, 3. Убедиться в отсутствии напряжения, 4. Заземлить и закоротить, 5. Закрыть соседние токоведущие части.'},
+    ar:{q:'ماذا تتضمن قواعد السلامة الخمس وفق VDE 0105؟',opts:['فحص الأجهزة من التلف','فحص استمرارية موصل الحماية','فصل الكهرباء، القفل، التحقق من انعدام الجهد، التأريض، التغطية','قياس مقاومة العزل وممانعة الحلقة'],e:'قواعد السلامة الخمس: 1. فصل الكهرباء، 2. تأمين ضد إعادة التوصيل، 3. التحقق من انعدام الجهد، 4. التأريض والتقصير، 5. تغطية الأجزاء الحية المجاورة.'}},
+  { c:1, topic:'Normen',
     de:{q:'Was bedeutet TN-S Netz?',opts:['Träger-Null-System ohne Schutzleiter','Getrennte Neutral- und Schutzleiter vom Transformator bis zur Anlage','Gemeinsamer PEN-Leiter bis zur Abzweigdose','Isoliertes Netz mit Erdüberwachung'],e:'TN-S: Separate Neutral- (N) und Schutzleiter (PE) im gesamten System. Sicherster TN-Typ, da keine Mischung von N und PE.'},
-    en:{q:'What does TN-S network mean?',opts:['Common neutral-earth system without protective conductor','Separate neutral and protective conductors from transformer to installation','Combined PEN conductor to junction box','Isolated network with earth fault monitoring'],e:'TN-S: Separate neutral (N) and protective conductor (PE) throughout the system. Safest TN type, as N and PE are never mixed.'}},
-  { c:0,
+    en:{q:'What does TN-S network mean?',opts:['Common neutral-earth system without protective conductor','Separate neutral and protective conductors from transformer to installation','Combined PEN conductor to junction box','Isolated network with earth fault monitoring'],e:'TN-S: Separate neutral (N) and protective conductor (PE) throughout the system. Safest TN type, as N and PE are never mixed.'},
+    tr:{q:'TN-S şebeke sistemi ne anlama gelir?',opts:['Koruma iletkensiz ortak nötr-toprak sistemi','Transformatörden tesisata kadar ayrı nötr ve koruma iletkeni','Birleşik PEN iletkeni bağlantı kutusuna kadar','Toprak arıza izlemeli izole şebeke'],e:'TN-S: Tüm sistemde ayrı nötr (N) ve koruma iletken (PE). N ve PE hiçbir zaman karıştırılmadığı için en güvenli TN türüdür.'},
+    ru:{q:'Что означает система заземления TN-S?',opts:['Общая нейтраль без защитного проводника','Раздельные нейтральный и защитный проводники от трансформатора до установки','Совмещённый PEN-проводник до распредкоробки','Изолированная сеть с контролем замыкания на землю'],e:'TN-S: Раздельные нейтральный (N) и защитный проводник (PE) во всей системе. Наиболее безопасный тип TN, так как N и PE никогда не смешиваются.'},
+    ar:{q:'ماذا يعني نظام التأريض TN-S؟',opts:['نظام محايد مشترك بدون موصل حماية','موصلا المحايد والحماية منفصلان من المحول إلى المنشأة','موصل PEN مشترك حتى صندوق التوزيع','شبكة معزولة مع مراقبة عطل الأرض'],e:'TN-S: موصلا المحايد (N) والحماية (PE) منفصلان في النظام بالكامل. أكثر أنواع TN أماناً لأن N و PE لا يختلطان أبداً.'}},
+  { c:0, topic:'Schutz',
     de:{q:'Welche Prüfung misst den Widerstand des Schutzleiters?',opts:['Schutzleiterwiderstandsmessung','Isolationswiderstandsmessung','Schleifenimpedanzmessung','FI-Auslöseprüfung'],e:'Die Schutzleiterwiderstandsmessung prüft den niederohmigen Durchgang des PE-Leiters von der Haupterdungsschiene bis zum Betriebsmittel.'},
-    en:{q:'Which test measures the resistance of the protective conductor?',opts:['Protective conductor resistance measurement','Insulation resistance measurement','Loop impedance measurement','RCD trip test'],e:'The protective conductor resistance test checks the low-resistance continuity of the PE conductor from the main earthing bar to the equipment.'}},
-  { c:2,
+    en:{q:'Which test measures the resistance of the protective conductor?',opts:['Protective conductor resistance measurement','Insulation resistance measurement','Loop impedance measurement','RCD trip test'],e:'The protective conductor resistance test checks the low-resistance continuity of the PE conductor from the main earthing bar to the equipment.'},
+    tr:{q:'Hangi test koruma iletkeninin direncini ölçer?',opts:['Koruma iletkeni direnç ölçümü','İzolasyon direnci ölçümü','Döngü empedansı ölçümü','Kaçak akım rölesi tetikleme testi'],e:'Koruma iletkeni direnç ölçümü, ana topraklama barasından elektrikli ekipmana kadar PE iletkeninin düşük dirençli sürekliliğini kontrol eder.'},
+    ru:{q:'Какое испытание измеряет сопротивление защитного проводника?',opts:['Измерение сопротивления защитного проводника','Измерение сопротивления изоляции','Измерение импеданса петли','Испытание срабатывания УЗО'],e:'Измерение сопротивления защитного проводника проверяет малоомную непрерывность PE-проводника от главной шины заземления до оборудования.'},
+    ar:{q:'أي اختبار يقيس مقاومة موصل الحماية؟',opts:['قياس مقاومة موصل الحماية','قياس مقاومة العزل','قياس ممانعة الحلقة','اختبار عمل قاطع التفاضل'],e:'يفحص قياس مقاومة موصل الحماية الاستمرارية ذات المقاومة المنخفضة لموصل PE من شينة التأريض الرئيسية إلى المعدة.'}},
+  { c:2, topic:'Schutz',
     de:{q:'Ab welchem Strom löst ein Leitungsschutzschalter Typ B unverzögert aus?',opts:['2-facher Nennstrom','3-facher Nennstrom','3–5-facher Nennstrom','10–20-facher Nennstrom'],e:'Typ B: 3–5 × I_N (magnetische Auslösung). Typ C: 5–10 × I_N. Typ D: 10–20 × I_N. B für ohmsche Lasten, C für Motoren.'},
     en:{q:'At what current does a Type B MCB trip instantaneously?',opts:['2× rated current','3× rated current','3–5× rated current','10–20× rated current'],e:'Type B: 3–5 × I_N (magnetic trip). Type C: 5–10 × I_N. Type D: 10–20 × I_N. B for resistive loads, C for motors.'}},
-  { c:1,
+  { c:1, topic:'Motoren',
     de:{q:'Was ist Schlupf bei einem Asynchronmotor?',opts:['Differenz zwischen Strom und Spannung','Differenz zwischen Synchron- und Läuferdrehzahl relativ zur Synchrondrehzahl','Verlust durch Wirbelströme','Phasenverschiebung zwischen U und I'],e:'s = (n_s - n) / n_s × 100%. Im Nennbetrieb ca. 2–8%. Kein Schlupf = kein Drehmoment. Schlupf = 100% → Motor steht.'},
     en:{q:'What is slip in an induction motor?',opts:['Difference between current and voltage','Difference between synchronous and rotor speed relative to synchronous speed','Loss due to eddy currents','Phase shift between U and I'],e:'s = (n_s - n) / n_s × 100%. At rated load approx. 2–8%. No slip = no torque. Slip = 100% → motor stalled.'}},
-  { c:2,
+  { c:2, topic:'Normen',
     de:{q:'Welcher Mindest-Isolationswiderstand gilt für Neuanlagen nach VDE 0100-600?',opts:['0,1 MΩ','0,5 MΩ','1 MΩ','10 MΩ'],e:'Neuanlagen: mind. 1 MΩ. Bestandsanlagen: mind. 0,5 MΩ. Messung mit 500 V DC zwischen Leitern und Erde.'},
     en:{q:'What is the minimum insulation resistance for new installations per VDE 0100-600?',opts:['0.1 MΩ','0.5 MΩ','1 MΩ','10 MΩ'],e:'New installations: min. 1 MΩ. Existing installations: min. 0.5 MΩ. Measured with 500 V DC between conductors and earth.'}},
-  { c:0,
+  { c:0, topic:'Elektrotechnik',
     de:{q:'Was ist Blindleistung?',opts:['Energie die zwischen Quelle und Last pendelt ohne Arbeit zu verrichten','Verlustleistung in Leitern','Reaktanz eines Kondensators','Leistung die als Wärme abgegeben wird'],e:'Q = S × sin φ, Einheit VAr. Blindleistung pendelt zwischen Generator und induktiven/kapazitiven Lasten — kostet Leitungskapazität, verrichtet keine Arbeit.'},
     en:{q:'What is reactive power?',opts:['Energy oscillating between source and load without doing work','Power dissipated as heat in conductors','Reactance of a capacitor','Power released as heat'],e:'Q = S × sin φ, unit VAr. Reactive power oscillates between generator and inductive/capacitive loads — occupies line capacity but does no work.'}},
-  { c:1,
+  { c:1, topic:'Elektrotechnik',
     de:{q:'Wie wird Blindleistung kompensiert?',opts:['Durch Drosselspulen parallel zur Last','Durch Kondensatoren parallel zur Last','Durch Widerstände in Reihe','Durch Transformatoren'],e:'Kondensatoren erzeugen kapazitive Blindleistung, die die induktive Blindleistung von Motoren kompensiert. Ziel: cos φ → 1.'},
     en:{q:'How is reactive power compensated?',opts:['By reactors connected in parallel to the load','By capacitors connected in parallel to the load','By resistors in series','By transformers'],e:'Capacitors generate capacitive reactive power that compensates the inductive reactive power of motors. Goal: cos φ → 1.'}},
-  { c:2,
+  { c:2, topic:'Normen',
     de:{q:'Was bedeutet SELV?',opts:['Sicherheits-Erdungs-Leitungs-Verbindung','Schutzerdung für Elektrische Leistungsverteiler','Safety Extra Low Voltage — Schutzkleinspannung ohne Erde','Selektive Erdung für Lastverteilung'],e:'SELV: Schutzkleinspannung (max. 50 V AC / 120 V DC), galvanisch von Netz getrennt, ohne Erdanschluss. Sicherster Bereich z.B. für Badezimmer-Rasiersteckdosen.'},
     en:{q:'What does SELV stand for?',opts:['Safety Earthing Line Voltage','Protective Earth for Electrical Load Distributors','Safety Extra Low Voltage — protective low voltage without earth connection','Selective Earthing for Load Distribution'],e:'SELV: Safety Extra Low Voltage (max. 50 V AC / 120 V DC), galvanically isolated from mains, no earth connection. Safest class, e.g. bathroom shaver sockets.'}},
-  { c:0,
+  { c:0, topic:'Elektrotechnik',
     de:{q:'Welches Messgerät misst Ströme ohne Leitungsunterbrechung?',opts:['Zangenamperemeter (Stromzange)','Multimeter','Isolationsmessgerät','Schleifenimpedanzmessgerät'],e:'Die Stromzange nutzt das Magnetfeld des stromdurchflossenen Leiters. Leiter wird von der Zange umfasst — kein Öffnen des Stromkreises nötig.'},
     en:{q:'Which instrument measures current without breaking the circuit?',opts:['Clamp meter (current clamp)','Multimeter','Insulation tester','Loop impedance tester'],e:'The clamp meter uses the magnetic field of the current-carrying conductor. The conductor is enclosed by the jaws — no need to open the circuit.'}},
-  { c:1,
+  { c:1, topic:'Normen',
     de:{q:'Was ist die maximale Spannungsabfall-Grenze in einer Hausinstallation?',opts:['1 %','3 %','5 %','10 %'],e:'Nach VDE 0100-520 max. 3 % vom Übergabepunkt bis zur Steckdose. Gesamtnetz (inkl. Anschlussleitung): max. 5 %.'},
     en:{q:'What is the maximum voltage drop limit in a domestic installation?',opts:['1 %','3 %','5 %','10 %'],e:'Per VDE 0100-520 max. 3 % from the metering point to the socket. Total network (incl. supply cable): max. 5 %.'}},
-  { c:2,
+  { c:2, topic:'Schutz',
     de:{q:'Bei welcher Prüfung wird die Wirksamkeit des Fehlerschutzes geprüft?',opts:['Sichtprüfung','Widerstandsmessung des Schutzleiters','Schleifenimpedanzmessung','Isolationswiderstandsmessung'],e:'Die Schleifenimpedanz-Messung (Z_S) bestimmt den Kurzschlussstrom im Fehlerfall: I_k = U_N / Z_S. Damit wird geprüft ob der Schutzschalter sicher auslöst.'},
     en:{q:'Which test verifies the effectiveness of fault protection?',opts:['Visual inspection','Protective conductor resistance measurement','Loop impedance measurement','Insulation resistance measurement'],e:'Loop impedance measurement (Z_S) determines the fault current: I_k = U_N / Z_S. This verifies that the protective device will trip safely.'}},
-  { c:0,
+  { c:0, topic:'Elektrotechnik',
     de:{q:'Wie lautet die Formel für die Leitungsquerschnittsberechnung (Kupfer)?',opts:['A = (2 × I × L) / (κ × ΔU)','A = (I × L) / (κ × ΔU)','A = (U × L) / (κ × I)','A = (P × L) / (κ × U²)'],e:'A = (2 × I × L) / (κ × ΔU). Faktor 2 für Hin- und Rückleiter. κ(Cu) = 56 m/(Ω·mm²), κ(Al) = 35 m/(Ω·mm²).'},
     en:{q:'What is the formula for cable cross-section calculation (copper)?',opts:['A = (2 × I × L) / (κ × ΔU)','A = (I × L) / (κ × ΔU)','A = (U × L) / (κ × I)','A = (P × L) / (κ × U²)'],e:'A = (2 × I × L) / (κ × ΔU). Factor 2 for outgoing and return conductor. κ(Cu) = 56 m/(Ω·mm²), κ(Al) = 35 m/(Ω·mm²).'}},
-  { c:1,
+  { c:1, topic:'SPS',
     de:{q:'Was ist der Unterschied zwischen Schütz und Relais?',opts:['Kein Unterschied — sind identisch','Schütze sind für größere Lasten und haben Lichtbogenlöschkammern','Relais schalten höhere Spannungen','Schütze haben keine Hilfskontakte'],e:'Schütze: für Hauptstromkreise (Motoren, große Lasten), Lichtbogenlöschung, viele Hilfskontakte. Relais: Hilfs-/Steuerstromkreise, kleinere Lasten.'},
     en:{q:'What is the difference between a contactor and a relay?',opts:['No difference — they are identical','Contactors are for larger loads and have arc-quenching chambers','Relays switch higher voltages','Contactors have no auxiliary contacts'],e:'Contactors: for main circuits (motors, large loads), arc extinction, many auxiliary contacts. Relays: auxiliary/control circuits, smaller loads.'}},
-  { c:2,
+  { c:2, topic:'Motoren',
     de:{q:'Wozu dient ein Motorschutzrelais?',opts:['Kurzschlussschutz des Motors','Überspannungsschutz','Thermischer Überlastschutz des Motors','Phasenausfall-Erkennung allein'],e:'Thermischer Überlastschutz: Bimetall-Elemente erwärmen sich proportional zum Strom. Bei Dauerstrom > Einstellwert → Auslösung nach Zeit. Einstellung: 0,8–1,25 × I_N.'},
     en:{q:'What is the purpose of a motor protection relay?',opts:['Short-circuit protection for the motor','Overvoltage protection','Thermal overload protection for the motor','Phase failure detection only'],e:'Thermal overload protection: bimetal elements heat up proportionally to current. If continuous current exceeds set value → trip after time delay. Setting: 0.8–1.25 × I_N.'}},
-  { c:0,
+  { c:0, topic:'Motoren',
     de:{q:'Was ist ein Wendeschütz?',opts:['Zwei verriegelte Schütze zur Drehrichtungsumkehr','Ein Schütz mit eingebautem Überlastrelais','Stern-Dreieck-Schütz für Sanftanlauf','Schütz mit elektronischer Steuerung'],e:'Zwei Schütze (K1 Rechtslauf, K2 Linkslauf) mit elektrischer und mechanischer Verriegelung. K1 und K2 dürfen nie gleichzeitig anziehen (Kurzschluss!).'},
     en:{q:'What is a reversing contactor?',opts:['Two interlocked contactors for reversing direction of rotation','A contactor with integrated overload relay','Star-delta contactor for soft starting','Contactor with electronic control'],e:'Two contactors (K1 forward, K2 reverse) with electrical and mechanical interlock. K1 and K2 must never energise simultaneously (short circuit!).'}},
-  { c:1,
+  { c:1, topic:'Schutz',
     de:{q:'Auf welchem Prinzip basiert der FI-Schutzschalter?',opts:['Spannungsmessung zwischen N und PE','Summenstromverfahren — Differenz von I_hin und I_rück','Widerstandsmessung des Schutzleiters','Bimetall-Auslösung bei Überstrom'],e:'Im Summenstromwandler heben sich I_hin und I_rück auf, wenn kein Fehlerstrom fließt. Fehlerströme (>30 mA) erzeugen ein Differenz-Magnetfeld → Auslösung.'},
     en:{q:'On what principle does an RCD (residual current device) operate?',opts:['Voltage measurement between N and PE','Summation current method — difference between outgoing and return current','Protective conductor resistance measurement','Bimetal trip on overcurrent'],e:'In the summation current transformer, outgoing and return currents cancel when no fault current flows. Fault currents (>30 mA) create a differential magnetic field → trip.'}},
-  { c:2,
+  { c:2, topic:'Elektrotechnik',
     de:{q:'Was ist cos φ (Leistungsfaktor)?',opts:['Verhältnis Wirkstrom zu Blindstrom','Effizienz eines Transformators','Verhältnis Wirkleistung zu Scheinleistung','Phasenwinkel zwischen Strom und Spannung'],e:'cos φ = P/S = Wirkleistung/Scheinleistung. cos φ = 1 → rein ohmscher Verbraucher. cos φ < 1 → induktive oder kapazitive Last.'},
     en:{q:'What is cos φ (power factor)?',opts:['Ratio of active current to reactive current','Efficiency of a transformer','Ratio of active power to apparent power','Phase angle between current and voltage'],e:'cos φ = P/S = active power / apparent power. cos φ = 1 → purely resistive load. cos φ < 1 → inductive or capacitive load.'}},
-  { c:3,
+  { c:3, topic:'Elektrotechnik',
     de:{q:'Welche Lichtausbeute haben moderne LED-Lampen?',opts:['20–40 lm/W','40–60 lm/W','60–80 lm/W','80–160 lm/W'],e:'Moderne LEDs erreichen 80–160 lm/W. Zum Vergleich: Glühlampe 10–15 lm/W, Leuchtstofflampe 50–100 lm/W.'},
     en:{q:'What luminous efficacy do modern LED lamps achieve?',opts:['20–40 lm/W','40–60 lm/W','60–80 lm/W','80–160 lm/W'],e:'Modern LEDs achieve 80–160 lm/W. For comparison: incandescent lamp 10–15 lm/W, fluorescent lamp 50–100 lm/W.'}},
-  { c:1,
+  { c:1, topic:'Normen',
     de:{q:'Wie oft müssen ortsfeste elektrische Anlagen nach DGUV V3 geprüft werden?',opts:['Jährlich','Alle 4 Jahre','Alle 6 Jahre','Alle 10 Jahre'],e:'Ortsfeste Anlagen nach DGUV V3: normalerweise alle 4 Jahre. Verlängerung auf 8 Jahre möglich. Ortsveränderliche Geräte je nach Nutzung: 6–24 Monate.'},
     en:{q:'How often must fixed electrical installations be tested per DGUV V3?',opts:['Annually','Every 4 years','Every 6 years','Every 10 years'],e:'Fixed installations per DGUV V3: normally every 4 years. Extension to 8 years possible. Portable appliances depending on use: 6–24 months.'}},
-  { c:0,
+  { c:0, topic:'Schutz',
     de:{q:'Was bedeutet IP2X bei Schutzarten?',opts:['Berührungsschutz gegen Finger (≥12 mm Durchmesser)','Vollständiger Staubschutz','Schutz gegen Fremdkörper >2 mm','Schutz gegen Tropfwasser'],e:'Erste Ziffer 2 = Schutz gegen feste Fremdkörper ≥12 mm (Finger). X bedeutet keine Anforderung an die zweite Ziffer (Wasserschutz).'},
     en:{q:'What does IP2X mean in protection ratings?',opts:['Finger protection (objects ≥12 mm diameter)','Complete dust protection','Protection against foreign objects >2 mm','Protection against dripping water'],e:'First digit 2 = protection against solid foreign objects ≥12 mm (fingers). X means no requirement for the second digit (water protection).'}},
-  { c:2,
+  { c:2, topic:'Normen',
     de:{q:'Was ist der Unterschied zwischen PELV und SELV?',opts:['PELV ist sicherer als SELV','Kein Unterschied in der Praxis','PELV ist geerdet, SELV ist nicht geerdet','PELV für Innenräume, SELV für Außenanlagen'],e:'SELV: Keine Verbindung zu Erde (floating). PELV: Functional Earth — eine Seite geerdet (z.B. für EMV). Beide max. 50 V AC / 120 V DC.'},
     en:{q:'What is the difference between PELV and SELV?',opts:['PELV is safer than SELV','No difference in practice','PELV is earthed, SELV is not earthed','PELV for indoors, SELV for outdoor installations'],e:'SELV: No earth connection (floating). PELV: Functional earth — one side earthed (e.g. for EMC). Both max. 50 V AC / 120 V DC.'}},
-  { c:1,
+  { c:1, topic:'Motoren',
     de:{q:'Welche Schaltung verwendet man für Stern-Dreieck-Anlauf?',opts:['Direkt einschalten und sofort auf Dreieck umschalten','Erst in Stern anlassen (reduzierter Strom), dann auf Dreieck umschalten','Erst in Dreieck anlassen, dann in Stern weiterfahren','Immer in Dreieck betreiben'],e:'Y-Start: Motor läuft mit U/√3 ≈ 58% der Nennspannung → Anlaufstrom auf 1/3 reduziert. Nach Hochlauf Umschaltung auf Δ-Betrieb mit Nennspannung.'},
     en:{q:'Which circuit is used for star-delta starting?',opts:['Switch on directly and immediately switch to delta','Start in star (reduced current), then switch to delta','Start in delta, then continue in star','Always run in delta'],e:'Y-Start: motor runs at U/√3 ≈ 58% of rated voltage → starting current reduced to 1/3. After run-up, switch to Δ operation at rated voltage.'}},
-  { c:0,
+  { c:0, topic:'Schutz',
     de:{q:'Was muss bei der Schutztrennung eingehalten werden?',opts:['Nur ein Verbraucher pro Trenntrafo, galvanische Trennung, max. 500 VA','Mehrere Verbraucher möglich, mind. 1 MΩ Isolation','FI-Schutzschalter zwingend erforderlich','Nur für Schutzklasse I Geräte'],e:'Schutztrennung nach VDE 0100-410: Trenntrafo 1:1, nur ein Verbraucher, galvanische Trennung, keine Verbindung zur Erde. Typisch: Rasiersteckdose im Bad.'},
     en:{q:'What requirements apply to protective separation?',opts:['Only one load per isolating transformer, galvanic isolation, max. 500 VA','Multiple loads possible, min. 1 MΩ insulation','RCD mandatory','Only for Class I equipment'],e:'Protective separation per VDE 0100-410: 1:1 isolating transformer, only one load, galvanic isolation, no earth connection. Typical: bathroom shaver socket.'}},
-  { c:1,
+  { c:1, topic:'Elektrotechnik',
     de:{q:'Welche Frequenz hat das europäische Stromnetz?',opts:['50 Hz ± 5 Hz','50 Hz ± 0,2 Hz','60 Hz','50 Hz ± 2 Hz'],e:'50 Hz ± 0,2 Hz (strenge Toleranz). Frequenzabweichungen zeigen Ungleichgewicht zwischen Erzeugung und Verbrauch an. USA/Kanada: 60 Hz.'},
     en:{q:'What is the frequency of the European power grid?',opts:['50 Hz ± 5 Hz','50 Hz ± 0.2 Hz','60 Hz','50 Hz ± 2 Hz'],e:'50 Hz ± 0.2 Hz (strict tolerance). Frequency deviations indicate imbalance between generation and consumption. USA/Canada: 60 Hz.'}},
-  { c:2,
+  { c:2, topic:'Elektrotechnik',
     de:{q:'Was ist Thermografie und wofür wird sie eingesetzt?',opts:['Messung der Leitungstemperatur','Wärmeschutzmaßnahme an Kabeln','Berührungslose Temperaturmessung zur Fehlerdiagnose (Hotspots)','Isolationsprüfung durch Wärmeeinwirkung'],e:'Infrarot-Thermografie erkennt Hotspots an Klemmen, Leitungen und Schaltgeräten berührungslos. Überhitzung → erhöhter Widerstand → Brandgefahr. Ideal für Präventivwartung.'},
     en:{q:'What is thermography and what is it used for?',opts:['Measuring conductor temperature','Heat protection measure for cables','Non-contact temperature measurement for fault diagnosis (hotspots)','Insulation testing through heat application'],e:'Infrared thermography detects hotspots at terminals, conductors and switchgear without contact. Overheating → increased resistance → fire risk. Ideal for preventive maintenance.'}},
-  { c:0,
+  { c:0, topic:'Elektrotechnik',
     de:{q:'Wie berechnet sich die Scheinleistung?',opts:['S = U × I [VA]','S = U × I × cos φ','S = U² / R','S = P + Q'],e:'S = U × I [VA]. Wirkleistung: P = S × cos φ [W]. Blindleistung: Q = S × sin φ [VAr]. Pythagoras: S² = P² + Q².'},
     en:{q:'How is apparent power calculated?',opts:['S = U × I [VA]','S = U × I × cos φ','S = U² / R','S = P + Q'],e:'S = U × I [VA]. Active power: P = S × cos φ [W]. Reactive power: Q = S × sin φ [VAr]. Pythagoras: S² = P² + Q².'}},
-  { c:1,
+  { c:1, topic:'Motoren',
     de:{q:'Was ist ein PTC-Thermistor im Motor?',opts:['Kondensator zur Anlaufhilfe','Temperaturfühler in der Motorwicklung, der bei Übertemperatur auslöst','Widerstand zur Strombegrenzung','Spannungsbegrenzer'],e:'PTC (Positive Temperature Coefficient): Widerstand steigt stark bei Übertemperatur. Eingebaut in Motorwicklung → Motorschutzrelais wertet aus → Schutz vor Wicklungsschaden.'},
     en:{q:'What is a PTC thermistor in a motor?',opts:['Capacitor for starting assistance','Temperature sensor in the motor winding that trips on overtemperature','Resistor for current limiting','Voltage limiter'],e:'PTC (Positive Temperature Coefficient): resistance increases sharply at overtemperature. Embedded in motor winding → motor protection relay evaluates → protects against winding damage.'}},
-  { c:2,
+  { c:2, topic:'Schutz',
     de:{q:'Was bedeutet Selektivität bei Schutzorganen?',opts:['Alle Schutzorgane lösen gleichzeitig aus','Nur der größte Schutzschalter löst aus','Das dem Fehler nächste Schutzorgan löst aus, übergeordnete bleiben ein','Schutzorgane reagieren nur auf Kurzschlüsse'],e:'Selektivität: Fehlerstrom löst nur das nächste vorgeordnete Schutzorgan aus. Erreicht durch gestaffelte Kennlinien → minimale Abschaltung.'},
     en:{q:'What is selectivity in protective devices?',opts:['All protective devices trip simultaneously','Only the largest circuit breaker trips','The protective device closest to the fault trips, upstream devices remain in','Protective devices only respond to short circuits'],e:'Selectivity: fault current only trips the nearest upstream protective device. Achieved through staggered tripping characteristics → minimum disconnection.'}},
-  { c:0,
+  { c:0, topic:'Schutz',
     de:{q:'Welche Schutzmaßnahme gilt als sicherste gegen elektrischen Schlag?',opts:['Schutzkleinspannung SELV/PELV','Schutzerdung','Fehlerstromschutzschalter','Schutzisolierung'],e:'SELV/PELV (max. 50 V AC): Selbst bei direktem Kontakt ist der Strom physiologisch unbedenklich. Alle anderen Maßnahmen können im Fehlerfall noch gefährliche Spannungen haben.'},
     en:{q:'Which protective measure is considered the safest against electric shock?',opts:['Safety extra-low voltage SELV/PELV','Protective earthing','Residual current device','Double insulation'],e:'SELV/PELV (max. 50 V AC): Even with direct contact, the current is physiologically harmless. All other measures can still have dangerous voltages in the event of a fault.'}}
 ];
 
 // ── Quiz Logic ──────────────────────────────────────────────
-var quizQ = [], quizIdx = 0, quizScore = 0;
+var quizQ = [], quizIdx = 0, quizScore = 0, quizResults = [];
 
 function shuffle(arr) {
   var a = arr.slice();
@@ -1443,10 +2273,18 @@ function shuffle(arr) {
   return a;
 }
 
+var quizTopic = 'all';
+function setQuizTopic(t){
+  quizTopic=t;
+  document.querySelectorAll('.quiz-filter-btn').forEach(function(b){b.classList.toggle('active',b.dataset.topic===t);});
+}
+
 function quizStart() {
-  quizQ = shuffle(QUIZ).slice(0, 20);
+  var pool = quizTopic==='all' ? QUIZ : QUIZ.filter(function(q){return q.topic===quizTopic;});
+  quizQ = shuffle(pool).slice(0, Math.min(20, pool.length));
   quizIdx = 0;
   quizScore = 0;
+  quizResults = [];
   document.getElementById('quiz-start').style.display = 'none';
   document.getElementById('quiz-end').style.display = 'none';
   document.getElementById('quiz-run').style.display = 'block';
@@ -1456,10 +2294,12 @@ function quizStart() {
 function showQuestion(idx) {
   var q = quizQ[idx];
   var l = currentLang || 'de';
+  if (!q[l]) l = 'de';
   var ql = q[l] || q['de'];
   document.getElementById('q-text').textContent = ql.q;
-  document.getElementById('q-counter').textContent = l === 'en' ? 'Question ' + (idx + 1) + ' / 20' : 'Frage ' + (idx + 1) + ' / 20';
-  document.getElementById('q-prog').style.width = ((idx / 20) * 100) + '%';
+  var counterLabels = {de:'Frage',en:'Question',tr:'Soru',ru:'Вопрос',ar:'سؤال'};
+  document.getElementById('q-counter').textContent = (counterLabels[l]||'Frage') + ' ' + (idx + 1) + ' / ' + quizQ.length;
+  document.getElementById('q-prog').style.width = ((idx / quizQ.length) * 100) + '%';
   document.getElementById('q-exp').style.display = 'none';
   document.getElementById('q-exp').textContent = '';
   document.getElementById('q-next').style.display = 'none';
@@ -1483,14 +2323,19 @@ function quizAnswer(chosenBtn, isCorrect, explanation, optsEl, shuffledOpts, cor
   var btns = optsEl.querySelectorAll('.quiz-opt');
   btns.forEach(function(b) { b.disabled = true; });
 
+  var currentTopic = quizQ[quizIdx] ? quizQ[quizIdx].topic : 'Sonstige';
+  quizResults.push({ topic: currentTopic, correct: isCorrect });
+
   if(isCorrect) {
     chosenBtn.classList.add('correct');
     quizScore++;
+    if(navigator.vibrate) navigator.vibrate(50);
   } else {
     chosenBtn.classList.add('wrong');
     btns.forEach(function(b, i) {
       if(shuffledOpts[i].orig === correctOrig) b.classList.add('correct');
     });
+    if(navigator.vibrate) navigator.vibrate([80,30,80]);
   }
 
   var expEl = document.getElementById('q-exp');
@@ -1501,7 +2346,7 @@ function quizAnswer(chosenBtn, isCorrect, explanation, optsEl, shuffledOpts, cor
 
 function quizNext() {
   quizIdx++;
-  if(quizIdx < 20) {
+  if(quizIdx < quizQ.length) {
     showQuestion(quizIdx);
   } else {
     quizEnd();
@@ -1512,26 +2357,77 @@ function quizEnd() {
   document.getElementById('quiz-run').style.display = 'none';
   document.getElementById('quiz-end').style.display = 'block';
   document.getElementById('end-score').textContent = quizScore;
-  document.getElementById('end-sub').textContent = 'von 20 Fragen richtig (' + Math.round(quizScore/20*100) + '%)';
+  var totalQ = quizQ.length;
+  document.getElementById('end-sub').textContent = 'von ' + totalQ + ' Fragen richtig (' + Math.round(quizScore/totalQ*100) + '%)';
 
   var prev = parseInt(localStorage.getItem('amp_quiz_hs') || '0');
   var isNew = quizScore > prev;
   if(isNew) localStorage.setItem('amp_quiz_hs', quizScore);
-  document.getElementById('end-hs').textContent = isNew ? '🏆 Neuer Highscore!' : ('Highscore: ' + prev + '/20');
+  document.getElementById('end-hs').textContent = isNew ? '🏆 Neuer Highscore!' : ('Highscore: ' + prev + '/' + totalQ);
+
+  // ── Per-topic tracking ──────────────────────────────────────
+  var topicMap = {};
+  quizResults.forEach(function(r) {
+    if (!topicMap[r.topic]) topicMap[r.topic] = {correct:0, total:0};
+    topicMap[r.topic].total++;
+    if (r.correct) topicMap[r.topic].correct++;
+  });
+
+  // Merge into cumulative localStorage data
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem('amp_topic_perf') || '{}'); } catch(e) {}
+  Object.keys(topicMap).forEach(function(t) {
+    if (!saved[t]) saved[t] = {correct:0, total:0};
+    saved[t].correct += topicMap[t].correct;
+    saved[t].total   += topicMap[t].total;
+  });
+  localStorage.setItem('amp_topic_perf', JSON.stringify(saved));
+
+  // ── Show topic breakdown in end screen ──────────────────────
+  var bdEl = document.getElementById('end-topic-breakdown');
+  if (bdEl && Object.keys(topicMap).length > 0) {
+    var topics = Object.keys(topicMap).sort(function(a,b){ return topicMap[a].correct/topicMap[a].total - topicMap[b].correct/topicMap[b].total; });
+    var html = '<div style="font-size:11px;color:var(--tx2);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:.4rem;">Themen-Auswertung</div>';
+    topics.forEach(function(t) {
+      var d = topicMap[t];
+      var pct = Math.round(d.correct / d.total * 100);
+      var color = pct >= 80 ? 'var(--ok)' : pct >= 50 ? 'var(--warn)' : 'var(--err)';
+      html += '<div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem;">' +
+        '<div style="flex:1;font-size:13px;color:var(--tx);">' + t + '</div>' +
+        '<div style="width:80px;height:6px;background:var(--bg3);border-radius:99px;overflow:hidden;">' +
+          '<div style="width:' + pct + '%;height:100%;background:' + color + ';border-radius:99px;transition:width .4s;"></div>' +
+        '</div>' +
+        '<div style="font-size:12px;font-weight:600;color:' + color + ';min-width:32px;text-align:right;">' + d.correct + '/' + d.total + '</div>' +
+      '</div>';
+    });
+    bdEl.innerHTML = html;
+  }
+
+  if(Math.round(quizScore/totalQ*100) >= 70) launchConfetti();
 
   updateDashStats();
+  checkStreakMilestone('amp_streak');
 }
 
 // ── Daily Question ──────────────────────────────────────────
 var DQ_IDX = Math.floor(Math.random() * QUIZ.length);
 var dqRevealed = false;
 
-document.getElementById('dq-q').textContent = QUIZ[DQ_IDX][currentLang||'de'].q;
+function dqInit() {
+  var l = currentLang || 'de';
+  if (!QUIZ[DQ_IDX][l]) l = 'de';
+  document.getElementById('dq-q').textContent = QUIZ[DQ_IDX][l].q;
+  dqRevealed = false;
+  document.getElementById('dq-answer').style.display = 'none';
+  document.getElementById('dq-toggle').style.display = '';
+}
+dqInit();
 
 function dqReveal() {
   if(dqRevealed) return;
   dqRevealed = true;
   var l = currentLang || 'de';
+  if (!QUIZ[DQ_IDX][l]) l = 'de';
   document.getElementById('dq-answer').textContent = QUIZ[DQ_IDX][l].opts[QUIZ[DQ_IDX].c] + ' — ' + QUIZ[DQ_IDX][l].e;
   document.getElementById('dq-answer').style.display = 'block';
   document.getElementById('dq-toggle').style.display = 'none';
@@ -1649,28 +2545,33 @@ function apUpdateProgress(type) {
   updateDashStats();
   apLoad('ap1');
   apLoad('ap2');
+  simLoad();
 })();
 
 // ── Language Toggle ──────────────────────────────────────────
-(function initLang() {
-  if (currentLang === 'en') {
-    document.documentElement.classList.add('lang-en');
-    document.documentElement.classList.remove('lang-de');
-    var btn = document.getElementById('lang-btn');
-    if (btn) btn.textContent = 'DE';
-  } else {
-    document.documentElement.classList.add('lang-de');
-    document.documentElement.classList.remove('lang-en');
-  }
-})();
-function toggleLang() {
-  currentLang = currentLang === 'de' ? 'en' : 'de';
-  localStorage.setItem('arc_lang', currentLang);
-  document.documentElement.classList.toggle('lang-en', currentLang === 'en');
-  document.documentElement.classList.toggle('lang-de', currentLang === 'de');
+function applyLang(lang) {
+  currentLang = lang;
+  LANGS.forEach(function(l){ document.documentElement.classList.remove('lang-'+l); });
+  document.documentElement.classList.add('lang-'+lang);
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.documentElement.lang = lang;
   var btn = document.getElementById('lang-btn');
-  if (btn) btn.textContent = currentLang === 'de' ? 'EN' : 'DE';
+  if (btn) btn.textContent = '🌐';
+  LANGS.forEach(function(l){
+    var el = document.getElementById('lo-'+l);
+    if (el) el.classList.toggle('active', l === lang);
+  });
+  localStorage.setItem('arc_lang', lang);
+  // Re-render quiz question in new lang
+  if (typeof dqInit === 'function') dqInit();
+  // Re-render SR if active
+  if (typeof ampSRRender === 'function') ampSRRender();
 }
+function setLang(lang) { applyLang(lang); closeLangModal(); }
+function toggleLang() { openLangModal(); }
+function openLangModal() { document.getElementById('lang-modal').classList.add('on'); document.getElementById('lang-modal-overlay').classList.add('on'); }
+function closeLangModal() { document.getElementById('lang-modal').classList.remove('on'); document.getElementById('lang-modal-overlay').classList.remove('on'); }
+applyLang(currentLang);
 
 // ── Calculators ─────────────────────────────────────────────
 
@@ -1810,13 +2711,161 @@ function calcWirkungsgrad() {
     '<div class="calc-result-val" style="margin-top:.5rem">' + fmtNum(pverlust) + '<span class="calc-result-unit">W</span></div><div class="calc-result-label">P_v = Verlustleistung</div>'
   );
 }
+
+// ── AP1-SIMULATION ──────────────────────────────────────────
+var SIM_QUESTIONS = [
+  {q:"Welcher Strom fließt durch einen 470-Ω-Widerstand bei 230 V?",opts:["0,49 A","0,89 A","2,1 A","4,9 A"],ans:0,exp:"I = U/R = 230/470 ≈ 0,49 A (Ohmsches Gesetz)"},
+  {q:"Was beschreiben die Kirchhoffschen Gesetze?",opts:["Spannungsfall und Wärmeverlust","Knotenregel (Ströme) und Maschenregel (Spannungen)","Induktionsgesetz und Lorentzkraft","Leistungs- und Energiebilanz"],ans:1,exp:"1. Kirchhoff (Knotenregel): Σ I = 0 am Knoten. 2. Kirchhoff (Maschenregel): Σ U = 0 in der Masche."},
+  {q:"Wie lautet der IP-Code IP54? Was bedeutet die 5 und die 4?",opts:["5 = staubgeschützt, 4 = spritzwassergeschützt","5 = vollständiger Staubschutz, 4 = tauchfest","5 = berührungsgeschützt, 4 = spritzwassergeschützt","5 = staubdicht, 4 = druckwasserbeständig"],ans:0,exp:"Erste Ziffer: Fremdkörperschutz (5 = Staubgeschützt). Zweite Ziffer: Wasserschutz (4 = Spritzwasser aus jeder Richtung)."},
+  {q:"Welche Schutzklasse benötigt kein Schutzleiterkabel?",opts:["Schutzklasse I","Schutzklasse II","Schutzklasse III","Schutzklasse IV"],ans:1,exp:"Schutzklasse II: Schutzisolierung, doppelte oder verstärkte Isolierung, kein PE-Anschluss nötig. Schutzkl. I = PE erforderlich, III = Schutzkleinspannung."},
+  {q:"Ab welchem Auslösestrom löst ein Standard-FI-Schutzschalter aus?",opts:["10 mA","30 mA","100 mA","300 mA"],ans:1,exp:"Standard-FI für Personenschutz: 30 mA. Selektiv-FI (vorgelagert): 300 mA. 10 mA für besonders gefährdete Bereiche."},
+  {q:"Welches Auslöseverhalten hat ein Leitungsschutzschalter Typ C?",opts:["Auslösung bei 2-5-fachem Nennstrom","Auslösung bei 5-10-fachem Nennstrom","Auslösung bei 10-20-fachem Nennstrom","Auslösung nur bei Dauerstrom"],ans:1,exp:"Typ B: 3-5× I_N (Wohnbau), Typ C: 5-10× I_N (Industrie, Motoren), Typ D: 10-20× I_N (hohe Einschaltströme)."},
+  {q:"Was kennzeichnet das TN-C-S Netzsystem?",opts:["Kein Schutzleiter vorhanden","PEN-Leiter bis Hausanschluss, danach getrennt in N und PE","Nur ein Neutralleiter, kein PE","Alle Betriebsmittel sind von Erde isoliert"],ans:1,exp:"TN-C: PEN bis Hauseinführung. TN-C-S: Ab Hausanschluss Auftrennung in N und PE. Standard in deutschen Hausinstallationen."},
+  {q:"Welche ist NICHT in den 5 Sicherheitsregeln nach VDE 0105?",opts:["Freischalten","Gegen Wiedereinschalten sichern","Kurzschließen und Erden","Auf Betriebstemperatur prüfen"],ans:3,exp:"5 Sicherheitsregeln: 1. Freischalten, 2. Gegen Wiedereinschalten sichern, 3. Spannungsfreiheit feststellen, 4. Erden und Kurzschließen, 5. Benachbarte spannungsführende Teile abdecken."},
+  {q:"Welche Prüfung wird nach VDE 0100-600 NICHT standardmäßig durchgeführt?",opts:["Isolationswiderstandsmessung","Schleifenimpedanzmessung","Megger-Test mit 10 kV","FI-Prüfung"],ans:2,exp:"Standard-Prüfungen nach VDE 0100-600: Sichtprüfung, Isolationswiderstand (500 V), Schutzleiterprüfung, Schleifenimpedanz, FI-Auslösezeit. 10 kV ist keine Standardprüfung."},
+  {q:"Was ist der Unterschied zwischen Steuerstromkreis und Hauptstromkreis?",opts:["Kein Unterschied, beide führen Nennstrom","Steuerstromkreis = Niederspannung für Steuerung; Hauptstromkreis = Leistungsstromkreis","Steuerstromkreis ist immer AC, Hauptstromkreis immer DC","Steuerstromkreis hat keine Sicherungen"],ans:1,exp:"Hauptstromkreis: Leistung zum Verbraucher (z.B. Motor). Steuerstromkreis: Schaltet Schütze, Relais (24V DC oder 230V AC), niedriger Strom."},
+  {q:"Warum wird bei einer Schützschaltung Selbsthaltung eingesetzt?",opts:["Um den Schütz vor Überstrom zu schützen","Damit der Schütz angezogen bleibt wenn der Taster losgelassen wird","Um den Motoranlaufstrom zu begrenzen","Zur galvanischen Trennung"],ans:1,exp:"Selbsthaltung: Hilfskontakt des Schützes parallel zum Einschalttaster. Schütz hält sich selbst angezogen. Öffnertaster im Steuerstromkreis zum Abschalten."},
+  {q:"Wie groß ist der Effektivwert der Netzspannung in Deutschland?",opts:["230 V","325 V","163 V","400 V"],ans:0,exp:"U_eff = 230 V (Netzspannung DE). Spitzenwert: U_peak = 230 × √2 ≈ 325 V. 400 V ist die Verkettungsspannung (Drehstrom L-L)."},
+  {q:"Was bedeutet cos φ = 0,8 in einem Drehstromkreis?",opts:["80% der Scheinleistung ist Wirkleistung","20% der Scheinleistung ist Wirkleistung","Der Strom eilt der Spannung um 80° vor","Keine Reaktanz im Kreis"],ans:0,exp:"cos φ = Wirkleistung / Scheinleistung. cos φ = 0,8 → P = 0,8 × S. Phasenwinkel φ = 36,87°. Schlechter Leistungsfaktor = höhere Blindleistung."},
+  {q:"Wie hoch ist der Anlaufstrom eines Motors beim Stern-Dreieck-Anlauf verglichen mit Direktanlauf?",opts:["Gleich hoch","1/√3 (ca. 58%)","1/3 (ca. 33%)","3-fach höher"],ans:2,exp:"Stern-Dreieck: Anlaufstrom = 1/3 × Direktanlaufstrom. Anlaufmoment ebenfalls 1/3. Strom springt beim Umschalten Stern→Dreieck."},
+  {q:"Welche Formel beschreibt die Drehzahl des Drehfeldes n₀?",opts:["n₀ = f × p","n₀ = f / p","n₀ = (60 × f) / p","n₀ = p / (60 × f)"],ans:2,exp:"n₀ = (60 × f) / p. Beispiel: f=50 Hz, p=2 (Polpaarzahl) → n₀ = (60×50)/2 = 1500 U/min."},
+  {q:"Ein Transformator hat 400 Primär- und 80 Sekundärwindungen. Sekundärspannung bei 230 V primär?",opts:["46 V","1150 V","18,4 V","230 V"],ans:0,exp:"ü = N1/N2 = 400/80 = 5. U2 = U1/ü = 230/5 = 46 V. Übersetzungsverhältnis gilt auch für Ströme umgekehrt."},
+  {q:"Was ist die DGUV Vorschrift 3 und welche Prüffristen gelten für ortsfeste Anlagen?",opts:["Brandschutzvorschrift, alle 5 Jahre","Unfallverhütungsvorschrift für elektrische Anlagen, alle 4 Jahre","Arbeitsstättenverordnung, jährlich","VDE-Norm für Hausinstallation, alle 10 Jahre"],ans:1,exp:"DGUV V3 (früher BGV A3): Elektrische Anlagen und Betriebsmittel. Ortsfeste Anlagen: Wiederkehrende Prüfung alle 4 Jahre. Ortsveränderliche Geräte: jährlich (rauhere Bedingungen: kürzer)."},
+  {q:"Was ist der Unterschied zwischen SELV und PELV?",opts:["Kein Unterschied, beide bedeuten Schutzkleinspannung","SELV = nicht geerdet, berührungssicher; PELV = geerdet","SELV = 12 V max; PELV = 24 V max","SELV ist für AC, PELV für DC"],ans:1,exp:"SELV (Safety Extra-Low Voltage): keine Erdung, vollständige galvanische Trennung, berührungssicher (z.B. Badezimmer). PELV: geerdet, ebenfalls Schutzkleinspannung ≤50V AC / ≤120V DC."},
+  {q:"Welche Kabelquerschnitt-Formel gilt für die thermische Auslegung?",opts:["A = (I × L) / (γ × ΔU)","A = P / (U × cos φ)","A = I / J (Stromdichte)","A = √(P × t / (c × ρ × ΔT))"],ans:2,exp:"Thermische Auslegung: A = I / J. Zulässige Stromdichte J (A/mm²) aus Tabellen (NYM, NYY etc.). Spannungsfall: A = (2 × I × L) / (γ × ΔU_zul)."},
+  {q:"Welche Spannung liegt an der Außenleiter-zu-Außenleiter-Verbindung im Drehstromnetz?",opts:["230 V","400 V","660 V","115 V"],ans:1,exp:"Verkettungsspannung (L-L): 400 V. Strangspannung (L-N): 230 V. Verhältnis: U_L-L = √3 × U_L-N = 1,732 × 230 ≈ 400 V."}
+];
+
+var simState = {
+  idx: 0,
+  correct: 0,
+  wrong: 0,
+  answered: false,
+  questions: [],
+  timer: null,
+  seconds: 90*60
+};
+
+function simLoad() {
+  var stored = localStorage.getItem('amp_sim_hs');
+  var el = document.getElementById('sim-hs-badge');
+  if (el && stored) {
+    var hs; try { hs = JSON.parse(stored); } catch(e) { hs = null; }
+    el.textContent = '🏆 Bestleistung: ' + hs.score + '/20 (' + hs.pct + '%) — ' + hs.date;
+  }
+}
+
+function simStart() {
+  simState.idx = 0;
+  simState.correct = 0;
+  simState.wrong = 0;
+  simState.seconds = 90*60;
+  simState.questions = SIM_QUESTIONS.slice().sort(function(){return Math.random()-.5;});
+  document.getElementById('sim-start').style.display = 'none';
+  document.getElementById('sim-end').style.display = 'none';
+  document.getElementById('sim-quiz').style.display = 'block';
+  simRenderQ();
+  simStartTimer();
+}
+
+function simStartTimer() {
+  if (simState.timer) clearInterval(simState.timer);
+  simState.timer = setInterval(function(){
+    simState.seconds--;
+    var m = Math.floor(simState.seconds/60);
+    var s = simState.seconds % 60;
+    var el = document.getElementById('sim-timer');
+    if(el) el.textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+    if(el) el.style.color = simState.seconds < 300 ? 'var(--err)' : simState.seconds < 600 ? 'var(--warn)' : 'var(--ok)';
+    if(simState.seconds <= 0) { clearInterval(simState.timer); simEnd(); }
+  }, 1000);
+}
+
+function simRenderQ() {
+  var q = simState.questions[simState.idx];
+  document.getElementById('sim-counter').textContent = 'Frage ' + (simState.idx+1) + ' / 20';
+  document.getElementById('sim-progress').style.width = ((simState.idx/20)*100) + '%';
+  document.getElementById('sim-question').textContent = q.q;
+  document.getElementById('sim-explanation').style.display = 'none';
+  document.getElementById('sim-next-btn').style.display = 'none';
+  simState.answered = false;
+  var opts = document.getElementById('sim-opts');
+  opts.innerHTML = '';
+  q.opts.forEach(function(opt, i){
+    var btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = opt;
+    btn.onclick = function(){ simAnswer(i); };
+    opts.appendChild(btn);
+  });
+}
+
+function simAnswer(i) {
+  if(simState.answered) return;
+  simState.answered = true;
+  var q = simState.questions[simState.idx];
+  var btns = document.querySelectorAll('#sim-opts .quiz-opt');
+  btns.forEach(function(b){ b.disabled = true; });
+  if(i === q.ans) {
+    btns[i].classList.add('correct');
+    simState.correct++;
+  } else {
+    btns[i].classList.add('wrong');
+    btns[q.ans].classList.add('correct');
+    simState.wrong++;
+  }
+  var exp = document.getElementById('sim-explanation');
+  exp.textContent = q.exp;
+  exp.style.display = 'block';
+  document.getElementById('sim-next-btn').style.display = 'block';
+}
+
+function simNext() {
+  simState.idx++;
+  if(simState.idx >= 20) { simEnd(); return; }
+  simRenderQ();
+}
+
+function simEnd() {
+  if(simState.timer) clearInterval(simState.timer);
+  document.getElementById('sim-quiz').style.display = 'none';
+  document.getElementById('sim-end').style.display = 'block';
+  var pct = Math.round((simState.correct/20)*100);
+  var grade = pct >= 92 ? '1' : pct >= 81 ? '2' : pct >= 67 ? '3' : pct >= 50 ? '4' : pct >= 30 ? '5' : '6';
+  document.getElementById('sim-score-big').textContent = simState.correct + '/20';
+  document.getElementById('sim-score-sub').textContent = pct + '% · Note ' + grade + ' (Richtig: '+simState.correct+', Falsch: '+simState.wrong+')';
+  // Highscore
+  var stored = localStorage.getItem('amp_sim_hs');
+  var prev = stored ? JSON.parse(stored) : null;
+  var isNew = !prev || simState.correct > prev.correct;
+  if(isNew) {
+    var d = new Date().toLocaleDateString('de-DE');
+    localStorage.setItem('amp_sim_hs', JSON.stringify({score:simState.correct, pct:pct, date:d, correct:simState.correct}));
+    document.getElementById('sim-end-hs').textContent = '🏆 Neuer Highscore!';
+  } else {
+    document.getElementById('sim-end-hs').textContent = 'Highscore: '+prev.score+'/20';
+  }
+}
+
+function simRestart() {
+  document.getElementById('sim-end').style.display = 'none';
+  simStart();
+}
+
+function simBack() {
+  if(simState.timer) clearInterval(simState.timer);
+  document.getElementById('sim-quiz').style.display = 'none';
+  document.getElementById('sim-end').style.display = 'none';
+  document.getElementById('sim-start').style.display = 'block';
+  simLoad();
+}
 </script>
 
 <!-- PWA Service Worker -->
 <script>
 if(!location.hostname.includes('localhost') && !location.hostname.includes('127.0.0.1')) {
   if('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('pwa/sw.js', {scope: '/'}).catch(function(){});
+    navigator.serviceWorker.register('/pwa/sw.js', {scope: '/'}).catch(function(){});
   }
 }
 </script>
@@ -1833,6 +2882,607 @@ if(!location.hostname.includes('localhost') && !location.hostname.includes('127.
     body: JSON.stringify({page: p, lang: l})
   }).catch(function(){});
 })();
+</script>
+<script>
+// ══════════════════════════════════════════════════════
+// SPACED REPETITION — AMPERE (Elektroniker Betriebstechnik)
+// SM-2 Algorithm · localStorage: amp_sr_data
+// ══════════════════════════════════════════════════════
+var AMP_SR_CARDS = [
+  {id:'a01',tag:'Formel',q:'Ohmsches Gesetz: Spannung berechnen',a:'U = I × R',
+    qt:{tr:'Ohm Yasası: Gerilim hesaplama',ru:'Закон Ома: вычисление напряжения',ar:'قانون أوم: حساب الجهد'},
+    at:{tr:'U = I × R',ru:'U = I × R',ar:'U = I × R'}},
+  {id:'a02',tag:'Formel',q:'Elektrische Leistung (Gleichstrom)',a:'P = U × I = I² × R = U² / R',
+    qt:{tr:'Elektrik gücü (doğru akım)',ru:'Электрическая мощность (постоянный ток)',ar:'القدرة الكهربائية (تيار مستمر)'},
+    at:{tr:'P = U × I = I² × R = U² / R',ru:'P = U × I = I² × R = U² / R',ar:'P = U × I = I² × R = U² / R'}},
+  {id:'a03',tag:'Formel',q:'Scheinleistung Drehstrom',a:'S = √3 × U_str × I_str',
+    qt:{tr:'Üç fazlı görünür güç',ru:'Полная мощность трёхфазного тока',ar:'القدرة الظاهرة ثلاثية الأوجه'},
+    at:{tr:'S = √3 × U_str × I_str',ru:'S = √3 × U_str × I_str',ar:'S = √3 × U_str × I_str'}},
+  {id:'a04',tag:'Formel',q:'Wirkleistung Drehstrom',a:'P = √3 × U_str × I_str × cos φ',
+    qt:{tr:'Üç fazlı aktif güç',ru:'Активная мощность трёхфазного тока',ar:'القدرة الفعلية ثلاثية الأوجه'},
+    at:{tr:'P = √3 × U_str × I_str × cos φ',ru:'P = √3 × U_str × I_str × cos φ',ar:'P = √3 × U_str × I_str × cos φ'}},
+  {id:'a05',tag:'Formel',q:'Leistungsfaktor (cos φ)',a:'cos φ = P / S',
+    qt:{tr:'Güç faktörü (cos φ)',ru:'Коэффициент мощности (cos φ)',ar:'معامل القدرة (cos φ)'},
+    at:{tr:'cos φ = P / S',ru:'cos φ = P / S',ar:'cos φ = P / S'}},
+  {id:'a06',tag:'Formel',q:'Impedanz Reihenschaltung R-L',a:'Z = √(R² + X_L²)',
+    qt:{tr:'R-L seri devre empedansı',ru:'Импеданс последовательной цепи R-L',ar:'ممانعة دائرة R-L التسلسلية'},
+    at:{tr:'Z = √(R² + X_L²)',ru:'Z = √(R² + X_L²)',ar:'Z = √(R² + X_L²)'}},
+  {id:'a07',tag:'Formel',q:'Induktiver Blindwiderstand',a:'X_L = 2π × f × L',
+    qt:{tr:'İndüktif reaktans',ru:'Индуктивное сопротивление',ar:'المفاعلة الحثية'},
+    at:{tr:'X_L = 2π × f × L',ru:'X_L = 2π × f × L',ar:'X_L = 2π × f × L'}},
+  {id:'a08',tag:'Formel',q:'Kapazitiver Blindwiderstand',a:'X_C = 1 / (2π × f × C)',
+    qt:{tr:'Kapasitif reaktans',ru:'Ёмкостное сопротивление',ar:'المفاعلة السعوية'},
+    at:{tr:'X_C = 1 / (2π × f × C)',ru:'X_C = 1 / (2π × f × C)',ar:'X_C = 1 / (2π × f × C)'}},
+  {id:'a09',tag:'Formel',q:'Transformatorübersetzungsverhältnis',a:'ü = U₁/U₂ = N₁/N₂ = I₂/I₁',
+    qt:{tr:'Transformatör dönüşüm oranı',ru:'Коэффициент трансформации',ar:'نسبة تحويل المحول'},
+    at:{tr:'ü = U₁/U₂ = N₁/N₂ = I₂/I₁',ru:'ü = U₁/U₂ = N₁/N₂ = I₂/I₁',ar:'ü = U₁/U₂ = N₁/N₂ = I₂/I₁'}},
+  {id:'a10',tag:'Formel',q:'Elektrische Energie',a:'W = P × t (in Wh oder kWh)',
+    qt:{tr:'Elektrik enerjisi',ru:'Электрическая энергия',ar:'الطاقة الكهربائية'},
+    at:{tr:'W = P × t (Wh veya kWh cinsinden)',ru:'W = P × t (в Вт·ч или кВт·ч)',ar:'W = P × t (بالواط ساعة أو كيلوواط ساعة)'}},
+  {id:'a11',tag:'Formel',q:'Kabelwiderstand (Länge & Querschnitt)',a:'R = ρ × l / A (ρ = spez. Widerstand)',
+    qt:{tr:'Kablo direnci (uzunluk ve kesit)',ru:'Сопротивление кабеля (длина и сечение)',ar:'مقاومة الكابل (الطول والمقطع)'},
+    at:{tr:'R = ρ × l / A (ρ = özgül direnç)',ru:'R = ρ × l / A (ρ = удельное сопротивление)',ar:'R = ρ × l / A (ρ = المقاومة النوعية)'}},
+  {id:'a12',tag:'Formel',q:'Strangspannung Drehstrom (Y-Schaltung)',a:'U_str = U_verk / √3 ≈ 230 V bei 400 V',
+    qt:{tr:'Yıldız bağlantısında faz gerilimi',ru:'Фазное напряжение при соединении звездой',ar:'جهد الطور في التوصيل على شكل نجمة'},
+    at:{tr:'U_str = U_verk / √3 ≈ 230 V (400 V\'da)',ru:'U_str = U_verk / √3 ≈ 230 В при 400 В',ar:'U_str = U_verk / √3 ≈ 230 V عند 400 V'}},
+  {id:'a13',tag:'Schutz',q:'Was ist ein RCD (FI-Schutzschalter)?',a:'Fehlerstrom-Schutzschalter: löst bei Differenzstrom ≥ 30 mA aus zum Schutz vor Berührungsspannung',
+    qt:{tr:'RCD (kaçak akım koruyucu) nedir?',ru:'Что такое УЗО (RCD)?',ar:'ما هو قاطع التفاضل (RCD)؟'},
+    at:{tr:'30 mA\'dan itibaren devreyi keser, dokunma geriliminden korur',ru:'Срабатывает при дифференциальном токе ≥ 30 мА для защиты от поражения током',ar:'يقطع الدائرة عند تيار ≥ 30 مللي أمبير للحماية من صدمة اللمس'}},
+  {id:'a14',tag:'Schutz',q:'Schutzklasse I: Merkmal?',a:'Schutzleiter (PE) vorhanden — leitende Gehäuseteile mit PE verbunden',
+    qt:{tr:'Koruma sınıfı I: özelliği?',ru:'Класс защиты I: признак?',ar:'درجة الحماية I: الميزة؟'},
+    at:{tr:'Topraklama iletkeni (PE) mevcut — iletken muhafaza parçaları PE\'ye bağlı',ru:'Наличие защитного проводника (PE) — проводящие части корпуса соединены с PE',ar:'موصل الحماية (PE) موجود — الأجزاء الموصلة للغلاف متصلة بـ PE'}},
+  {id:'a15',tag:'Schutz',q:'Schutzklasse II: Merkmal?',a:'Schutzisolierung (doppelt/verstärkt), KEIN Schutzleiter erforderlich',
+    qt:{tr:'Koruma sınıfı II: özelliği?',ru:'Класс защиты II: признак?',ar:'درجة الحماية II: الميزة؟'},
+    at:{tr:'Çift/güçlendirilmiş yalıtım, topraklama iletkeni GEREKMİYOR',ru:'Двойная/усиленная изоляция, защитный проводник НЕ требуется',ar:'عزل مضاعف/معزز، موصل الحماية غير مطلوب'}},
+  {id:'a16',tag:'Schutz',q:'IP20 bedeutet?',a:'Schutz gegen Berührung mit Finger (2) und kein Schutz gegen Wasser (0)'},
+  {id:'a17',tag:'Schutz',q:'IP65 bedeutet?',a:'Staubdicht (6) und Schutz gegen Strahlwasser aus jeder Richtung (5)'},
+  {id:'a18',tag:'Schutz',q:'Welcher Strom ist für den Menschen lebensgefährlich?',a:'Ab ca. 10–50 mA Wechselstrom durch den Körper (Herzkammerflimmern ab ~80 mA)'},
+  {id:'a19',tag:'Norm',q:'Was regelt die VDE 0100?',a:'Errichten von Niederspannungsanlagen bis 1000 V AC / 1500 V DC'},
+  {id:'a20',tag:'Norm',q:'Was ist die DGUV Vorschrift 3?',a:'BGV A3: Prüfvorschrift für elektrische Anlagen und Betriebsmittel durch Elektrofachkraft'},
+  {id:'a21',tag:'Norm',q:'Prüfintervall ortsfeste Anlagen (DGUV V3)?',a:'Alle 4 Jahre (bei Baustellen alle 6 Monate)'},
+  {id:'a22',tag:'Norm',q:'Was bedeutet CE-Kennzeichnung?',a:'Hersteller erklärt Konformität mit EU-Richtlinien (kein Prüfsiegel, Eigenerklärung)'},
+  {id:'a23',tag:'Begriff',q:'Was ist Blindleistung (Q)?',a:'Leistung, die zwischen Quelle und Verbraucher pendelt (kein Energieverbrauch). Einheit: var'},
+  {id:'a24',tag:'Begriff',q:'Was ist Wirklastgang?',a:'Zeitverlauf der tatsächlich verbrauchten Wirkleistung — Basis für Energieabrechnung'},
+  {id:'a25',tag:'Begriff',q:'Was ist ein Frequenzumrichter (FU)?',a:'Gerät zur stufenlosen Drehzahlregelung von Asynchronmotoren (f und U werden variiert)'},
+  {id:'a26',tag:'Begriff',q:'Nennspannung Drehstromnetz Deutschland',a:'400 V verkettete Spannung (früher 380 V), 50 Hz'},
+  {id:'a27',tag:'Begriff',q:'Was ist Resonanz im RLC-Kreis?',a:'X_L = X_C → Z = R (Minimum), cos φ = 1, Strom maximal'},
+  {id:'a28',tag:'Begriff',q:'Skin-Effekt bei Hochfrequenz?',a:'Strom fließt nur an Oberfläche des Leiters → effektiver Widerstand steigt'},
+  {id:'a29',tag:'Motor',q:'Synchrondrehzahl Asynchronmotor?',a:'n_s = (f × 60) / p (p = Polpaarzahl). Bei f=50Hz, p=2: n_s=1500 U/min'},
+  {id:'a30',tag:'Motor',q:'Was ist der Schlupf beim Asynchronmotor?',a:'s = (n_s - n) / n_s. Typisch 2–8 % im Nennbetrieb'},
+  {id:'a31',tag:'Motor',q:'Stern-Dreieck-Anlauf: Vorteil?',a:'Anlaufstrom auf 1/3 reduziert gegenüber Direktanlauf (Anlaufmoment ebenfalls 1/3)'},
+  {id:'a32',tag:'Motor',q:'Motorschutzrelais: Funktion?',a:'Thermischer Überlastschutz: löst bei Überstrom aus, schützt Motorwicklung vor Überhitzung'},
+  {id:'a33',tag:'SPS',q:'Was ist ein digitaler Eingang (DI)?',a:'Binäres Signal: 0 oder 1 (z.B. Taster, Endschalter). Spannung: 24V DC oder 230V AC'},
+  {id:'a34',tag:'SPS',q:'Was macht ein analoger Ausgang (AO)?',a:'Gibt stufenloses Signal aus (z.B. 0–10V oder 4–20mA) für Ventile, FU etc.'},
+  {id:'a35',tag:'SPS',q:'Unterschied NÖFFNER / NSCHLIESSEN?',a:'NO (Normally Open) = offen im Ruhezustand; NC (Normally Closed) = geschlossen im Ruhezustand'},
+  {id:'a36',tag:'Formel',q:'Widerstand Parallelschaltung (2 Widerstände)',a:'R_ges = (R₁ × R₂) / (R₁ + R₂)'},
+  {id:'a37',tag:'Formel',q:'Kondensator in Reihenschaltung',a:'1/C_ges = 1/C₁ + 1/C₂ + ...'},
+  {id:'a38',tag:'Formel',q:'Induktivitäten in Parallelschaltung',a:'1/L_ges = 1/L₁ + 1/L₂ + ...'},
+  {id:'a39',tag:'Schutz',q:'Lichtbogenfehlerschutz (AFDD): wozu?',a:'Erkennt Lichtbogenüberschläge in der Verkabelung → Brandschutz (zusätzlich zu RCD/LS)'},
+  {id:'a40',tag:'Begriff',q:'Was ist Potenzialausgleich?',a:'Elektrische Verbindung aller leitfähigen Teile auf gleiches Potential → verhindert gefährliche Spannungen'},
+  {id:'a41',tag:'Messtechnik',q:'Multimeter: Wie misst man Spannung richtig?',a:'Parallel zur Last schalten, Messbereich > erwarteter Spannung wählen, Prüfspitzen an Messstelle anlegen',
+    qt:{tr:'Multimetre ile gerilim nasıl doğru ölçülür?',ru:'Как правильно измерить напряжение мультиметром?',ar:'كيف تقيس الجهد بشكل صحيح بجهاز قياس متعدد؟'},
+    at:{tr:'Yüke paralel bağla, beklenen gerilimden büyük ölçüm aralığı seç, prob uçlarını ölçüm noktasına tut',ru:'Подключить параллельно нагрузке, выбрать диапазон выше ожидаемого напряжения, приложить щупы к точке измерения',ar:'وصّل بالتوازي مع الحمل، اختر مدى أكبر من الجهد المتوقع، ضع مسباري القياس على نقطة القياس'}},
+  {id:'a42',tag:'Messtechnik',q:'Was misst ein Oszilloskop gegenüber einem Multimeter?',a:'Spannungsverlauf über die Zeit (Wellenform), Frequenz, Phasenverschiebung — Multimeter zeigt nur Effektivwert',
+    qt:{tr:'Osiloskop, multimetreye kıyasla ne ölçer?',ru:'Что измеряет осциллограф по сравнению с мультиметром?',ar:'ما الذي يقيسه الأوسيلوسكوب مقارنةً بجهاز القياس المتعدد؟'},
+    at:{tr:'Zamanla gerilim değişimi (dalga formu), frekans, faz kayması — multimetre yalnızca etkin değer gösterir',ru:'Форму напряжения во времени (осциллограмму), частоту, сдвиг фаз — мультиметр показывает только действующее значение',ar:'تغير الجهد مع الزمن (شكل الموجة)، التردد، فرق الطور — المتعدد يُظهر القيمة الفعالة فقط'}},
+  {id:'a43',tag:'Messtechnik',q:'Wie misst man Strom mit einem Multimeter?',a:'In Reihe in den Stromkreis schalten (Stromkreis unterbrechen), richtigen Messbereich wählen, nie parallel!',
+    qt:{tr:'Multimetre ile akım nasıl ölçülür?',ru:'Как измерить ток мультиметром?',ar:'كيف تقيس التيار بجهاز قياس متعدد؟'},
+    at:{tr:'Devre akışına seri bağla (devreyi kes), doğru ölçüm aralığını seç, asla paralel değil!',ru:'Подключить последовательно в цепь (разорвать цепь), выбрать правильный диапазон, никогда параллельно!',ar:'وصّل على التسلسل في الدائرة (اقطع الدائرة)، اختر المدى الصحيح، لا تصل أبداً بالتوازي!'}},
+  {id:'a44',tag:'Messtechnik',q:'Isolationsmessung: Prüfspannung und Mindestgrenzwert?',a:'500 V DC Prüfspannung; Neuanlage ≥ 1 MΩ, Bestandsanlage ≥ 0,5 MΩ (nach VDE 0100-600)',
+    qt:{tr:'İzolasyon ölçümü: Test gerilimi ve minimum sınır değeri?',ru:'Измерение изоляции: испытательное напряжение и минимальная норма?',ar:'قياس العزل: جهد الاختبار والحد الأدنى المسموح به؟'},
+    at:{tr:'500 V DC test gerilimi; yeni tesis ≥ 1 MΩ, mevcut tesis ≥ 0,5 MΩ (VDE 0100-600 uyarınca)',ru:'Испытательное напряжение 500 В DC; новая установка ≥ 1 МОм, существующая ≥ 0,5 МОм (по VDE 0100-600)',ar:'جهد اختبار 500 فولت تيار مستمر؛ تركيب جديد ≥ 1 مΩ، تركيب قائم ≥ 0,5 مΩ (وفق VDE 0100-600)'}},
+  {id:'a45',tag:'Messtechnik',q:'Durchgangsprüfung: Was wird geprüft und womit?',a:'Niederohmiger Durchgang von Schutzleiter/Leiter (< 1 Ω), geprüft mit Durchgangsprüfer oder Multimeter im Widerstandsbereich',
+    qt:{tr:'Süreklilik testi: Ne ve nasıl test edilir?',ru:'Проверка непрерывности: что и чем проверяется?',ar:'اختبار الاستمرارية: ما الذي يُختبر وبماذا؟'},
+    at:{tr:'Koruma iletkeni/iletkenin düşük dirençli sürekliliği (< 1 Ω), süreklilik test cihazı veya multimetre ile direnç ölçümü',ru:'Малоомная непрерывность защитного проводника/проводника (< 1 Ом), проверяется тестером непрерывности или мультиметром в режиме сопротивления',ar:'استمرارية موصل الحماية/الموصل منخفضة المقاومة (< 1 Ω)، تُفحص بجهاز اختبار الاستمرارية أو المتعدد في وضع قياس المقاومة'}},
+  {id:'a46',tag:'SPS',q:'SPS Merker: Was ist das und wofür dient er?',a:'Interner Speicherbereich (kein physischer Ein-/Ausgang); speichert Zwischenergebnisse und Zustände in der SPS-Logik',
+    qt:{tr:'SPS Merker (bayrak): Nedir ve ne işe yarar?',ru:'Флаг SPS (маркер): что это и для чего используется?',ar:'علامة SPS (Merker): ما هي واستخدامها؟'},
+    at:{tr:'Dahili bellek alanı (fiziksel giriş/çıkış yok); SPS mantığında ara sonuçları ve durumları saklar',ru:'Внутренняя область памяти (без физического входа/выхода); хранит промежуточные результаты и состояния в логике SPS',ar:'منطقة ذاكرة داخلية (بدون مدخل/مخرج فعلي)؛ تخزّن النتائج الوسيطة والحالات في منطق SPS'}},
+  {id:'a47',tag:'SPS',q:'TON vs. TOF Timer in der SPS?',a:'TON (Timer On-Delay): schaltet nach Ablauf EIN. TOF (Timer Off-Delay): schaltet nach Ablauf AUS. Beide starten bei steigender Flanke',
+    qt:{tr:'SPS\'de TON ve TOF zamanlayıcıları arasındaki fark?',ru:'Таймеры TON и TOF в SPS — в чём разница?',ar:'مؤقتات TON و TOF في SPS — ما الفرق؟'},
+    at:{tr:'TON (gecikmeli açma): süre sonunda AÇAR. TOF (gecikmeli kapama): süre sonunda KAPAR. İkisi de yükselen kenarda başlar',ru:'TON (задержка включения): включается по истечении времени. TOF (задержка выключения): выключается по истечении времени. Оба запускаются по переднему фронту',ar:'TON (تأخير التشغيل): يُشغّل بعد انتهاء المهلة. TOF (تأخير الإيقاف): يُوقف بعد انتهاء المهلة. كلاهما يبدأ عند الحافة الصاعدة'}},
+  {id:'a48',tag:'SPS',q:'CTU Zähler in der SPS: Funktion?',a:'CTU (Count Up): zählt steigende Flanken am Eingang; Ausgang Q = 1 wenn Zählwert ≥ Sollwert PV; Reset mit R-Eingang',
+    qt:{tr:'SPS\'de CTU sayıcısı: Fonksiyonu nedir?',ru:'Счётчик CTU в SPS — функция?',ar:'عداد CTU في SPS — الوظيفة؟'},
+    at:{tr:'CTU (yukarı say): girişteki yükselen kenarları sayar; Q çıkışı = 1, sayı değeri ≥ PV hedef değeri olduğunda; R girişiyle sıfırlama',ru:'CTU (счёт вверх): считает нарастающие фронты на входе; выход Q = 1, когда счётное значение ≥ заданному PV; сброс входом R',ar:'CTU (العد للأعلى): يعدّ الحافات الصاعدة عند المدخل؛ الخرج Q = 1 عندما تصل القيمة المعدودة ≥ القيمة المضبوطة PV؛ إعادة الضبط بمدخل R'}},
+  {id:'a49',tag:'SPS',q:'Flankenauswertung in der SPS: P-Glied vs. N-Glied?',a:'P-Glied (positive Flanke): ein Zyklus lang 1 bei steigender Flanke. N-Glied (negative Flanke): ein Zyklus lang 1 bei fallender Flanke',
+    qt:{tr:'SPS\'de kenar değerlendirme: P-eleman ve N-eleman?',ru:'Детектирование фронтов в SPS: P-блок и N-блок?',ar:'تحليل الحافة في SPS: عنصر P وعنصر N؟'},
+    at:{tr:'P-eleman (pozitif kenar): yükselen kenarda bir çevrim boyunca 1. N-eleman (negatif kenar): düşen kenarda bir çevrim boyunca 1',ru:'P-блок (положительный фронт): 1 в течение одного цикла на нарастающем фронте. N-блок (отрицательный фронт): 1 в течение одного цикла на спадающем фронте',ar:'عنصر P (حافة موجبة): 1 لدورة واحدة عند الحافة الصاعدة. عنصر N (حافة سالبة): 1 لدورة واحدة عند الحافة الهابطة'}},
+  {id:'a50',tag:'SPS',q:'Was ist GRAFCET (SFC)?',a:'Grafische Beschreibungssprache für Ablaufsteuerungen (IEC 61131-3 Sequential Function Chart). Schritte + Transitionen bilden den Ablauf',
+    qt:{tr:'GRAFCET (SFC) nedir?',ru:'Что такое GRAFCET (SFC)?',ar:'ما هو GRAFCET (SFC)؟'},
+    at:{tr:'Sıralı kontrol sistemleri için grafik tanımlama dili (IEC 61131-3 Sequential Function Chart). Adımlar + geçişler süreci oluşturur',ru:'Графический язык описания последовательных систем управления (IEC 61131-3 Sequential Function Chart). Шаги + переходы образуют последовательность',ar:'لغة وصف رسومية لأنظمة التحكم التسلسلي (IEC 61131-3 Sequential Function Chart). الخطوات + الانتقالات تشكّل التسلسل'}},
+  {id:'a51',tag:'Motor',q:'Frequenzumrichter (FU): Grundprinzip der Drehzahlregelung?',a:'FU wandelt Netzspannung in variable Frequenz und Spannung (U/f = const.); Asynchronmotor läuft mit einstellbarer Drehzahl n = f × 60 / p',
+    qt:{tr:'Frekans invertörü (FU): Hız kontrolünün temel prensibi?',ru:'Частотный преобразователь (FU): основной принцип регулирования скорости?',ar:'محوّل التردد (FU): المبدأ الأساسي لضبط السرعة؟'},
+    at:{tr:'FU, şebeke gerilimini değişken frekans ve gerilime dönüştürür (U/f = sabit); asenkron motor ayarlanabilir hızda çalışır n = f × 60 / p',ru:'FU преобразует сетевое напряжение в переменную частоту и напряжение (U/f = const); асинхронный двигатель работает с регулируемой скоростью n = f × 60 / p',ar:'يحوّل FU جهد الشبكة إلى تردد وجهد متغيرَين (U/f = ثابت)؛ يعمل المحرك غير التزامني بسرعة قابلة للضبط n = f × 60 / p'}},
+  {id:'a52',tag:'Motor',q:'Motorschutzschalter: Welche Schutzfunktionen hat er?',a:'Thermischer Überlastschutz (Bimetall), Kurzschlussschutz (Magnet), Phasenausfallschutz, manuelles Einschalten/Ausschalten',
+    qt:{tr:'Motor koruma şalteri: Hangi koruma fonksiyonlarına sahiptir?',ru:'Автомат защиты двигателя: какие функции защиты выполняет?',ar:'قاطع حماية المحرك: ما وظائف الحماية التي يوفرها؟'},
+    at:{tr:'Termal aşırı yük koruması (bimetal), kısa devre koruması (manyetik), faz kesme koruması, manuel açma/kapama',ru:'Тепловая защита от перегрузки (биметалл), защита от короткого замыкания (магнитная), защита от обрыва фазы, ручное включение/отключение',ar:'حماية حرارية من الحمل الزائد (ثنائي المعدن)، حماية من الدائرة القصيرة (مغناطيسية)، حماية من انقطاع الطور، فصل/وصل يدوي'}},
+  {id:'a53',tag:'Motor',q:'PTC-Thermistor im Motor: Kennlinie und Auslöseprinzip?',a:'PTC: Widerstand steigt steil ab Nenntemperatur (Kaltleiter). Motorschutzrelais misst PTC-Widerstand: > Schwellwert → Auslösung, schützt Wicklung',
+    qt:{tr:'Motordaki PTC termistör: Karakteristik eğrisi ve tetikleme prensibi?',ru:'PTC-термистор в двигателе: характеристика и принцип срабатывания?',ar:'مقاومة PTC الحرارية في المحرك: منحنى الخصائص ومبدأ العمل؟'},
+    at:{tr:'PTC: Direnç, nominal sıcaklıktan itibaren dik artar (pozitif ısıl katsayı). Motor koruma rölesi PTC direncini ölçer: > eşik değeri → tetikleme, sargıyı korur',ru:'PTC: сопротивление резко возрастает с номинальной температуры (позисторный). Реле защиты двигателя измеряет сопротивление PTC: > порогового значения → срабатывание, защищает обмотку',ar:'PTC: المقاومة ترتفع بحدّة من درجة الحرارة الاسمية. ترحيل حماية المحرك يقيس مقاومة PTC: > العتبة → عمل الحماية، يحمي الملف'}},
+  {id:'a54',tag:'Motor',q:'Bremswiderstand am Frequenzumrichter: Funktion?',a:'Nimmt generatorisch erzeugte Bremsenergie auf (beim Abbremsen), wandelt sie in Wärme um — verhindert Überspannung im Zwischenkreis des FU',
+    qt:{tr:'Frekans invertöründeki frenleme direnci: Fonksiyonu nedir?',ru:'Тормозной резистор частотного преобразователя: функция?',ar:'مقاومة الفرملة في محوّل التردد: الوظيفة؟'},
+    at:{tr:'Frenleme sırasında jeneratör olarak üretilen frenleme enerjisini alır, ısıya dönüştürür — FU\'nun DC bara geriliminin aşmasını önler',ru:'Поглощает тормозную энергию, генерируемую при торможении, преобразует её в тепло — предотвращает перенапряжение в звене постоянного тока FU',ar:'يستوعب طاقة الفرملة المُولَّدة تحريضياً أثناء التباطؤ ويحوّلها إلى حرارة — يمنع الجهد الزائد في الحلقة الوسيطة لمحوّل التردد'}},
+  {id:'a55',tag:'Motor',q:'Wirkungsgrad eines Motors: Formel und typische Werte?',a:'η = P_ab / P_zu = P_mech / P_el. Moderne IE3-Motoren: η ≈ 90–96 % (je nach Leistungsklasse)',
+    qt:{tr:'Motorun verimi: Formül ve tipik değerler?',ru:'КПД двигателя: формула и типичные значения?',ar:'كفاءة المحرك: الصيغة والقيم النموذجية؟'},
+    at:{tr:'η = P_çıkış / P_giriş = P_mekanik / P_elektrik. Modern IE3 motorlar: η ≈ %90–96 (güç sınıfına bağlı)',ru:'η = P_вых / P_вх = P_мех / P_эл. Современные двигатели IE3: η ≈ 90–96 % (в зависимости от класса мощности)',ar:'η = P_خرج / P_دخل = P_ميكانيكي / P_كهربائي. محركات IE3 الحديثة: η ≈ 90–96 % (حسب فئة القدرة)'}},
+  {id:'a56',tag:'Norm',q:'VDE 0100-410: Was regelt diese Norm?',a:'Schutzmaßnahmen gegen elektrischen Schlag: Basisschutz, Fehlerschutz, verstärkter Schutz — gilt für Niederspannungsanlagen',
+    qt:{tr:'VDE 0100-410: Bu norm neyi düzenler?',ru:'VDE 0100-410: что регулирует этот норматив?',ar:'VDE 0100-410: ماذا ينظّم هذا المعيار؟'},
+    at:{tr:'Elektrik çarpmaya karşı koruma önlemleri: temel koruma, arıza koruması, güçlendirilmiş koruma — alçak gerilim tesisleri için geçerlidir',ru:'Меры защиты от поражения электрическим током: базовая защита, защита при повреждении, усиленная защита — применяется для низковольтных установок',ar:'تدابير الحماية من الصدمات الكهربائية: الحماية الأساسية، حماية الأعطال، الحماية المعززة — تنطبق على منشآت الجهد المنخفض'}},
+  {id:'a57',tag:'Norm',q:'BGV A3: Welche Prüffristen gelten für ortsveränderliche Geräte?',a:'Büro/trocken: alle 24 Monate. Baustelle/Industrie: alle 3–6 Monate. Fristen richten sich nach Einsatzbedingungen und Gefährdungsbeurteilung',
+    qt:{tr:'BGV A3: Taşınabilir cihazlar için hangi test aralıkları geçerlidir?',ru:'BGV A3: каковы сроки проверки переносного оборудования?',ar:'BGV A3: ما فترات الفحص للأجهزة المتنقلة؟'},
+    at:{tr:'Ofis/kuru: her 24 ayda bir. Şantiye/endüstri: her 3–6 ayda bir. Aralıklar kullanım koşullarına ve risk değerlendirmesine göre belirlenir',ru:'Офис/сухое помещение: каждые 24 месяца. Стройплощадка/промышленность: каждые 3–6 месяцев. Сроки зависят от условий эксплуатации и оценки рисков',ar:'مكتب/جاف: كل 24 شهراً. موقع بناء/صناعة: كل 3–6 أشهر. الفترات تعتمد على ظروف الاستخدام وتقييم المخاطر'}},
+  {id:'a58',tag:'Norm',q:'DGUV V3: Was gilt für ortsveränderliche elektrische Betriebsmittel?',a:'Regelmäßige Prüfpflicht: Erstprüfung vor Inbetriebnahme, Wiederholprüfung je nach Nutzungsintensität und Gefährdung (DGUV V3 = früher BGV A3)',
+    qt:{tr:'DGUV V3: Taşınabilir elektrikli ekipmanlar için ne geçerlidir?',ru:'DGUV V3: что применяется для переносного электрооборудования?',ar:'DGUV V3: ما الذي ينطبق على المعدات الكهربائية المتنقلة؟'},
+    at:{tr:'Düzenli muayene yükümlülüğü: devreye almadan önce ilk muayene, kullanım yoğunluğu ve tehlikeye göre yenileme muayenesi (DGUV V3 = eski adıyla BGV A3)',ru:'Обязательные регулярные проверки: первичная перед вводом в эксплуатацию, повторные в зависимости от интенсивности использования и уровня риска (DGUV V3 = бывший BGV A3)',ar:'التزام بالفحص الدوري: فحص أولي قبل التشغيل، فحوصات دورية حسب كثافة الاستخدام والخطورة (DGUV V3 = BGV A3 سابقاً)'}},
+  {id:'a59',tag:'Formel',q:'Blindleistung Q berechnen',a:'Q = U × I × sin φ [VAr] = S × sin φ. Auch: Q = √(S² − P²)',
+    qt:{tr:'Reaktif güç Q hesaplama',ru:'Вычисление реактивной мощности Q',ar:'حساب القدرة الردية Q'},
+    at:{tr:'Q = U × I × sin φ [VAr] = S × sin φ. Ayrıca: Q = √(S² − P²)',ru:'Q = U × I × sin φ [ВАр] = S × sin φ. Также: Q = √(S² − P²)',ar:'Q = U × I × sin φ [VAr] = S × sin φ. أيضاً: Q = √(S² − P²)'}},
+  {id:'a60',tag:'Formel',q:'Scheinleistung S berechnen',a:'S = U × I [VA]. Dreieck: S² = P² + Q². Wirkleistung P = S × cos φ, Blindleistung Q = S × sin φ',
+    qt:{tr:'Görünür güç S hesaplama',ru:'Вычисление полной мощности S',ar:'حساب القدرة الظاهرية S'},
+    at:{tr:'S = U × I [VA]. Üçgen: S² = P² + Q². Etkin güç P = S × cos φ, Reaktif güç Q = S × sin φ',ru:'S = U × I [ВА]. Треугольник: S² = P² + Q². Активная мощность P = S × cos φ, реактивная Q = S × sin φ',ar:'S = U × I [VA]. المثلث: S² = P² + Q². القدرة الفعّالة P = S × cos φ، القدرة الردية Q = S × sin φ'}}
+];
+
+var ampSRData = (function(){try{return JSON.parse(localStorage.getItem('amp_sr_data')||"{}")}catch(e){return {}}})();;
+var ampSRSession = [], ampSRIdx = 0, ampSROK = 0, ampSRFail = 0, ampSRFlipped = false;
+
+function ampSaveSR(){ AppStore.set('amp_sr_data', ampSRData); }
+function ampGetSR(id){
+  if(!ampSRData[id]) ampSRData[id]={ef:2.5,interval:0,due:0,reps:0};
+  return ampSRData[id];
+}
+function ampNextInterval(sr, q){
+  var newEf = sr.ef + (0.1 - (5-q)*(0.08+(5-q)*0.02));
+  if(newEf<1.3) newEf=1.3;
+  var ni;
+  if(q<3){ ni=1; sr.reps=0; }
+  else { if(sr.reps===0) ni=1; else if(sr.reps===1) ni=6; else ni=Math.round(sr.interval*newEf); sr.reps++; }
+  sr.ef=Math.round(newEf*100)/100; sr.interval=ni; sr.due=Date.now()+ni*86400000;
+  return sr;
+}
+function ampDueCards(){ var now=Date.now(); return AMP_SR_CARDS.filter(function(c){ return ampGetSR(c.id).due<=now; }); }
+function ampNewCards(){ return AMP_SR_CARDS.filter(function(c){ return ampGetSR(c.id).reps===0; }); }
+
+function initAmpSR(){
+  var due=ampDueCards(), newC=ampNewCards(), learned=AMP_SR_CARDS.filter(function(c){return ampGetSR(c.id).reps>0;}).length;
+  document.getElementById('sr-v-due').textContent=due.length;
+  document.getElementById('sr-v-new').textContent=newC.length;
+  document.getElementById('sr-v-learned').textContent=learned;
+  document.getElementById('sr-v-total').textContent=AMP_SR_CARDS.length;
+  var total=Math.min(due.length+Math.min(newC.length,10),20);
+  var area=document.getElementById('sr-start-area');
+  if(total===0){
+    area.innerHTML='<div style="text-align:center;padding:1.5rem 0;"><div style="font-size:36px;margin-bottom:.5rem;">🎉</div><div style="font-size:16px;font-weight:700;color:#30d158;margin-bottom:.5rem;">Alle Karten für heute erledigt!</div><div style="font-size:12px;color:var(--tx3);">Komm morgen wieder.</div></div>';
+  } else {
+    area.innerHTML='<button type="button" class="sr-start-btn" id="sr-start-btn">→ LERNSITZUNG STARTEN ('+total+' Karten)</button><button type="button" class="sr-reset-btn" id="sr-reset-btn">↺ Fortschritt zurücksetzen</button>';
+    document.getElementById('sr-start-btn').onclick=startAmpSR;
+    document.getElementById('sr-reset-btn').onclick=function(){ if(confirm('SR-Fortschritt zurücksetzen?')){ ampSRData={}; ampSaveSR(); initAmpSR(); }};
+  }
+  document.getElementById('sr-dash-view').style.display='';
+  document.getElementById('sr-session-view').style.display='none';
+  document.getElementById('sr-done-view').style.display='none';
+  ampInitNotify();
+}
+
+function startAmpSR(){
+  var due=ampDueCards(), newC=ampNewCards();
+  var sess=due.concat(newC.slice(0,Math.max(0,20-due.length))).slice(0,20);
+  for(var i=sess.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=sess[i];sess[i]=sess[j];sess[j]=t;}
+  ampSRSession=sess; ampSRIdx=0; ampSROK=0; ampSRFail=0; ampSRFlipped=false;
+  document.getElementById('sr-dash-view').style.display='none';
+  document.getElementById('sr-session-view').style.display='';
+  document.getElementById('sr-done-view').style.display='none';
+  renderAmpCard();
+}
+
+function ampSRRender(){ if(typeof renderAmpCard==='function') renderAmpCard(); }
+function renderAmpCard(){
+  if(ampSRIdx>=ampSRSession.length){ showAmpDone(); return; }
+  // ── fill mode ──
+  if (srMode === 'fill') {
+    var _c = ampSRSession[ampSRIdx];
+    var _l = currentLang || 'de';
+    srFillRender((_c.qt&&_c.qt[_l])?_c.qt[_l]:_c.q, (_c.at&&_c.at[_l])?_c.at[_l]:_c.a, _c.tag);
+    document.getElementById('sr-grade-area').style.display = 'none';
+    return;
+  }
+  document.getElementById('sr-fill-area').style.display = 'none';
+  var _fw = document.querySelector('.sr-flip-wrap');
+  if (_fw) _fw.style.display = '';
+  // ── end fill mode ──
+  var c=ampSRSession[ampSRIdx];
+  var l = currentLang || 'de';
+  var cardQ = (c.qt && c.qt[l]) ? c.qt[l] : c.q;
+  var cardA = (c.at && c.at[l]) ? c.at[l] : c.a;
+  var _prog = ampSRSession.length > 0 ? ampSRIdx / ampSRSession.length : 0;
+  document.getElementById('sr-prog-bar').style.width = Math.round(_prog * 100) + '%';
+  document.getElementById('sr-prog-txt').textContent = (ampSRIdx + 1) + ' / ' + ampSRSession.length + '  ·  ✓ ' + ampSROK + '  ✗ ' + ampSRFail;
+  document.getElementById('sr-card-tag').textContent=c.tag;
+  document.getElementById('sr-card-q').textContent=cardQ;
+  document.getElementById('sr-card-a').textContent=cardA;
+  var flip=document.getElementById('sr-flip');
+  flip.classList.remove('flipped');
+  ampSRFlipped=false;
+  document.getElementById('sr-grade-area').style.display='none';
+  document.getElementById('sr-card-hint').style.display='';
+}
+
+function srFlip(){
+  if(ampSRFlipped) return;
+  ampSRFlipped=true;
+  document.getElementById('sr-flip').classList.add('flipped');
+  document.getElementById('sr-grade-area').style.display='';
+  document.getElementById('sr-card-hint').style.display='none';
+}
+
+function srGrade(q){
+  var c=ampSRSession[ampSRIdx];
+  var sr=ampGetSR(c.id);
+  ampNextInterval(sr,q);
+  ampSaveSR();
+  if(q>=3){ ampSROK++; if(navigator.vibrate) navigator.vibrate(30); }
+  else { ampSRFail++; if(navigator.vibrate) navigator.vibrate([60,30,60]); }
+  ampSRIdx++;
+  renderAmpCard();
+}
+
+function showAmpDone(){
+  document.getElementById('sr-session-view').style.display='none';
+  document.getElementById('sr-done-view').style.display='';
+  document.getElementById('sr-done-sub').innerHTML='<strong>'+ampSROK+'</strong> gewusst · <strong>'+ampSRFail+'</strong> wiederholen<br><span style="color:var(--tx3);font-size:12px;margin-top:.5rem;display:block;">Der Algorithmus plant deine nächsten Wiederholungen.</span>';
+}
+
+function srBackToDash(){ initAmpSR(); }
+
+// Hook into showScreen to init SR
+var _origShowScreen = window.showScreen;
+window.showScreen = function(id){
+  _origShowScreen(id);
+  if(id==='s-sr') initAmpSR();
+};
+
+// ── AMPERE PUSH NOTIFICATIONS ──────────────────────────────────
+function ampInitNotify() {
+  var enabled = localStorage.getItem('amp_notify') === '1';
+  var btn = document.getElementById('ampNotifyBtn');
+  var hint = document.getElementById('ampNotifyHint');
+  if (!btn) return;
+  if (enabled) {
+    btn.textContent = '🔔 Erinnerungen aktiv';
+    btn.classList.add('active');
+    hint.textContent = 'Du wirst täglich erinnert, deine Karten zu lernen.';
+  } else {
+    btn.textContent = '🔔 Erinnerungen aktivieren';
+    btn.classList.remove('active');
+    hint.textContent = '';
+  }
+}
+function ampToggleNotify() {
+  var enabled = localStorage.getItem('amp_notify') === '1';
+  if (enabled) {
+    localStorage.removeItem('amp_notify');
+    ampInitNotify();
+    return;
+  }
+  if (!('Notification' in window)) {
+    alert('Dein Browser unterstützt keine Benachrichtigungen.');
+    return;
+  }
+  Notification.requestPermission().then(function(perm) {
+    if (perm === 'granted') {
+      localStorage.setItem('amp_notify', '1');
+      ampInitNotify();
+      ampCheckAndNotify();
+    } else {
+      alert('Benachrichtigungen wurden blockiert. Bitte in den Browser-Einstellungen erlauben.');
+    }
+  });
+}
+function ampCheckAndNotify() {
+  if (localStorage.getItem('amp_notify') !== '1') return;
+  if (Notification.permission !== 'granted') return;
+  var lastNotify = localStorage.getItem('amp_last_notify');
+  var today = new Date().toDateString();
+  if (lastNotify === today) return;
+  var data = JSON.parse(localStorage.getItem('amp_sr_data') || '{}');
+  var now = Date.now();
+  var dueCount = 0;
+  Object.values(data).forEach(function(c) { if (!c.due || c.due <= now) dueCount++; });
+  if (dueCount === 0) return;
+  localStorage.setItem('amp_last_notify', today);
+  var title = 'AMPERE \u2013 ' + dueCount + ' Karte' + (dueCount > 1 ? 'n' : '') + ' f\u00e4llig';
+  var body = 'Deine Lernkarten warten. Jetzt kurz \u00fcben!';
+  if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+    navigator.serviceWorker.controller.postMessage({
+      type: 'SHOW_REMINDER', title: title, body: body, url: 'VOLTECH-ampere.html#sr'
+    });
+  } else if (Notification.permission === 'granted') {
+    new Notification(title, { body: body, icon: 'pwa/icon-192.png' });
+  }
+}
+
+// Hash-based deep link: VOLTECH-ampere.html#sr → direkt SR-Tab öffnen
+(function(){
+  if(location.hash === '#sr') {
+    window.showScreen('s-sr');
+  }
+  ampCheckAndNotify();
+})();
+
+// ── Konfetti-Animation ──────────────────────────────────────
+function launchConfetti() {
+  var colors = ['#6366f1','#22c55e','#f59e0b','#ec4899','#06b6d4'];
+  var container = document.createElement('div');
+  container.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden;';
+  document.body.appendChild(container);
+  for(var i = 0; i < 60; i++) {
+    (function(i) {
+      setTimeout(function() {
+        var p = document.createElement('div');
+        var size = Math.random() * 8 + 5;
+        var color = colors[Math.floor(Math.random() * colors.length)];
+        var left = Math.random() * 100;
+        var duration = Math.random() * 1.5 + 1;
+        p.style.cssText = 'position:absolute;width:'+size+'px;height:'+size+'px;background:'+color+';border-radius:'+(Math.random()>0.5?'50%':'2px')+';left:'+left+'%;top:-20px;opacity:1;transition:transform '+duration+'s ease-in, opacity '+duration+'s ease-in;';
+        container.appendChild(p);
+        requestAnimationFrame(function() {
+          var finalY = 60 + Math.random() * 60;
+          var finalX = (Math.random() - 0.5) * 200;
+          var rot = Math.random() * 720 - 360;
+          p.style.transform = 'translateY('+finalY+'vh) translateX('+finalX+'px) rotate('+rot+'deg)';
+          p.style.opacity = '0';
+        });
+        setTimeout(function() { if(p.parentNode) p.parentNode.removeChild(p); }, (duration + 0.5) * 1000);
+      }, i * 25);
+    })(i);
+  }
+  setTimeout(function() { if(container.parentNode) container.parentNode.removeChild(container); }, 4000);
+}
+
+// ── Streak-Meilenstein Toast ────────────────────────────────
+function checkStreakMilestone(streakKey) {
+  var streak = parseInt(localStorage.getItem(streakKey) || '0');
+  var milestones = [3, 7, 14, 30];
+  if(milestones.indexOf(streak) !== -1) {
+    var toast = document.createElement('div');
+    toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1c1c1e;color:#fff;padding:12px 22px;border-radius:12px;font-size:15px;font-weight:600;z-index:10000;box-shadow:0 4px 20px rgba(0,0,0,.4);pointer-events:none;opacity:0;transition:opacity .3s;';
+    toast.textContent = '\uD83D\uDD25 ' + streak + ' Tage Streak! Weiter so!';
+    document.body.appendChild(toast);
+    requestAnimationFrame(function(){ toast.style.opacity = '1'; });
+    launchConfetti();
+    setTimeout(function(){
+      toast.style.opacity = '0';
+      setTimeout(function(){ if(toast.parentNode) toast.parentNode.removeChild(toast); }, 400);
+    }, 3000);
+  }
+}
+</script>
+<script>
+/* AppStore — offline-first sync (arc-studio.org/sync.php) */
+if(typeof AppStore==='undefined'){var AppStore=(function(){
+  var EP='https://arc-studio.org/sync.php',DB=4000,TP='arc_sync_ts_',DK='arc_device_id';
+  var SK=['amp_sr_data','tor_sr_data','vt_sr_data','vt_streak','vt_lern_prog','vt_fc_known','vt_fc_unknown','vt_quiz_hist','arc_achievements','arc_custom_sets','bh_profile','bh_weeks','bh_vorlagen','arc_lang','vt_ap1','ap1_best'];
+  var _t=null,_sy=false,_p=false;
+  function _uuid(){return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c){var r=Math.random()*16|0;return(c==='x'?r:(r&0x3)|0x8).toString(16);});}
+  function _did(){var id=localStorage.getItem(DK);if(!id){id=_uuid();localStorage.setItem(DK,id);}return id;}
+  function get(k,d){try{var r=localStorage.getItem(k);return r!==null?JSON.parse(r):d;}catch(e){return d;}}
+  function set(k,v){try{localStorage.setItem(k,JSON.stringify(v));localStorage.setItem(TP+k,Date.now()+'');}catch(e){}if(SK.indexOf(k)!==-1){clearTimeout(_t);_t=setTimeout(sync,DB);}}
+  function sync(){if(!navigator.onLine)return;if(_sy){_p=true;return;}_sy=true;_p=false;var push={};SK.forEach(function(k){var r=localStorage.getItem(k);if(r===null)return;var ts=parseInt(localStorage.getItem(TP+k)||'0',10);if(ts>0)push[k]={payload:r,updated_at:ts};});fetch(EP,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({device_id:_did(),push:push,pull_keys:SK})}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(d){if(!d.ok||!d.pulled)return;Object.keys(d.pulled).forEach(function(k){var rem=d.pulled[k];var lts=parseInt(localStorage.getItem(TP+k)||'0',10);if(parseInt(rem.updated_at,10)>lts){try{localStorage.setItem(k,rem.payload);localStorage.setItem(TP+k,rem.updated_at+'');}catch(e){}}});}).catch(function(){}).finally(function(){_sy=false;if(_p)sync();});}
+  window.addEventListener('online',sync);
+  if(navigator.onLine)setTimeout(sync,1500);
+  return{get:get,set:set,sync:sync,deviceId:_did,SYNC_KEYS:SK};
+})();}
+</script>
+
+<div class="lang-modal-overlay" id="lang-modal-overlay" onclick="closeLangModal()"></div>
+<div class="lang-modal" id="lang-modal">
+  <div class="lang-modal-handle"></div>
+  <div class="lang-modal-title">🌐 Sprache / Language / Dil / Язык / اللغة</div>
+  <div class="lang-grid">
+    <div class="lang-option" id="lo-de" onclick="setLang('de')"><span class="lang-flag">🇩🇪</span><span class="lang-code">DE</span><span class="lang-name">Deutsch</span></div>
+    <div class="lang-option" id="lo-en" onclick="setLang('en')"><span class="lang-flag">🇬🇧</span><span class="lang-code">EN</span><span class="lang-name">English</span></div>
+    <div class="lang-option" id="lo-tr" onclick="setLang('tr')"><span class="lang-flag">🇹🇷</span><span class="lang-code">TR</span><span class="lang-name">Türkçe</span></div>
+    <div class="lang-option" id="lo-ru" onclick="setLang('ru')"><span class="lang-flag">🇷🇺</span><span class="lang-code">RU</span><span class="lang-name">Русский</span></div>
+    <div class="lang-option" id="lo-ar" onclick="setLang('ar')"><span class="lang-flag">🇸🇦</span><span class="lang-code">AR</span><span class="lang-name">العربية</span></div>
+  </div>
+</div>
+
+<div class="whats-new-toast hidden" id="whatsNewToast">
+  <div class="wnt-header"><strong>⚡ AMPERE v6.2</strong><button class="wnt-close" aria-label="Schließen" onclick="document.getElementById('whatsNewToast').classList.add('hidden');localStorage.setItem('amp_wn_seen','6.2')">✕</button></div>
+  <div class="wnt-body">Backup-Panel, Cloud Sync und Quick-Stats hinzugefügt. Lernfortschritt jetzt sichern!</div>
+</div>
+
+<script>
+// Return Banner
+(function(){
+  var v=parseInt(localStorage.getItem('amp_visits')||'0')+1;
+  localStorage.setItem('amp_visits',v);
+  if(v>=2) document.getElementById('returnBanner').classList.add('show');
+})();
+
+// Quick-Stats
+(function(){
+  var streak=parseInt(localStorage.getItem('amp_streak')||'0');
+  document.getElementById('qsStreak').textContent=streak;
+  try{
+    var sr=JSON.parse(localStorage.getItem('amp_sr_data')||'[]');
+    var now=Date.now();
+    var due=sr.filter(function(c){return !c.nextReview||c.nextReview<=now;}).length;
+    document.getElementById('qsSR').textContent=due;
+  }catch(e){}
+  var d=new Date();
+  document.getElementById('qsDate').textContent=d.getDate()+'.'+(d.getMonth()+1)+'.';
+})();
+
+// Backup Panel
+var AMP_BACKUP_KEYS=[
+  {key:'amp_sr_data',label:'SR-Karten',app:'⚡'},
+  {key:'amp_streak',label:'Lernstreak',app:'⚡'},
+  {key:'amp_quiz_hist',label:'Quiz-Verlauf',app:'⚡'},
+  {key:'amp_ap_checks',label:'AP-Checkliste',app:'⚡'},
+  {key:'amp_visits',label:'Besuchszähler',app:'⚡'},
+  {key:'arc_custom_sets',label:'Eigene Sets',app:'✏️'},
+  {key:'bh_profile',label:'BH Profil',app:'📓'},
+  {key:'bh_weeks',label:'BH Wochen',app:'📓'},
+  {key:'arc_lang',label:'Sprache',app:'🌐'},
+];
+function ampRenderBackupKeys(){
+  var el=document.getElementById('backupKeyList');
+  if(!el)return;
+  el.innerHTML=AMP_BACKUP_KEYS.map(function(k){
+    var has=localStorage.getItem(k.key)!==null;
+    return '<span class="bk-tag'+(has?' has-data':'')+'">'+k.app+' '+k.label+'</span>';
+  }).join('');
+}
+function ampExportBackup(){
+  var data={_version:1,_app:'AMPERE',_date:new Date().toISOString()};
+  AMP_BACKUP_KEYS.forEach(function(k){
+    var v=localStorage.getItem(k.key);
+    if(v!==null)data[k.key]=v;
+  });
+  var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='ampere-backup-'+new Date().toISOString().slice(0,10)+'.json';
+  a.click();
+}
+function ampImportBackup(e){
+  var file=e.target.files[0];
+  if(!file)return;
+  var reader=new FileReader();
+  reader.onload=function(ev){
+    try{
+      var data=JSON.parse(ev.target.result);
+      AMP_BACKUP_KEYS.forEach(function(k){
+        if(data[k.key]!==undefined)localStorage.setItem(k.key,data[k.key]);
+      });
+      ampRenderBackupKeys();
+      alert('Import erfolgreich!');
+    }catch(err){alert('Fehler beim Import: '+err.message);}
+  };
+  reader.readAsText(file);
+}
+document.addEventListener('DOMContentLoaded',ampRenderBackupKeys);
+
+// Sync Panel
+var SYNC_EP='https://arc-studio.org/cloudsync.php';
+var AMP_SYNC_KEYS=['amp_sr_data','amp_streak','amp_quiz_hist','amp_ap_checks','arc_lang'];
+function ampShowHome(){document.getElementById('syncHome').classList.add('active');document.getElementById('syncActive').classList.remove('active');document.getElementById('syncJoin').classList.remove('active');}
+function ampShowJoin(){document.getElementById('syncHome').classList.remove('active');document.getElementById('syncJoin').classList.add('active');document.getElementById('syncActive').classList.remove('active');}
+function ampShowActive(){document.getElementById('syncHome').classList.remove('active');document.getElementById('syncJoin').classList.remove('active');document.getElementById('syncActive').classList.add('active');}
+function ampGetSyncPayload(){var d={};AMP_SYNC_KEYS.forEach(function(k){var v=localStorage.getItem(k);if(v)d[k]=v;});return d;}
+function ampApplySyncPayload(d){AMP_SYNC_KEYS.forEach(function(k){if(d[k])localStorage.setItem(k,d[k]);});}
+function ampSyncCreate(){
+  var code=Math.random().toString(36).substr(2,6).toUpperCase();
+  localStorage.setItem('amp_sync_code',code);
+  fetch(SYNC_EP,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'create',code:code,data:ampGetSyncPayload()})})
+    .then(function(r){return r.json();})
+    .then(function(){document.getElementById('ampSyncCodeDisplay').textContent=code;ampShowActive();document.getElementById('ampSyncStatus').textContent='Code erstellt!'})
+    .catch(function(){alert('Sync-Fehler. Bitte prüfe deine Verbindung.');});
+}
+function ampSyncPush(){
+  var code=localStorage.getItem('amp_sync_code');if(!code)return;
+  fetch(SYNC_EP,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'update',code:code,data:ampGetSyncPayload()})})
+    .then(function(r){return r.json();})
+    .then(function(){document.getElementById('ampSyncStatus').textContent='Hochgeladen ✓ '+new Date().toLocaleTimeString();})
+    .catch(function(){alert('Upload fehlgeschlagen.');});
+}
+function ampSyncPull(){
+  var code=localStorage.getItem('amp_sync_code');if(!code)return;
+  fetch(SYNC_EP+'?action=get&code='+code)
+    .then(function(r){return r.json();})
+    .then(function(d){if(d.data){ampApplySyncPayload(d.data);document.getElementById('ampSyncStatus').textContent='Heruntergeladen ✓ '+new Date().toLocaleTimeString();}})
+    .catch(function(){alert('Download fehlgeschlagen.');});
+}
+function ampSyncJoin(){
+  var code=document.getElementById('ampJoinCode').value.trim().toUpperCase();
+  if(code.length<4)return;
+  fetch(SYNC_EP+'?action=get&code='+code)
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(d.data){ampApplySyncPayload(d.data);localStorage.setItem('amp_sync_code',code);document.getElementById('ampSyncCodeDisplay').textContent=code;ampShowActive();document.getElementById('ampSyncStatus').textContent='Verbunden ✓';}
+      else{alert('Code nicht gefunden.');}
+    })
+    .catch(function(){alert('Verbindung fehlgeschlagen.');});
+}
+function ampSyncLeave(){localStorage.removeItem('amp_sync_code');ampShowHome();}
+document.addEventListener('DOMContentLoaded',function(){
+  var code=localStorage.getItem('amp_sync_code');
+  if(code){document.getElementById('ampSyncCodeDisplay').textContent=code;ampShowActive();}
+});
+
+// What's New
+(function(){
+  var V='6.2';
+  if(localStorage.getItem('amp_wn_seen')!==V){
+    setTimeout(function(){document.getElementById('whatsNewToast').classList.remove('hidden');},1200);
+  }
+})();
+
+
+// ── Lückentext Mode ───────────────────────────────────────────────
+var srMode = localStorage.getItem('sr_mode') || 'flip';
+var srFillCurrentAnswer = '';
+
+function setSRMode(m) {
+  srMode = m;
+  localStorage.setItem('sr_mode', m);
+  var fb = document.getElementById('sr-mode-flip');
+  var tb = document.getElementById('sr-mode-fill');
+  if (fb) fb.classList.toggle('active', m === 'flip');
+  if (tb) tb.classList.toggle('active', m === 'fill');
+}
+
+function srFillRender(q, a, tag) {
+  document.getElementById('sr-fill-tag').textContent = tag || '';
+  document.getElementById('sr-fill-q').textContent = q || '';
+  var inp = document.getElementById('sr-fill-input');
+  if (inp) { inp.value = ''; inp.disabled = false; }
+  document.getElementById('sr-fill-answer').style.display = 'none';
+  document.getElementById('sr-fill-area').style.display = 'block';
+  var sb = document.getElementById('sr-fill-submit');
+  if (sb) sb.disabled = false;
+  var _fwr = document.querySelector('.sr-flip-wrap');
+  if (_fwr) _fwr.style.display = 'none';
+  srFillCurrentAnswer = a || '';
+}
+
+(function(){ setSRMode(srMode); })();
+
+function srFillSubmit() {
+  document.getElementById('sr-fill-answer-text').textContent = srFillCurrentAnswer;
+  document.getElementById('sr-fill-answer').style.display = 'block';
+  var inp = document.getElementById('sr-fill-input');
+  if (inp) inp.disabled = true;
+  var sb = document.getElementById('sr-fill-submit');
+  if (sb) sb.disabled = true;
+  ampSRFlipped = true;
+  document.getElementById('sr-grade-area').style.display = '';
+}
+</script>
+<script>
+// ── Spracheingabe (Web Speech API) ────────────────────────────────────────────
+function srStartVoice() {
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var btn = document.getElementById('sr-mic-btn');
+  if(!SR) {
+    if(btn) { btn.title='Nicht unterstützt in diesem Browser'; btn.style.opacity='.3'; }
+    return;
+  }
+  var rec = new SR();
+  var langMap = {de:'de-DE',en:'en-US',tr:'tr-TR',ru:'ru-RU',ar:'ar-SA'};
+  rec.lang = langMap[localStorage.getItem('arc_lang')||'de'] || 'de-DE';
+  rec.interimResults = false;
+  rec.maxAlternatives = 1;
+  if(btn) btn.classList.add('listening');
+  rec.onresult = function(e) {
+    var t = e.results[0][0].transcript;
+    var inp = document.getElementById('sr-fill-input');
+    if(inp && !inp.disabled) inp.value = t;
+    if(btn) btn.classList.remove('listening');
+  };
+  rec.onerror = function() { if(btn) btn.classList.remove('listening'); };
+  rec.onend   = function() { if(btn) btn.classList.remove('listening'); };
+  rec.start();
+}
 </script>
 </body>
 </html>

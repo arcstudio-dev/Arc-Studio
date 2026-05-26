@@ -2,50 +2,144 @@
 <html lang="de" class="lang-de">
 <head>
 <meta charset="UTF-8">
+<script>if(localStorage.getItem('arc_theme')==='dark')document.documentElement.classList.add('dm');</script>
+<script>if(!localStorage.getItem('arc_onboarding_done'))window.location.replace('VOLTECH-onboarding.html');</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
-<meta name="theme-color" content="#0a0a0f">
+<meta name="description" content="VOLTIQ — Die komplette IHK-Lern-App für Mechatroniker. SR-Karten, Quiz, SPS-Trainer, KI-Assistent, AP2-Simulator. Kostenlos & offline.">
+<meta property="og:title" content="VOLTIQ · Mechatroniker-Ausbildung">
+<meta property="og:description" content="IHK-Vorbereitung für Mechatroniker. Kostenlos, offline, kein Account.">
+<meta property="og:url" content="https://arc-studio.org/voltiq.html">
+<meta name="theme-color" content="#7a0ec8">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="VOLTIQ">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="manifest" href="pwa/manifest.json">
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='40' fill='%230a0a0f'/><path d='M108 32L60 100H92L80 160L140 88H108Z' fill='white'/></svg>">
 <title>VOLTIQ · Start</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-/* ══ APPLE-INSPIRED DESIGN SYSTEM ════════════════════════════ */
-:root{
-  --bg:#000;
-  --bg2:#1c1c1e;
-  --bg3:#2c2c2e;
-  --bg4:#3a3a3c;
-  --tx:#fff;
-  --tx2:rgba(255,255,255,.65);
-  --tx3:rgba(255,255,255,.35);
-  --tx4:rgba(255,255,255,.15);
-  --sep:rgba(255,255,255,.08);
-  --ac:#6366f1;
-  --ok:#30d158;
-  --warn:#ff9f0a;
-  --err:#ff453a;
-  --pur:#bf5af2;
-  --teal:#40c8e0;
-  --sa:-apple-system,'Inter',system-ui,sans-serif;
-  --mo:'SF Mono','JetBrains Mono',ui-monospace,monospace;
-  --r:10px;--r2:14px;--r3:16px;
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ARC STUDIO — UNIFIED DESIGN TOKENS v1.0
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+:root {
+  /* ── Surfaces ─────────────────────────────────────────────── */
+  --bg:  #ffffff;
+  --bg2: #f8f5ff;
+  --bg3: #f3f0fa;
+  --bg4: #ede8f8;
+
+  /* ── Borders ──────────────────────────────────────────────── */
+  --sep:  rgba(122,14,200,.06);
+  --brd:  rgba(122,14,200,.10);
+  --brd2: rgba(122,14,200,.18);
+
+  /* ── Text ─────────────────────────────────────────────────── */
+  --tx:  #1a1a2e;
+  --tx2: #6b7280;
+  --tx3: #9ca3af;
+  --tx4: rgba(26,26,46,.08);
+
+  /* ── Accent ───────────────────────────────────────────────── */
+  --ac:  #6366f1;
+  --acd: #4f46e5;
+  --acg: rgba(99,102,241,.12);
+  --acb: rgba(99,102,241,.28);
+
+  /* ── Semantic Status ──────────────────────────────────────── */
+  --ok:    #30d158;  --ok-g:   rgba(48,209,88,.14);   --ok-b:   rgba(48,209,88,.25);
+  --warn:  #ff9f0a;  --warn-g: rgba(255,159,10,.12);
+  --err:   #ff453a;  --err-g:  rgba(255,69,58,.12);
+  --pur:   #bf5af2;
+  --teal:  #40c8e0;
+
+  /* ── Typography ───────────────────────────────────────────── */
+  --font-sans: -apple-system, 'Inter', system-ui, sans-serif;
+  --font-mono: 'SF Mono', 'JetBrains Mono', ui-monospace, monospace;
+  --fs-xs:   10px;
+  --fs-sm:   12px;
+  --fs-md:   13px;
+  --fs-base: 15px;
+  --fs-lg:   17px;
+  --fs-xl:   20px;
+  --fs-2xl:  24px;
+  --fw-medium: 500;
+  --fw-semi:   600;
+  --fw-bold:   700;
+  --lh-snug:   1.3;
+  --lh-base:   1.5;
+  --lh-relaxed:1.65;
+
+  /* ── Spacing (4px grid) ───────────────────────────────────── */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+
+  /* ── Border Radius ────────────────────────────────────────── */
+  --r-xs:   6px;
+  --r-sm:   8px;
+  --r-md:  12px;
+  --r-lg:  16px;
+  --r-xl:  20px;
+  --r-full:9999px;
+
+  /* ── Shadows ──────────────────────────────────────────────── */
+  --shadow-sm: 0 1px 4px rgba(0,0,0,.08);
+  --shadow-md: 0 4px 20px rgba(0,0,0,.10);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,.15);
+
+  /* ── Transitions ──────────────────────────────────────────── */
+  --t-fast: .12s ease;
+  --t-base: .2s ease;
+  --t-slow: .32s cubic-bezier(.16,1,.3,1);
+
+  /* ── Layout ───────────────────────────────────────────────── */
+  --max-w: 640px;
+  --touch: 44px;
+
+  /* ── Legacy aliases (zero breaking changes) ───────────────── */
+  --br:  var(--brd);
+  --br2: var(--brd2);
+  --r:   var(--r-md);
+  --r2:  var(--r-lg);
+  --r3:  var(--r-xl);
+  --sa:  var(--font-sans);
+  --mo:  var(--font-mono);
 }
 
+/* ── Per-App Theme Overrides ──────────────────────────────────── */
+html.theme-ampere { --ac:#f97316; --acd:#ea6c0a; --acg:rgba(249,115,22,.12); --acb:rgba(249,115,22,.28); }
+html.theme-torque { --ac:#14b8a6; --acd:#0d9488; --acg:rgba(20,184,166,.12); --acb:rgba(20,184,166,.28); }
+html.theme-shk    { --ac:#0ea5e9; --acd:#0284c7; --acg:rgba(14,165,233,.12); --acb:rgba(14,165,233,.28); }
+html.theme-fisi   { --ac:#6366f1; --acd:#4f46e5; --acg:rgba(99,102,241,.12); --acb:rgba(99,102,241,.28); }
+html.theme-mesh   { --ac:#10b981; --acd:#059669; --acg:rgba(16,185,129,.12); --acb:rgba(16,185,129,.28); }
+html.theme-paint  { --ac:#f97316; --acd:#ea6c0a; --acg:rgba(249,115,22,.12); --acb:rgba(249,115,22,.28); }
+html.theme-chef   { --ac:#dc2626; --acd:#b91c1c; --acg:rgba(220,38,38,.12);  --acb:rgba(220,38,38,.28);  }
+html.theme-kauf   { --ac:#7c3aed; --acd:#6d28d9; --acg:rgba(124,58,237,.12); --acb:rgba(124,58,237,.28); }
+html.theme-elek   { --ac:#ca8a04; --acd:#a16207; --acg:rgba(202,138,4,.12);  --acb:rgba(202,138,4,.28);  }
+
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:52px;}
 body{font-family:var(--sa);background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+/* ── NOISE TEXTURE ── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.08;
+}
 
 /* ── HEADER ── */
 .hdr{
   position:sticky;top:0;z-index:100;
-  background:rgba(0,0,0,.75);
-  backdrop-filter:saturate(180%) blur(20px);
-  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(180%) blur(24px);
+  -webkit-backdrop-filter:saturate(180%) blur(24px);
   border-bottom:1px solid var(--sep);
-  padding:.7rem 1.25rem;
+  padding:.75rem 1.25rem;
   display:flex;align-items:center;gap:.75rem;
 }
 .logo{display:flex;align-items:center;gap:.6rem;flex:1;}
@@ -87,23 +181,40 @@ body{font-family:var(--sa);background:var(--bg);color:var(--tx);min-height:100vh
 .app-grid{padding:0 1rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .app-tile{
   background:var(--bg2);border-radius:var(--r3);
-  padding:1.1rem 1rem;text-decoration:none;
+  padding:1.1rem 1rem;text-decoration:none;color:var(--tx);
   display:flex;flex-direction:column;gap:.35rem;
-  transition:opacity .15s;
+  transition:transform .2s cubic-bezier(.16,1,.3,1), box-shadow .2s, border-color .2s;
+  border:1px solid rgba(122,14,200,.08);
+  position:relative;overflow:hidden;
 }
-.app-tile:active{opacity:.55;}
+.app-tile:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 24px rgba(122,14,200,.12);
+}
+.app-tile:active{opacity:.7;transform:scale(.97);}
 .app-tile.wide{grid-column:1/-1;}
 
 /* Tile accent per category */
+.t-blue  { border-color:rgba(99,102,241,.18); }
+.t-green { border-color:rgba(48,209,88,.14); }
+.t-orange{ border-color:rgba(255,159,10,.18); }
+.t-purple{ border-color:rgba(191,90,242,.18); }
+.t-teal  { border-color:rgba(64,200,224,.14); }
+.t-rose  { border-color:rgba(255,55,95,.18); }
+.t-yellow{ border-color:rgba(255,214,10,.18); }
+
 .t-blue  .tile-icon{color:#6366f1;}
 .t-green .tile-icon{color:#30d158;}
 .t-orange .tile-icon{color:#ff9f0a;}
 .t-purple .tile-icon{color:#bf5af2;}
 .t-teal  .tile-icon{color:#40c8e0;}
+.t-rose  .tile-icon{color:#ff375f;}
+.t-yellow .tile-icon{color:#ffd60a;}
 
-.tile-icon{font-size:30px;display:block;line-height:1;margin-bottom:.1rem;}
+.tile-icon{font-size:0;display:block;line-height:1;margin-bottom:.1rem;transition:transform .25s cubic-bezier(.34,1.56,.64,1);}
+.app-tile:active .tile-icon{transform:scale(.9);}
 .tile-num{font-size:10px;font-weight:500;color:var(--tx3);letter-spacing:.04em;text-transform:uppercase;}
-.tile-name{font-size:15px;font-weight:600;color:var(--tx);letter-spacing:-.2px;line-height:1.2;}
+.tile-name{font-size:15px;font-weight:700;color:var(--tx);letter-spacing:-.2px;line-height:1.2;}
 .tile-tag{font-size:12px;color:var(--tx3);line-height:1.4;}
 .tile-features{display:flex;flex-direction:column;gap:1px;margin-top:.3rem;}
 .tile-feat{font-size:11px;color:var(--tx3);padding:2px 0;display:flex;align-items:center;gap:.4rem;}
@@ -111,12 +222,13 @@ body{font-family:var(--sa);background:var(--bg);color:var(--tx);min-height:100vh
 .tile-cta{
   margin-top:auto;padding-top:.65rem;
   display:flex;align-items:center;justify-content:space-between;
-  font-size:13px;font-weight:500;color:var(--ac);
+  font-size:13px;font-weight:600;color:var(--ac);
+  letter-spacing:.01em;
 }
 
 /* Wide tile */
 .app-tile.wide .tile-body{display:flex;gap:1rem;align-items:flex-start;}
-.app-tile.wide .tile-icon{font-size:36px;flex-shrink:0;}
+.app-tile.wide .tile-icon{font-size:0;flex-shrink:0;}
 .app-tile.wide .tile-info{flex:1;min-width:0;}
 .app-tile.wide .tile-features{flex-direction:row;flex-wrap:wrap;gap:5px;margin-top:.4rem;}
 .app-tile.wide .tile-feat{
@@ -129,12 +241,18 @@ body{font-family:var(--sa);background:var(--bg);color:var(--tx);min-height:100vh
 .dash-section{padding:0 1rem 1.75rem;}
 .dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
 .dash-card{
-  background:var(--bg2);border-radius:var(--r2);
-  padding:.9rem 1rem;
-  cursor:pointer;text-decoration:none;display:block;
-  transition:opacity .15s;
+  background:var(--bg2);border-radius:14px;
+  border:1px solid var(--br);
+  padding:1rem 1.1rem;
+  cursor:pointer;text-decoration:none;display:block;color:var(--tx);
+  transition:all .2s cubic-bezier(.16,1,.3,1);
 }
-.dash-card:active{opacity:.6;}
+.dash-card:hover{
+  border-color:rgba(122,14,200,.20);
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(122,14,200,.10);
+}
+.dash-card:active{opacity:.7;transform:scale(.98);}
 .dc-bh{grid-column:1/-1;}
 .dash-ico{font-size:18px;margin-bottom:.3rem;display:block;}
 .dash-lbl{font-size:10px;font-weight:600;color:var(--tx3);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.2rem;}
@@ -190,6 +308,68 @@ body{font-family:var(--sa);background:var(--bg);color:var(--tx);min-height:100vh
 .backup-status.err{color:var(--err);}
 .backup-status.warn{color:var(--warn);}
 
+/* ── SYNC PANEL ─────────────────────────────────────────────── */
+.sync-panel{margin:0 1rem 2rem;background:var(--bg2);border-radius:var(--r2);overflow:hidden;}
+.sync-hdr{display:flex;align-items:center;gap:.65rem;padding:.9rem 1rem;cursor:pointer;user-select:none;}
+.sync-hdr-icon{font-size:16px;}
+.sync-hdr-title{font-size:13px;font-weight:500;color:var(--tx);flex:1;}
+.sync-hdr-arrow{color:var(--tx3);font-size:13px;transition:transform .2s;}
+.sync-hdr.open .sync-hdr-arrow{transform:rotate(90deg);}
+.sync-body{display:none;border-top:1px solid var(--sep);padding:1rem;}
+.sync-body.open{display:block;}
+.sync-view{display:none;}
+.sync-view.active{display:block;}
+.sync-code-display{
+  font-family:var(--mo);font-size:28px;font-weight:700;letter-spacing:.2em;
+  color:var(--ac);text-align:center;background:var(--bg3);border-radius:var(--r);
+  padding:1rem;margin:.75rem 0;cursor:pointer;
+  border:1px solid rgba(99,102,241,.2);transition:background .15s;
+}
+.sync-code-display:active{background:rgba(99,102,241,.15);}
+.sync-code-hint{font-size:10px;color:var(--tx3);text-align:center;margin-bottom:.5rem;}
+.sync-input{
+  width:100%;font-family:var(--mo);font-size:22px;font-weight:700;
+  letter-spacing:.15em;text-align:center;text-transform:uppercase;
+  background:var(--bg3);border:1px solid var(--br);border-radius:var(--r);
+  color:var(--tx);padding:.75rem;outline:none;margin:.75rem 0;
+}
+.sync-input:focus{border-color:rgba(99,102,241,.5);}
+.sync-btn-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.sync-btn{font-size:13px;font-weight:600;padding:11px;border-radius:var(--r);border:none;cursor:pointer;transition:opacity .15s;}
+.sync-btn:active{opacity:.7;}
+.sync-btn.primary{background:var(--ac);color:#fff;}
+.sync-btn.secondary{background:var(--bg3);color:var(--tx2);}
+.sync-btn.full{grid-column:1/-1;}
+.sync-status{font-size:11px;color:var(--tx3);text-align:center;margin-top:.65rem;min-height:1.4em;}
+.sync-status.ok{color:var(--ok);}
+.sync-status.err{color:var(--err);}
+.sync-status.warn{color:var(--warn);}
+.sync-info-text{font-family:var(--mo);font-size:10px;color:var(--tx3);margin-bottom:.75rem;line-height:1.6;}
+.sync-active-bar{
+  display:flex;align-items:center;gap:.65rem;
+  background:var(--ok-g);border:1px solid var(--ok-b);
+  border-radius:10px;padding:.6rem .85rem;margin-bottom:.75rem;
+}
+@keyframes pulseDot{0%,100%{opacity:1;}50%{opacity:.35;}}
+.sync-active-dot{width:8px;height:8px;border-radius:50%;background:var(--ok);flex-shrink:0;animation:pulseDot 2s ease infinite;}
+.sync-active-code{font-family:var(--mo);font-size:13px;font-weight:700;color:var(--ok);letter-spacing:.1em;}
+
+/* ── PDF PANEL ──────────────────────────────────────────────── */
+.pdf-panel{margin:0 1rem 2rem;}
+.pdf-btn{
+  width:100%;display:flex;align-items:center;gap:.75rem;
+  padding:.9rem 1rem;background:var(--bg2);border-radius:var(--r2);
+  border:1px solid var(--br);cursor:pointer;color:var(--tx);
+  font-size:13px;font-weight:500;text-align:left;
+  transition:border-color .15s,background .15s;
+}
+.pdf-btn:hover{border-color:rgba(255,255,255,.12);background:var(--bg3);}
+.pdf-btn:active{opacity:.7;}
+.pdf-btn-icon{font-size:16px;}
+.pdf-btn-info{flex:1;}
+.pdf-btn-title{font-size:13px;font-weight:500;color:var(--tx);}
+.pdf-btn-sub{font-size:10px;color:var(--tx3);margin-top:1px;font-family:var(--mo);}
+
 /* ── FOOTER ── */
 .footer{padding:2rem 1.5rem 3.5rem;text-align:center;border-top:1px solid var(--sep);}
 .footer-logo{font-size:14px;font-weight:700;color:var(--tx3);letter-spacing:-.2px;margin-bottom:.35rem;}
@@ -205,15 +385,20 @@ body{font-family:var(--sa);background:var(--bg);color:var(--tx);min-height:100vh
 .app-tile:nth-child(3){animation-delay:.16s;}
 .app-tile:nth-child(4){animation-delay:.20s;}
 .app-tile:nth-child(5){animation-delay:.24s;}
+.app-tile:nth-child(6){animation-delay:.28s;}
 
-/* ── LIGHT MODE ── */
-.lm{
-  --bg:#f2f2f7;--bg2:#fff;--bg3:#e5e5ea;--bg4:#d1d1d6;
-  --tx:#000;--tx2:rgba(0,0,0,.7);--tx3:rgba(0,0,0,.38);--tx4:rgba(0,0,0,.15);
-  --sep:rgba(0,0,0,.08);--ac:#4f46e5;
+/* ── LIGHT MODE (Arc Studio Brand) ── */.dm {
+  color-scheme: dark;
+  --bg:#0a0a0f; --bg2:#0f0f17; --bg3:#171720; --bg4:#1e1e2a;
+  --tx:#f0f0f5; --tx2:#a0a0b0; --tx3:#606070; --tx4:rgba(255,255,255,.08);
+  --sep:rgba(255,255,255,.06); --brd:rgba(255,255,255,.09); --brd2:rgba(255,255,255,.14);
+  --br:rgba(255,255,255,.09); --br2:rgba(255,255,255,.14);
+  --border:rgba(255,255,255,.09);
+  --shadow-sm:0 1px 4px rgba(0,0,0,.5); --shadow-md:0 4px 20px rgba(0,0,0,.55); --shadow-lg:0 16px 48px rgba(0,0,0,.65);
+  --sh:0 1px 4px rgba(0,0,0,.5),0 4px 16px rgba(0,0,0,.45); --sh2:0 2px 8px rgba(0,0,0,.6),0 12px 40px rgba(0,0,0,.5);
 }
-.lm .hdr{background:rgba(242,242,247,.85);}
-.lm .hero-title .hl{color:var(--ac);}
+.dm .hdr{background:rgba(10,10,15,.92);box-shadow:0 1px 12px rgba(0,0,0,.06);}
+.dm .hero-title .hl{color:var(--ac);}
 @media print{.thm-btn{display:none!important;}}
 
 /* ── Drawer (Arc Studio App-Switcher) ─────────── */
@@ -223,7 +408,9 @@ body{font-family:var(--sa);background:var(--bg);color:var(--tx);min-height:100vh
 .drawer.on{transform:translateX(0);}
 .drawer-hdr{padding:1rem;border-bottom:1px solid var(--br);display:flex;align-items:center;justify-content:space-between;}
 .drawer-title{font-size:14px;font-weight:700;color:var(--tx);}
-.drawer-close{width:32px;height:32px;border-radius:8px;background:var(--bg3);border:none;color:var(--tx2);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.drawer-close{width:44px;height:44px;border-radius:var(--r-sm);background:var(--bg3);border:none;color:var(--tx2);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background var(--t-fast),color var(--t-fast);}
+.drawer-close:hover{background:var(--bg4);color:var(--tx);}
+.drawer-close:active{opacity:.7;}
 .drawer-apps{padding:.5rem 0;flex:1;}
 .drawer-app{display:flex;align-items:center;gap:.75rem;padding:.7rem 1rem;text-decoration:none;color:var(--tx);transition:background .15s;}
 .drawer-app:hover{background:var(--bg3);}
@@ -239,16 +426,80 @@ body{font-family:var(--sa);background:var(--bg);color:var(--tx);min-height:100vh
 /* ── Language ──────────────────────────────────── */
 html.lang-en .de-only { display: none !important; }
 html.lang-de .en-only { display: none !important; }
-.lang-btn { font-size: 12px; font-weight: 700; padding: .35rem .65rem; border-radius: 8px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.5); cursor: pointer; letter-spacing: .04em; }
-.lang-btn:hover { background: rgba(255,255,255,.1); color: rgba(255,255,255,.8); }
+.lang-btn { font-size: 18px; padding: 0; border-radius: var(--r-sm); background: rgba(255,255,255,.06); border: 1px solid var(--brd2); color: rgba(255,255,255,.5); cursor: pointer; letter-spacing: .04em; min-height: 44px; width: 44px; display: flex; align-items: center; justify-content: center; }
+.lang-btn:hover { background: rgba(122,14,200,.10); color: #460872; }
+
+/* 5-Sprachen-System */
+html.lang-tr .de-only, html.lang-tr .en-only, html.lang-tr .ru-only, html.lang-tr .ar-only { display: none !important; }
+html.lang-ru .de-only, html.lang-ru .en-only, html.lang-ru .tr-only, html.lang-ru .ar-only { display: none !important; }
+html.lang-ar .de-only, html.lang-ar .en-only, html.lang-ar .tr-only, html.lang-ar .ru-only { display: none !important; }
+html.lang-de .tr-only, html.lang-de .ru-only, html.lang-de .ar-only { display: none !important; }
+html.lang-en .tr-only, html.lang-en .ru-only, html.lang-en .ar-only { display: none !important; }
+
+/* Arabic RTL */
+html.lang-ar { direction: rtl; }
+html.lang-ar .hdr { flex-direction: row-reverse; }
+html.lang-ar .hdr-logo { flex-direction: row-reverse; }
+html.lang-ar .bnav { direction: rtl; }
+html.lang-ar .drawer { direction: rtl; }
+html.lang-ar .drawer-app { flex-direction: row-reverse; }
+
+/* Language Picker Modal */
+.lang-modal-overlay { position:fixed; inset:0; z-index:9000; background:rgba(0,0,0,.7); backdrop-filter:blur(8px); opacity:0; pointer-events:none; transition:opacity .2s; }
+.lang-modal-overlay.on { opacity:1; pointer-events:all; }
+.lang-modal { position:fixed; bottom:0; left:0; right:0; z-index:9001; background:#0f0f18; border-top:1px solid rgba(255,255,255,.12); border-radius:22px 22px 0 0; padding:0 1rem calc(1.5rem + env(safe-area-inset-bottom)); transform:translateY(100%); transition:transform .3s cubic-bezier(.32,0,.67,0); }
+.lang-modal.on { transform:translateY(0); transition:transform .36s cubic-bezier(.33,1,.68,1); }
+.lang-modal-handle { width:36px; height:4px; border-radius:2px; background:rgba(255,255,255,.12); margin:12px auto 1rem; }
+.lang-modal-title { font-family:var(--font-mono, 'JetBrains Mono', monospace); font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.3); text-align:center; margin-bottom:1rem; }
+.lang-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-bottom:.5rem; }
+.lang-option { display:flex; flex-direction:column; align-items:center; gap:6px; padding:.75rem .25rem; border-radius:12px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.04); cursor:pointer; transition:all .15s; }
+.lang-option:hover { background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.15); }
+.lang-option.active { border-color:var(--ac, #6366f1); background:rgba(99,102,241,.12); }
+.lang-flag { font-size:28px; line-height:1; }
+.lang-code { font-family:var(--font-mono, 'JetBrains Mono', monospace); font-size:9px; font-weight:700; color:rgba(255,255,255,.4); letter-spacing:.06em; }
+.lang-option.active .lang-code { color:var(--ac, #6366f1); }
+.lang-name { font-size:9px; color:rgba(255,255,255,.3); }
+.lang-option.active .lang-name { color:rgba(255,255,255,.6); }
+
+/* ── STATS MODAL ──────────────────────────────────────────────── */
+.stats-overlay{position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .2s;}
+.stats-overlay.on{opacity:1;pointer-events:all;}
+.stats-modal{position:fixed;bottom:0;left:0;right:0;z-index:9001;background:#0f0f18;border-top:1px solid rgba(255,255,255,.12);border-radius:22px 22px 0 0;padding:0 1rem calc(1.5rem + env(safe-area-inset-bottom));transform:translateY(100%);transition:transform .3s cubic-bezier(.32,0,.67,0);max-height:88vh;overflow-y:auto;}
+.stats-modal.on{transform:translateY(0);transition:transform .36s cubic-bezier(.33,1,.68,1);}
+.stats-modal-handle{width:36px;height:4px;border-radius:2px;background:rgba(255,255,255,.12);margin:12px auto 1rem;}
+.stats-modal-title{font-size:16px;font-weight:700;color:var(--tx);margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem;}
+.stats-section{margin-bottom:1.5rem;}
+.stats-section-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3);margin-bottom:.65rem;}
+.stats-streak-val{font-size:44px;font-weight:800;letter-spacing:-.5px;line-height:1;color:var(--ok);}
+.stats-streak-sub{font-size:12px;color:var(--tx3);margin-top:.3rem;}
+.stat-bars{display:flex;align-items:flex-end;gap:4px;height:80px;}
+.stat-bar{flex:1;border-radius:4px 4px 0 0;min-height:4px;}
+.stat-bar.good{background:#22c55e;}
+.stat-bar.mid{background:#eab308;}
+.stat-bar.bad{background:#ef4444;}
+.stat-bar.empty{background:rgba(255,255,255,.08);}
+.stat-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;}
+.stat-bar-label{font-size:9px;text-align:center;color:rgba(255,255,255,.4);margin-top:4px;}
+.stats-sr-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:.5rem;}
+.stats-sr-card{background:var(--bg3);border-radius:10px;padding:.65rem .75rem;}
+.stats-sr-card-name{font-size:10px;font-weight:700;color:var(--tx2);margin-bottom:.3rem;}
+.stats-sr-card-total{font-size:18px;font-weight:700;color:var(--tx);line-height:1;}
+.stats-sr-card-due{font-size:10px;color:var(--warn);margin-top:2px;}
+.stats-sr-card-bar{height:3px;background:var(--bg4);border-radius:2px;margin-top:.45rem;overflow:hidden;}
+.stats-sr-card-bar-fill{height:100%;border-radius:2px;background:var(--ac);}
+.stats-weak-list{display:flex;flex-direction:column;gap:6px;}
+.stats-weak-item{font-size:12px;color:var(--tx2);padding:.4rem .65rem;background:var(--bg3);border-radius:8px;font-family:var(--mo);}
+.stats-weak-none{font-size:12px;color:var(--ok);padding:.4rem 0;}
+.stats-close-btn{width:100%;padding:.75rem;border-radius:var(--r);background:var(--bg3);border:none;color:var(--tx2);font-size:14px;font-weight:600;cursor:pointer;margin-top:.5rem;}
+.stats-close-btn:active{opacity:.7;}
 
 /* ── RÜCKKEHRER-BANNER ── */
 .return-banner{
   display:none;
   margin:0 1rem .5rem;
   padding:.9rem 1.1rem;
-  background:rgba(99,102,241,.1);
-  border:1px solid rgba(99,102,241,.25);
+  background:var(--acg);
+  border:1px solid var(--acb);
   border-radius:var(--r2);
   animation:fadeUp .3s ease both;
 }
@@ -259,37 +510,297 @@ html.lang-de .en-only { display: none !important; }
 .return-banner-btns{display:flex;gap:.5rem;flex-wrap:wrap;}
 .return-btn{
   font-size:12px;font-weight:600;color:var(--ac);
-  background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);
+  background:var(--acg);border:1px solid var(--acb);
   padding:.3rem .75rem;border-radius:8px;text-decoration:none;
   transition:background .15s;white-space:nowrap;
 }
-.return-btn:active{background:rgba(99,102,241,.3);}
+.return-btn:active{background:var(--acb);}
+
+/* ── HERO BANNER ──────────────────────────────────────────── */
+.volt-hero {
+  position:relative; overflow:hidden;
+  padding:1.4rem 1rem 1.2rem; margin-bottom:.25rem;
+  background:linear-gradient(160deg,rgba(99,102,241,.07) 0%,rgba(124,58,237,.05) 40%,rgba(48,209,88,.04) 100%);
+  border-bottom:1px solid var(--sep);
+}
+.volt-hero-glow {
+  position:absolute; top:-60px; right:-40px;
+  width:260px; height:260px; border-radius:50%;
+  background:radial-gradient(circle,rgba(99,102,241,.15) 0%,transparent 70%);
+  pointer-events:none;
+}
+.volt-hero-inner { position:relative; z-index:1; max-width:var(--max-w); }
+.volt-hero-badge {
+  display:inline-flex; align-items:center;
+  background:var(--acg); border:1px solid var(--acb);
+  color:var(--ac); font-size:11px; font-weight:700;
+  padding:.3rem .75rem; border-radius:var(--r-full);
+  margin-bottom:.7rem; letter-spacing:.03em;
+}
+.volt-hero-title {
+  font-size:24px; font-weight:900; line-height:1.18;
+  letter-spacing:-.4px; color:var(--tx); margin-bottom:.85rem;
+}
+.vht-gradient {
+  background:linear-gradient(135deg,var(--ac) 0%,#30d158 100%);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent; color:transparent;
+}
+.volt-hero-nums {
+  display:flex; align-items:center; gap:.85rem; margin-bottom:.9rem;
+}
+.vhn { display:flex; flex-direction:column; }
+.vhn-v { font-size:20px; font-weight:800; color:var(--tx); line-height:1; }
+.vhn-l { font-size:10px; color:var(--tx3); font-weight:600; text-transform:uppercase; letter-spacing:.04em; margin-top:1px; }
+.vhn-sep { width:1px; height:28px; background:var(--brd); }
+.volt-hero-btns { display:flex; gap:.45rem; flex-wrap:wrap; }
+.vhb {
+  padding:.55rem 1rem; border-radius:var(--r-md);
+  font-size:13px; font-weight:700; text-decoration:none;
+  transition:all var(--t-fast); display:inline-flex; align-items:center; gap:.3rem;
+  white-space:nowrap;
+}
+.vhb-primary { background:var(--ac); color:#fff; box-shadow:0 4px 14px rgba(99,102,241,.3); }
+.vhb-primary:hover { background:var(--acd); box-shadow:0 6px 20px rgba(99,102,241,.42); transform:translateY(-1px); }
+.vhb-secondary { background:var(--bg3); color:var(--tx2); border:1px solid var(--brd); }
+.vhb-secondary:hover { background:var(--bg4); color:var(--tx); border-color:var(--brd2); }
+/* Dark mode hero */
+.dm .volt-hero { background:linear-gradient(160deg,rgba(99,102,241,.09) 0%,rgba(124,58,237,.07) 40%,rgba(48,209,88,.05) 100%); }
+.dm .vhb-secondary { background:var(--bg3); border-color:var(--brd); }
+
+/* ── QUICK-STATS STRIP ──────────────────────────────────────── */
+.quick-stats{display:flex;gap:8px;overflow-x:auto;padding:0 0 8px;margin:0 0 12px;scrollbar-width:none;}
+.quick-stats::-webkit-scrollbar{display:none;}
+.qs-card{flex:0 0 auto;background:var(--bg2);border:1px solid var(--sep);border-radius:12px;padding:10px 16px;text-align:center;min-width:100px;}
+.qs-val{font-size:1.4rem;font-weight:700;color:var(--ac);}
+.qs-lbl{font-size:.72rem;color:var(--tx3);margin-top:2px;}
+
+/* ── FORUM SPOTLIGHT ─────────────────────────────────────────── */
+.forum-spotlight{display:flex;align-items:center;gap:14px;margin:0 0 16px;padding:1rem 1.1rem;background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(99,102,241,.06));border:1px solid rgba(99,102,241,.3);border-radius:16px;cursor:pointer;text-decoration:none;color:inherit;transition:border-color .2s,transform .15s;}
+.forum-spotlight:active{transform:scale(.98);}
+.forum-spotlight:hover{border-color:rgba(99,102,241,.55);}
+.fs-icon{font-size:2rem;flex-shrink:0;}
+.fs-text strong{display:block;font-size:1rem;color:var(--tx);}
+.fs-text span{font-size:.82rem;color:var(--tx3);}
+.fs-arrow{margin-left:auto;color:var(--ac);font-size:1.3rem;flex-shrink:0;}
+.fs-badge{display:inline-block;font-size:.6rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:#6366f1;color:#fff;padding:.15rem .45rem;border-radius:4px;margin-bottom:.35rem;}
+.fs-title{font-size:1.05rem;font-weight:800;color:var(--tx);letter-spacing:-.3px;}
+.fs-sub{font-size:.75rem;color:var(--tx2);margin-top:.15rem;}
+.fs-arrow{font-size:1.3rem;color:rgba(99,102,241,.7);flex-shrink:0;margin-left:.75rem;}
+
+/* ── HOME SECTIONS ───────────────────────────────────────────── */
+.home-section{margin-bottom:.5rem;}
+.home-section-hdr{padding:.75rem 1rem .4rem;display:flex;align-items:center;justify-content:space-between;}
+.home-section-title{font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3);}
+.home-section .app-grid{padding-bottom:.5rem;}
+
+/* ── ARC STUDIO BRAND LIGHT MODE */
+.hdr {
+  background: rgba(255,255,255,.92) !important;
+  backdrop-filter: saturate(180%) blur(24px) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(24px) !important;
+  box-shadow: 0 1px 12px rgba(0,0,0,.06) !important;
+  border-bottom-color: rgba(122,14,200,.08) !important;
+}
+.app-tile:hover, .card:hover, .dash-card:hover {
+  box-shadow: 0 8px 24px rgba(122,14,200,.10), 0 0 0 1px rgba(122,14,200,.06) !important;
+}
+input, textarea, select {
+  background: #ffffff !important;
+  border-color: rgba(122,14,200,.15) !important;
+  color: #1a1a2e !important;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: #7a0ec8 !important;
+  box-shadow: 0 0 0 3px rgba(122,14,200,.12) !important;
+}
+.drawer { box-shadow: -4px 0 32px rgba(0,0,0,.12) !important; }
+
+/* ── DARK MODE: Inputs, Selects, Checkboxes ──────────────────── */
+.dm input,
+.dm input[type=text],
+.dm input[type=number],
+.dm input[type=date],
+.dm input[type=time],
+.dm input[type=email],
+.dm input[type=password],
+.dm input[type=search],
+.dm input[type=url],
+.dm textarea,
+.dm select {
+  background: #1a1a28 !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: #f0f0f5 !important;
+  color-scheme: dark !important;
+}
+.dm input::placeholder,
+.dm textarea::placeholder { color: rgba(240,240,245,.35) !important; }
+.dm input:focus,
+.dm textarea:focus,
+.dm select:focus {
+  border-color: rgba(122,14,200,.6) !important;
+  box-shadow: 0 0 0 3px rgba(122,14,200,.18) !important;
+  outline: none !important;
+}
+.dm input[type=checkbox],
+.dm input[type=radio] {
+  accent-color: #7a0ec8 !important;
+  color-scheme: dark !important;
+}
+.dm input[type=range] {
+  accent-color: #7a0ec8 !important;
+  color-scheme: dark !important;
+}
+/* ── DARK MODE: Polish ───────────────────────────────────────── */
+.dm * { scrollbar-color: rgba(122,14,200,.4) rgba(255,255,255,.05); }
+.dm ::selection { background: rgba(122,14,200,.35); color: #fff; }
+html { transition: background-color .25s ease, color .25s ease; }
+
+/* ── DARK MODE POLISH ──────────────────────────────────────── */
+.dm body {
+  background: #08080f !important;
+}
+.dm .hdr,
+.dm header,
+.dm nav {
+  background: rgba(8,8,15,.94) !important;
+  border-bottom-color: rgba(255,255,255,.07) !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,.06) !important;
+  backdrop-filter: saturate(120%) blur(20px) !important;
+  -webkit-backdrop-filter: saturate(120%) blur(20px) !important;
+}
+.dm .card,
+.dm .dash-card,
+.dm .app-tile,
+.dm .stat-card,
+.dm .quiz-card,
+.dm .lern-card,
+.dm .info-card,
+.dm .feature-card,
+.dm .tool-card,
+.dm .week-card,
+.dm .bento-cell {
+  background: #0f0f1a !important;
+  border: 1px solid rgba(255,255,255,.07) !important;
+}
+.dm .card:hover,
+.dm .dash-card:hover,
+.dm .app-tile:hover,
+.dm .tool-card:hover {
+  border-color: rgba(122,14,200,.4) !important;
+  box-shadow: 0 0 0 1px rgba(122,14,200,.2), 0 8px 24px rgba(0,0,0,.4) !important;
+}
+.dm .badge,
+.dm .chip,
+.dm .tag,
+.dm .pill,
+.dm .label {
+  background: rgba(255,255,255,.07) !important;
+  color: var(--tx2) !important;
+  border-color: rgba(255,255,255,.1) !important;
+}
+.dm .bnav,
+.dm .nav,
+.dm .tab-bar,
+.dm .bottom-nav {
+  background: rgba(8,8,15,.97) !important;
+  border-top-color: rgba(255,255,255,.07) !important;
+  box-shadow: 0 -1px 0 rgba(255,255,255,.06) !important;
+}
+.dm .drawer,
+.dm .modal,
+.dm .sheet,
+.dm .popup,
+.dm .dropdown,
+.dm .panel {
+  background: #0f0f1a !important;
+  border-color: rgba(255,255,255,.08) !important;
+  box-shadow: 0 24px 64px rgba(0,0,0,.6) !important;
+}
+.dm .toast,
+.dm .snack,
+.dm .alert {
+  background: #1a1a28 !important;
+  border-color: rgba(255,255,255,.1) !important;
+  color: var(--tx) !important;
+}
+.dm a:not(.btn):not([class*="btn"]):not([class*="card"]) {
+  color: #c084fc;
+}
+.dm a:not(.btn):not([class*="btn"]):not([class*="card"]):hover {
+  color: #e879f9;
+}
+.dm code,
+.dm pre,
+.dm .code-block {
+  background: rgba(255,255,255,.05) !important;
+  border-color: rgba(255,255,255,.08) !important;
+  color: #c4b5fd !important;
+}
+.dm table thead {
+  background: rgba(255,255,255,.05) !important;
+}
+.dm table tr:nth-child(even) {
+  background: rgba(255,255,255,.025) !important;
+}
+.dm table td,
+.dm table th {
+  border-color: rgba(255,255,255,.07) !important;
+}
+.dm hr,
+.dm .divider,
+.dm .sep {
+  border-color: rgba(255,255,255,.07) !important;
+  background: rgba(255,255,255,.07) !important;
+}
 </style>
 </head>
 <body>
 
 <header class="hdr">
   <div class="logo">
-    <div class="logo-mark"><svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
-      <rect width="30" height="30" rx="7" fill="#6366f1"/>
-      <path d="M17 5L9 16H14L12 25L20 14H15L17 5Z" fill="white"/>
-    </svg></div>
+    <div class="logo-mark">
+      <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+        <defs>
+          <linearGradient id="chipGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#4c1d95"/>
+            <stop offset="100%" stop-color="#7c3aed"/>
+          </linearGradient>
+        </defs>
+        <rect width="30" height="30" rx="7" fill="url(#chipGrad)"/>
+        <!-- chip body -->
+        <rect x="8" y="8" width="14" height="14" rx="2.5" fill="none" stroke="white" stroke-width="1.2" opacity=".9"/>
+        <!-- center gear/dot -->
+        <circle cx="15" cy="15" r="2" fill="white"/>
+        <!-- pins top/bottom/left/right -->
+        <line x1="11" y1="8" x2="11" y2="5" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="15" y1="8" x2="15" y2="5" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="19" y1="8" x2="19" y2="5" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="11" y1="22" x2="11" y2="25" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="15" y1="22" x2="15" y2="25" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="19" y1="22" x2="19" y2="25" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="8" y1="12" x2="5" y2="12" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="8" y1="18" x2="5" y2="18" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="22" y1="12" x2="25" y2="12" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="22" y1="18" x2="25" y2="18" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </div>
     <div class="logo-text">VOLT<span>IQ</span></div>
   </div>
-  <button class="thm-btn" id="thm-btn" onclick="thmToggle()" title="Hell/Dunkel" style="width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.08);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:15px;">🌙</button>
-  <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
-  <button onclick="drawerOpen()" title="Apps wechseln" style="width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.08);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:15px;color:var(--tx2);">⊞</button>
+  <button type="button" class="thm-btn" id="thm-btn" onclick="thmToggle()" title="Hell/Dunkel" aria-label="Hell/Dunkel" style="width:44px;height:44px;border-radius:var(--r-sm);background:rgba(122,14,200,.06);border:1px solid rgba(122,14,200,.12);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:15px;">🌙</button>
+  <button type="button" class="lang-btn" id="lang-btn" onclick="openLangModal()" aria-label="Sprache wählen" title="Sprache wählen">🌐</button>
+  <button type="button" onclick="drawerOpen()" title="Apps wechseln" aria-label="Apps wechseln" style="width:44px;height:44px;border-radius:var(--r-sm);background:rgba(122,14,200,.06);border:1px solid rgba(122,14,200,.12);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:15px;color:var(--tx2);">⊞</button>
 </header>
 
 <div class="drawer-overlay" id="drawer-overlay" onclick="drawerClose()"></div>
 <div class="drawer" id="drawer">
   <div class="drawer-hdr">
     <span class="drawer-title">⊞ Arc Studio</span>
-    <button class="drawer-close" onclick="drawerClose()">✕</button>
+    <button type="button" class="drawer-close" aria-label="Menü schließen" onclick="drawerClose()">✕</button>
   </div>
   <div class="drawer-apps">
     <a class="drawer-app active" href="voltiq.html">
-      <span class="drawer-app-icon">⚡</span>
+      <span class="drawer-app-icon"><svg width="20" height="20" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(99,102,241,.2)"/><path d="M21 6L12 20h7l-3 10L27 16h-7l3-10z" fill="#6366f1"/></svg></span>
       <div><div class="drawer-app-name">VOLTIQ</div><div class="drawer-app-sub">Mechatroniker-Ausbildung</div></div>
       <span class="drawer-app-badge">Aktiv</span>
     </a>
@@ -313,6 +824,34 @@ html.lang-de .en-only { display: none !important; }
       <span class="drawer-app-icon">📓</span>
       <div><div class="drawer-app-name">Berichtsheft</div><div class="drawer-app-sub">Ausbildungsnachweise</div></div>
     </a>
+    <a class="drawer-app" href="VOLTECH-lernkurven.html">
+      <span class="drawer-app-icon">📈</span>
+      <div><div class="drawer-app-name">Lernkurven-Verlauf</div><div class="drawer-app-sub">SR-Reifegrade · Scores · Charts</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-vergleich.html">
+      <span class="drawer-app-icon">📊</span>
+      <div><div class="drawer-app-name">Beruf-Vergleich</div><div class="drawer-app-sub">Anonymer Community-Vergleich</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-foto-karte.html">
+      <span class="drawer-app-icon">📸</span>
+      <div><div class="drawer-app-name">Karte aus Foto</div><div class="drawer-app-sub">Foto → Karteikarten</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-mentor.html">
+      <span class="drawer-app-icon">💬</span>
+      <div><div class="drawer-app-name">Mentor-Chat</div><div class="drawer-app-sub">Anonyme Fachfragen stellen</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-tandem.html">
+      <span class="drawer-app-icon">🤝</span>
+      <div><div class="drawer-app-name">Tandem-Lernen</div><div class="drawer-app-sub">Karten mit Lernpartner teilen</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-cross-sr.html">
+      <span class="drawer-app-icon">🔄</span>
+      <div><div class="drawer-app-name">Cross-App SR-Session</div><div class="drawer-app-sub">Alle fälligen Karten — eine Session</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-suche.html">
+      <span class="drawer-app-icon">🔍</span>
+      <div><div class="drawer-app-name">Universal-Suche</div><div class="drawer-app-sub">Alle Karten & Quiz durchsuchen</div></div>
+    </a>
     <a class="drawer-app" href="VOLTECH-tools2.html">
       <span class="drawer-app-icon">🧰</span>
       <div><div class="drawer-app-name">Lerntools</div><div class="drawer-app-sub">Rechner & Hilfsmittel</div></div>
@@ -325,9 +864,21 @@ html.lang-de .en-only { display: none !important; }
       <span class="drawer-app-icon">🔩</span>
       <div><div class="drawer-app-name">TORQUE</div><div class="drawer-app-sub">Industriemechaniker AP1/AP2</div></div>
     </a>
+    <a class="drawer-app" href="VOLTECH-english.html">
+      <span class="drawer-app-icon">🇬🇧</span>
+      <div><div class="drawer-app-name">Technical English</div><div class="drawer-app-sub">Fachvokabular · IHK</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-ki-tutor.html?app=voltiq">
+      <span class="drawer-app-icon">🤖</span>
+      <div><div class="drawer-app-name">KI-Tutor</div><div class="drawer-app-sub">IHK-Fachtutor · offline</div></div>
+    </a>
     <a class="drawer-app" href="VOLTECH-ki.html">
       <span class="drawer-app-icon">🧠</span>
       <div><div class="drawer-app-name">KI-Assistent</div><div class="drawer-app-sub">Offline Wissensdatenbank</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-whats-new.html">
+      <span class="drawer-app-icon">✨</span>
+      <div><div class="drawer-app-name">Was ist neu? <span style="font-size:10px;opacity:.5;">v3.10</span></div><div class="drawer-app-sub">Changelog & neue Features</div></div>
     </a>
   </div>
   <div class="drawer-footer">
@@ -335,34 +886,68 @@ html.lang-de .en-only { display: none !important; }
   </div>
 </div>
 
-<section class="hero">
-  <h1 class="hero-title">Dein digitaler<br><span class="hl">Azubi-Begleiter</span></h1>
-  <p class="hero-sub">5 Apps für die Mechatroniker-Ausbildung — offline, kein Account.</p>
-</section>
-
-<!-- Rückkehrer-Banner (wird per JS eingeblendet wenn Visits > 1) -->
+<!-- RETURN BANNER -->
 <div class="return-banner" id="return-banner">
   <div class="return-banner-top">
-    <span class="return-banner-icon">👋</span>
+    <span class="return-banner-icon">⚡</span>
     <div>
       <div class="return-banner-text">Willkommen zurück!</div>
       <div class="return-banner-sub">Mach da weiter, wo du aufgehört hast.</div>
     </div>
   </div>
   <div class="return-banner-btns">
-    <a href="VOLTECH-lern-basis.html" class="return-btn">📚 Lernmodus</a>
-    <a href="VOLTECH-sps.html" class="return-btn">🔌 SPS-Trainer</a>
+    <a href="VOLTECH-lern-hub.html" class="return-btn">📚 Lern-Suite</a>
     <a href="VOLTECH-berichtsheft.html" class="return-btn">📓 Berichtsheft</a>
-    <a href="VOLTECH-lern-extra.html" class="return-btn">🎤 AP2-Extra</a>
+    <a href="VOLTECH-ap2-sim.html" class="return-btn">🎓 AP2-Sim</a>
+    <a href="VOLTECH-eigene-karten.html" class="return-btn">✏️ Eigene Karten</a>
+    <a href="VOLTECH-achievements.html" class="return-btn">🏆 Achievements</a>
   </div>
 </div>
 
-<div class="stats">
-  <div class="stat"><div class="stat-val">5</div><div class="stat-lbl">Apps</div></div>
-  <div class="stat"><div class="stat-val">120+</div><div class="stat-lbl">Quiz-Fragen</div></div>
-  <div class="stat"><div class="stat-val">95+</div><div class="stat-lbl">Vokabeln</div></div>
+<!-- HERO BANNER -->
+<div class="volt-hero" id="voltHero">
+  <div class="volt-hero-glow"></div>
+  <div class="volt-hero-inner">
+    <div class="volt-hero-badge">⚡ Kostenlos · Offline · Kein Account</div>
+    <h2 class="volt-hero-title">Deine Ausbildung.<br><span class="vht-gradient">Besser gelernt.</span></h2>
+    <div class="volt-hero-nums">
+      <div class="vhn"><span class="vhn-v">268</span><span class="vhn-l">SR-Karten</span></div>
+      <div class="vhn-sep"></div>
+      <div class="vhn"><span class="vhn-v">324</span><span class="vhn-l">Quiz-Fragen</span></div>
+      <div class="vhn-sep"></div>
+      <div class="vhn"><span class="vhn-v">11</span><span class="vhn-l">Apps</span></div>
+    </div>
+    <div class="volt-hero-btns">
+      <a href="VOLTECH-cross-sr.html" class="vhb vhb-primary">🔄 SR starten</a>
+      <a href="VOLTECH-suche.html" class="vhb vhb-secondary">🔍 Suchen</a>
+      <a href="VOLTECH-lernkurven.html" class="vhb vhb-secondary">📈 Verlauf</a>
+    </div>
+  </div>
 </div>
 
+<!-- STATS STRIP -->
+<div class="stats">
+  <div class="stat"><div class="stat-val">268</div><div class="stat-lbl">SR-Karten</div></div>
+  <div class="stat"><div class="stat-val">324+</div><div class="stat-lbl">Quiz-Fragen</div></div>
+  <div class="stat"><div class="stat-val">11</div><div class="stat-lbl">Apps</div></div>
+  <div class="stat"><div class="stat-val">100%</div><div class="stat-lbl">Offline</div></div>
+</div>
+
+<!-- QUICK-STATS STRIP -->
+<div style="padding:0 1rem;">
+  <div class="quick-stats" id="quickStats">
+    <div class="qs-card"><div class="qs-val" id="qs-streak">0</div><div class="qs-lbl">🔥 Streak</div></div>
+    <div class="qs-card"><div class="qs-val" id="qs-cards">—</div><div class="qs-lbl">📚 SR fällig</div></div>
+    <div class="qs-card"><div class="qs-val" id="qs-date">—</div><div class="qs-lbl">📅 Heute</div></div>
+  </div>
+
+  <!-- FORUM SPOTLIGHT -->
+  <a class="forum-spotlight" href="VOLTECH-forum.html">
+    <span class="fs-icon">💬</span>
+    <div class="fs-text"><strong>VOLTECH Forum</strong><span>Fragen stellen · Tipps teilen · 100% anonym</span></div>
+    <span class="fs-arrow">›</span>
+  </a>
+</div>
 
 <!-- LIVE DASHBOARD -->
 <div class="dash-section">
@@ -370,7 +955,7 @@ html.lang-de .en-only { display: none !important; }
   <div class="dash-grid">
 
     <!-- Lernstreak -->
-    <a class="dash-card dc-streak" href="VOLTECH-lern-extra.html" id="dc-streak">
+    <a class="dash-card dc-streak" href="VOLTECH-lern-hub.html" id="dc-streak">
       <span class="dash-ico">🔥</span>
       <div class="dash-lbl">Lernstreak</div>
       <div class="dash-val" id="dc-streak-val">—</div>
@@ -378,9 +963,9 @@ html.lang-de .en-only { display: none !important; }
     </a>
 
     <!-- SR fällig -->
-    <a class="dash-card dc-sr" href="VOLTECH-lern-basis.html" id="dc-sr">
-      <span class="dash-ico">🧠</span>
-      <div class="dash-lbl">Karteikarten fällig</div>
+    <a class="dash-card dc-sr" href="VOLTECH-lern-hub.html" id="dc-sr">
+      <span class="dash-ico">⚡</span>
+      <div class="dash-lbl">SR-Karten fällig</div>
       <div class="dash-val" id="dc-sr-val">—</div>
       <div class="dash-sub" id="dc-sr-sub">Lade...</div>
       <div class="dash-bar">
@@ -388,8 +973,8 @@ html.lang-de .en-only { display: none !important; }
       </div>
     </a>
 
-    <!-- AP1 Sim -->
-    <a class="dash-card dc-ap1" href="VOLTECH-lern-basis.html" id="dc-ap1">
+    <!-- AP1 Bestleistung -->
+    <a class="dash-card dc-ap1" href="VOLTECH-ap2-sim.html" id="dc-ap1">
       <span class="dash-ico">🎓</span>
       <div class="dash-lbl">AP1 Bestleistung</div>
       <div class="dash-val" id="dc-ap1-val">—</div>
@@ -412,70 +997,358 @@ html.lang-de .en-only { display: none !important; }
   </div>
 </div>
 
+<!-- APP GRID -->
 <div class="sec-label">Apps</div>
 
-<div class="app-grid">
+<div class="app-grid" style="padding-bottom:6rem;">
 
-  <a class="app-tile t-blue wide" href="VOLTECH-mechatronik-pro.html">
+  <!-- Lern-Suite -->
+  <a class="app-tile t-green wide" href="VOLTECH-lern-hub.html">
     <div class="tile-body">
-      <span class="tile-icon">⚙️</span>
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(48,209,88,.15)"/><rect x="8" y="9" width="8" height="8" rx="2" fill="rgba(48,209,88,.3)" stroke="#30d158" stroke-width="1.5"/><rect x="20" y="9" width="8" height="8" rx="2" fill="rgba(48,209,88,.2)" stroke="#30d158" stroke-width="1.5"/><rect x="8" y="21" width="8" height="8" rx="2" fill="rgba(48,209,88,.15)" stroke="#30d158" stroke-width="1.5"/><rect x="20" y="21" width="8" height="8" rx="2" fill="rgba(48,209,88,.1)" stroke="#30d158" stroke-width="1.5"/></svg></span>
       <div class="tile-info">
-        <div class="tile-num">Tool-App</div>
-        <div class="tile-name"><span class="de-only">Profi-Rechner</span><span class="en-only">Pro Calculator</span></div>
-        <div class="tile-tag">DC/AC · Kurzschluss · FU · Kabelquerschnitt</div>
-        <div class="tile-features">
-          <span class="tile-feat">Prüfbericht &amp; IBN-Protokoll</span>
-          <span class="tile-feat">KI-Assistent &amp; Normen</span>
-        </div>
+        <div class="tile-num">9 Apps · Prüfung · Tools · KI</div>
+        <div class="tile-name"><span class="de-only">Alle Lern-Apps</span><span class="en-only">All Learning Apps</span><span class="tr-only">Tüm Öğrenme Uygulamaları</span><span class="ru-only">Все учебные приложения</span><span class="ar-only">جميع تطبيقات التعلم</span></div>
+        <div class="tile-tag"><span class="de-only">AP2-Sim · Lernkarten · Lernplan · SPS · KI-Assistent · Profi-Rechner</span><span class="en-only">AP2-Sim · Flashcards · Study Plan · PLC · AI Assistant · Pro Calculator</span><span class="tr-only">AP2-Sim · Kartlar · Plan · PLC · YZ Asistan · Pro Hesap</span><span class="ru-only">AP2-Sim · Карточки · Планирование · ПЛК · ИИ · Калькулятор</span><span class="ar-only">محاكاة AP2 · بطاقات · خطة · PLC · ذكاء اصطناعي · حاسبة</span></div>
+      </div>
+    </div>
+    <div class="tile-cta"><span class="de-only">Suite öffnen</span><span class="en-only">Open Suite</span><span class="tr-only">Paketi aç</span><span class="ru-only">Открыть набор</span><span class="ar-only">فتح المجموعة</span> <span>→</span></div>
+  </a>
+
+  <!-- Achievements -->
+  <a class="app-tile t-yellow wide" href="VOLTECH-achievements.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(255,214,10,.15)"/><path d="M18 8l2.5 5 5.5.8-4 3.9.9 5.5L18 20.8l-4.9 2.4.9-5.5-4-3.9 5.5-.8L18 8z" stroke="#ffd60a" stroke-width="1.5" stroke-linejoin="round" fill="rgba(255,214,10,.2)"/><line x1="14" y1="27" x2="22" y2="27" stroke="#ffd60a" stroke-width="1.5" stroke-linecap="round"/><line x1="18" y1="23" x2="18" y2="27" stroke="#ffd60a" stroke-width="1.5"/></svg></span>
+      <div class="tile-info">
+        <div class="tile-num">Gamification · XP · Level</div>
+        <div class="tile-name">Achievements</div>
+        <div class="tile-tag"><span class="de-only">30 Abzeichen · 6 Levels · Streak-Champion · Quiz-Profi</span><span class="en-only">30 badges · 6 levels · Streak champion · Quiz pro</span><span class="tr-only">30 rozet · 6 seviye · Streak şampiyonu · Quiz uzmanı</span><span class="ru-only">30 значков · 6 уровней · Чемпион стрика · Мастер квиза</span><span class="ar-only">30 شارة · 6 مستويات · بطل التتابع · محترف الاختبار</span></div>
       </div>
     </div>
     <div class="tile-cta">Öffnen <span>→</span></div>
   </a>
 
-  <a class="app-tile t-green" href="VOLTECH-lern-basis.html">
-    <span class="tile-icon">📚</span>
-    <div class="tile-num"><span class="de-only">Lern-App</span><span class="en-only">Learn App</span></div>
-    <div class="tile-name"><span class="de-only">Lernmodus</span><span class="en-only">Learn Mode</span></div>
-    <div class="tile-features">
-      <div class="tile-feat">Spaced Repetition</div>
-      <div class="tile-feat">121 Quiz-Fragen</div>
-      <div class="tile-feat">AP1-Simulation</div>
+  <!-- Profi-Rechner -->
+  <a class="app-tile t-orange wide" href="VOLTECH-mechatronik-pro.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(249,115,22,.15)"/><rect x="8" y="8" width="20" height="20" rx="3" stroke="#f97316" stroke-width="1.5" fill="rgba(249,115,22,.08)"/><rect x="11" y="11" width="6" height="4" rx="1" fill="#f97316" opacity=".7"/><rect x="11" y="17" width="3" height="3" rx=".75" fill="#f97316" opacity=".5"/><rect x="16" y="17" width="3" height="3" rx=".75" fill="#f97316" opacity=".5"/><rect x="21" y="17" width="3" height="3" rx=".75" fill="#f97316" opacity=".5"/><rect x="11" y="22" width="3" height="3" rx=".75" fill="#f97316" opacity=".5"/><rect x="16" y="22" width="3" height="3" rx=".75" fill="#f97316" opacity=".5"/><rect x="21" y="22" width="3" height="3" rx=".75" fill="#f97316" opacity=".9"/></svg></span>
+      <div class="tile-info">
+        <div class="tile-num">Formeln · Einheiten · Module</div>
+        <div class="tile-name"><span class="de-only">Profi-Rechner</span><span class="en-only">Pro Calculator</span><span class="tr-only">Pro Hesap Makinesi</span><span class="ru-only">Про калькулятор</span><span class="ar-only">الآلة الحاسبة الاحترافية</span></div>
+        <div class="tile-tag"><span class="de-only">Drehmoment · Leistung · Kräfte · Werkstoffe · Einheiten-Umrechner</span><span class="en-only">Torque · Power · Forces · Materials · Unit converter</span><span class="tr-only">Tork · Güç · Kuvvetler · Malzemeler</span><span class="ru-only">Момент · Мощность · Силы · Материалы</span><span class="ar-only">العزم · القدرة · القوى · المواد</span></div>
+      </div>
+    </div>
+    <div class="tile-cta"><span class="de-only">Öffnen</span><span class="en-only">Open</span><span class="tr-only">Aç</span><span class="ru-only">Открыть</span><span class="ar-only">فتح</span> <span>→</span></div>
+  </a>
+
+  <!-- Lernstatistik -->
+  <div class="app-tile t-green wide" onclick="openStats()" style="cursor:pointer;">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(48,209,88,.15)"/><rect x="8" y="20" width="5" height="9" rx="1.5" fill="#30d158"/><rect x="16" y="14" width="5" height="15" rx="1.5" fill="#30d158" opacity=".7"/><rect x="24" y="9" width="5" height="20" rx="1.5" fill="#30d158" opacity=".4"/></svg></span>
+      <div class="tile-info">
+        <div class="tile-num">Statistik</div>
+        <div class="tile-name">Lernstatistik</div>
+        <div class="tile-tag">Streak · Quiz-Verlauf · SR-Status · Schwächste Themen</div>
+      </div>
+    </div>
+    <div class="tile-cta">Ansehen <span>→</span></div>
+  </div>
+
+  <!-- Neue Features -->
+<div class="sec-label" style="display:flex;align-items:center;gap:.5rem;">
+  <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--ok-g);font-size:11px;">✦</span>
+  Neue Features
+  <span style="margin-left:auto;font-size:10px;background:var(--ok-g);color:var(--ok);border:1px solid rgba(48,209,88,.25);padding:.15rem .5rem;border-radius:var(--r-full);font-weight:700;">v3.4 – v3.10</span>
+</div>
+<!-- Lernkurven-Verlauf -->
+  <a class="app-tile t-green wide" href="VOLTECH-lernkurven.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(48,209,88,.15)"/><polyline points="7,26 13,18 19,21 26,11 29,14" stroke="#30d158" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="29" cy="14" r="2.5" fill="#30d158"/></svg></span>
+      <div class="tile-info">
+        <div class="tile-num" style="color:var(--ok);">✦ v3.6</div>
+        <div class="tile-name">Lernkurven-Verlauf</div>
+        <div class="tile-tag">SR-Reifegrade · Quiz-Scores · Ease-Faktor · Session-Verlauf</div>
+      </div>
+    </div>
+    <div class="tile-cta">Ansehen <span>→</span></div>
+  </a>
+
+  <!-- Mentor-Chat -->
+  <a class="app-tile t-blue wide" href="VOLTECH-mentor.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(99,102,241,.15)"/><path d="M8 24V12a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H14l-4 3z" stroke="#6366f1" stroke-width="1.5" stroke-linejoin="round" fill="rgba(99,102,241,.08)"/><line x1="13" y1="15" x2="23" y2="15" stroke="#6366f1" stroke-width="1.3" stroke-linecap="round"/><line x1="13" y1="18" x2="20" y2="18" stroke="#6366f1" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+      <div class="tile-info">
+        <div class="tile-num" style="color:var(--ok);">✦ v3.10</div>
+        <div class="tile-name">Mentor-Chat</div>
+        <div class="tile-tag">Anonyme Fachfragen · Azubis helfen Azubis · Berufsgefiltert</div>
+      </div>
+    </div>
+    <div class="tile-cta">Fragen <span>→</span></div>
+  </a>
+
+  <!-- Karte aus Foto -->
+  <a class="app-tile t-purple wide" href="VOLTECH-foto-karte.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(124,58,237,.15)"/><rect x="5" y="9" width="26" height="19" rx="3" stroke="#7c3aed" stroke-width="1.5" fill="rgba(124,58,237,.08)"/><circle cx="18" cy="18" r="5" stroke="#7c3aed" stroke-width="1.5" fill="rgba(124,58,237,.12)"/><rect x="14" y="6" width="8" height="4" rx="1.5" stroke="#7c3aed" stroke-width="1.2" fill="rgba(124,58,237,.15)"/><circle cx="27" cy="12" r="1.5" fill="#7c3aed"/></svg></span>
+      <div class="tile-info">
+        <div class="tile-num" style="color:var(--ok);">✦ v3.9</div>
+        <div class="tile-name">Karte aus Foto</div>
+        <div class="tile-tag">Foto aufnehmen · Karten tippen · direkt in Eigene Karten</div>
+      </div>
     </div>
     <div class="tile-cta">Öffnen <span>→</span></div>
   </a>
 
-  <a class="app-tile t-orange" href="VOLTECH-berichtsheft.html">
-    <span class="tile-icon">📓</span>
-    <div class="tile-num"><span class="de-only">Berichtsheft</span><span class="en-only">Report</span></div>
-    <div class="tile-name"><span class="de-only">Ausbildungsheft</span><span class="en-only">Training Log</span></div>
-    <div class="tile-features">
-      <div class="tile-feat">Mo–Fr Einträge</div>
-      <div class="tile-feat">Textbausteine</div>
-      <div class="tile-feat">PDF-Export</div>
+  <!-- Tandem-Lernen -->
+  <a class="app-tile t-green wide" href="VOLTECH-tandem.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(16,185,129,.15)"/><circle cx="13" cy="13" r="4" stroke="#10b981" stroke-width="1.5" fill="rgba(16,185,129,.1)"/><circle cx="23" cy="13" r="4" stroke="#10b981" stroke-width="1.5" fill="rgba(16,185,129,.1)"/><path d="M5 27c0-3.3 3.6-6 8-6" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/><path d="M23 21c4.4 0 8 2.7 8 6" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/><path d="M16 20c0 0 1.5 1.5 2 0" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/><line x1="18" y1="20" x2="18" y2="24" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      <div class="tile-info">
+        <div class="tile-num" style="color:var(--ok);">✦ v3.8</div>
+        <div class="tile-name">Tandem-Lernen</div>
+        <div class="tile-tag">Karten per Link teilen · Lernpartner · kein Account nötig</div>
+      </div>
+    </div>
+    <div class="tile-cta">Starten <span>→</span></div>
+  </a>
+
+  <!-- Beruf-Vergleich -->
+  <a class="app-tile t-orange wide" href="VOLTECH-vergleich.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(255,159,10,.15)"/><rect x="7" y="20" width="6" height="10" rx="1.5" fill="rgba(255,159,10,.25)" stroke="#ff9f0a" stroke-width="1.5"/><rect x="15" y="14" width="6" height="16" rx="1.5" fill="rgba(255,159,10,.35)" stroke="#ff9f0a" stroke-width="1.5"/><rect x="23" y="8" width="6" height="22" rx="1.5" fill="rgba(255,159,10,.5)" stroke="#ff9f0a" stroke-width="1.5"/><line x1="7" y1="6" x2="29" y2="6" stroke="#ff9f0a" stroke-width="1" stroke-dasharray="2 2" opacity=".5"/></svg></span>
+      <div class="tile-info">
+        <div class="tile-num" style="color:var(--ok);">✦ v3.7</div>
+        <div class="tile-name">Beruf-Vergleich</div>
+        <div class="tile-tag">Anonymer Vergleich · Perzentile · Community-Benchmarks</div>
+      </div>
+    </div>
+    <div class="tile-cta">Vergleichen <span>→</span></div>
+  </a>
+
+  <!-- Cross-App SR-Session -->
+  <a class="app-tile t-teal wide" href="VOLTECH-cross-sr.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(20,184,166,.15)"/><path d="M10 18a8 8 0 1 1 16 0" stroke="#14b8a6" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M26 18a8 8 0 0 1-16 0" stroke="#14b8a6" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="3 3" fill="none"/><path d="M22 14l4 4-4 4" stroke="#14b8a6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+      <div class="tile-info">
+        <div class="tile-num" style="color:var(--ok);">✦ v3.5</div>
+        <div class="tile-name">Cross-App SR-Session</div>
+        <div class="tile-tag">Alle fälligen SR-Karten aller Apps — eine Session, kein App-Wechsel</div>
+      </div>
+    </div>
+    <div class="tile-cta">Starten <span>→</span></div>
+  </a>
+
+  <!-- Universal-Suche -->
+  <a class="app-tile t-purple wide" href="VOLTECH-suche.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(124,58,237,.15)"/><circle cx="16" cy="16" r="7" stroke="#7c3aed" stroke-width="1.8" fill="rgba(124,58,237,.08)"/><line x1="21" y1="21" x2="27" y2="27" stroke="#7c3aed" stroke-width="2" stroke-linecap="round"/></svg></span>
+      <div class="tile-info">
+        <div class="tile-num" style="color:var(--ok);">✦ v3.4</div>
+        <div class="tile-name">Universal-Suche</div>
+        <div class="tile-tag">Alle SR-Karten &amp; Quiz-Fragen durchsuchen — alle Berufe, sofort</div>
+      </div>
+    </div>
+    <div class="tile-cta">Suchen <span>→</span></div>
+  </a>
+
+  <!-- Fortschritt exportieren -->
+  <a class="app-tile t-blue wide" href="VOLTECH-export.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(99,102,241,.15)"/><rect x="9" y="6" width="18" height="24" rx="2" stroke="#6366f1" stroke-width="1.5" fill="rgba(99,102,241,.1)"/><line x1="13" y1="12" x2="23" y2="12" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round"/><line x1="13" y1="16" x2="23" y2="16" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round"/><line x1="13" y1="20" x2="19" y2="20" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round"/><path d="M22 22l3 3-3 3M25 25H20" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <div class="tile-info">
+        <div class="tile-num">PNG · Teilen</div>
+        <div class="tile-name">Fortschritt exportieren</div>
+        <div class="tile-tag">Lernkarte als PNG · Streak · SR · Achievements — für Ausbilder</div>
+      </div>
+    </div>
+    <div class="tile-cta">Erstellen <span>→</span></div>
+  </a>
+
+  <!-- Focus-Mode -->
+  <a class="app-tile t-purple wide" href="VOLTECH-focus.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(191,90,242,.15)"/><circle cx="18" cy="18" r="10" stroke="#bf5af2" stroke-width="1.5" fill="rgba(191,90,242,.08)"/><circle cx="18" cy="18" r="6" stroke="#bf5af2" stroke-width="1" fill="rgba(191,90,242,.12)" opacity=".6"/><line x1="18" y1="10" x2="18" y2="8" stroke="#bf5af2" stroke-width="1.5" stroke-linecap="round"/><line x1="18" y1="28" x2="18" y2="26" stroke="#bf5af2" stroke-width="1.5" stroke-linecap="round"/><line x1="10" y1="18" x2="8" y2="18" stroke="#bf5af2" stroke-width="1.5" stroke-linecap="round"/><line x1="28" y1="18" x2="26" y2="18" stroke="#bf5af2" stroke-width="1.5" stroke-linecap="round"/><circle cx="18" cy="18" r="2" fill="#bf5af2"/></svg></span>
+      <div class="tile-info">
+        <div class="tile-num">Pomodoro · Timer · Sessions</div>
+        <div class="tile-name">Focus-Mode</div>
+        <div class="tile-tag">25-5-15 Pomodoro · Session-Tracking · Töne & Vibration</div>
+      </div>
+    </div>
+    <div class="tile-cta">Starten <span>→</span></div>
+  </a>
+
+  <!-- PWA installieren -->
+  <a class="app-tile t-teal wide" href="VOLTECH-pwa-guide.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(64,200,224,.12)"/><rect x="10" y="6" width="16" height="24" rx="3" stroke="#40c8e0" stroke-width="1.5" fill="rgba(64,200,224,.08)"/><line x1="14" y1="10" x2="22" y2="10" stroke="#40c8e0" stroke-width="1.5" stroke-linecap="round"/><circle cx="18" cy="26" r="1.5" fill="#40c8e0"/><path d="M18 14v6M15 17l3 3 3-3" stroke="#40c8e0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <div class="tile-info">
+        <div class="tile-num">iOS · Android · Offline</div>
+        <div class="tile-name">App installieren</div>
+        <div class="tile-tag">Zum Home-Bildschirm · Ohne App-Store · Push-Notifications</div>
+      </div>
+    </div>
+    <div class="tile-cta">Anleitung <span>→</span></div>
+  </a>
+
+  <!-- Text-to-Speech -->
+  <a class="app-tile t-teal wide" href="VOLTECH-tts.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(64,200,224,.12)"/><path d="M10 14h4l4-4v16l-4-4h-4V14z" stroke="#40c8e0" stroke-width="1.5" stroke-linejoin="round" fill="rgba(64,200,224,.1)"/><path d="M22 14c1.5 1 2.5 2.5 2.5 4s-1 3-2.5 4" stroke="#40c8e0" stroke-width="1.5" stroke-linecap="round"/><path d="M25 11c2.5 2 4 4.5 4 7s-1.5 5-4 7" stroke="#40c8e0" stroke-width="1.5" stroke-linecap="round" opacity=".5"/></svg></span>
+      <div class="tile-info">
+        <div class="tile-num">Web Speech API · Vorlesen</div>
+        <div class="tile-name">Text-to-Speech</div>
+        <div class="tile-tag">SR-Karten vorlesen · Eigene Karten · AMPERE · TORQUE · FISI</div>
+      </div>
     </div>
     <div class="tile-cta">Öffnen <span>→</span></div>
   </a>
 
-  <a class="app-tile t-purple" href="VOLTECH-sps.html">
-    <span class="tile-icon">🔧</span>
-    <div class="tile-num">SPS-App</div>
-    <div class="tile-name"><span class="de-only">SPS Trainer</span><span class="en-only">PLC Trainer</span></div>
-    <div class="tile-features">
-      <div class="tile-feat">KOP Lernen &amp; Trainer</div>
-      <div class="tile-feat">Quiz &amp; Simulator</div>
+  <!-- Prüfungsangst-Coach -->
+  <a class="app-tile t-rose wide" href="VOLTECH-coach.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(255,55,95,.1)"/><circle cx="18" cy="18" r="10" stroke="#ff375f" stroke-width="1.5" fill="rgba(255,55,95,.05)"/><path d="M18 12v7l4 2" stroke="#ff375f" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      <div class="tile-info">
+        <div class="tile-num">Atemübung · Tipps · Checkliste</div>
+        <div class="tile-name">Prüfungsangst-Coach</div>
+        <div class="tile-tag">4-7-8 · Box-Breathing · Affirmationen · Prüfungstag-Checkliste</div>
+      </div>
     </div>
     <div class="tile-cta">Öffnen <span>→</span></div>
   </a>
 
-  <a class="app-tile t-teal" href="VOLTECH-tools2.html">
-    <span class="tile-icon">🔬</span>
-    <div class="tile-num"><span class="de-only">Lerntools</span><span class="en-only">Learn Tools</span></div>
-    <div class="tile-name">Extras</div>
-    <div class="tile-features">
-      <div class="tile-feat">95+ Vokabeln DE↔EN</div>
-      <div class="tile-feat">Multimeter &amp; Logik</div>
+  <!-- QR-Code Teilen -->
+  <a class="app-tile t-purple wide" href="VOLTECH-qr.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(191,90,242,.12)"/><rect x="8" y="8" width="8" height="8" rx="1.5" stroke="#bf5af2" stroke-width="1.5" fill="rgba(191,90,242,.1)"/><rect x="20" y="8" width="8" height="8" rx="1.5" stroke="#bf5af2" stroke-width="1.5" fill="rgba(191,90,242,.1)"/><rect x="8" y="20" width="8" height="8" rx="1.5" stroke="#bf5af2" stroke-width="1.5" fill="rgba(191,90,242,.1)"/><rect x="20" y="20" width="4" height="4" rx=".75" fill="#bf5af2" opacity=".6"/><rect x="26" y="20" width="2" height="2" rx=".5" fill="#bf5af2"/><rect x="20" y="26" width="2" height="2" rx=".5" fill="#bf5af2"/><rect x="24" y="24" width="4" height="4" rx=".75" fill="#bf5af2" opacity=".4"/></svg></span>
+      <div class="tile-info">
+        <div class="tile-num">QR-Code · Teilen</div>
+        <div class="tile-name">Karte als QR teilen</div>
+        <div class="tile-tag">Lernkarte als QR generieren · Flip-Card Empfang · In eigene Sets speichern</div>
+      </div>
     </div>
     <div class="tile-cta">Öffnen <span>→</span></div>
+  </a>
+
+  <!-- AP-Simulator -->
+  <a class="app-tile t-orange wide" href="VOLTECH-pruefung-sim.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(255,159,10,.12)"/><rect x="8" y="7" width="20" height="22" rx="2" stroke="#ff9f0a" stroke-width="1.5" fill="rgba(255,159,10,.06)"/><line x1="12" y1="13" x2="24" y2="13" stroke="#ff9f0a" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="18" r="1.5" fill="#ff9f0a"/><line x1="15" y1="18" x2="24" y2="18" stroke="#ff9f0a" stroke-width="1.2" stroke-linecap="round" opacity=".6"/><circle cx="12" cy="23" r="1.5" fill="#ff9f0a" opacity=".5"/><line x1="15" y1="23" x2="21" y2="23" stroke="#ff9f0a" stroke-width="1.2" stroke-linecap="round" opacity=".4"/></svg></span>
+      <div class="tile-info">
+        <div class="tile-num">AP1 · AP2 · Zeitgesteuert</div>
+        <div class="tile-name">Prüfungs-Simulator</div>
+        <div class="tile-tag">IHK-Stil · Mechatroniker · Elektroniker · Industriemechaniker · Auswertung</div>
+      </div>
+    </div>
+    <div class="tile-cta">Starten <span>→</span></div>
+  </a>
+
+  <!-- Lerngruppen -->
+  <a class="app-tile t-green wide" href="VOLTECH-lerngruppen.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(48,209,88,.12)"/><circle cx="14" cy="14" r="4" stroke="#30d158" stroke-width="1.5" fill="rgba(48,209,88,.1)"/><circle cx="24" cy="14" r="4" stroke="#30d158" stroke-width="1.5" fill="rgba(48,209,88,.1)"/><path d="M6 26c0-3.3 3.6-6 8-6s8 2.7 8 6" stroke="#30d158" stroke-width="1.5" stroke-linecap="round"/><path d="M26 20c2.8.8 4.5 2.8 4.5 5" stroke="#30d158" stroke-width="1.5" stroke-linecap="round" opacity=".6"/></svg></span>
+      <div class="tile-info">
+        <div class="tile-num">PLZ · Anonym · Community</div>
+        <div class="tile-name">Lerngruppen</div>
+        <div class="tile-tag">Azubis nach PLZ finden · Gruppe erstellen · Gemeinsam lernen</div>
+      </div>
+    </div>
+    <div class="tile-cta">Finden <span>→</span></div>
+  </a>
+
+  <a class="app-tile t-purple wide" href="VOLTECH-quests.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(191,90,242,.12)"/><text x="18" y="24" text-anchor="middle" font-size="18">🔥</text></svg></span>
+      <div class="tile-info">
+        <div class="tile-num">XP · Quests · Streak-Freeze</div>
+        <div class="tile-name">Tägliche Quests</div>
+        <div class="tile-tag">3 Quests pro Tag · XP & Level-System · Streak-Freeze ❄️</div>
+      </div>
+    </div>
+    <div class="tile-cta">Quests <span>→</span></div>
+  </a>
+
+  <a class="app-tile t-orange wide" href="VOLTECH-season.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(255,159,10,.12)"/><text x="18" y="24" text-anchor="middle" font-size="18">🌞</text></svg></span>
+      <div class="tile-info">
+        <div class="tile-num">Rangliste · Anonym · Saisonal</div>
+        <div class="tile-name">Sommer-Challenge 2026</div>
+        <div class="tile-tag">Globale Rangliste · 1. Juni – 31. August · XP sammeln & gewinnen</div>
+      </div>
+    </div>
+    <div class="tile-cta">Mitmachen <span>→</span></div>
+  </a>
+
+  <a class="app-tile t-purple wide" href="VOLTECH-duell.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(191,90,242,.12)"/><text x="18" y="24" text-anchor="middle" font-size="18">⚔️</text></svg></span>
+      <div class="tile-info">
+        <div class="tile-num">1v1 · Code teilen · Kein Account</div>
+        <div class="tile-name">Quiz-Duell</div>
+        <div class="tile-tag">Flashcard-Battle gegen andere Azubis · gleiche Fragen · wer besser abschneidet gewinnt</div>
+      </div>
+    </div>
+    <div class="tile-cta">Duell <span>→</span></div>
+  </a>
+
+  <a class="app-tile t-teal wide" href="VOLTECH-rangliste.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(64,200,224,.12)"/><text x="18" y="24" text-anchor="middle" font-size="18">🌍</text></svg></span>
+      <div class="tile-info">
+        <div class="tile-num">Top 20 · Pro Beruf · Pseudonym</div>
+        <div class="tile-name">Berufs-Rangliste</div>
+        <div class="tile-tag">Streak · Quiz-Score · SR-Karten — kein Account, kein Klarname</div>
+      </div>
+    </div>
+    <div class="tile-cta">Rangliste <span>→</span></div>
+  </a>
+
+  <a class="app-tile t-purple wide" href="VOLTECH-ki-lernplan.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(191,90,242,.12)"/><text x="18" y="24" text-anchor="middle" font-size="18">🤖</text></svg></span>
+      <div class="tile-info">
+        <div class="tile-num">Analyse · Schwächen · Lernplan</div>
+        <div class="tile-name">KI-Lernplan</div>
+        <div class="tile-tag">Schwächen automatisch erkennen · 7-Tage-Plan · personalisiert</div>
+      </div>
+    </div>
+    <div class="tile-cta">Analysieren <span>→</span></div>
+  </a>
+
+  <a class="app-tile t-teal wide" href="VOLTECH-dashboard.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(64,200,224,.12)"/><text x="18" y="24" text-anchor="middle" font-size="18">🎨</text></svg></span>
+      <div class="tile-info">
+        <div class="tile-num">7 Widgets · Individuell · Alle Daten</div>
+        <div class="tile-name">Mein Dashboard</div>
+        <div class="tile-tag">Streak-Ring · SR-Fälligkeit · Quests · XP · Highscore · Tagesfrage</div>
+      </div>
+    </div>
+    <div class="tile-cta">Dashboard <span>→</span></div>
+  </a>
+
+  <a class="app-tile t-green wide" href="VOLTECH-wochenbericht.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(48,209,88,.12)"/><text x="18" y="24" text-anchor="middle" font-size="18">📋</text></svg></span>
+      <div class="tile-info">
+        <div class="tile-num">Wöchentlich · PDF-Export · Automatisch</div>
+        <div class="tile-name">Wochenbericht</div>
+        <div class="tile-tag">Streak · Quiz-Performance · SR-Fortschritt · Empfehlungen</div>
+      </div>
+    </div>
+    <div class="tile-cta">Bericht <span>→</span></div>
+  </a>
+
+  <a class="app-tile t-orange wide" href="VOLTECH-ausbilder-fragen.html">
+    <div class="tile-body">
+      <span class="tile-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="9" fill="rgba(255,159,10,.12)"/><text x="18" y="24" text-anchor="middle" font-size="18">✏️</text></svg></span>
+      <div class="tile-info">
+        <div class="tile-num">Ausbilder · Quiz & SR · Export-Code</div>
+        <div class="tile-name">Eigene Fragen</div>
+        <div class="tile-tag">Betriebseigene Quiz-Fragen & SR-Karten erstellen · Code teilen</div>
+      </div>
+    </div>
+    <div class="tile-cta">Erstellen <span>→</span></div>
   </a>
 
 </div>
@@ -499,8 +1372,8 @@ html.lang-de .en-only { display: none !important; }
     <div class="backup-key-list" id="backup-key-list"></div>
     <!-- Actions -->
     <div class="backup-btn-row">
-      <button class="backup-btn export" onclick="backupExport()">↓ Exportieren</button>
-      <button class="backup-btn import" onclick="backupImport()">↑ Importieren</button>
+      <button type="button" class="backup-btn export" onclick="backupExport()">↓ Exportieren</button>
+      <button type="button" class="backup-btn import" onclick="backupImport()">↑ Importieren</button>
     </div>
     <div class="backup-status" id="backup-status"></div>
     <!-- Hidden file input -->
@@ -508,10 +1381,69 @@ html.lang-de .en-only { display: none !important; }
   </div>
 </div>
 
+<!-- ── CLOUD SYNC PANEL ───────────────────────────────────────── -->
+<div class="sync-panel">
+  <div class="sync-hdr" id="sync-hdr" onclick="syncToggle()">
+    <span class="sync-hdr-icon">☁️</span>
+    <div>
+      <div class="sync-hdr-title">Geräte-Sync</div>
+      <div style="font-family:var(--mo);font-size:10px;color:var(--tx3);margin-top:1px;">Lernfortschritt zwischen Handy &amp; PC synchronisieren</div>
+    </div>
+    <span class="sync-hdr-arrow">›</span>
+  </div>
+  <div class="sync-body" id="sync-body">
+
+    <!-- View: Home -->
+    <div class="sync-view active" id="sync-view-home">
+      <div class="sync-info-text">Erstelle einen Sync-Code auf diesem Gerät und gib ihn auf einem anderen Gerät ein — dein Lernfortschritt wird übertragen. Kein Account, kein Tracking, 30 Tage gültig.</div>
+      <div class="sync-btn-row">
+        <button type="button" class="sync-btn primary" onclick="syncCreate()">+ Code erstellen</button>
+        <button type="button" class="sync-btn secondary" onclick="syncShowJoin()">Code eingeben</button>
+      </div>
+      <div class="sync-status" id="sync-status-home"></div>
+    </div>
+
+    <!-- View: Aktiver Sync -->
+    <div class="sync-view" id="sync-view-active">
+      <div class="sync-active-bar">
+        <div class="sync-active-dot"></div>
+        <div>
+          <div class="sync-active-code" id="sync-active-code">——————</div>
+          <div style="font-size:10px;color:var(--tx3);margin-top:1px;" id="sync-active-time">Noch nicht synchronisiert</div>
+        </div>
+      </div>
+      <div class="sync-code-hint">Tippen zum Kopieren</div>
+      <div class="sync-code-display" id="sync-code-big" onclick="syncCopyCode()">——————</div>
+      <div class="sync-btn-row">
+        <button type="button" class="sync-btn primary full" onclick="syncNow()">☁ Jetzt synchronisieren</button>
+        <button type="button" class="sync-btn secondary" onclick="syncShowJoin()">Anderen Code eingeben</button>
+        <button type="button" class="sync-btn secondary" onclick="syncReset()">Deaktivieren</button>
+      </div>
+      <div class="sync-status" id="sync-status-active"></div>
+    </div>
+
+    <!-- View: Code eingeben -->
+    <div class="sync-view" id="sync-view-join">
+      <div class="sync-info-text">Sync-Code vom anderen Gerät eingeben (6 Zeichen):</div>
+      <input class="sync-input" id="sync-code-input" type="text" maxlength="6" placeholder="ABC123"
+        oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')">
+      <div class="sync-btn-row">
+        <button type="button" class="sync-btn primary" onclick="syncJoin()">Verbinden &amp; Importieren</button>
+        <button type="button" class="sync-btn secondary" onclick="syncInit()">Zurück</button>
+      </div>
+      <div class="sync-status" id="sync-status-join"></div>
+    </div>
+
+  </div>
+</div>
+
+
 <footer class="footer">
   <div class="footer-logo">VOLT<span>IQ</span></div>
-  <div class="footer-sub" style="margin-top:.25rem;font-size:10px;opacity:.6;letter-spacing:.04em;">
-    <a href="index.html" style="color:inherit;text-decoration:none;">by Arc Studio</a>
+  <div class="footer-sub" style="margin-top:.5rem;">
+    <a href="index.html" style="display:inline-flex;align-items:center;text-decoration:none;opacity:.7;transition:opacity .15s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.7" aria-label="Arc Studio Startseite">
+      <img src="arc-studio-logo.svg" alt="Arc-Studio" width="90" height="22" style="height:22px;width:auto;display:block;filter:brightness(0) invert(1);opacity:.75;">
+    </a>
   </div>
   <div class="footer-sub" style="margin-top:.5rem;">Alle Daten lokal · Kein Account · 100% offline</div>
   <div class="footer-sub" style="margin-top:.35rem;font-size:9px;opacity:.5;">Alle Dateien in denselben Ordner legen für Offline-Modus</div>
@@ -679,6 +1611,37 @@ html.lang-de .en-only { display: none !important; }
 })();
 // ─────────────────────────────────────────────────────────────────
 
+// ── QUICK-STATS ───────────────────────────────────────────────────
+(function initQS(){
+  var strData = JSON.parse(localStorage.getItem('vt_streak')||'null') || {};
+  var days = strData.days || [];
+  var streak = 0;
+  var dp = new Date();
+  while(true){
+    var dk = dp.toISOString().split('T')[0];
+    if(days.indexOf(dk) >= 0){ streak++; dp.setDate(dp.getDate()-1); } else break;
+  }
+  var qsStreak = document.getElementById('qs-streak');
+  if(qsStreak) qsStreak.textContent = streak;
+
+  // SR-Karten fällig heute
+  var today = new Date().toISOString().slice(0,10);
+  var due = 0;
+  ['vt_sr_data','amp_sr_data','tor_sr_data'].forEach(function(k){
+    try {
+      var d = JSON.parse(localStorage.getItem(k)||'{}');
+      Object.values(d).forEach(function(c){ if((c.nextReview||'0') <= today) due++; });
+    } catch(e){}
+  });
+  var qsCards = document.getElementById('qs-cards');
+  if(qsCards) qsCards.textContent = due > 0 ? due + ' fällig' : '✓ Alle';
+
+  var now = new Date();
+  var qsDate = document.getElementById('qs-date');
+  if(qsDate) qsDate.textContent = now.toLocaleDateString('de-DE',{day:'numeric',month:'short'});
+})();
+// ─────────────────────────────────────────────────────────────────
+
 </script>
 
 <script>
@@ -688,11 +1651,10 @@ if('serviceWorker' in navigator){
   var isLocal = ['localhost','127.0.0.1','0.0.0.0'].includes(location.hostname)
              || location.protocol === 'file:'
              || location.hostname.endsWith('.local')
-             || location.hostname.endsWith('.github.io')
-             || location.protocol === 'https:';
-  if(isLocal){
+             || location.hostname.endsWith('.github.io');
+  if(!isLocal){
     window.addEventListener('load', function(){
-      navigator.serviceWorker.register('./pwa/sw.js', {scope: './'})
+      navigator.serviceWorker.register('/pwa/sw.js', {scope: '/'})
         .then(function(reg){ console.log('[VOLTIQ] Offline-Modus aktiv:', reg.scope); })
         .catch(function(err){ console.warn('[VOLTIQ] SW nicht geladen:', err.message); });
     });
@@ -861,43 +1823,65 @@ function backupStatus(msg, cls){
 
 // ── THEME TOGGLE ─────────────────────────────────────────────────────
 (function(){
-  var KEY='voltiq_theme';
-  var isLight=localStorage.getItem(KEY)==='light';
-  function apply(l){
-    document.documentElement.classList.toggle('lm',l);
+  var KEY='arc_theme';
+  var isDark=localStorage.getItem(KEY)==='dark';
+  function apply(d){
+    document.documentElement.classList.toggle('dm',d);
     var b=document.getElementById('thm-btn');
-    if(b)b.textContent=l?'☀️':'🌙';
+    if(b)b.textContent=d?'☀️':'🌙';
   }
-  if(isLight)document.documentElement.classList.add('lm');
+  apply(isDark);
   window.thmToggle=function(){
-    isLight=!isLight;
-    localStorage.setItem(KEY,isLight?'light':'dark');
-    apply(isLight);
+    isDark=!isDark;
+    localStorage.setItem(KEY,isDark?'dark':'light');
+    apply(isDark);
   };
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',function(){apply(isLight);});
-  }else{apply(isLight);}
 })();
 // ─────────────────────────────────────────────────────────────────────
 function drawerOpen(){document.getElementById('drawer').classList.add('on');document.getElementById('drawer-overlay').classList.add('on');}
 function drawerClose(){document.getElementById('drawer').classList.remove('on');document.getElementById('drawer-overlay').classList.remove('on');}
 
-// ── Language Toggle ──────────────────────────────────────────
+// ── 5-SPRACHEN-SYSTEM ──────────────────────────────────
+var LANGS = ['de','en','tr','ru','ar'];
 var currentLang = localStorage.getItem('arc_lang') || 'de';
-(function initLang() {
-  document.documentElement.classList.toggle('lang-en', currentLang === 'en');
-  document.documentElement.classList.toggle('lang-de', currentLang === 'de');
+
+function applyLang(lang) {
+  currentLang = lang;
+  // Klassen
+  LANGS.forEach(function(l) { document.documentElement.classList.remove('lang-' + l); });
+  document.documentElement.classList.add('lang-' + lang);
+  // RTL
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.documentElement.lang = lang;
+  // Button-Icon bleibt 🌐
   var btn = document.getElementById('lang-btn');
-  if (btn) btn.textContent = currentLang === 'en' ? 'DE' : 'EN';
-})();
-function toggleLang() {
-  currentLang = currentLang === 'de' ? 'en' : 'de';
-  localStorage.setItem('arc_lang', currentLang);
-  document.documentElement.classList.toggle('lang-en', currentLang === 'en');
-  document.documentElement.classList.toggle('lang-de', currentLang === 'de');
-  var btn = document.getElementById('lang-btn');
-  if (btn) btn.textContent = currentLang === 'de' ? 'EN' : 'DE';
+  if (btn) btn.textContent = '🌐';
+  // Modal-Highlights
+  LANGS.forEach(function(l) {
+    var el = document.getElementById('lo-' + l);
+    if (el) el.classList.toggle('active', l === lang);
+  });
+  localStorage.setItem('arc_lang', lang);
 }
+
+function setLang(lang) {
+  applyLang(lang);
+  closeLangModal();
+}
+
+function toggleLang() { openLangModal(); } // backwards compat
+
+function openLangModal() {
+  document.getElementById('lang-modal').classList.add('on');
+  document.getElementById('lang-modal-overlay').classList.add('on');
+}
+
+function closeLangModal() {
+  document.getElementById('lang-modal').classList.remove('on');
+  document.getElementById('lang-modal-overlay').classList.remove('on');
+}
+
+applyLang(currentLang);
 
 </script>
 <script>
@@ -914,6 +1898,26 @@ function toggleLang() {
 })();
 </script>
 <script>
+// What's New: zeige beim ersten Start nach Update
+(function(){
+  var VERSION = '7.0';
+  var key = 'arc_last_seen_version';
+  var seen = localStorage.getItem(key);
+  if(seen !== VERSION) {
+    localStorage.setItem(key, VERSION);
+    // Zeige nach 1.5s einen kleinen Toast mit Link
+    setTimeout(function(){
+      var t = document.createElement('div');
+      t.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1c1c26;border:1px solid rgba(99,102,241,.4);border-radius:12px;padding:.65rem 1rem;font-size:13px;color:#f0f0f5;z-index:999;display:flex;align-items:center;gap:.65rem;box-shadow:0 4px 24px rgba(0,0,0,.5);cursor:pointer;white-space:nowrap;';
+      t.innerHTML = '🧠 <span>Neu in v7.0: Dashboard · Duell · KI-Lernplan</span> <span style="color:#6366f1;font-weight:600;">Ansehen →</span>';
+      t.onclick = function(){ window.location.href='VOLTECH-whats-new.html'; };
+      document.body.appendChild(t);
+      setTimeout(function(){ t.style.opacity='0';t.style.transition='opacity .4s'; setTimeout(function(){t.remove();},400); }, 5000);
+    }, 1500);
+  }
+})();
+</script>
+<script>
 // Rückkehrer-Banner: ab dem 2. Besuch einblenden
 (function(){
   try {
@@ -926,5 +1930,464 @@ function toggleLang() {
   } catch(e) {}
 })();
 </script>
+<script>
+// ── CLOUD SYNC ────────────────────────────────────────────────────────
+var SYNC_API      = 'https://arc-studio.org/cloudsync.php';
+var SYNC_CODE_KEY = 'arc_sync_code';
+var SYNC_LAST_KEY = 'arc_sync_last';
+
+function syncToggle(){
+  var hdr  = document.getElementById('sync-hdr');
+  var body = document.getElementById('sync-body');
+  if(!hdr||!body) return;
+  var open = body.classList.toggle('open');
+  hdr.classList.toggle('open', open);
+  if(open) syncInit();
+}
+
+function syncInit(){
+  var code = localStorage.getItem(SYNC_CODE_KEY);
+  if(code){ syncShowActive(code); } else { syncShowHome(); }
+}
+
+function syncShowHome(){
+  document.getElementById('sync-view-home').classList.add('active');
+  document.getElementById('sync-view-active').classList.remove('active');
+  document.getElementById('sync-view-join').classList.remove('active');
+}
+
+function syncShowActive(code){
+  document.getElementById('sync-view-home').classList.remove('active');
+  document.getElementById('sync-view-active').classList.add('active');
+  document.getElementById('sync-view-join').classList.remove('active');
+  var codeBig    = document.getElementById('sync-code-big');
+  var activeCode = document.getElementById('sync-active-code');
+  if(codeBig)    codeBig.textContent    = code;
+  if(activeCode) activeCode.textContent = code;
+  var last = localStorage.getItem(SYNC_LAST_KEY);
+  var el   = document.getElementById('sync-active-time');
+  if(el && last){
+    var d = new Date(parseInt(last));
+    el.textContent = 'Letzter Sync: ' + d.toLocaleDateString('de-DE') + ' ' +
+      d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});
+  }
+}
+
+function syncShowJoin(){
+  document.getElementById('sync-view-home').classList.remove('active');
+  document.getElementById('sync-view-active').classList.remove('active');
+  document.getElementById('sync-view-join').classList.add('active');
+}
+
+function buildSnapshot(){
+  var snap = {};
+  BACKUP_KEYS.forEach(function(k){
+    var raw = localStorage.getItem(k.key);
+    if(raw && raw !== 'null' && raw !== '{}' && raw !== '[]'){
+      try{ snap[k.key] = JSON.parse(raw); } catch(e){ snap[k.key] = raw; }
+    }
+  });
+  return snap;
+}
+
+function applySnapshot(snap){
+  if(!snap || typeof snap !== 'object') return 0;
+  var count = 0;
+  BACKUP_KEYS.forEach(function(k){
+    if(snap[k.key] !== undefined){
+      try{ localStorage.setItem(k.key, JSON.stringify(snap[k.key])); count++; } catch(e){}
+    }
+  });
+  return count;
+}
+
+function syncCreate(){
+  syncSetStatus('sync-status-home','⋯ Erstelle Code…','warn');
+  fetch(SYNC_API,{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({action:'create', snapshot: buildSnapshot()})
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    if(!data.ok) throw new Error(data.error||'Fehler');
+    localStorage.setItem(SYNC_CODE_KEY, data.code);
+    localStorage.setItem(SYNC_LAST_KEY, Date.now().toString());
+    syncSetStatus('sync-status-home','','');
+    syncShowActive(data.code);
+    syncSetStatus('sync-status-active','✓ Code erstellt — auf anderem Gerät eingeben','ok');
+  })
+  .catch(function(err){ syncSetStatus('sync-status-home','✗ '+err.message,'err'); });
+}
+
+function syncJoin(){
+  var input = document.getElementById('sync-code-input');
+  var code  = input ? input.value.trim().toUpperCase() : '';
+  if(code.length !== 6){ syncSetStatus('sync-status-join','⚠ Code muss 6 Zeichen haben','warn'); return; }
+  syncSetStatus('sync-status-join','⋯ Verbinde…','warn');
+  fetch(SYNC_API+'?code='+code)
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    if(!data.ok) throw new Error(data.error==='not_found'?'Code nicht gefunden':data.error);
+    var count = applySnapshot(data.snapshot);
+    localStorage.setItem(SYNC_CODE_KEY, code);
+    localStorage.setItem(SYNC_LAST_KEY, Date.now().toString());
+    syncSetStatus('sync-status-join','','');
+    syncShowActive(code);
+    syncSetStatus('sync-status-active','✓ '+count+' Datensätze importiert','ok');
+  })
+  .catch(function(err){ syncSetStatus('sync-status-join','✗ '+err.message,'err'); });
+}
+
+function syncNow(){
+  var code = localStorage.getItem(SYNC_CODE_KEY);
+  if(!code){ syncShowHome(); return; }
+  syncSetStatus('sync-status-active','⋯ Synchronisiere…','warn');
+  fetch(SYNC_API,{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({action:'push', code:code, snapshot: buildSnapshot()})
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    if(!data.ok) throw new Error(data.error||'Push fehlgeschlagen');
+    return fetch(SYNC_API+'?code='+code).then(function(r){ return r.json(); });
+  })
+  .then(function(data){
+    if(!data.ok) throw new Error('Pull fehlgeschlagen');
+    var count = applySnapshot(data.snapshot);
+    localStorage.setItem(SYNC_LAST_KEY, Date.now().toString());
+    syncShowActive(code);
+    syncSetStatus('sync-status-active','✓ Synchronisiert — '+count+' Datensätze aktualisiert','ok');
+  })
+  .catch(function(err){ syncSetStatus('sync-status-active','✗ '+err.message,'err'); });
+}
+
+function syncCopyCode(){
+  var code = localStorage.getItem(SYNC_CODE_KEY);
+  if(!code) return;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(code).then(function(){
+      syncSetStatus('sync-status-active','✓ Code kopiert: '+code,'ok');
+    });
+  } else {
+    syncSetStatus('sync-status-active','Code: '+code,'ok');
+  }
+}
+
+function syncReset(){
+  if(!confirm('Sync deaktivieren?\nDer Code bleibt 30 Tage aktiv — du kannst ihn auf anderen Geräten noch verwenden.')) return;
+  localStorage.removeItem(SYNC_CODE_KEY);
+  localStorage.removeItem(SYNC_LAST_KEY);
+  syncShowHome();
+}
+
+function syncSetStatus(id, msg, cls){
+  var el = document.getElementById(id);
+  if(!el) return;
+  el.textContent = msg;
+  el.className = 'sync-status' + (cls ? ' '+cls : '');
+}
+
+// ── PDF LERNREPORT ────────────────────────────────────────────────────
+function generatePDF(){
+  if(window.jspdf){ _doPDF(); return; }
+  var s = document.createElement('script');
+  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+  s.onload  = function(){ _doPDF(); };
+  s.onerror = function(){ alert('PDF-Bibliothek konnte nicht geladen werden.\nBitte Internetverbindung prüfen.'); };
+  document.head.appendChild(s);
+}
+
+function _doPDF(){
+  var jsPDF = window.jspdf.jsPDF;
+  var doc   = new jsPDF({orientation:'portrait', unit:'mm', format:'a4'});
+  var W=210, H=297, M=18, y=M;
+
+  function txt(t,x,fy,size,weight,color){
+    doc.setFontSize(size||11);doc.setFont('helvetica',weight||'normal');
+    doc.setTextColor(color||'#111122');doc.text(String(t),x,fy);
+  }
+  function hline(fy){
+    doc.setDrawColor('#ddddee');doc.setLineWidth(0.25);
+    doc.line(M,fy,W-M,fy);return fy+4;
+  }
+  function lsGet(key,def){ try{var v=localStorage.getItem(key);return v?JSON.parse(v):def;}catch(e){return def;} }
+  function isoWeek(date){var d=new Date(Date.UTC(date.getFullYear(),date.getMonth(),date.getDate()));var day=d.getUTCDay()||7;d.setUTCDate(d.getUTCDate()+4-day);return Math.ceil((((d-new Date(Date.UTC(d.getUTCFullYear(),0,1)))/86400000)+1)/7);}
+
+  var today = new Date().toLocaleDateString('de-DE',{year:'numeric',month:'long',day:'numeric'});
+  var now   = Date.now();
+
+  // Header
+  doc.setFillColor(99,102,241); doc.rect(0,0,W,7,'F');
+  y=18;
+  txt('VOLTIQ · Lernreport',M,y,20,'bold','#1a1a2e'); y+=8;
+  txt('Erstellt am '+today+' · arc-studio.org',M,y,9,'normal','#666680'); y+=10;
+  y=hline(y); y+=2;
+
+  // Streak
+  var strData=lsGet('vt_streak',{days:[],best:0});
+  var days=strData.days||[],streak=0,dp=new Date();
+  while(true){var dk=dp.toISOString().split('T')[0];if(days.indexOf(dk)>=0){streak++;dp.setDate(dp.getDate()-1);}else break;}
+  var todayLearned=days.indexOf(new Date().toISOString().split('T')[0])>=0;
+
+  // SR
+  var srData=lsGet('vt_sr_data',{}),TOTAL=55,srLearned=0,srDue=0;
+  Object.keys(srData).forEach(function(id){var c=srData[id];if(c.reps>0)srLearned++;if(c.due&&c.due<=now)srDue++;});
+  var srPct=Math.round(srLearned/TOTAL*100);
+
+  var colW=(W-M*2-8)/2;
+  // Card Streak
+  doc.setFillColor(248,248,255);doc.roundedRect(M,y,colW,30,3,3,'F');
+  txt('🔥  Lernstreak',M+4,y+8,9,'bold','#6366f1');
+  txt(streak+' Tage',M+4,y+17,17,'bold','#1a1a2e');
+  txt('Bestleistung: '+(strData.best||0)+' T  ·  Heute: '+(todayLearned?'✓ gelernt':'✗ noch nicht'),M+4,y+24,8,'normal','#888899');
+
+  // Card SR
+  var cx=M+colW+8;
+  doc.setFillColor(248,255,248);doc.roundedRect(cx,y,colW,30,3,3,'F');
+  txt('🧠  SR-Karteikarten',cx+4,y+8,9,'bold','#30d158');
+  txt(srLearned+'/'+TOTAL+' gelernt',cx+4,y+17,17,'bold','#1a1a2e');
+  txt(srPct+'% abgeschlossen  ·  '+srDue+' heute fällig',cx+4,y+24,8,'normal','#888899');
+  y+=36;
+
+  // Card AP1
+  var ap1=lsGet('ap1_best',null);
+  doc.setFillColor(255,252,245);doc.roundedRect(M,y,W-M*2,28,3,3,'F');
+  txt('🎓  AP1-Prüfungssimulator',M+4,y+8,9,'bold','#ff9f0a');
+  if(ap1){
+    var note=ap1.pct>=92?1:ap1.pct>=81?2:ap1.pct>=67?3:ap1.pct>=50?4:ap1.pct>=30?5:6;
+    txt('Bestleistung: Note '+note+'  ('+ap1.pct+'%  ·  '+ap1.correct+'/40 richtig  ·  '+ap1.date+')',M+4,y+17,11,'bold','#1a1a2e');
+    txt('IHK-Schlüssel: ≥92%→1  ·  ≥81%→2  ·  ≥67%→3  ·  ≥50%→4',M+4,y+24,8,'normal','#888899');
+  } else {
+    txt('Noch keine AP1-Simulation absolviert',M+4,y+17,11,'bold','#aaaaaa');
+  }
+  y+=34;
+
+  // Card Berichtsheft
+  var weeks=lsGet('bh_weeks',[]);
+  var curKW=isoWeek(new Date()),curYear=new Date().getFullYear();
+  var doneWks=weeks.filter(function(w){return['mo','di','mi','do','fr'].every(function(day){return w[day]&&w[day].taetig&&w[day].taetig.length>10;});}).length;
+  var bhPct=weeks.length?Math.round(doneWks/weeks.length*100):0;
+  doc.setFillColor(255,250,240);doc.roundedRect(M,y,W-M*2,28,3,3,'F');
+  txt('📓  Berichtsheft',M+4,y+8,9,'bold','#ff9f0a');
+  txt(weeks.length+' Wochen erfasst  ·  '+doneWks+' vollständig  ·  KW '+curKW+'/'+curYear+' aktiv',M+4,y+17,11,'bold','#1a1a2e');
+  txt(bhPct+'% der erfassten Wochen vollständig ausgefüllt',M+4,y+24,8,'normal','#888899');
+  y+=34;
+
+  hline(y);
+
+  // Footer
+  doc.setFontSize(8);doc.setFont('helvetica','normal');doc.setTextColor('#aaaaaa');
+  doc.text('VOLTIQ Suite · arc-studio.org · Alle Daten lokal · Kein Account · Kein Tracking',M,H-10);
+  doc.text('Seite 1 / 1',W-M,H-10,{align:'right'});
+  doc.setFillColor(99,102,241);doc.rect(0,H-5,W,5,'F');
+
+  doc.save('voltiq-lernreport-'+new Date().toISOString().split('T')[0]+'.pdf');
+}
+</script>
+<script>
+// ── LERNSTATISTIK ─────────────────────────────────────────────────────
+
+function openStats(){
+  renderStats();
+  document.getElementById('stats-overlay').classList.add('on');
+  document.getElementById('stats-modal').classList.add('on');
+}
+function closeStats(){
+  document.getElementById('stats-overlay').classList.remove('on');
+  document.getElementById('stats-modal').classList.remove('on');
+}
+
+function renderStats(){
+  function lsGet(key,def){try{var v=localStorage.getItem(key);return v?JSON.parse(v):def;}catch(e){return def;}}
+
+  var today = new Date();
+  var todayStr = today.toISOString().split('T')[0];
+  var now = Date.now();
+
+  // ── 1. STREAK ──────────────────────────────────────────────────────
+  var strData = lsGet('vt_streak', {days:[], best:0});
+  var days = strData.days || [];
+  var streak = 0;
+  var dp = new Date();
+  while(true){
+    var dk = dp.toISOString().split('T')[0];
+    if(days.indexOf(dk) >= 0){ streak++; dp.setDate(dp.getDate()-1); } else break;
+  }
+  var todayLearned = days.indexOf(todayStr) >= 0;
+  var stStreak = document.getElementById('st-streak');
+  var stStreakSub = document.getElementById('st-streak-sub');
+  if(stStreak) stStreak.textContent = '🔥 ' + streak + ' Tag' + (streak===1?'':'e');
+  if(stStreakSub) stStreakSub.textContent = todayLearned
+    ? '✓ Heute gelernt · Bestleistung: ' + (strData.best||0) + ' Tage'
+    : '⚠ Heute noch nicht gelernt · Bestleistung: ' + (strData.best||0) + ' Tage';
+
+  // ── 2. QUIZ-VERLAUF BAR CHART (letzte 7 Tage) ──────────────────────
+  var hist = lsGet('vt_quiz_hist', []);
+  var DAY_NAMES = ['So','Mo','Di','Mi','Do','Fr','Sa'];
+  // Build map: dateStr -> best score% for that day
+  var scoreMap = {};
+  hist.forEach(function(entry){
+    var d = null;
+    if(entry.date){ d = String(entry.date).split('T')[0]; }
+    if(!d) return;
+    var pct = 0;
+    if(entry.total && entry.total > 0){
+      pct = Math.round((entry.score / entry.total) * 100);
+    } else if(typeof entry.pct === 'number'){
+      pct = entry.pct;
+    } else if(typeof entry.score === 'number' && entry.score <= 100){
+      pct = entry.score;
+    }
+    if(!scoreMap[d] || pct > scoreMap[d]) scoreMap[d] = pct;
+  });
+  // Last 7 days
+  var barsEl = document.getElementById('st-bars');
+  var labelsEl = document.getElementById('st-bar-labels');
+  if(barsEl && labelsEl){
+    var barsHTML = '';
+    var labsHTML = '';
+    for(var i=6; i>=0; i--){
+      var dt = new Date(today);
+      dt.setDate(dt.getDate() - i);
+      var dStr = dt.toISOString().split('T')[0];
+      var dayName = DAY_NAMES[dt.getDay()];
+      var pct = scoreMap[dStr];
+      var hasData = pct !== undefined;
+      var heightPct = hasData ? Math.max(4, pct) : 4;
+      var cls = !hasData ? 'empty' : pct >= 70 ? 'good' : pct >= 50 ? 'mid' : 'bad';
+      barsHTML += '<div class="stat-bar-wrap">' +
+        '<div class="stat-bar ' + cls + '" style="height:' + heightPct + '%;flex:1;" title="' + (hasData ? pct + '%' : 'kein Quiz') + '"></div>' +
+        '</div>';
+      labsHTML += '<div class="stat-bar-wrap"><div class="stat-bar-label">' + dayName + '</div></div>';
+    }
+    barsEl.innerHTML = barsHTML;
+    labelsEl.innerHTML = labsHTML;
+  }
+
+  // ── 3. SPACED REPETITION ───────────────────────────────────────────
+  var srSources = [
+    { key:'vt_sr_data',  name:'VOLTIQ' },
+    { key:'amp_sr_data', name:'AMPERE' },
+    { key:'tor_sr_data', name:'TORQUE' }
+  ];
+  var srCardsEl = document.getElementById('st-sr-cards');
+  if(srCardsEl){
+    srCardsEl.innerHTML = srSources.map(function(src){
+      var data = lsGet(src.key, {});
+      var ids = Object.keys(data);
+      var total = ids.length;
+      var due = 0, mature = 0;
+      ids.forEach(function(id){
+        var c = data[id];
+        // due: nextReview or due field <= now
+        var nr = c.nextReview || c.due || 0;
+        if(nr <= now) due++;
+        if((c.reps || 0) >= 3) mature++;
+      });
+      var prog = total > 0 ? Math.round(mature / total * 100) : 0;
+      return '<div class="stats-sr-card">' +
+        '<div class="stats-sr-card-name">' + src.name + '</div>' +
+        '<div class="stats-sr-card-total">' + total + '</div>' +
+        '<div class="stats-sr-card-due">' + due + ' fällig</div>' +
+        '<div class="stats-sr-card-bar"><div class="stats-sr-card-bar-fill" style="width:' + prog + '%"></div></div>' +
+        '</div>';
+    }).join('');
+  }
+
+  // ── 4. SCHWÄCHSTE THEMEN ───────────────────────────────────────────
+  var allCards = [];
+  srSources.forEach(function(src){
+    var data = lsGet(src.key, {});
+    Object.keys(data).forEach(function(id){
+      var c = data[id];
+      allCards.push({ id: id, ef: c.ef || 2.5, reps: c.reps || 0, app: src.name });
+    });
+  });
+  // Filter: low ef (<2.1) or low reps, sort by ef asc then reps asc
+  var weak = allCards
+    .filter(function(c){ return c.ef < 2.1 || c.reps < 3; })
+    .sort(function(a,b){ return (a.ef - b.ef) || (a.reps - b.reps); })
+    .slice(0, 3);
+  var weakEl = document.getElementById('st-weak');
+  if(weakEl){
+    if(weak.length === 0){
+      weakEl.innerHTML = '<div class="stats-weak-none">Keine schwachen Karten — weiter so! 🎉</div>';
+    } else {
+      weakEl.innerHTML = weak.map(function(c){
+        return '<div class="stats-weak-item">• ' + c.id + ' &nbsp; ef: ' + c.ef.toFixed(1) + ' &nbsp; reps: ' + c.reps + ' &nbsp; <span style="color:var(--tx3)">(' + c.app + ')</span></div>';
+      }).join('');
+    }
+  }
+}
+</script>
+
+<!-- ── STATS MODAL ── -->
+<div class="stats-overlay" id="stats-overlay" onclick="closeStats()"></div>
+<div class="stats-modal" id="stats-modal">
+  <div class="stats-modal-handle"></div>
+  <div class="stats-modal-title">📊 Lernstatistik</div>
+
+  <!-- Streak -->
+  <div class="stats-section">
+    <div class="stats-section-label">Tages-Streak</div>
+    <div class="stats-streak-val" id="st-streak">—</div>
+    <div class="stats-streak-sub" id="st-streak-sub"></div>
+  </div>
+
+  <!-- Quiz-Verlauf -->
+  <div class="stats-section">
+    <div class="stats-section-label">Quiz-Verlauf · letzte 7 Tage</div>
+    <div style="display:flex;align-items:flex-end;gap:4px;height:80px;" id="st-bars"></div>
+    <div style="display:flex;gap:4px;margin-top:4px;" id="st-bar-labels"></div>
+  </div>
+
+  <!-- Spaced Repetition -->
+  <div class="stats-section">
+    <div class="stats-section-label">Spaced Repetition</div>
+    <div class="stats-sr-cards" id="st-sr-cards"></div>
+  </div>
+
+  <!-- Schwächste Themen -->
+  <div class="stats-section">
+    <div class="stats-section-label">Schwächste Themen · Top 3</div>
+    <div class="stats-weak-list" id="st-weak"></div>
+  </div>
+
+  <button type="button" class="stats-close-btn" onclick="closeStats()">Schließen</button>
+</div>
+
+<!-- ── LANGUAGE PICKER ── -->
+<div class="lang-modal-overlay" id="lang-modal-overlay" onclick="closeLangModal()"></div>
+<div class="lang-modal" id="lang-modal">
+  <div class="lang-modal-handle"></div>
+  <div class="lang-modal-title">🌐 Sprache / Language / Dil / Язык / اللغة</div>
+  <div class="lang-grid">
+    <div class="lang-option" id="lo-de" onclick="setLang('de')">
+      <span class="lang-flag">🇩🇪</span>
+      <span class="lang-code">DE</span>
+      <span class="lang-name">Deutsch</span>
+    </div>
+    <div class="lang-option" id="lo-en" onclick="setLang('en')">
+      <span class="lang-flag">🇬🇧</span>
+      <span class="lang-code">EN</span>
+      <span class="lang-name">English</span>
+    </div>
+    <div class="lang-option" id="lo-tr" onclick="setLang('tr')">
+      <span class="lang-flag">🇹🇷</span>
+      <span class="lang-code">TR</span>
+      <span class="lang-name">Türkçe</span>
+    </div>
+    <div class="lang-option" id="lo-ru" onclick="setLang('ru')">
+      <span class="lang-flag">🇷🇺</span>
+      <span class="lang-code">RU</span>
+      <span class="lang-name">Русский</span>
+    </div>
+    <div class="lang-option" id="lo-ar" onclick="setLang('ar')">
+      <span class="lang-flag">🇸🇦</span>
+      <span class="lang-code">AR</span>
+      <span class="lang-name">العربية</span>
+    </div>
+  </div>
+</div>
 </body>
 </html>

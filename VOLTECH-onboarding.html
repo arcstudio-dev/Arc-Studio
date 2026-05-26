@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<script>
+  // Bereits onboarded? Dann direkt zur gespeicherten App
+  var ob = localStorage.getItem('arc_onboarding_done');
+  var app = localStorage.getItem('arc_primary_app');
+  if (ob === '1' && app) {
+    var dest = {voltiq:'voltiq.html',ampere:'VOLTECH-ampere.html',torque:'VOLTECH-torque.html',fisi:'FISI-core.html'}[app];
+    if (dest) window.location.replace(dest);
+  }
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#050507">
+<title>Arc Studio — Willkommen</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  height: 100%; background: #050507; color: #fff;
+  font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  overflow: hidden;
+}
+
+/* ── Background ─────────────────────────────────────────────── */
+.bg {
+  position: fixed; inset: 0; z-index: 0;
+  background: #050507;
+  background-image: radial-gradient(rgba(124,58,237,.10) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.glow-1 {
+  position: fixed; top: -120px; right: -80px;
+  width: 500px; height: 500px; z-index: 0;
+  background: radial-gradient(ellipse, rgba(124,58,237,.25) 0%, transparent 65%);
+  pointer-events: none;
+}
+.glow-2 {
+  position: fixed; bottom: -100px; left: -80px;
+  width: 400px; height: 400px; z-index: 0;
+  background: radial-gradient(ellipse, rgba(99,102,241,.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* ── Screens ─────────────────────────────────────────────────── */
+.screen {
+  position: fixed; inset: 0; z-index: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: env(safe-area-inset-top, 24px) 28px env(safe-area-inset-bottom, 32px);
+  opacity: 0; pointer-events: none;
+  transition: opacity .4s ease, transform .4s cubic-bezier(.16,1,.3,1);
+  transform: translateY(24px);
+}
+.screen.active {
+  opacity: 1; pointer-events: all; transform: none;
+}
+.screen.out {
+  opacity: 0; transform: translateY(-24px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+/* ── Screen 1 — Welcome ─────────────────────────────────────── */
+.logo-wrap {
+  display: flex; flex-direction: column; align-items: center;
+  margin-bottom: 40px;
+}
+.logo-icon {
+  width: 80px; height: 80px; border-radius: 22px;
+  background: linear-gradient(135deg, #1a0a2e 0%, #2d1060 100%);
+  border: 1px solid rgba(124,58,237,.4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 38px; margin-bottom: 20px;
+  box-shadow: 0 8px 32px rgba(124,58,237,.3);
+}
+.logo-name {
+  font-size: 28px; font-weight: 900; letter-spacing: -1px;
+  background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,.7) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.logo-sub { font-size: 14px; font-weight: 500; color: rgba(255,255,255,.35); margin-top: 4px; }
+
+.welcome-title {
+  font-size: 36px; font-weight: 900; letter-spacing: -1.5px;
+  text-align: center; line-height: 1.1; margin-bottom: 16px;
+}
+.welcome-title .g {
+  background: linear-gradient(135deg, #7c3aed, #c084fc);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.welcome-sub {
+  font-size: 16px; font-weight: 500; color: rgba(255,255,255,.45);
+  text-align: center; line-height: 1.6; margin-bottom: 48px; max-width: 320px;
+}
+
+.pill-row {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  justify-content: center; margin-bottom: 48px;
+}
+.pill {
+  padding: 7px 16px; border-radius: 99px;
+  border: 1px solid rgba(255,255,255,.12);
+  font-size: 13px; font-weight: 600; color: rgba(255,255,255,.5);
+}
+
+/* ── Screen 2 — Beruf auswählen ─────────────────────────────── */
+.step-label {
+  font-size: 12px; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: rgba(124,58,237,.9);
+  margin-bottom: 14px; text-align: center;
+}
+.screen-title {
+  font-size: 30px; font-weight: 900; letter-spacing: -1px;
+  text-align: center; line-height: 1.1; margin-bottom: 10px;
+}
+.screen-sub {
+  font-size: 15px; font-weight: 500; color: rgba(255,255,255,.4);
+  text-align: center; margin-bottom: 36px; line-height: 1.5;
+}
+
+.beruf-grid {
+  display: flex; flex-direction: column; gap: 12px;
+  width: 100%; max-width: 420px;
+}
+.beruf-card {
+  display: flex; align-items: center; gap: 18px;
+  padding: 18px 20px; border-radius: 18px;
+  background: rgba(255,255,255,.04);
+  border: 1.5px solid rgba(255,255,255,.08);
+  cursor: pointer; transition: all .2s ease;
+  -webkit-user-select: none; user-select: none;
+}
+.beruf-card:active { transform: scale(.98); }
+.beruf-card.selected {
+  background: rgba(124,58,237,.15);
+  border-color: rgba(124,58,237,.5);
+}
+.beruf-card.selected .beruf-name { color: #c084fc; }
+.beruf-icon {
+  width: 48px; height: 48px; border-radius: 13px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; flex-shrink: 0;
+}
+.beruf-body { flex: 1; }
+.beruf-name { font-size: 17px; font-weight: 800; letter-spacing: -.3px; margin-bottom: 2px; }
+.beruf-sub { font-size: 13px; color: rgba(255,255,255,.38); font-weight: 500; }
+.beruf-check {
+  width: 24px; height: 24px; border-radius: 99px;
+  border: 1.5px solid rgba(255,255,255,.15);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: all .2s;
+}
+.beruf-card.selected .beruf-check {
+  background: #7c3aed; border-color: #7c3aed;
+}
+.beruf-check-inner {
+  width: 10px; height: 10px; border-radius: 99px;
+  background: #fff; opacity: 0; transition: opacity .2s;
+}
+.beruf-card.selected .beruf-check-inner { opacity: 1; }
+
+/* App accent colors */
+.beruf-icon.voltiq  { background: rgba(99,102,241,.18); }
+.beruf-icon.ampere  { background: rgba(59,130,246,.18); }
+.beruf-icon.torque  { background: rgba(245,158,11,.18); }
+.beruf-icon.fisi    { background: rgba(34,197,94,.18); }
+
+/* ── Screen 3 — Ziel setzen ─────────────────────────────────── */
+.ziel-grid {
+  display: flex; flex-direction: column; gap: 10px;
+  width: 100%; max-width: 420px;
+}
+.ziel-card {
+  display: flex; align-items: center; gap: 16px;
+  padding: 16px 20px; border-radius: 16px;
+  background: rgba(255,255,255,.04);
+  border: 1.5px solid rgba(255,255,255,.08);
+  cursor: pointer; transition: all .2s;
+  -webkit-user-select: none; user-select: none;
+}
+.ziel-card:active { transform: scale(.98); }
+.ziel-card.selected {
+  background: rgba(124,58,237,.12);
+  border-color: rgba(124,58,237,.45);
+}
+.ziel-emoji { font-size: 28px; flex-shrink: 0; }
+.ziel-body { flex: 1; }
+.ziel-name { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+.ziel-sub { font-size: 13px; color: rgba(255,255,255,.38); font-weight: 500; }
+
+/* ── Screen 4 — Fertig ──────────────────────────────────────── */
+.done-icon {
+  width: 96px; height: 96px; border-radius: 26px;
+  background: linear-gradient(135deg, rgba(124,58,237,.25), rgba(192,132,252,.15));
+  border: 1px solid rgba(124,58,237,.4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px; margin-bottom: 32px;
+  box-shadow: 0 12px 40px rgba(124,58,237,.3);
+  animation: popIn .6s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.done-title {
+  font-size: 34px; font-weight: 900; letter-spacing: -1.5px;
+  text-align: center; line-height: 1.1; margin-bottom: 12px;
+}
+.done-sub {
+  font-size: 16px; font-weight: 500; color: rgba(255,255,255,.4);
+  text-align: center; line-height: 1.6; margin-bottom: 40px; max-width: 300px;
+}
+.done-beruf-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 24px; border-radius: 99px;
+  background: rgba(124,58,237,.18); border: 1px solid rgba(124,58,237,.4);
+  font-size: 16px; font-weight: 700; margin-bottom: 40px;
+}
+
+/* ── Progress Dots ───────────────────────────────────────────── */
+.dots {
+  display: flex; gap: 8px; margin-bottom: 36px;
+}
+.dot {
+  width: 8px; height: 8px; border-radius: 99px;
+  background: rgba(255,255,255,.15); transition: all .3s;
+}
+.dot.active { width: 24px; background: #7c3aed; }
+.dot.done   { background: rgba(124,58,237,.5); }
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+.btn-primary {
+  width: 100%; max-width: 420px;
+  padding: 16px; border-radius: 14px; border: none;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: #fff; font-size: 16px; font-weight: 700; letter-spacing: -.2px;
+  cursor: pointer; transition: all .2s;
+  box-shadow: 0 4px 20px rgba(124,58,237,.4);
+  -webkit-user-select: none; user-select: none;
+}
+.btn-primary:active { transform: scale(.98); opacity: .9; }
+.btn-primary:disabled {
+  background: rgba(124,58,237,.3); box-shadow: none;
+  cursor: not-allowed; opacity: .5;
+}
+
+.btn-start {
+  width: 100%; max-width: 420px;
+  padding: 18px; border-radius: 14px; border: none;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: #fff; font-size: 17px; font-weight: 800; letter-spacing: -.3px;
+  cursor: pointer; transition: all .2s;
+  box-shadow: 0 8px 32px rgba(124,58,237,.5);
+}
+.btn-start:active { transform: scale(.98); }
+
+.btn-skip {
+  background: none; border: none; color: rgba(255,255,255,.25);
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  padding: 12px; margin-top: 8px;
+  -webkit-user-select: none; user-select: none;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-height: 700px) {
+  .logo-icon { width: 64px; height: 64px; font-size: 28px; margin-bottom: 14px; }
+  .welcome-title { font-size: 28px; }
+  .welcome-sub { margin-bottom: 32px; }
+  .pill-row { margin-bottom: 32px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="glow-1"></div>
+<div class="glow-2"></div>
+
+<!-- ── Screen 1: Welcome ──────────────────────────────────────── -->
+<div class="screen active" id="s1">
+  <div class="logo-wrap">
+    <div class="logo-icon">⚡</div>
+    <div class="logo-name">Arc Studio</div>
+    <div class="logo-sub">IHK-Prüfungsvorbereitung</div>
+  </div>
+
+  <div class="welcome-title">Deine Prüfung.<br><span class="g">Dein Tempo.</span></div>
+  <div class="welcome-sub">Lerne smarter, nicht länger. Kostenlos, offline und ohne Account.</div>
+
+  <div class="pill-row">
+    <div class="pill">📵 Offline</div>
+    <div class="pill">🆓 Kostenlos</div>
+    <div class="pill">🤖 KI-Tutor</div>
+    <div class="pill">📊 Schwächen-Radar</div>
+  </div>
+
+  <button class="btn-primary" onclick="goTo(2)">Jetzt starten →</button>
+</div>
+
+<!-- ── Screen 2: Beruf auswählen ─────────────────────────────── -->
+<div class="screen" id="s2">
+  <div class="dots">
+    <div class="dot active" id="dot1"></div>
+    <div class="dot" id="dot2"></div>
+    <div class="dot" id="dot3"></div>
+  </div>
+
+  <div class="step-label">Schritt 1 von 3</div>
+  <div class="screen-title">Was lernst du?</div>
+  <div class="screen-sub">Wir passen alles auf deinen Beruf an.</div>
+
+  <div class="beruf-grid">
+    <div class="beruf-card" data-app="ampere" onclick="selectBeruf(this)">
+      <div class="beruf-icon ampere">🔌</div>
+      <div class="beruf-body">
+        <div class="beruf-name">AMPERE</div>
+        <div class="beruf-sub">Elektroniker für Betriebstechnik</div>
+      </div>
+      <div class="beruf-check"><div class="beruf-check-inner"></div></div>
+    </div>
+    <div class="beruf-card" data-app="torque" onclick="selectBeruf(this)">
+      <div class="beruf-icon torque">⚙️</div>
+      <div class="beruf-body">
+        <div class="beruf-name">TORQUE</div>
+        <div class="beruf-sub">Industriemechaniker</div>
+      </div>
+      <div class="beruf-check"><div class="beruf-check-inner"></div></div>
+    </div>
+    <div class="beruf-card" data-app="voltiq" onclick="selectBeruf(this)">
+      <div class="beruf-icon voltiq">⚡</div>
+      <div class="beruf-body">
+        <div class="beruf-name">VOLTIQ</div>
+        <div class="beruf-sub">Mechatroniker</div>
+      </div>
+      <div class="beruf-check"><div class="beruf-check-inner"></div></div>
+    </div>
+    <div class="beruf-card" data-app="fisi" onclick="selectBeruf(this)">
+      <div class="beruf-icon fisi">🖥️</div>
+      <div class="beruf-body">
+        <div class="beruf-name">FISI-Core</div>
+        <div class="beruf-sub">Fachinformatiker Systemintegration</div>
+      </div>
+      <div class="beruf-check"><div class="beruf-check-inner"></div></div>
+    </div>
+  </div>
+
+  <br>
+  <button class="btn-primary" id="btn-beruf" onclick="goTo(3)" disabled>Weiter →</button>
+  <button class="btn-skip" onclick="skipOnboarding()">Überspringen</button>
+</div>
+
+<!-- ── Screen 3: Ziel setzen ─────────────────────────────────── -->
+<div class="screen" id="s3">
+  <div class="dots">
+    <div class="dot done" id="dot1b"></div>
+    <div class="dot active" id="dot2b"></div>
+    <div class="dot" id="dot3b"></div>
+  </div>
+
+  <div class="step-label">Schritt 2 von 3</div>
+  <div class="screen-title">Wann ist deine Prüfung?</div>
+  <div class="screen-sub">Wir passen deinen Lernplan an.</div>
+
+  <div class="ziel-grid">
+    <div class="ziel-card" data-ziel="<4weeks" onclick="selectZiel(this)">
+      <div class="ziel-emoji">🔥</div>
+      <div class="ziel-body">
+        <div class="ziel-name">In weniger als 4 Wochen</div>
+        <div class="ziel-sub">Intensivmodus — täglich 30–40 Min</div>
+      </div>
+    </div>
+    <div class="ziel-card" data-ziel="1-3months" onclick="selectZiel(this)">
+      <div class="ziel-emoji">📅</div>
+      <div class="ziel-body">
+        <div class="ziel-name">In 1–3 Monaten</div>
+        <div class="ziel-sub">Normalmodus — täglich 20 Min reichen</div>
+      </div>
+    </div>
+    <div class="ziel-card" data-ziel=">3months" onclick="selectZiel(this)">
+      <div class="ziel-emoji">🎯</div>
+      <div class="ziel-body">
+        <div class="ziel-name">In mehr als 3 Monaten</div>
+        <div class="ziel-sub">Aufbaumodus — Grundlagen solide legen</div>
+      </div>
+    </div>
+    <div class="ziel-card" data-ziel="unknown" onclick="selectZiel(this)">
+      <div class="ziel-emoji">🤷</div>
+      <div class="ziel-body">
+        <div class="ziel-name">Ich weiß es noch nicht</div>
+        <div class="ziel-sub">Erstmal reinschnuppern</div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <button class="btn-primary" id="btn-ziel" onclick="goTo(4)" disabled>Weiter →</button>
+  <button class="btn-skip" onclick="skipOnboarding()">Überspringen</button>
+</div>
+
+<!-- ── Screen 4: Fertig ──────────────────────────────────────── -->
+<div class="screen" id="s4">
+  <div class="dots">
+    <div class="dot done"></div>
+    <div class="dot done"></div>
+    <div class="dot active"></div>
+  </div>
+
+  <div class="done-icon">🚀</div>
+  <div class="done-title">Alles bereit,<br><span style="background:linear-gradient(135deg,#7c3aed,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">leg los.</span></div>
+  <div class="done-sub" id="done-sub">Deine App ist personalisiert und bereit.</div>
+  <div class="done-beruf-badge" id="done-badge">⚡ AMPERE</div>
+
+  <button class="btn-start" id="btn-start" onclick="finishOnboarding()">App öffnen →</button>
+</div>
+
+<script>
+var selectedApp  = null;
+var selectedZiel = null;
+
+var APP_CONFIG = {
+  voltiq: { label: 'VOLTIQ',    icon: '⚡', url: 'voltiq.html',          color: '#6366f1' },
+  ampere: { label: 'AMPERE',    icon: '🔌', url: 'VOLTECH-ampere.html',  color: '#3b82f6' },
+  torque: { label: 'TORQUE',    icon: '⚙️', url: 'VOLTECH-torque.html',  color: '#f59e0b' },
+  fisi:   { label: 'FISI-Core', icon: '🖥️', url: 'FISI-core.html',       color: '#22c55e' },
+};
+
+function goTo(n) {
+  var cur = document.querySelector('.screen.active');
+  if (cur) { cur.classList.add('out'); setTimeout(function(){ cur.classList.remove('active','out'); }, 250); }
+  setTimeout(function(){
+    var next = document.getElementById('s' + n);
+    if (next) next.classList.add('active');
+  }, 200);
+}
+
+function selectBeruf(card) {
+  document.querySelectorAll('.beruf-card').forEach(function(c){ c.classList.remove('selected'); });
+  card.classList.add('selected');
+  selectedApp = card.dataset.app;
+  document.getElementById('btn-beruf').disabled = false;
+}
+
+function selectZiel(card) {
+  document.querySelectorAll('.ziel-card').forEach(function(c){ c.classList.remove('selected'); });
+  card.classList.add('selected');
+  selectedZiel = card.dataset.ziel;
+  document.getElementById('btn-ziel').disabled = false;
+  // Update done screen badge while we're here
+  updateDoneScreen();
+}
+
+function updateDoneScreen() {
+  if (!selectedApp) return;
+  var cfg = APP_CONFIG[selectedApp];
+  var badge = document.getElementById('done-badge');
+  var sub   = document.getElementById('done-sub');
+  badge.textContent = cfg.icon + ' ' + cfg.label;
+  badge.style.background = 'rgba(124,58,237,.18)';
+  sub.textContent = 'Du lernst mit ' + cfg.label + '. Der KI-Tutor kennt deinen Beruf.';
+}
+
+function finishOnboarding() {
+  if (!selectedApp) { skipOnboarding(); return; }
+  localStorage.setItem('arc_onboarding_done', '1');
+  localStorage.setItem('arc_primary_app', selectedApp);
+  if (selectedZiel) localStorage.setItem('arc_pruefung_zeitraum', selectedZiel);
+  var cfg = APP_CONFIG[selectedApp];
+  window.location.href = cfg.url;
+}
+
+function skipOnboarding() {
+  localStorage.setItem('arc_onboarding_done', '1');
+  window.location.href = 'index.html';
+}
+
+// Animate done screen when it becomes active
+var s4Observer = new MutationObserver(function(muts) {
+  muts.forEach(function(m) {
+    if (m.target.classList.contains('active')) updateDoneScreen();
+  });
+});
+s4Observer.observe(document.getElementById('s4'), { attributes: true, attributeFilter: ['class'] });
+</script>
+</body>
+</html>
