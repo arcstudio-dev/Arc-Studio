@@ -2,6 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
+<script>if(localStorage.getItem('arc_theme')==='dark')document.documentElement.classList.add('dm');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 – Seite nicht gefunden | Arc Studio</title>
     <meta name="robots" content="noindex, nofollow">
@@ -11,13 +12,13 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --bg:       #0a0a0f;
-            --surface:  #12121a;
-            --border:   #1e1e2e;
-            --accent:   #6366f1;
-            --accent2:  #818cf8;
-            --text:     #f0f0f5;
-            --muted:    #8888aa;
+            --bg:       #09090f;
+            --surface:  #0f0f1a;
+            --border:   rgba(167,139,250,.12);
+            --accent:   #7c3aed;
+            --accent2:  #a78bfa;
+            --text:     #f4f4f5;
+            --muted:    rgba(244,244,245,.4);
         }
 
         body {
@@ -39,8 +40,8 @@
             position: fixed;
             inset: 0;
             background-image:
-                linear-gradient(rgba(99,102,241,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(99,102,241,0.03) 1px, transparent 1px);
+                linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px);
             background-size: 40px 40px;
             pointer-events: none;
             z-index: 0;
@@ -203,7 +204,151 @@
             font-size: 10px;
             color: var(--muted);
         }
-    </style>
+    
+/* ── DARK MODE ── */
+.dm {
+  color-scheme: dark; --bg:#0a0a0f; --surface:#0f0f17; --border:rgba(255,255,255,.09); --accent:#7a0ec8; --text:#f0f0f5; --muted:#a0a0b0; }
+.dm body { background:#0a0a0f; color:#f0f0f5; }
+.dm .card { background:var(--surface) !important; border-color:var(--border) !important; }
+
+/* ── DARK MODE: Inputs, Selects, Checkboxes ──────────────────── */
+.dm input,
+.dm input[type=text],
+.dm input[type=number],
+.dm input[type=date],
+.dm input[type=time],
+.dm input[type=email],
+.dm input[type=password],
+.dm input[type=search],
+.dm input[type=url],
+.dm textarea,
+.dm select {
+  background: #1a1a28 !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: #f0f0f5 !important;
+  color-scheme: dark !important;
+}
+.dm input::placeholder,
+.dm textarea::placeholder { color: rgba(240,240,245,.35) !important; }
+.dm input:focus,
+.dm textarea:focus,
+.dm select:focus {
+  border-color: rgba(122,14,200,.6) !important;
+  box-shadow: 0 0 0 3px rgba(122,14,200,.18) !important;
+  outline: none !important;
+}
+.dm input[type=checkbox],
+.dm input[type=radio] {
+  accent-color: #7a0ec8 !important;
+  color-scheme: dark !important;
+}
+.dm input[type=range] {
+  accent-color: #7a0ec8 !important;
+  color-scheme: dark !important;
+}
+/* ── DARK MODE: Polish ───────────────────────────────────────── */
+.dm * { scrollbar-color: rgba(122,14,200,.4) rgba(255,255,255,.05); }
+.dm ::selection { background: rgba(122,14,200,.35); color: #fff; }
+html { transition: background-color .25s ease, color .25s ease; }
+
+/* ── DARK MODE POLISH ──────────────────────────────────────── */
+.dm body {
+  background: #08080f !important;
+}
+.dm .hdr,
+.dm header,
+.dm nav {
+  background: rgba(8,8,15,.94) !important;
+  border-bottom-color: rgba(255,255,255,.07) !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,.06) !important;
+  backdrop-filter: saturate(120%) blur(20px) !important;
+  -webkit-backdrop-filter: saturate(120%) blur(20px) !important;
+}
+.dm .card,
+.dm .dash-card,
+.dm .app-tile,
+.dm .stat-card,
+.dm .quiz-card,
+.dm .lern-card,
+.dm .info-card,
+.dm .feature-card,
+.dm .tool-card,
+.dm .week-card,
+.dm .bento-cell {
+  background: #0f0f1a !important;
+  border: 1px solid rgba(255,255,255,.07) !important;
+}
+.dm .card:hover,
+.dm .dash-card:hover,
+.dm .app-tile:hover,
+.dm .tool-card:hover {
+  border-color: rgba(122,14,200,.4) !important;
+  box-shadow: 0 0 0 1px rgba(122,14,200,.2), 0 8px 24px rgba(0,0,0,.4) !important;
+}
+.dm .badge,
+.dm .chip,
+.dm .tag,
+.dm .pill,
+.dm .label {
+  background: rgba(255,255,255,.07) !important;
+  color: var(--tx2) !important;
+  border-color: rgba(255,255,255,.1) !important;
+}
+.dm .bnav,
+.dm .nav,
+.dm .tab-bar,
+.dm .bottom-nav {
+  background: rgba(8,8,15,.97) !important;
+  border-top-color: rgba(255,255,255,.07) !important;
+  box-shadow: 0 -1px 0 rgba(255,255,255,.06) !important;
+}
+.dm .drawer,
+.dm .modal,
+.dm .sheet,
+.dm .popup,
+.dm .dropdown,
+.dm .panel {
+  background: #0f0f1a !important;
+  border-color: rgba(255,255,255,.08) !important;
+  box-shadow: 0 24px 64px rgba(0,0,0,.6) !important;
+}
+.dm .toast,
+.dm .snack,
+.dm .alert {
+  background: #1a1a28 !important;
+  border-color: rgba(255,255,255,.1) !important;
+  color: var(--tx) !important;
+}
+.dm a:not(.btn):not([class*="btn"]):not([class*="card"]) {
+  color: #c084fc;
+}
+.dm a:not(.btn):not([class*="btn"]):not([class*="card"]):hover {
+  color: #e879f9;
+}
+.dm code,
+.dm pre,
+.dm .code-block {
+  background: rgba(255,255,255,.05) !important;
+  border-color: rgba(255,255,255,.08) !important;
+  color: #c4b5fd !important;
+}
+.dm table thead {
+  background: rgba(255,255,255,.05) !important;
+}
+.dm table tr:nth-child(even) {
+  background: rgba(255,255,255,.025) !important;
+}
+.dm table td,
+.dm table th {
+  border-color: rgba(255,255,255,.07) !important;
+}
+.dm hr,
+.dm .divider,
+.dm .sep {
+  border-color: rgba(255,255,255,.07) !important;
+  background: rgba(255,255,255,.07) !important;
+}
+</style>
 </head>
 <body>
 <div class="container">
@@ -264,12 +409,27 @@
         <a href="/VOLTECH-ampere.html" class="app-link">
             <span class="app-icon">🔌</span>
             <span class="app-name">AMPERE</span>
-            <span class="app-desc">Elektronik</span>
+            <span class="app-desc">Elektroniker</span>
         </a>
         <a href="/VOLTECH-torque.html" class="app-link">
             <span class="app-icon">⚙️</span>
             <span class="app-name">TORQUE</span>
             <span class="app-desc">Industrie</span>
+        </a>
+        <a href="/FISI-lern.html" class="app-link">
+            <span class="app-icon">💻</span>
+            <span class="app-name">FISI-Lern</span>
+            <span class="app-desc">Fachinformatiker</span>
+        </a>
+        <a href="/spark-kfz.html" class="app-link">
+            <span class="app-icon">🔧</span>
+            <span class="app-name">SPARK</span>
+            <span class="app-desc">KFZ-Mechatroniker</span>
+        </a>
+        <a href="/kauf-buero.html" class="app-link">
+            <span class="app-icon">📋</span>
+            <span class="app-name">KAUF</span>
+            <span class="app-desc">Kaufmann Büromanagement</span>
         </a>
     </div>
 
@@ -298,6 +458,24 @@
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({page: p, lang: l})
   }).catch(function(){});
+})();
+</script>
+<button type="button" id="thm-btn" onclick="thmToggle()" title="Hell/Dunkel" aria-label="Hell/Dunkel" style="position:fixed;bottom:24px;right:24px;z-index:999;width:44px;height:44px;border-radius:50%;background:rgba(122,14,200,.10);border:1.5px solid rgba(122,14,200,.20);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(0,0,0,.12);">🌙</button>
+<script>
+(function(){
+  var KEY='arc_theme';
+  var isDark=localStorage.getItem(KEY)==='dark';
+  function apply(d){
+    document.documentElement.classList.toggle('dm',d);
+    var b=document.getElementById('thm-btn');
+    if(b)b.textContent=d?'☀️':'🌙';
+  }
+  apply(isDark);
+  window.thmToggle=function(){
+    isDark=!isDark;
+    localStorage.setItem(KEY,isDark?'dark':'light');
+    apply(isDark);
+  };
 })();
 </script>
 </body>

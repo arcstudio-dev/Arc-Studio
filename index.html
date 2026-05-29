@@ -13,7 +13,7 @@
   // (z.B. wenn User von AMPERE.html auf "Startseite" klickt)
   var ref = document.referrer;
   if(ref && ref.indexOf(location.hostname) >= 0) return;
-  var map = {voltiq:'voltiq.html',ampere:'VOLTECH-ampere.html',torque:'VOLTECH-torque.html',fisi:'FISI-lern.html',kfz:'spark-kfz.html',spark:'spark-kfz.html'};
+  var map = {voltiq:'voltiq.html',ampere:'VOLTECH-ampere.html',torque:'VOLTECH-torque.html',fisi:'FISI-lern.html',kfz:'spark-kfz.html',spark:'spark-kfz.html',kauf:'kauf-buero.html',buero:'kauf-buero.html'};
   if(map[b]) window.location.replace(map[b]);
 })();
 </script>
@@ -435,7 +435,7 @@ footer{
       <span class="stat-label">Übungsfragen</span>
     </div>
     <div class="stat-item">
-      <span class="stat-num">5</span>
+      <span class="stat-num">6</span>
       <span class="stat-label">IHK-Berufe</span>
     </div>
     <div class="stat-item">
@@ -556,6 +556,27 @@ footer{
       </div>
     </a>
 
+    <a class="app-card" style="border-color:rgba(124,58,237,.2);background:linear-gradient(135deg,rgba(124,58,237,.05),transparent)" href="kauf-buero.html">
+      <div class="app-icon-wrap">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <rect width="22" height="22" rx="6" fill="rgba(124,58,237,.2)"/>
+          <rect x="4" y="5" width="14" height="12" rx="2" fill="none" stroke="#c4b5fd" stroke-width="1.5"/>
+          <line x1="7" y1="9" x2="15" y2="9" stroke="#c4b5fd" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="7" y1="12" x2="13" y2="12" stroke="#c4b5fd" stroke-width="1.2" stroke-linecap="round" opacity=".7"/>
+          <line x1="7" y1="15" x2="11" y2="15" stroke="#c4b5fd" stroke-width="1.2" stroke-linecap="round" opacity=".5"/>
+        </svg>
+      </div>
+      <div class="app-info">
+        <div class="app-name" style="color:#7c3aed">KAUF</div>
+        <div class="app-role">Kaufmann Büromanagement</div>
+        <div class="app-tags">
+          <span class="app-tag" style="color:#7c3aed;border-color:rgba(124,58,237,.3)">NEU</span>
+          <span class="app-tag">60 SR-Karten</span>
+          <span class="app-tag">Rewe &amp; Recht</span>
+        </div>
+      </div>
+    </a>
+
   </div>
 
   <div class="trust-row">
@@ -633,7 +654,7 @@ footer{
 
 <script>
 var BERUF_NAMES = {voltiq:'Mechatroniker',ampere:'Elektroniker EfB',torque:'Industriemechaniker',fisi:'Fachinformatiker FISI'};
-var BERUF_URLS  = {voltiq:'voltiq.html',ampere:'VOLTECH-ampere.html',torque:'VOLTECH-torque.html',fisi:'FISI-lern.html',kfz:'spark-kfz.html',spark:'spark-kfz.html'};
+var BERUF_URLS  = {voltiq:'voltiq.html',ampere:'VOLTECH-ampere.html',torque:'VOLTECH-torque.html',fisi:'FISI-lern.html',kfz:'spark-kfz.html',spark:'spark-kfz.html',kauf:'kauf-buero.html',buero:'kauf-buero.html'};
 
 function setBeruf(key){
   localStorage.setItem('arc_beruf', key);

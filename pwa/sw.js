@@ -3,7 +3,7 @@
 // Version: wird bei Änderungen hochgezählt → Cache wird erneuert
 // ══════════════════════════════════════════════════════════════
 
-var CACHE_NAME = 'arc-v46';
+var CACHE_NAME = 'arc-v47';
 
 var FILES_TO_CACHE = [
   // ── Kern-Apps ─────────────────────────────────────────────
@@ -67,6 +67,7 @@ var FILES_TO_CACHE = [
   '../VOLTECH-foto-karte.html',
   '../VOLTECH-mentor.html',
   '../spark-kfz.html',
+  '../kauf-buero.html',
 
   // ── Weitere Apps ──────────────────────────────────────────
   '../VOLTECH-ihk-archiv.html',

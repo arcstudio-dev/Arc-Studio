@@ -42,6 +42,7 @@ FILES=(
   "FISI-core.html"
   "FISI-lern.html"
   "spark-kfz.html"
+  "kauf-buero.html"
   "MESH-lern.html"
   "PAINT-lern.html"
   "CHEF-lern.html"

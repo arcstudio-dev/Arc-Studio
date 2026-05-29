@@ -1,0 +1,2171 @@
+<!DOCTYPE html>
+<html lang="de" class="theme-kauf">
+<head>
+<meta charset="UTF-8">
+<script>if(localStorage.getItem('arc_theme')==='dark')document.documentElement.classList.add('dm');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="KAUF: IHK-App für Kaufleute Büromanagement. Rechnungswesen, Bürokommunikation, Personalwesen, Recht, Projektmanagement, SR-Karten. Kostenlos, offline, kein Account.">
+<meta name="keywords" content="Kaufmann Büromanagement, IHK Prüfung, Büromanagement, Rechnungswesen, Personalwesen, Textverarbeitung, kostenlos, Azubi">
+<link rel="canonical" href="https://arc-studio.org/kauf-buero.html">
+<meta property="og:title" content="KAUF — IHK-App für Büromanagement">
+<meta property="og:description" content="Rechnungswesen, Bürokommunikation, Personalwesen, Recht, SR-Karten, Quiz. 100% kostenlos, offline, kein Account.">
+<meta property="og:url" content="https://arc-studio.org/kauf-buero.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://arc-studio.org/og/kauf.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Arc Studio">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Arcstudio_org">
+<meta name="twitter:title" content="KAUF — IHK-App für Büromanagement">
+<meta name="twitter:description" content="Rechnungswesen, Bürokommunikation, Personalwesen, Recht, Projektmanagement, SR-Karten. Kostenlos, offline, kein Account.">
+<meta name="twitter:image" content="https://arc-studio.org/og/kauf.png">
+<meta name="theme-color" content="#050507">
+<title>KAUF — IHK-App Büromanagement | Kostenlos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="voltech-base.css?v=2">
+<style>
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ARC STUDIO — DESIGN TOKENS · SPARK Theme (red #7c3aed)
+   Shared base rules loaded from voltech-base.css
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+:root {
+  --bg:  #ffffff;
+  --bg2: #f5f5fe;
+  --bg3: #eeeefc;
+  --bg4: #e3e3f9;
+  --sep:  rgba(124,58,237,.06);
+  --brd:  rgba(124,58,237,.10);
+  --brd2: rgba(124,58,237,.18);
+  --tx:  #1a1a2e;
+  --tx2: #6b7280;
+  --tx3: #9ca3af;
+  --tx4: rgba(26,26,46,.08);
+  --ac:  #7c3aed;
+  --acd: #6d28d9;
+  --acg: rgba(124,58,237,.12);
+  --acb: rgba(124,58,237,.28);
+  --ok:   #30d158;  --ok-g:  rgba(48,209,88,.14);   --ok-b:  rgba(48,209,88,.25);
+  --warn: #ff9f0a;  --warn-g:rgba(255,159,10,.12);
+  --err:  #ff453a;  --err-g: rgba(255,69,58,.12);
+  --pur:  #bf5af2;
+  --teal: #40c8e0;
+  --font-sans:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'SF Mono','Fira Code',monospace;
+  --fs-xs:   10px;  --fs-sm:   12px;  --fs-md:   13px;
+  --fs-base: 15px;  --fs-lg:   17px;  --fs-xl:   20px;  --fs-2xl:  24px;
+  --fw-medium: 500;  --fw-semi: 600;  --fw-bold: 700;
+  --lh-snug: 1.3;  --lh-base: 1.5;  --lh-relaxed: 1.65;
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px;  --sp-4: 16px;
+  --sp-5: 20px; --sp-6: 24px; --sp-8: 32px;
+  --r-xs: 6px;  --r-sm: 8px;  --r-md: 12px;
+  --r-lg: 16px; --r-xl: 20px; --r-full: 9999px;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,.08);
+  --shadow-md: 0 4px 20px rgba(0,0,0,.10);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,.15);
+  --t-fast: .12s ease;  --t-base: .2s ease;
+  --t-slow: .32s cubic-bezier(.16,1,.3,1);
+  --max-w: 640px;  --touch: 44px;
+  --br:  var(--brd);   --br2: var(--brd2);
+  --r:   var(--r-md);  --r2:  var(--r-lg);  --r3: var(--r-xl);
+  --sa:  var(--font-sans);  --mo: var(--font-mono);
+}
+
+/* ── SPARK-specific: header logo element ── */
+.hdr-logo {
+  width: 32px; height: 32px; border-radius: 7px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ── SPARK-specific: drawer close button ── */
+.drawer-close {
+  width: 44px; height: 44px; min-height: 44px; min-width: 44px;
+  border-radius: 8px;
+  background: var(--bg3); border: none; color: var(--tx2);
+  font-size: 16px; cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+}
+.lang-btn,.header-btn,.theme-btn{min-height:44px;min-width:44px;}
+
+/* ── SPARK-specific: quiz filter active (green, not accent) ── */
+.quiz-filter-btn.active{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.4);color:#22c55e;}
+
+/* ── SPARK-specific: quiz highscore badge border ── */
+.quiz-hs-badge { border: 1px solid rgba(124,58,237,.2); }
+
+/* ── SPARK-specific: quiz correct/wrong with raw rgba ── */
+.quiz-opt.correct { background: rgba(48,209,88,.12); }
+.quiz-opt.wrong { background: rgba(255,69,58,.1); }
+
+/* ── SPARK-specific: AP Check hover with indigo ── */
+.ap-item:hover{border-color:rgba(124,58,237,.3);}
+
+/* ── SPARK-specific: lf-quick-card hover with indigo ── */
+.lf-quick-card:hover { border-color: rgba(124,58,237,.3); }
+
+/* ── SPARK-specific: SR Notify button (red) ── */
+.sr-notify-btn { background: rgba(124,58,237,.15); border:1px solid rgba(124,58,237,.3); color:#7c3aed; }
+.sr-notify-btn.active { background:rgba(124,58,237,.3); }
+
+/* ── SPARK-specific: SR Flashcard back face (indigo gradient) ── */
+.sr-back{
+  background:linear-gradient(160deg,rgba(124,58,237,.14) 0%,rgba(124,58,237,.04) 100%);
+  border:1px solid rgba(124,58,237,.3);
+  box-shadow:0 24px 64px rgba(0,0,0,.65),0 0 48px rgba(124,58,237,.08),inset 0 1px 0 rgba(124,58,237,.1);
+  transform:rotateY(180deg);
+}
+.sr-back .sr-card-tag{color:#7c3aed;background:rgba(124,58,237,.12);border-color:rgba(124,58,237,.2);}
+
+/* ── SPARK-specific: SR progress bar fill (hardcoded indigo) ── */
+.sr-prog-bar-fill{background:#7c3aed;}
+
+/* ── SPARK-specific: Calc cards (flex layout, not grid) ── */
+.calc-card{background:var(--bg2);border:1px solid var(--br);border-radius:var(--r2);padding:1rem;margin-bottom:.75rem;}
+.calc-card-title{font-size:14px;font-weight:700;color:var(--tx);margin-bottom:.25rem;}
+.calc-card-desc{font-size:12px;color:var(--tx3);margin-bottom:.75rem;}
+.calc-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem;}
+.calc-field{flex:1;min-width:140px;display:flex;flex-direction:column;gap:.3rem;}
+.calc-field label{font-size:11px;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;}
+.calc-field input,.calc-field select{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:.5rem .65rem;font-size:13px;color:var(--tx);font-family:var(--sa);outline:none;transition:border-color .15s;}
+.calc-field input:focus,.calc-field select:focus{border-color:var(--ac);}
+.calc-field select{cursor:pointer;}
+.calc-go{background:var(--ac);color:#fff;border:none;border-radius:10px;padding:.55rem 1.1rem;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--sa);transition:background .15s;margin-bottom:.75rem;}
+.calc-go:hover{background:var(--acd);}
+.calc-result-box{display:none;background:var(--bg3);border-radius:10px;padding:.75rem 1rem;border-left:3px solid var(--ac);}
+.calc-result-box.show{display:block;}
+.calc-result-val{font-size:28px;font-weight:700;color:var(--ac);font-family:var(--mo);}
+.calc-result-unit{font-size:14px;color:var(--tx2);margin-left:.4rem;}
+.calc-result-label{font-size:12px;color:var(--tx3);margin-top:.25rem;}
+.calc-hint{font-size:11px;color:var(--tx3);margin-top:.35rem;}
+
+/* ── SPARK-specific: Berichtsheft ── */
+.bh-week-sel{display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem;}
+.bh-week-sel select{flex:1;background:var(--bg2);border:1px solid var(--br);border-radius:10px;padding:.6rem .75rem;font-size:14px;color:var(--tx);font-family:var(--sa);outline:none;}
+.bh-week-sel button{padding:.6rem 1rem;background:var(--ac);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--sa);white-space:nowrap;}
+.bh-day-card{background:var(--bg2);border:1px solid var(--br);border-radius:var(--r2);padding:.85rem;margin-bottom:.6rem;}
+.bh-day-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;}
+.bh-day-name{font-size:13px;font-weight:700;}
+.bh-day-sel{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:.4rem .6rem;font-size:12px;color:var(--tx);font-family:var(--sa);outline:none;max-width:55%;}
+.bh-day-text{width:100%;background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:.55rem .7rem;font-size:13px;color:var(--tx);font-family:var(--sa);resize:vertical;min-height:60px;outline:none;transition:border-color .15s;}
+.bh-day-text:focus{border-color:var(--ac);}
+.bh-save-btn{width:100%;padding:.7rem;background:var(--ac);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--sa);margin-top:.5rem;}
+.bh-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;margin-bottom:.75rem;}
+.bh-stat{background:var(--bg2);border:1px solid var(--br);border-radius:var(--r);padding:.65rem;text-align:center;}
+.bh-stat-val{font-family:var(--mo);font-size:20px;font-weight:700;color:var(--ac);}
+.bh-stat-label{font-size:10px;color:var(--tx3);margin-top:.2rem;}
+.bh-export-btn{width:100%;padding:.6rem;background:transparent;border:1px solid var(--br);border-radius:10px;font-size:13px;color:var(--tx2);cursor:pointer;font-family:var(--sa);margin-top:.5rem;}
+
+/* ── SPARK-specific: Language Pill Grid ── */
+.lang-pill-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:16px 0}
+.lang-pill{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 8px;background:var(--bg3);border:2px solid transparent;border-radius:12px;cursor:pointer;color:var(--tx);transition:all .2s}
+.lang-pill:hover{background:var(--bg4);border-color:var(--brd2)}
+.lang-pill.active{border-color:var(--ac);background:color-mix(in srgb, var(--ac) 15%, transparent)}
+.lang-flag{font-size:1.6rem}
+.lang-code{font-size:.75rem;font-weight:700;color:var(--ac)}
+.lang-name{font-size:.65rem;color:var(--tx3)}
+html.lang-ar{direction:rtl}
+
+/* ── SPARK-specific: What's New Toast ── */
+.whats-new-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--bg2);border:1px solid var(--ac);border-radius:16px;padding:14px 20px;max-width:340px;width:calc(100% - 40px);z-index:900;box-shadow:0 8px 32px #0008;animation:slideUp .4s ease}
+.whats-new-toast.hidden{display:none}
+.wnt-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.wnt-header strong{font-size:.95rem}
+.wnt-close{background:none;border:none;color:var(--tx3);font-size:1.2rem;cursor:pointer;padding:4px}
+.wnt-body{font-size:.82rem;color:var(--tx3);line-height:1.5}
+
+/* ── SPARK-specific: ARC STUDIO brand light mode (indigo accent) ── */
+.hdr {
+  background: rgba(255,255,255,.92) !important;
+  backdrop-filter: saturate(180%) blur(24px) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(24px) !important;
+  box-shadow: 0 1px 12px rgba(0,0,0,.06) !important;
+  border-bottom-color: rgba(124,58,237,.08) !important;
+}
+.app-tile:hover, .card:hover, .dash-card:hover {
+  box-shadow: 0 8px 24px rgba(124,58,237,.10), 0 0 0 1px rgba(124,58,237,.06) !important;
+}
+input, textarea, select {
+  background: #ffffff !important;
+  border-color: rgba(124,58,237,.15) !important;
+  color: #1a1a2e !important;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: #7c3aed !important;
+  box-shadow: 0 0 0 3px rgba(124,58,237,.12) !important;
+}
+.drawer { box-shadow: -4px 0 32px rgba(0,0,0,.12) !important; }
+
+/* ── SPARK-specific dark mode: input accent (red) ── */
+.dm input:focus,
+.dm textarea:focus,
+.dm select:focus {
+  border-color: rgba(124,58,237,.6) !important;
+  box-shadow: 0 0 0 3px rgba(124,58,237,.18) !important;
+  outline: none !important;
+}
+.dm input[type=checkbox],
+.dm input[type=radio] {
+  accent-color: #7c3aed !important;
+  color-scheme: dark !important;
+}
+.dm input[type=range] {
+  accent-color: #7c3aed !important;
+  color-scheme: dark !important;
+}
+/* ── SPARK-specific dark mode: scrollbar & selection (red) ── */
+.dm * { scrollbar-color: rgba(124,58,237,.4) rgba(255,255,255,.05); }
+.dm ::selection { background: rgba(124,58,237,.35); color: #fff; }
+
+/* ── SPARK-specific dark mode: card hover (red) ── */
+.dm .card:hover,
+.dm .dash-card:hover,
+.dm .app-tile:hover,
+.dm .tool-card:hover {
+  border-color: rgba(124,58,237,.4) !important;
+  box-shadow: 0 0 0 1px rgba(124,58,237,.2), 0 8px 24px rgba(0,0,0,.4) !important;
+}
+/* ── Session Hero ─────────────────────────────────────── */
+.session-hero{margin:1.5rem 0 1.5rem;border-radius:var(--r3);padding:1.4rem 1.25rem;border:1px solid var(--acb);background:var(--acg);position:relative;overflow:hidden;}
+.session-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 100% 0%,rgba(124,58,237,.14),transparent);pointer-events:none;}
+.session-hero.done{border-color:rgba(22,163,74,.22);background:rgba(22,163,74,.07);}
+.session-hero.done::before{background:radial-gradient(ellipse 80% 60% at 100% 0%,rgba(22,163,74,.1),transparent);}
+.sh-cta{display:inline-flex;align-items:center;gap:.5rem;font-size:14px;font-weight:700;background:var(--ac);color:#fff;padding:.7rem 1.25rem;border-radius:10px;border:none;cursor:pointer;position:relative;z-index:1;transition:opacity .15s,transform .15s;box-shadow:0 4px 16px rgba(124,58,237,.3);}
+.sh-cta:hover{opacity:.88;}.sh-cta:active{transform:scale(.97);}
+.sh-cta.done-cta{background:var(--ok);box-shadow:0 4px 16px rgba(22,163,74,.25);}
+@keyframes fisiPulse{0%,100%{box-shadow:0 4px 16px rgba(124,58,237,.3)}50%{box-shadow:0 4px 24px rgba(124,58,237,.6)}}
+.sh-cta.pulse{animation:fisiPulse 2s ease infinite;}
+/* ── App Tile Grid ────────────────────────────────────── */
+.app-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.75rem;}
+.tile{background:var(--bg2);border:1px solid var(--brd);border-radius:var(--r2);padding:1.1rem 1rem;text-decoration:none;color:var(--tx);display:flex;flex-direction:column;gap:.3rem;transition:transform .2s cubic-bezier(.16,1,.3,1),box-shadow .2s,border-color .15s;position:relative;overflow:hidden;cursor:pointer;}
+.tile:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(124,58,237,.1);}
+.tile:active{opacity:.75;transform:scale(.97);}
+.tile.wide{grid-column:1/-1;flex-direction:row;align-items:center;gap:1rem;}
+.tile-ico{font-size:0;display:block;flex-shrink:0;margin-bottom:.1rem;}
+.tile.wide .tile-ico{margin-bottom:0;}
+.tile-info{flex:1;min-width:0;}
+.tile-sup{font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--tx3);margin-bottom:.15rem;}
+.tile-name{font-size:15px;font-weight:700;letter-spacing:-.2px;line-height:1.2;color:var(--tx);}
+.tile-desc{font-size:12px;color:var(--tx3);line-height:1.4;margin-top:.2rem;}
+.tile-arrow{font-size:13px;color:var(--ac);font-weight:700;margin-top:auto;padding-top:.6rem;}
+.tile.wide .tile-arrow{margin-top:0;padding-top:0;margin-left:auto;flex-shrink:0;font-size:16px;}
+.a-indigo{border-color:rgba(124,58,237,.22)!important;}
+.a-purple{border-color:rgba(124,58,237,.22)!important;}
+.a-orange{border-color:rgba(249,115,22,.22)!important;}
+.a-teal{border-color:rgba(20,184,166,.22)!important;}
+.a-green{border-color:rgba(22,163,74,.22)!important;}
+.a-blue{border-color:rgba(59,130,246,.22)!important;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.app-grid .tile{animation:fadeUp .3s ease both;}
+.app-grid .tile:nth-child(2){animation-delay:.04s}.app-grid .tile:nth-child(3){animation-delay:.08s}.app-grid .tile:nth-child(4){animation-delay:.12s}.app-grid .tile:nth-child(5){animation-delay:.16s}.app-grid .tile:nth-child(6){animation-delay:.20s}.app-grid .tile:nth-child(7){animation-delay:.24s}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "KAUF",
+  "applicationCategory": "EducationApplication",
+  "operatingSystem": "Web, iOS, Android (PWA)",
+  "url": "https://arc-studio.org/kauf-buero.html",
+  "description": "IHK-Prüfungs-App für Kaufleute Büromanagement. Rechnungswesen, Bürokommunikation, Personalwesen, Recht, Spaced Repetition.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "publisher": { "@type": "Organization", "name": "Arc Studio", "url": "https://arc-studio.org" },
+  "inLanguage": "de",
+  "audience": { "@type": "EducationalAudience", "educationalRole": "student" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ist KAUF kostenlos?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja, KAUF ist 100% kostenlos. Kein Account erforderlich, kein Tracking, offline nutzbar als Progressive Web App auf iOS und Android." }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Themen für die Büromanagement IHK-Prüfung werden abgedeckt?",
+      "acceptedAnswer": { "@type": "Answer", "text": "KAUF deckt alle wichtigen AP1- und AP2-Themen für Kaufleute Büromanagement ab: Büromanagement & Organisation, Rechnungswesen (Buchführung, Kosten-Leistung), Personalwesen (Arbeitsrecht, Entgelt), Bürokommunikation (Word, Excel, Korrespondenz), Wirtschafts- und Sozialkunde sowie Projektmanagement." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist der Unterschied zwischen Quiz und SR-Karten in KAUF?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Das Quiz zeigt 4 Antwortoptionen und testet dein Wissen sofort. Die Spaced-Repetition-Karten (SR) zeigen Frage und Antwort — du bewertest dich selbst und der SM-2-Algorithmus plant die nächste Wiederholung automatisch. SR ist ideal für langfristiges Behalten." }
+    },
+    {
+      "@type": "Question",
+      "name": "Hilft KAUF auch bei der Prüfungssimulation?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja! KAUF enthält einen AP1-Simulator mit 45 Prüfungsfragen im IHK-Stil. Der Timer simuliert die echte Prüfungssituation. Außerdem gibt es einen AP-Check mit allen relevanten Themen für AP1 und AP2 der Kaufleute für Büromanagement." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Header -->
+<header class="hdr">
+  <div class="hdr-logo">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="32" height="32" rx="7" fill="#7c3aed"/>
+      <rect x="7" y="8" width="18" height="14" rx="2" fill="none" stroke="white" stroke-width="1.5" opacity=".9"/>
+      <rect x="11" y="5" width="3" height="4" rx="1" fill="white" opacity=".8"/>
+      <rect x="18" y="5" width="3" height="4" rx="1" fill="white" opacity=".8"/>
+      <line x1="10" y1="15" x2="22" y2="15" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity=".7"/>
+      <line x1="10" y1="19" x2="18" y2="19" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity=".5"/>
+    </svg>
+  </div>
+  <div class="hdr-wordmark">
+    <h1>KAUF<span style="color:var(--ac)">BÜRO</span></h1>
+    <p>Büromanagement · IHK-Prüfung</p>
+  </div>
+  <div class="hdr-actions">
+    <button class="lang-btn header-btn" id="langBtn" onclick="openLangModal()" aria-label="Sprache" style="background:none;border:none;font-size:1.3rem;cursor:pointer;min-height:44px;min-width:44px;padding:0 6px">🇩🇪</button>
+    <button type="button" class="hdr-btn" id="thm-btn" onclick="thmToggle()" title="Theme wechseln" aria-label="Theme wechseln">🌙</button>
+    <button type="button" class="hdr-btn" onclick="drawerOpen()" title="App-Switcher" aria-label="App-Switcher öffnen">⊞</button>
+  </div>
+</header>
+
+<!-- Bottom Nav -->
+<nav class="bnav">
+  <button type="button" class="bnav-btn on" data-screen="s-dash" aria-current="page"><span class="bnav-icon">🏠</span>Home</button>
+  <button type="button" class="bnav-btn" data-screen="s-lern"><span class="bnav-icon">📖</span>Lernen</button>
+  <button type="button" class="bnav-btn" data-screen="s-quiz"><span class="bnav-icon">❓</span>Quiz</button>
+  <button type="button" class="bnav-btn" data-screen="s-sr"><span class="bnav-icon">🧠</span>SR</button>
+  <button type="button" class="bnav-btn" data-screen="s-calc"><span class="bnav-icon">🧮</span>Rechner</button>
+  <button type="button" class="bnav-btn" data-screen="s-ap"><span class="bnav-icon">✅</span>AP-Check</button>
+  <button type="button" class="bnav-btn" data-screen="s-bh"><span class="bnav-icon">📓</span>Heft</button>
+  <button type="button" class="bnav-btn" data-screen="s-sim"><span class="bnav-icon">🎓</span>AP1-Sim</button>
+</nav>
+
+<!-- ===================== SCREEN 1: DASHBOARD ===================== -->
+<main id="s-dash" class="screen on">
+
+  <!-- SESSION HERO -->
+  <div class="session-hero" id="session-hero">
+    <div class="sh-top">
+      <span class="sh-label">KAUF · Büromanagement IHK</span>
+      <span class="sh-streak" id="sh-streak">🔥 —</span>
+    </div>
+    <div id="sh-body">
+      <div class="sh-count"><b id="sh-count">—</b></div>
+      <p class="sh-sub" id="sh-sub">SR-Karten fällig · Lade Lernstatus…</p>
+      <button type="button" class="sh-cta pulse" onclick="window.showScreen('s-sr')" id="sh-cta">🧠 SR starten</button>
+    </div>
+  </div>
+
+  <!-- APP GRID -->
+  <div class="app-grid">
+
+    <button type="button" class="tile wide a-indigo" onclick="window.showScreen('s-lern')">
+      <div class="tile-ico">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="11" fill="rgba(124,58,237,.15)"/>
+          <rect x="10" y="11" width="20" height="2.5" rx="1.25" fill="#c4b5fd"/>
+          <rect x="10" y="16" width="15" height="2" rx="1" fill="#c4b5fd" opacity=".7"/>
+          <rect x="10" y="21" width="11" height="2" rx="1" fill="#c4b5fd" opacity=".5"/>
+          <circle cx="29" cy="28" r="4.5" fill="rgba(124,58,237,.25)" stroke="#c4b5fd" stroke-width="1.5"/>
+          <path d="M27.2 28l1.2 1.2 2.4-2.4" stroke="#c4b5fd" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="tile-info">
+        <div class="tile-sup">Hauptmodul</div>
+        <div class="tile-name">Lernfelder</div>
+        <div class="tile-desc">LF1–LF6 · Org · Rewe · Personal · Recht</div>
+      </div>
+      <div class="tile-arrow">→</div>
+    </button>
+
+    <button type="button" class="tile a-indigo" onclick="window.showScreen('s-quiz')">
+      <div class="tile-ico">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="9" fill="rgba(124,58,237,.15)"/>
+          <circle cx="18" cy="15" r="5.5" stroke="#c4b5fd" stroke-width="1.5" fill="rgba(124,58,237,.08)"/>
+          <path d="M16 13.8c0-1.1.9-2 2-2s2 .9 2 2c0 .8-.5 1.5-1.2 1.8V17" stroke="#c4b5fd" stroke-width="1.3" stroke-linecap="round"/>
+          <circle cx="18" cy="19.2" r=".9" fill="#c4b5fd"/>
+          <rect x="10" y="24" width="16" height="2" rx="1" fill="#c4b5fd" opacity=".35"/>
+        </svg>
+      </div>
+      <div class="tile-sup">Prüfung</div>
+      <div class="tile-name">Quiz</div>
+      <div class="tile-desc">45 Fragen · Multiple Choice</div>
+      <div class="tile-arrow">→</div>
+    </button>
+
+    <button type="button" class="tile a-purple" onclick="window.showScreen('s-sr')">
+      <div class="tile-ico">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="9" fill="rgba(124,58,237,.15)"/>
+          <rect x="8" y="10" width="20" height="13" rx="2" stroke="#a78bfa" stroke-width="1.5" fill="rgba(124,58,237,.08)"/>
+          <line x1="12" y1="15" x2="24" y2="15" stroke="#a78bfa" stroke-width="1.3" stroke-linecap="round"/>
+          <line x1="12" y1="19" x2="19" y2="19" stroke="#a78bfa" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M16 27l2-4 2 4" stroke="#a78bfa" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="tile-sup">Lernen</div>
+      <div class="tile-name">SR-Karten</div>
+      <div class="tile-desc">Spaced Repetition · <span id="sh-sr-count">—</span> fällig</div>
+      <div class="tile-arrow">→</div>
+    </button>
+
+    <button type="button" class="tile a-teal" onclick="window.showScreen('s-calc')">
+      <div class="tile-ico">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="9" fill="rgba(20,184,166,.15)"/>
+          <rect x="9" y="8" width="18" height="20" rx="2.5" stroke="#2dd4bf" stroke-width="1.5" fill="rgba(20,184,166,.08)"/>
+          <rect x="12" y="12" width="12" height="3" rx="1" fill="#2dd4bf" opacity=".6"/>
+          <rect x="12" y="17.5" width="3" height="3" rx=".75" fill="#2dd4bf" opacity=".8"/>
+          <rect x="16.5" y="17.5" width="3" height="3" rx=".75" fill="#2dd4bf" opacity=".8"/>
+          <rect x="21" y="17.5" width="3" height="3" rx=".75" fill="#2dd4bf" opacity=".8"/>
+          <rect x="12" y="22" width="3" height="2.5" rx=".75" fill="#2dd4bf" opacity=".5"/>
+          <rect x="21" y="22" width="3" height="2.5" rx=".75" fill="#2dd4bf" opacity=".5"/>
+        </svg>
+      </div>
+      <div class="tile-sup">Tool</div>
+      <div class="tile-name">Büro-Rechner</div>
+      <div class="tile-desc">Kalkulation · Zinsen · Briefformat</div>
+      <div class="tile-arrow">→</div>
+    </button>
+
+    <button type="button" class="tile a-green" onclick="window.showScreen('s-ap')">
+      <div class="tile-ico">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="9" fill="rgba(22,163,74,.15)"/>
+          <rect x="9" y="8" width="18" height="22" rx="2" stroke="#4ade80" stroke-width="1.5" fill="rgba(22,163,74,.08)"/>
+          <path d="M13 18.5l3.5 3.5 7-7" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="tile-sup">Prüfung</div>
+      <div class="tile-name">AP-Check</div>
+      <div class="tile-desc">AP1 & AP2 Vorbereitung</div>
+      <div class="tile-arrow">→</div>
+    </button>
+
+    <button type="button" class="tile a-orange" onclick="window.showScreen('s-bh')">
+      <div class="tile-ico">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="9" fill="rgba(249,115,22,.15)"/>
+          <rect x="9" y="7" width="18" height="22" rx="2" stroke="#fb923c" stroke-width="1.5" fill="rgba(249,115,22,.08)"/>
+          <line x1="13" y1="13" x2="23" y2="13" stroke="#fb923c" stroke-width="1.3" stroke-linecap="round"/>
+          <line x1="13" y1="17" x2="23" y2="17" stroke="#fb923c" stroke-width="1.3" stroke-linecap="round"/>
+          <line x1="13" y1="21" x2="19" y2="21" stroke="#fb923c" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="tile-sup">Ausbildung</div>
+      <div class="tile-name">Berichtsheft</div>
+      <div class="tile-desc">Ausbildungsnachweise</div>
+      <div class="tile-arrow">→</div>
+    </button>
+
+    <button type="button" class="tile a-blue" onclick="window.showScreen('s-sim')">
+      <div class="tile-ico">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="9" fill="rgba(59,130,246,.15)"/>
+          <rect x="8" y="10" width="20" height="13" rx="2" stroke="#60a5fa" stroke-width="1.5" fill="rgba(59,130,246,.08)"/>
+          <line x1="14" y1="27" x2="22" y2="27" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="18" y1="23" x2="18" y2="27" stroke="#60a5fa" stroke-width="1.5"/>
+          <circle cx="18" cy="16.5" r="3" stroke="#60a5fa" stroke-width="1.3" fill="rgba(59,130,246,.08)"/>
+        </svg>
+      </div>
+      <div class="tile-sup">Simulation</div>
+      <div class="tile-name">AP1-Simulator</div>
+      <div class="tile-desc">Prüfungssimulation · 40 Fragen</div>
+      <div class="tile-arrow">→</div>
+    </button>
+
+  </div>
+
+  <!-- Versteckte Elemente für JS-Kompatibilität -->
+  <div style="display:none" aria-hidden="true">
+    <span id="stat-cards">0</span><span id="stat-hs">—</span>
+    <span id="stat-streak">0</span><span id="qsStreak">0</span>
+    <span id="qsSR">0</span><span id="qsDate">—</span>
+    <div id="returnBanner"></div>
+    <div id="dq-q"></div><div id="dq-answer"></div><button id="dq-toggle"></button>
+  </div>
+
+</main>
+
+<!-- ===================== SCREEN 2: LERNEN ===================== -->
+<main id="s-lern" class="screen">
+
+  <details class="lf-accordion" id="lf1">
+    <summary class="lf-summary">
+      <span class="lf-icon">🗂️</span>
+      <div class="lf-meta">
+        <span class="lf-title">LF1 — Büromanagement &amp; Organisation</span>
+        <span class="lf-count">10 Themen</span>
+      </div>
+      <span class="lf-arrow">›</span>
+    </summary>
+    <div class="lf-body">
+      <ul>
+        <li>Büroorganisation: Ablagesysteme (alphabetisch, numerisch, chronologisch, Sachgruppen), Wiedervorlage</li>
+        <li>Postbearbeitung: Eingangspost (öffnen, prüfen, verteilen) und Ausgangspost (frankieren, Fristen)</li>
+        <li>Terminplanung: Kalender führen, Prioritäten setzen (Eisenhower-Matrix), Pufferzeiten einplanen</li>
+        <li>Bürokommunikation: persönlich, telefonisch, schriftlich, digital — Vor- und Nachteile je Kanal</li>
+        <li>Konferenzen/Besprechungen: Einladung, Tagesordnung, Protokoll (Ergebnis-, Verlaufsprotokoll)</li>
+        <li>Büroausstattung: Ergonomie, Datenschutz am Arbeitsplatz, Clean-Desk-Policy</li>
+        <li>Zeitmanagement: ABC-Analyse, ALPEN-Methode, Störquellen identifizieren und reduzieren</li>
+        <li>Dokumentenmanagement: Aufbewahrungsfristen (Handelsrecht 6J. / Steuerrecht 10J.), GoBD</li>
+        <li>Digitales Büro: Cloud-Dienste, DMS (Dokumentenmanagementsystem), Workflows automatisieren</li>
+        <li>Qualitätsmanagement: ISO 9001, PDCA-Zyklus (Plan-Do-Check-Act), KVP (kontinuierl. Verbesserung)</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="lf-accordion" id="lf2">
+    <summary class="lf-summary">
+      <span class="lf-icon">💰</span>
+      <div class="lf-meta">
+        <span class="lf-title">LF2 — Rechnungswesen &amp; Buchführung</span>
+        <span class="lf-count">10 Themen</span>
+      </div>
+      <span class="lf-arrow">›</span>
+    </summary>
+    <div class="lf-body">
+      <ul>
+        <li>Buchführungspflicht: HGB §§ 238 ff., einfache vs. doppelte Buchführung (Doppik), Grundsätze ordnungsmäßiger Buchführung (GoB)</li>
+        <li>Kontenrahmen: SKR 03 / SKR 04; Kontenklassen 0–9; Aktiv-, Passiv-, Aufwand-, Ertragskonten</li>
+        <li>Buchungssatz: Soll an Haben; Aktiv+/Aktiv−/Passiv+/Passiv−; Belege als Grundlage</li>
+        <li>Umsatzsteuer: Vorsteuer (Eingang) vs. Umsatzsteuer (Ausgang), Zahllast = USt − VSt, 19% / 7%</li>
+        <li>Anlagevermögen: Abschreibung (linear, degressiv), AfA-Tabelle, Restbuchwert, GWG (800€-Grenze)</li>
+        <li>Inventur: Stichtagsinventar, Stichprobeninventar, permanente Inventur; Inventar vs. Bilanz</li>
+        <li>Bilanz: Aktivseite (Vermögen), Passivseite (Kapital+Schulden), Bilanzgleichung A = P</li>
+        <li>GuV (Gewinn- und Verlustrechnung): Gesamtkosten- vs. Umsatzkostenverfahren; Jahresüberschuss/-fehlbetrag</li>
+        <li>Kosten- und Leistungsrechnung: Kostenarten, Kostenstellen, Kostenträger; Deckungsbeitrag DB = E − VK</li>
+        <li>Kalkulation: Vorwärts- und Rückwärtskalkulation; Aufschlagsfaktor, Handelsspanne, Kalkulationszuschlag</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="lf-accordion" id="lf3">
+    <summary class="lf-summary">
+      <span class="lf-icon">👥</span>
+      <div class="lf-meta">
+        <span class="lf-title">LF3 — Personalwesen &amp; Arbeitsrecht</span>
+        <span class="lf-count">10 Themen</span>
+      </div>
+      <span class="lf-arrow">›</span>
+    </summary>
+    <div class="lf-body">
+      <ul>
+        <li>Personalplanung: Personalbedarfsplanung (Brutto-/Nettobedarf), Stellenbeschreibung, Anforderungsprofil</li>
+        <li>Personalbeschaffung: intern (Versetzung, Beförderung) vs. extern (Stellenanzeige, Zeitarbeit, Headhunting)</li>
+        <li>Arbeitsvertrag: Mindestinhalt (§ 2 NachwG), befristet (TzBfG) vs. unbefristet, Probezeit max. 6 Monate</li>
+        <li>Entgeltabrechnung: Brutto → Netto; Sozialversicherungsbeiträge (KV, PV, RV, AV); Lohnsteuerklassen I–VI</li>
+        <li>Arbeitszeit: ArbZG — max. 8h/Tag (10h mit Ausgleich), Pausen (≥6h = 30 min), Nachtarbeit</li>
+        <li>Kündigungsrecht: ordentliche (Fristen §622 BGB), außerordentliche (wichtiger Grund), Abmahnung</li>
+        <li>Betriebsrat: BetrVG — Mitbestimmung (§87), Mitwirkung, Informationsrecht; BR-Wahl alle 4 Jahre</li>
+        <li>Sozialversicherung: GKV, GPV, GRV, ALV — Beiträge paritätisch; Beitragsbemessungsgrenzen</li>
+        <li>Urlaubsrecht: BUrlG — Mindesturlaub 24 Werktage (20 Arbeitstage); Übertragung bis 31.03.</li>
+        <li>Personalentwicklung: Weiterbildung, Karriereplanung, Mitarbeitergespräch, 360°-Feedback</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="lf-accordion" id="lf4">
+    <summary class="lf-summary">
+      <span class="lf-icon">✉️</span>
+      <div class="lf-meta">
+        <span class="lf-title">LF4 — Bürokommunikation &amp; Korrespondenz</span>
+        <span class="lf-count">10 Themen</span>
+      </div>
+      <span class="lf-arrow">›</span>
+    </summary>
+    <div class="lf-body">
+      <ul>
+        <li>DIN 5008: Geschäftsbrief-Norm; Briefkopf, Anschriftenfeld (9-zeilig), Betreffzeile, Anrede, Grußformel</li>
+        <li>Anrede: "Sehr geehrte/r Herr/Frau …" förmlich; "Guten Tag …" neutral; Du/Sie-Anrede situationsabhängig</li>
+        <li>Anfrage, Angebot, Bestellung: Pflichtangaben im Kaufvertrag, Vertragsannahme, Auftragsbestätigung</li>
+        <li>Mängelrüge: rechtzeitige Rüge (§377 HGB), Nacherfüllung, Minderung, Rücktritt, Schadensersatz</li>
+        <li>Mahnung: Zahlungsverzug (§286 BGB), Mahnschreiben, Mahngebühren, gerichtliches Mahnverfahren</li>
+        <li>E-Mail-Kommunikation: Betreffzeile präzise, CC/BCC korrekt nutzen, Anhänge benennen, DSGVO</li>
+        <li>Textverarbeitung Word: Formatvorlagen, Serienbriefe (Hauptdokument + Datenquelle), Makros</li>
+        <li>Tabellenkalkulation Excel: SVERWEIS, WENN-Funktion, Pivot-Tabellen, bedingte Formatierung</li>
+        <li>Präsentationen: PowerPoint-Grundsätze, 7×7-Regel, Folienmaster, Animationen sparsam einsetzen</li>
+        <li>Datenschutz in der Kommunikation: DSGVO Art. 5, Datensparsamkeit, Verschlüsselung, Auftragsverarbeitung</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="lf-accordion" id="lf5">
+    <summary class="lf-summary">
+      <span class="lf-icon">⚖️</span>
+      <div class="lf-meta">
+        <span class="lf-title">LF5 — Wirtschafts- &amp; Privatrecht</span>
+        <span class="lf-count">10 Themen</span>
+      </div>
+      <span class="lf-arrow">›</span>
+    </summary>
+    <div class="lf-body">
+      <ul>
+        <li>Rechtssubjekte: natürliche Personen (Rechtsfähigkeit ab Geburt), juristische Personen (GmbH, AG, e.V.)</li>
+        <li>Geschäftsfähigkeit: unter 7 = geschäftsunfähig; 7–17 = beschränkt (§107 BGB); ab 18 = voll</li>
+        <li>Kaufvertrag: Angebot + Annahme = Vertragsschluss; Konsens über Ware und Preis; Form (§ 125 BGB)</li>
+        <li>Leistungsstörungen: Verzug (§ 286), Unmöglichkeit (§ 275), Schlechtleistung, Schadensersatz</li>
+        <li>Verbraucherschutz: Widerrufsrecht 14 Tage (§355 BGB), AGB-Kontrolle (§305 ff.), Haustürgeschäft</li>
+        <li>Unternehmensformen: Einzelunternehmen, GbR, OHG, KG, GmbH, AG — Haftung, Gründung, Organe</li>
+        <li>Handelsrecht (HGB): Kaufmannsbegriff, Firma, Prokura, Handelsregister, Handlungsgehilfe</li>
+        <li>Wettbewerbsrecht: UWG — unlautere Geschäftspraktiken, Irreführung, Vergleichende Werbung</li>
+        <li>Insolvenzrecht: Zahlungsunfähigkeit, Überschuldung, Insolvenzantragspflicht, Gläubigerrangfolge</li>
+        <li>Urheberrecht: §§ UrhG — Schutzfrist 70 Jahre nach Tod, Software (§69a), Lizenzen, Open Source</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="lf-accordion" id="lf6">
+    <summary class="lf-summary">
+      <span class="lf-icon">🏛️</span>
+      <div class="lf-meta">
+        <span class="lf-title">LF6 — Wirtschafts- &amp; Sozialkunde (WiSo)</span>
+        <span class="lf-count">10 Themen</span>
+      </div>
+      <span class="lf-arrow">›</span>
+    </summary>
+    <div class="lf-body">
+      <ul>
+        <li>Wirtschaftskreislauf: Haushalte, Unternehmen, Staat, Ausland — Güter- und Geldstrom</li>
+        <li>Markt und Preisbildung: Angebot und Nachfrage, Marktgleichgewicht, Preiselastizität, Marktformen</li>
+        <li>Konjunktur: Aufschwung, Boom, Rezession, Depression — Konjunkturindikatoren (BIP, Inflation, Arbeitslosigkeit)</li>
+        <li>Geldpolitik: EZB, Leitzins, Inflation (Kaufkraft), Deflation, Geldmenge M1/M2/M3</li>
+        <li>Sozialpolitik: Sozialversicherungssystem (5 Säulen), Sozialstaatsprinzip (GG Art. 20), Tarifautonomie</li>
+        <li>Tarifrecht: Tarifvertrag (Gehalt, Arbeitszeit), Tarifbindung, Allgemeinverbindlichkeit, Gewerkschaft vs. AG-Verband</li>
+        <li>Steuern: direkte (ESt, KSt, GewSt) vs. indirekte (USt), Steuerarten, Steuerpflicht, Finanzamt</li>
+        <li>Berufsausbildung: BBiG — Ausbildungsvertrag, Rechte/Pflichten Azubi/Betrieb, Berufsschule, IHK-Prüfung</li>
+        <li>Verbraucherschutz und Nachhaltigkeit: SDGs, ESG-Kriterien, CO2-Bilanz, Kreislaufwirtschaft</li>
+        <li>Europäische Union: Binnenmarkt, Euro-Zone, EU-Institutionen (Rat, Parlament, Kommission), DSGVO</li>
+      </ul>
+    </div>
+  </details>
+
+</main>
+
+<!-- ===================== SCREEN 3: QUIZ ===================== -->
+<main id="s-quiz" class="screen">
+
+  <div id="quiz-start">
+    <div class="quiz-hero">
+      <span class="quiz-hero-icon">❓</span>
+      <h2>Büro Quiz</h2>
+      <p>45 Fragen · Themenfilter · 20 pro Runde</p>
+      <div class="quiz-hs-badge" id="hs-badge">🏆 Highscore: —</div>
+      <div class="quiz-filter">
+        <button class="quiz-filter-btn active" data-topic="all" onclick="setQuizTopic('all')">📋 Alle</button>
+        <button class="quiz-filter-btn" data-topic="Organisation" onclick="setQuizTopic('Organisation')">🗂️ Org</button>
+        <button class="quiz-filter-btn" data-topic="Rechnungswesen" onclick="setQuizTopic('Rechnungswesen')">💰 Rewe</button>
+        <button class="quiz-filter-btn" data-topic="Personal" onclick="setQuizTopic('Personal')">👥 Personal</button>
+        <button class="quiz-filter-btn" data-topic="Kommunikation" onclick="setQuizTopic('Kommunikation')">✉️ Komm</button>
+        <button class="quiz-filter-btn" data-topic="Recht" onclick="setQuizTopic('Recht')">⚖️ Recht</button>
+        <button class="quiz-filter-btn" data-topic="WiSo" onclick="setQuizTopic('WiSo')">🏛️ WiSo</button>
+      </div>
+      <button type="button" class="btn-primary" onclick="quizStart()">Quiz starten</button>
+    </div>
+  </div>
+
+  <div id="quiz-run" style="display:none;">
+    <div class="quiz-progress-wrap">
+      <div class="quiz-progress-bar" id="q-prog" style="width:0%"></div>
+    </div>
+    <div class="quiz-counter" id="q-counter">Frage 1 / 20</div>
+    <div class="quiz-card">
+      <div class="quiz-question" id="q-text"></div>
+      <div class="quiz-opts" id="q-opts"></div>
+      <div class="quiz-explanation" id="q-exp" style="display:none;"></div>
+      <button type="button" class="quiz-next-btn" id="q-next" style="display:none;" onclick="quizNext()">Weiter →</button>
+    </div>
+  </div>
+
+  <div id="quiz-end" style="display:none;">
+    <div class="quiz-end-card">
+      <div class="quiz-score-big" id="end-score">0</div>
+      <div class="quiz-score-sub" id="end-sub">von 20 Fragen richtig</div>
+      <div class="quiz-end-hs" id="end-hs"></div>
+      <button type="button" class="btn-primary" onclick="quizStart()">Nochmal spielen</button>
+      <button type="button" onclick="window.ArcShare&&ArcShare.show({score:quizScore,total:quizQ.length,app:'KAUF',appColor:'#7c3aed',appIcon:'🔧',streak:parseInt(localStorage.getItem('kauf_streak')||'0')})" class="btn-primary" style="background:rgba(124,58,237,.15);color:#7c3aed;border:1px solid rgba(124,58,237,.35);margin-top:.5rem">📤 Ergebnis teilen</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- ===================== SCREEN 4: SR ===================== -->
+<main id="s-sr" class="screen">
+
+  <div id="sr-dash-view">
+    <div class="sr-stat-row">
+      <div class="sr-stat"><div class="sr-stat-v" id="sr-v-due" style="color:var(--warn);">0</div><div class="sr-stat-l">Fällig</div></div>
+      <div class="sr-stat"><div class="sr-stat-v" id="sr-v-new" style="color:var(--ac);">0</div><div class="sr-stat-l">Neu</div></div>
+      <div class="sr-stat"><div class="sr-stat-v" id="sr-v-learned" style="color:var(--ok);">0</div><div class="sr-stat-l">Gelernt</div></div>
+      <div class="sr-stat"><div class="sr-stat-v" id="sr-v-total">40</div><div class="sr-stat-l">Gesamt</div></div>
+    </div>
+    <div class="sr-mode-row" id="sr-mode-row">
+      <button type="button" class="sr-mode-btn active" id="sr-mode-flip" onclick="setSRMode('flip')">🃏 Karteikarte</button>
+      <button type="button" class="sr-mode-btn" id="sr-mode-fill" onclick="setSRMode('fill')">✏️ Lückentext</button>
+    </div>
+    <div id="sr-start-area"></div>
+    <div class="sr-notify-row">
+      <button type="button" class="sr-notify-btn" id="fisiNotifyBtn" onclick="fisiToggleNotify()">🔔 Erinnerungen aktivieren</button>
+      <span class="sr-notify-hint" id="fisiNotifyHint"></span>
+    </div>
+  </div>
+
+  <div id="sr-session-view" style="display:none;">
+    <div class="sr-prog-wrap">
+      <div class="sr-prog-bar-track">
+        <div class="sr-prog-bar-fill" id="sr-prog-bar" style="width:0%"></div>
+      </div>
+      <div class="sr-prog-label" id="sr-prog-txt">1 / 1</div>
+    </div>
+    <div class="sr-flip-wrap">
+      <div class="sr-flip" id="sr-flip" onclick="srFlip()">
+        <div class="sr-front">
+          <div class="sr-card-tag" id="sr-card-tag">TAG</div>
+          <div class="sr-card-q" id="sr-card-q">Frage</div>
+          <div class="sr-card-hint" id="sr-card-hint">Tippen zum Aufdecken</div>
+        </div>
+        <div class="sr-back">
+          <div class="sr-card-tag">Antwort</div>
+          <div class="sr-card-a" id="sr-card-a">Antwort</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sr-fill-area" style="display:none;">
+      <div class="sr-fill-area-wrap">
+        <div class="sr-fill-q-card">
+          <div class="sr-fill-q-tag" id="sr-fill-tag"></div>
+          <div class="sr-fill-q-text" id="sr-fill-q"></div>
+        </div>
+        <div class="sr-fill-input-row">
+  <textarea id="sr-fill-input" class="sr-fill-input" placeholder="Deine Antwort…" rows="3"></textarea>
+  <button type="button" class="sr-mic-btn" id="sr-mic-btn" onclick="srStartVoice()" title="Spracheingabe starten" aria-label="Spracheingabe">🎙️</button>
+</div>
+        <button type="button" class="sr-fill-submit" id="sr-fill-submit" onclick="srFillSubmit()">✓ Antwort prüfen</button>
+        <div id="sr-fill-answer" style="display:none;">
+          <div class="sr-fill-answer-box">
+            <div class="sr-fill-answer-label">Musterlösung</div>
+            <div id="sr-fill-answer-text" class="sr-fill-answer-text"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="sr-grade-area" style="display:none;">
+      <div class="sr-grade-prompt">Wie gut wusstest du es?</div>
+      <div class="sr-grade-row">
+        <button type="button" class="sr-grade-btn bad" onclick="srGrade(1)">
+          <span class="sr-grade-btn-label">Nochmal</span>
+          <span class="sr-grade-btn-note">morgen</span>
+        </button>
+        <button type="button" class="sr-grade-btn ok" onclick="srGrade(3)">
+          <span class="sr-grade-btn-label">Schwer</span>
+          <span class="sr-grade-btn-note">+Intervall</span>
+        </button>
+        <button type="button" class="sr-grade-btn good" onclick="srGrade(5)">
+          <span class="sr-grade-btn-label">Gewusst</span>
+          <span class="sr-grade-btn-note">+mehr</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="sr-done-view" style="display:none;">
+    <div class="sr-done">
+      <span class="sr-done-emoji">🎉</span>
+      <div class="sr-done-title">Sitzung abgeschlossen!</div>
+      <div class="sr-done-sub" id="sr-done-sub"></div>
+      <button type="button" class="sr-start-btn" style="margin-top:1.5rem;" onclick="kaufSrBackToDash()">← Zurück zur Übersicht</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- ===================== SCREEN 5: RECHNER ===================== -->
+<main id="s-calc" class="screen">
+  <div class="sec-title">🧮 Büro-Rechner</div>
+
+  <!-- Kalkulation / Vor-Rückwärtskalkulation -->
+  <div class="calc-card">
+    <div class="calc-card-title">🛒 Kalkulations-Rechner (Vorwärts &amp; Rückwärts)</div>
+    <div class="calc-card-desc">Vom Listeneinkaufspreis zum Brutto-Verkaufspreis — oder umgekehrt</div>
+    <div class="calc-row">
+      <div class="calc-field"><label>Richtung</label>
+        <select id="kalk-dir">
+          <option value="forward">Vorwärts (LEP → BVP)</option>
+          <option value="backward">Rückwärts (BVP → LEP)</option>
+        </select>
+      </div>
+      <div class="calc-field"><label>Betrag (€)</label><input type="number" id="kalk-val" placeholder="z.B. 100" step="0.01" min="0"></div>
+    </div>
+    <div class="calc-row">
+      <div class="calc-field"><label>Rabatt (%)</label><input type="number" id="kalk-rabatt" placeholder="z.B. 15" step="0.1" min="0" max="99" value="15"></div>
+      <div class="calc-field"><label>Skonto (%)</label><input type="number" id="kalk-skonto" placeholder="z.B. 2" step="0.1" min="0" max="20" value="2"></div>
+      <div class="calc-field"><label>Gemeinkosten (%)</label><input type="number" id="kalk-gk" placeholder="z.B. 20" step="0.1" min="0" max="200" value="20"></div>
+      <div class="calc-field"><label>Gewinn (%)</label><input type="number" id="kalk-gw" placeholder="z.B. 10" step="0.1" min="0" max="100" value="10"></div>
+      <div class="calc-field"><label>USt (%)</label>
+        <select id="kalk-ust"><option value="19" selected>19 %</option><option value="7">7 %</option><option value="0">0 %</option></select>
+      </div>
+    </div>
+    <button type="button" class="calc-go" onclick="calcKalkulation()">Berechnen</button>
+    <div class="calc-result-box" id="kalk-result">
+      <div id="kalk-lines" style="font-size:13px;line-height:2;color:var(--tx2);font-family:var(--mo);"></div>
+    </div>
+    <div class="calc-hint">LEP = Listeneinkaufspreis · ZEP = Zieleinkaufspreis · BEP = Bareinkaufspreis · HK = Herstellungskosten · BSP = Selbstkostenpreis · BAP = Barverkaufspreis · ZVP = Zielverkaufspreis · BVP = Bruttoverkaufspreis</div>
+  </div>
+
+  <!-- Zinsrechner -->
+  <div class="calc-card">
+    <div class="calc-card-title">💰 Zinsrechner (kaufmänn. Zinsen)</div>
+    <div class="calc-card-desc">Z = K × p × t / (100 × 360) — Kaufmännische Zinsmethode (30/360)</div>
+    <div class="calc-row">
+      <div class="calc-field"><label>Kapital K (€)</label><input type="number" id="zins-k" placeholder="z.B. 5000" step="1" min="0"></div>
+      <div class="calc-field"><label>Zinssatz p (%)</label><input type="number" id="zins-p" placeholder="z.B. 4" step="0.1" min="0"></div>
+      <div class="calc-field"><label>Zeit t (Tage)</label><input type="number" id="zins-t" placeholder="z.B. 90" step="1" min="1"></div>
+    </div>
+    <button type="button" class="calc-go" onclick="calcZinsen()">Berechnen</button>
+    <div class="calc-result-box" id="zins-result">
+      <span class="calc-result-val" id="zins-val"></span><span class="calc-result-unit"> €</span>
+      <div class="calc-result-label" id="zins-label"></div>
+    </div>
+    <div class="calc-hint">Kaufmänn. Zinsmethode: Monate × 30 Tage. Endkapital = K + Z. Effektivzins p.a. = (Z / K) × (360 / t) × 100.</div>
+  </div>
+
+  <!-- Mehrwertsteuer-Rechner -->
+  <div class="calc-card">
+    <div class="calc-card-title">🧾 Mehrwertsteuer-Rechner (Netto ↔ Brutto)</div>
+    <div class="calc-card-desc">Schnell zwischen Netto- und Bruttobetrag umrechnen</div>
+    <div class="calc-row">
+      <div class="calc-field"><label>Richtung</label>
+        <select id="mwst-dir">
+          <option value="nb">Netto → Brutto</option>
+          <option value="bn">Brutto → Netto</option>
+        </select>
+      </div>
+      <div class="calc-field"><label>Betrag (€)</label><input type="number" id="mwst-val" placeholder="z.B. 100" step="0.01" min="0"></div>
+      <div class="calc-field"><label>Steuersatz</label>
+        <select id="mwst-satz"><option value="19" selected>19 % (Regelsteuersatz)</option><option value="7">7 % (erm. Steuersatz)</option></select>
+      </div>
+    </div>
+    <button type="button" class="calc-go" onclick="calcMwSt()">Berechnen</button>
+    <div class="calc-result-box" id="mwst-result">
+      <div id="mwst-lines" style="font-size:13px;line-height:2;color:var(--tx2);font-family:var(--mo);"></div>
+    </div>
+    <div class="calc-hint">Nettobetrag × 1,19 = Brutto (19 %). Brutto ÷ 1,19 = Netto. USt-Anteil = Brutto × 19 / 119.</div>
+  </div>
+</main>
+
+<!-- ===================== SCREEN 6: AP-CHECK ===================== -->
+<main id="s-ap" class="screen">
+  <div class="sec-title">✅ AP-Vorbereitung Büro</div>
+  <div style="background:var(--bg2);border:1px solid var(--br);border-radius:var(--r2);padding:1rem;margin-bottom:.75rem;">
+    <div style="font-size:13px;font-weight:700;margin-bottom:.5rem;">📊 Fortschritt</div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--tx3);margin-bottom:.5rem;">
+      <span id="ap-done">0 erledigt</span><span id="ap-pct">0%</span>
+    </div>
+    <div style="background:var(--bg3);border-radius:4px;height:6px;overflow:hidden;">
+      <div id="ap-bar" style="height:6px;background:var(--ac);border-radius:4px;width:0%;transition:width .3s;"></div>
+    </div>
+  </div>
+  <div class="ap-list" id="ap-list"></div>
+</main>
+
+<!-- ===================== SCREEN 7: BERICHTSHEFT ===================== -->
+<main id="s-bh" class="screen">
+  <div class="sec-title">📓 Berichtsheft</div>
+  <div class="bh-stats">
+    <div class="bh-stat"><div class="bh-stat-val" id="bh-total-weeks">0</div><div class="bh-stat-label">Wochen</div></div>
+    <div class="bh-stat"><div class="bh-stat-val" id="bh-done-weeks">0</div><div class="bh-stat-label">Vollständig</div></div>
+    <div class="bh-stat"><div class="bh-stat-val" id="bh-total-chars">0</div><div class="bh-stat-label">Zeichen</div></div>
+  </div>
+  <div class="bh-week-sel">
+    <select id="bh-week-select" onchange="bhLoadWeek()"></select>
+    <button type="button" onclick="bhNewWeek()">+ Neue Woche</button>
+  </div>
+  <div id="bh-form" style="display:none;">
+    <div class="bh-day-card">
+      <div class="bh-day-hdr"><span class="bh-day-name">Montag</span>
+        <select class="bh-day-sel" id="bh-mo-cat"><option>Netzwerkadministration</option><option>Programmierung/Entwicklung</option><option>IT-Support/Helpdesk</option><option>Server-Administration</option><option>IT-Sicherheit</option><option>Dokumentation</option><option>Projektarbeit</option><option>Berufsschule</option><option>Sonstiges</option></select>
+      </div>
+      <textarea class="bh-day-text" id="bh-mo-text" placeholder="Was hast du heute gemacht?"></textarea>
+    </div>
+    <div class="bh-day-card">
+      <div class="bh-day-hdr"><span class="bh-day-name">Dienstag</span>
+        <select class="bh-day-sel" id="bh-di-cat"><option>Netzwerkadministration</option><option>Programmierung/Entwicklung</option><option>IT-Support/Helpdesk</option><option>Server-Administration</option><option>IT-Sicherheit</option><option>Dokumentation</option><option>Projektarbeit</option><option>Berufsschule</option><option>Sonstiges</option></select>
+      </div>
+      <textarea class="bh-day-text" id="bh-di-text" placeholder="Was hast du heute gemacht?"></textarea>
+    </div>
+    <div class="bh-day-card">
+      <div class="bh-day-hdr"><span class="bh-day-name">Mittwoch</span>
+        <select class="bh-day-sel" id="bh-mi-cat"><option>Netzwerkadministration</option><option>Programmierung/Entwicklung</option><option>IT-Support/Helpdesk</option><option>Server-Administration</option><option>IT-Sicherheit</option><option>Dokumentation</option><option>Projektarbeit</option><option>Berufsschule</option><option>Sonstiges</option></select>
+      </div>
+      <textarea class="bh-day-text" id="bh-mi-text" placeholder="Was hast du heute gemacht?"></textarea>
+    </div>
+    <div class="bh-day-card">
+      <div class="bh-day-hdr"><span class="bh-day-name">Donnerstag</span>
+        <select class="bh-day-sel" id="bh-do-cat"><option>Netzwerkadministration</option><option>Programmierung/Entwicklung</option><option>IT-Support/Helpdesk</option><option>Server-Administration</option><option>IT-Sicherheit</option><option>Dokumentation</option><option>Projektarbeit</option><option>Berufsschule</option><option>Sonstiges</option></select>
+      </div>
+      <textarea class="bh-day-text" id="bh-do-text" placeholder="Was hast du heute gemacht?"></textarea>
+    </div>
+    <div class="bh-day-card">
+      <div class="bh-day-hdr"><span class="bh-day-name">Freitag</span>
+        <select class="bh-day-sel" id="bh-fr-cat"><option>Netzwerkadministration</option><option>Programmierung/Entwicklung</option><option>IT-Support/Helpdesk</option><option>Server-Administration</option><option>IT-Sicherheit</option><option>Dokumentation</option><option>Projektarbeit</option><option>Berufsschule</option><option>Sonstiges</option></select>
+      </div>
+      <textarea class="bh-day-text" id="bh-fr-text" placeholder="Was hast du heute gemacht?"></textarea>
+    </div>
+    <button type="button" class="bh-save-btn" onclick="bhSaveWeek()">💾 Woche speichern</button>
+    <button type="button" class="bh-export-btn" onclick="bhExport()">↓ Als Text exportieren</button>
+  </div>
+  <div id="bh-empty" style="text-align:center;padding:2rem 1rem;color:var(--tx3);font-size:14px;">Noch kein Eintrag. Erstelle deine erste Woche!</div>
+</main>
+
+<!-- ===================== BACKUP PANEL ===================== -->
+<section class="backup-panel" id="backupPanel" style="max-width:640px;margin-left:auto;margin-right:auto;padding-left:1rem;padding-right:1rem;">
+  <h3>💾 Datensicherung</h3>
+  <p>Exportiere oder importiere alle deine Lernfortschritte</p>
+  <div class="backup-btns">
+    <button class="backup-btn primary" onclick="fisiLernExportBackup()">⬇ Exportieren</button>
+    <button class="backup-btn" onclick="document.getElementById('fisiLernImportFile').click()">⬆ Importieren</button>
+  </div>
+  <input type="file" id="fisiLernImportFile" accept=".json" style="display:none" onchange="fisiLernImportBackup(event)">
+  <div class="backup-keys" id="backupKeyList"></div>
+</section>
+
+<!-- Drawer Overlay -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="drawerClose()"></div>
+
+<!-- Drawer -->
+<div class="drawer" id="drawer">
+  <div class="drawer-hdr">
+    <span class="drawer-title">⊞ Arc Studio</span>
+    <button type="button" class="drawer-close" aria-label="Menü schließen" onclick="drawerClose()">✕</button>
+  </div>
+  <div class="drawer-apps">
+    <a class="drawer-app" href="index.html">
+      <span class="drawer-app-icon">🏠</span>
+      <div><div class="drawer-app-name">Arc Studio Startseite</div><div class="drawer-app-sub">Alle Berufe</div></div>
+    </a>
+    <a class="drawer-app active" href="kauf-buero.html">
+      <span class="drawer-app-icon">📋</span>
+      <div><div class="drawer-app-name">KAUF</div><div class="drawer-app-sub">Büromanagement</div></div>
+      <span class="drawer-app-badge">Aktiv</span>
+    </a>
+    <a class="drawer-app" href="FISI-lern.html">
+      <span class="drawer-app-icon">💻</span>
+      <div><div class="drawer-app-name">FISI-Lern</div><div class="drawer-app-sub">Fachinformatiker</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-ampere.html">
+      <span class="drawer-app-icon">⚡</span>
+      <div><div class="drawer-app-name">AMPERE</div><div class="drawer-app-sub">Elektroniker E&amp;G</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-torque.html">
+      <span class="drawer-app-icon">⚙️</span>
+      <div><div class="drawer-app-name">TORQUE</div><div class="drawer-app-sub">Industriemechaniker</div></div>
+    </a>
+  </div>
+  <div class="drawer-footer">
+    <a href="voltiq.html">↗ Alle Apps</a>
+  </div>
+</div>
+
+<script>
+// ── Drawer ──────────────────────────────────────────────────
+function drawerOpen() {
+  document.getElementById('drawer-overlay').classList.add('on');
+  document.getElementById('drawer').classList.add('on');
+}
+function drawerClose() {
+  document.getElementById('drawer-overlay').classList.remove('on');
+  document.getElementById('drawer').classList.remove('on');
+}
+
+// ── Lernfeld Quick-Nav ──────────────────────────────────
+function openLf(lfId) {
+  window.showScreen('s-lern');
+  var el = document.getElementById(lfId);
+  if (el) {
+    el.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+// ── Theme ───────────────────────────────────────────────────
+function thmToggle() {
+  var isDark = localStorage.getItem('arc_theme') !== 'dark';
+  localStorage.setItem('arc_theme', isDark ? 'dark' : 'light');
+  document.documentElement.classList.toggle('dm', isDark);
+  var b = document.getElementById('thm-btn');
+  if (b) b.textContent = isDark ? '☀️' : '🌙';
+}
+(function(){
+  var isDark = localStorage.getItem('arc_theme') === 'dark';
+  document.documentElement.classList.toggle('dm', isDark);
+  var b = document.getElementById('thm-btn');
+  if (b) b.textContent = isDark ? '☀️' : '🌙';
+})();
+
+// ── Quiz & Dashboard ────────────────────────────────────────
+
+// Daily Question — uses index based on day-of-year from SR cards
+var DQ_IDX = (function(){
+  var d = new Date();
+  var start = new Date(d.getFullYear(), 0, 0);
+  var diff = d - start;
+  var oneDay = 1000 * 60 * 60 * 24;
+  var dayOfYear = Math.floor(diff / oneDay);
+  // QUIZ will be defined below after KAUF_SIM_QUESTIONS, use a placeholder
+  return dayOfYear;
+})();
+
+function dqReveal() {
+  var toggle = document.getElementById('dq-toggle');
+  var answer = document.getElementById('dq-answer');
+  if (!answer || !toggle) return;
+  var pool = (typeof KAUF_SIM_QUESTIONS !== 'undefined') ? KAUF_SIM_QUESTIONS : [];
+  if (pool.length === 0) return;
+  var q = pool[DQ_IDX % pool.length];
+  answer.textContent = q.opts[q.ans] + ' — ' + q.exp;
+  answer.style.display = 'block';
+  toggle.style.display = 'none';
+}
+
+function updateDashStats() {
+  try {
+    var sr = JSON.parse(localStorage.getItem('kauf_sr_data') || '{}');
+    var learned = Object.values(sr).filter(function(c){ return c.reps > 0; }).length;
+    var el = document.getElementById('stat-cards');
+    if (el) el.textContent = learned;
+  } catch(e) {}
+  try {
+    var hs = localStorage.getItem('kauf_quiz_hs');
+    var hsEl = document.getElementById('stat-hs');
+    if (hsEl) hsEl.textContent = hs ? hs + '/20' : '—';
+  } catch(e) {}
+  try {
+    var streak = parseInt(localStorage.getItem('kauf_streak') || '0');
+    var stEl = document.getElementById('stat-streak');
+    if (stEl) stEl.textContent = streak;
+  } catch(e) {}
+}
+
+// ── Quiz Logic (uses KAUF_SIM_QUESTIONS as pool) ─────────────
+var quizQ = [], quizIdx = 0, quizScore = 0, quizResults = [];
+var quizTopic = 'all';
+
+function setQuizTopic(t) {
+  quizTopic = t;
+  document.querySelectorAll('.quiz-filter-btn').forEach(function(b){
+    b.classList.toggle('active', b.dataset.topic === t);
+  });
+}
+
+function fisiQuizShuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  }
+  return a;
+}
+
+function quizStart() {
+  var pool = (typeof KAUF_SIM_QUESTIONS !== 'undefined') ? KAUF_SIM_QUESTIONS : [];
+  if (quizTopic !== 'all') {
+    pool = pool.filter(function(q){ return q.topic === quizTopic; });
+  }
+  quizQ = fisiQuizShuffle(pool).slice(0, Math.min(20, pool.length));
+  quizIdx = 0; quizScore = 0; quizResults = [];
+  document.getElementById('quiz-start').style.display = 'none';
+  document.getElementById('quiz-end').style.display = 'none';
+  document.getElementById('quiz-run').style.display = 'block';
+  fisiShowQuestion(0);
+}
+
+function fisiShowQuestion(idx) {
+  var q = quizQ[idx];
+  document.getElementById('q-text').textContent = q.q;
+  document.getElementById('q-counter').textContent = 'Frage ' + (idx + 1) + ' / ' + quizQ.length;
+  document.getElementById('q-prog').style.width = ((idx / quizQ.length) * 100) + '%';
+  document.getElementById('q-exp').style.display = 'none';
+  document.getElementById('q-exp').textContent = '';
+  document.getElementById('q-next').style.display = 'none';
+
+  var optsEl = document.getElementById('q-opts');
+  optsEl.innerHTML = '';
+  var shuffled = fisiQuizShuffle(q.opts.map(function(o, i){ return {text: o, orig: i}; }));
+  shuffled.forEach(function(opt) {
+    var btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = opt.text;
+    var isCorrect = (opt.orig === q.ans);
+    btn.onclick = function(){ quizAnswer(btn, isCorrect, q.exp, optsEl, shuffled, q.ans); };
+    optsEl.appendChild(btn);
+  });
+}
+
+function quizAnswer(chosenBtn, isCorrect, explanation, optsEl, shuffledOpts, correctOrig) {
+  var btns = optsEl.querySelectorAll('.quiz-opt');
+  btns.forEach(function(b){ b.disabled = true; });
+  var currentTopic = quizQ[quizIdx] ? (quizQ[quizIdx].topic || 'Sonstige') : 'Sonstige';
+  quizResults.push({topic: currentTopic, correct: isCorrect});
+  if (isCorrect) {
+    chosenBtn.classList.add('correct');
+    quizScore++;
+    if (navigator.vibrate) navigator.vibrate(50);
+  } else {
+    chosenBtn.classList.add('wrong');
+    btns.forEach(function(b, i){ if (shuffledOpts[i].orig === correctOrig) b.classList.add('correct'); });
+    if (navigator.vibrate) navigator.vibrate([80,30,80]);
+  }
+  var expEl = document.getElementById('q-exp');
+  expEl.textContent = explanation;
+  expEl.style.display = 'block';
+  document.getElementById('q-next').style.display = 'block';
+}
+
+function quizNext() {
+  quizIdx++;
+  if (quizIdx < quizQ.length) {
+    fisiShowQuestion(quizIdx);
+  } else {
+    quizEnd();
+  }
+}
+
+function quizEnd() {
+  document.getElementById('quiz-run').style.display = 'none';
+  document.getElementById('quiz-end').style.display = 'block';
+  document.getElementById('end-score').textContent = quizScore;
+  var totalQ = quizQ.length;
+  document.getElementById('end-sub').textContent = 'von ' + totalQ + ' Fragen richtig (' + Math.round(quizScore/totalQ*100) + '%)';
+
+  var prev = parseInt(localStorage.getItem('kauf_quiz_hs') || '0');
+  var isNew = quizScore > prev;
+  if (isNew) localStorage.setItem('kauf_quiz_hs', quizScore);
+  if(window.ArcWeekly) ArcWeekly.logQuiz({app:'KAUF',score:quizScore,total:totalQ});
+  document.getElementById('end-hs').textContent = isNew ? '🏆 Neuer Highscore!' : ('Highscore: ' + prev + '/' + totalQ);
+
+  // ── fisi_topic_perf tracking ────────────────────────────────
+  var topicMap = {};
+  quizResults.forEach(function(r) {
+    if (!topicMap[r.topic]) topicMap[r.topic] = {correct:0, total:0};
+    topicMap[r.topic].total++;
+    if (r.correct) topicMap[r.topic].correct++;
+  });
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem('kauf_topic_perf') || '{}'); } catch(e) {}
+  Object.keys(topicMap).forEach(function(t) {
+    if (!saved[t]) saved[t] = {correct:0, total:0};
+    saved[t].correct += topicMap[t].correct;
+    saved[t].total   += topicMap[t].total;
+  });
+  localStorage.setItem('kauf_topic_perf', JSON.stringify(saved));
+
+  // Also save to quiz history
+  var hist = [];
+  try { hist = JSON.parse(localStorage.getItem('kauf_quiz_hist') || '[]'); } catch(e) {}
+  hist.push({score: quizScore, total: totalQ, date: new Date().toLocaleDateString('de-DE'), topics: topicMap});
+  if (hist.length > 50) hist = hist.slice(-50);
+  localStorage.setItem('kauf_quiz_hist', JSON.stringify(hist));
+
+  updateDashStats();
+}
+
+// ── Init ────────────────────────────────────────────────────
+(function() {
+  // Init DQ after KAUF_SIM_QUESTIONS is defined (deferred) — ArcDaily takes over if loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    var pool = (typeof KAUF_SIM_QUESTIONS !== 'undefined') ? KAUF_SIM_QUESTIONS : [];
+    if (pool.length > 0 && !window.ArcDaily) {
+      var q = pool[DQ_IDX % pool.length];
+      var dqEl = document.getElementById('dq-q');
+      if (dqEl) dqEl.textContent = q.q;
+    }
+    updateDashStats();
+    // Init HS badge
+    var hs = parseInt(localStorage.getItem('kauf_quiz_hs') || '0');
+    var hsBadge = document.getElementById('hs-badge');
+    if (hsBadge && hs > 0) hsBadge.textContent = '🏆 Highscore: ' + hs + '/20';
+  });
+  updateDashStats();
+})();
+</script>
+
+<script>
+// ══════════════════════════════════════════════════════
+// SPACED REPETITION — KAUF
+// SM-2 Algorithm · localStorage: kfz_sr_data
+// ══════════════════════════════════════════════════════
+var KAUF_SR_CARDS = [
+  // ── LF1: ORGANISATION & BÜROWIRTSCHAFT ─────────────────────
+  {id:'b01',tag:'Organisation',de:{q:'Welche fünf Ablagesysteme gibt es in der Bürowirtschaft?',a:'1. Alphabetisch (A–Z nach Namen/Begriffen), 2. Numerisch (nach Nummern), 3. Alphanumerisch (kombiniert), 4. Sachprinzip (nach Themen/Vorgängen), 5. Chronologisch (nach Datum). Häufig Mischsysteme in der Praxis.'}},
+  {id:'b02',tag:'Organisation',de:{q:'Was ist ein Dokumentenmanagementsystem (DMS)?',a:'Softwaresystem zur digitalen Erfassung, Verwaltung, Archivierung und Suche von Dokumenten. Vorteile: schnelle Suche, Versionskontrolle, Zugriffsverwaltung, Raumersparnis, DSGVO-konform. Beispiele: ELO, d.3, SharePoint.'}},
+  {id:'b03',tag:'Organisation',de:{q:'Was gehört zur Postbearbeitung (Eingangspost)?',a:'Öffnen, Sichtung auf Dringlichkeit, Stempeln (Eingangsdatum), Eintrag ins Postbuch/-protokoll, Weiterleitung an zuständige Abteilung, Scannen (DMS), Ablage. Persönlich/vertraulich: ungeöffnet weiterleiten.'}},
+  {id:'b04',tag:'Organisation',de:{q:'Was sind Wiedervorlagetermine und warum werden sie geführt?',a:'Fristen, an denen ein Vorgang erneut bearbeitet werden soll (z.B. Angebotsfrist, Zahlungsziel). Führung per Wiedervorlagesystem (Hängemappensystem 1–31, digital per Outlook/DMS). Sichert termingerechtes Handeln.'}},
+  {id:'b05',tag:'Organisation',de:{q:'Was ist der PDCA-Zyklus im Qualitätsmanagement?',a:'Plan – Do – Check – Act. Kontinuierlicher Verbesserungsprozess (KVP): 1. Plan: Ziel setzen, 2. Do: umsetzen, 3. Check: prüfen/auswerten, 4. Act: standardisieren oder anpassen. Basis der ISO 9001.'}},
+  {id:'b06',tag:'Organisation',de:{q:'Was regelt die DIN EN ISO 9001?',a:'Internationale Norm für Qualitätsmanagementsysteme (QMS). Anforderungen an Prozessorientierung, Kundenfokus, Führung, kontinuierliche Verbesserung, risikobasiertes Denken. Zertifizierung durch unabhängige Stelle möglich.'}},
+  {id:'b07',tag:'Organisation',de:{q:'Welche Bürokommunikationsmittel gibt es und wie unterscheiden sie sich?',a:'Telefon (synchron, sofort), E-Mail (asynchron, nachweisbar), Fax (rechtssicher für bestimmte Dokumente), Chat/Videokonferenz (synchron, remote), Brief/Posteingangsbuch (formell, Zustellnachweis). Wahl nach Dringlichkeit und Nachweispflicht.'}},
+  {id:'b08',tag:'Organisation',de:{q:'Was versteht man unter Stellenbeschreibung?',a:'Schriftliche Festlegung von: Stellenbezeichnung, Einordnung in Organigramm, Aufgaben/Kompetenzen/Verantwortlichkeiten, Vertretungsregelung, Qualifikationsanforderungen. Grundlage für Personalplanung, Beurteilung und Einarbeitung.'}},
+  {id:'b09',tag:'Organisation',de:{q:'Was ist eine Vollmacht und welche Arten gibt es?',a:'Rechtliche Ermächtigung, im Namen eines anderen zu handeln. Arten: Generalvollmacht (umfassend), Handlungsvollmacht (Prokura-ähnlich, begrenzt), Prokura (vom Kaufmann erteilt, HGB-Form, ins HR eingetragen, umfassende Vertretungsmacht außer Grundstücken/Liquidation).'}},
+  {id:'b10',tag:'Organisation',de:{q:'Was sind die Aufgaben eines Fuhrparkmanagements?',a:'Fahrzeugbeschaffung (Kauf/Leasing), Instandhaltungsplanung, Führerscheinkontrolle, Tankkartenverwaltung, UVV-Prüfung, Kostencontrolling (TCO), Fahrtenbücher, Disposition/Buchungssystem. Kostenvergleich: Eigentum vs. Leasing vs. Carsharing.'}},
+
+  // ── LF2: RECHNUNGSWESEN & BUCHFÜHRUNG ──────────────────────
+  {id:'b11',tag:'Rechnungswesen',de:{q:'Nenne fünf Grundsätze ordnungsmäßiger Buchführung (GoB).',a:'1. Richtigkeit/Willkürfreiheit, 2. Vollständigkeit (alle Geschäftsvorfälle), 3. Klarheit/Übersichtlichkeit, 4. Zeitgerechtheit, 5. Belegprinzip (kein Buchung ohne Beleg). Auch: Vorsichtsprinzip, Einzelbewertung, Periodenabgrenzung.'}},
+  {id:'b12',tag:'Rechnungswesen',de:{q:'Was ist der Unterschied zwischen SKR03 und SKR04?',a:'SKR03: Prozessgliederungsprinzip (Konten nach Abfolge der Wertschöpfung: Beschaffung, Produktion, Absatz). SKR04: Abschlussgliederungsprinzip (Konten nach Bilanzstruktur: Anlagevermögen, Umlaufvermögen…). Industrie nutzt oft SKR04, Handel/Handwerk SKR03.'}},
+  {id:'b13',tag:'Rechnungswesen',de:{q:'Wie lautet der Buchungssatz für eine Warenlieferung auf Rechnung?',a:'Wareneinkauf (Soll) an Verbindlichkeiten (Haben): Warenkonto im Soll (Aufwand steigt), Verbindlichkeitenkonto im Haben (Schuld steigt). Inkl. Vorsteuer: Wareneingang Soll + Vorsteuer Soll / Verbindlichkeiten Haben.'}},
+  {id:'b14',tag:'Rechnungswesen',de:{q:'Wie berechnet sich die Umsatzsteuerzahllast?',a:'Zahllast = Umsatzsteuer (eigene Ausgangsrechnungen) − Vorsteuer (eigene Eingangsrechnungen). Zahllast > 0 → Zahlung ans Finanzamt. Zahllast < 0 → Erstattung (Vorsteuerüberhang). USt-Voranmeldung monatlich/quartalsweise.'}},
+  {id:'b15',tag:'Rechnungswesen',de:{q:'Wie berechnet sich die lineare Abschreibung (AfA)?',a:'AfA/Jahr = Anschaffungskosten / Nutzungsdauer (Jahre). Beispiel: Drucker 1.200 € / 5 Jahre = 240 €/Jahr. Buchwert sinkt gleichmäßig. Steuerliche ND nach AfA-Tabelle des BMF. Restbuchwert ≥ 1 €.'}},
+  {id:'b16',tag:'Rechnungswesen',de:{q:'Was sind die Seiten der Bilanz (Aktiva / Passiva)?',a:'Aktiva (links): Mittelverwendung — Anlagevermögen (Maschinen, Gebäude) + Umlaufvermögen (Vorräte, Kasse, Forderungen). Passiva (rechts): Mittelherkunft — Eigenkapital + Fremdkapital (Verbindlichkeiten, Rückstellungen). Aktiva = Passiva (Bilanzgleichung).'}},
+  {id:'b17',tag:'Rechnungswesen',de:{q:'Was zeigt die Gewinn- und Verlustrechnung (GuV)?',a:'Gegenüberstellung aller Erträge und Aufwendungen einer Periode. Betriebsergebnis = Umsatzerlöse − Materialkosten − Personalkosten − Abschreibungen − sonst. Aufw. + Betriebserträge. Jahresüberschuss = Erträge − Aufwendungen gesamt.'}},
+  {id:'b18',tag:'Rechnungswesen',de:{q:'Erkläre die Vorwärtskalkulation (Handelsware).',a:'LEP (Listeneinkaufspreis) − Rabatt = ZEP − Skonto = BEP + Gemeinkosten = SK (Selbstkostenpreis) + Gewinn = BAP + Skonto-Aufschlag = ZVP + Rabatt-Aufschlag = BVP (netto) + USt = Brutto-VKP. Jeder Schritt als Aufschlag auf vorherige Basis.'}},
+  {id:'b19',tag:'Rechnungswesen',de:{q:'Was ist der Unterschied zwischen Kassenbestand und Bankguthaben in der Buchführung?',a:'Kassenbestand (Kasse 1000/1600): Bargeld in der Kasse des Unternehmens. Bankguthaben (Bank 1200/1800): Guthaben auf Girokonto. Beides Umlaufvermögen. Kassenbestand ≥ 0 (nie negativ). Kassenbuch führen — tägl. Abschluss, Quittungsbelege.'}},
+  {id:'b20',tag:'Rechnungswesen',de:{q:'Wie berechnet man den Deckungsbeitrag (DB)?',a:'DB = Erlös − variable Kosten (je Stück). DB1 = nach Materialkosten, DB2 = nach weiteren variablen Kosten. Deckungsbeitragssumme − Fixkosten = Betriebsergebnis. Deckungsbeitragssatz = DB / Erlös × 100 % (Rentabilität je Produkt).'}},
+
+  // ── LF3: PERSONALWESEN & ARBEITSRECHT ──────────────────────
+  {id:'b21',tag:'Personal',de:{q:'Was umfasst die quantitative Personalbedarfsplanung?',a:'Ermittlung der benötigten Mitarbeiterzahl. Methoden: Stellenplanmethode (vorhandene − freie Stellen), Kennzahlenmethode (z.B. Umsatz / Umsatz je MA), Schätzmethode. Forschung nach Bruttobedarf − vorhandene MA = Nettobedarf.'}},
+  {id:'b22',tag:'Personal',de:{q:'Was sind die Mindestangaben in einem Arbeitsvertrag?',a:'Name/Anschrift beider Parteien, Beginn des Arbeitsverhältnisses, Arbeitsort, Tätigkeitsbeschreibung, Arbeitszeit, Vergütung, Urlaubsanspruch, Kündigungsfristen. Seit NachwG 2022: Niederschrift aller wesentlichen Bedingungen am 1. Arbeitstag.'}},
+  {id:'b23',tag:'Personal',de:{q:'Was regelt das Arbeitszeitgesetz (ArbZG)?',a:'Max. Arbeitszeit: 8 Std./Tag (bis 10 Std. wenn Ausgleich in 6 Mon. auf ø ≤ 8 Std.). Ruhezeit: mind. 11 Std. nach Arbeitsende. Pausenregeln: ab 6 Std. → 30 Min., ab 9 Std. → 45 Min. Nacht-/Schichtarbeit gesondert geregelt.'}},
+  {id:'b24',tag:'Personal',de:{q:'Was sind die Mitbestimmungsrechte des Betriebsrats (BetrVG)?',a:'Echte Mitbestimmung (Zustimmungspflicht): Ordnung im Betrieb, Arbeitszeiten, Urlaubsplan, Einführung von Überwachungstechnik. Mitwirkungsrechte (Unterrichtung/Beratung): Personalplanung, Einstellungen. Interessenausgleich bei Betriebsänderungen.'}},
+  {id:'b25',tag:'Personal',de:{q:'Welche fünf Zweige der Sozialversicherung gibt es?',a:'1. Krankenversicherung (KV, ca. 14,6%), 2. Pflegeversicherung (PV, ca. 3,4%), 3. Rentenversicherung (RV, 18,6%), 4. Arbeitslosenversicherung (AV, 2,6%), 5. Unfallversicherung (UV, nur AG-Beitrag). Alle außer UV paritätisch (AN+AG je 50%).'}},
+  {id:'b26',tag:'Personal',de:{q:'Was ist der Unterschied zwischen Zeitlohn und Akkordlohn?',a:'Zeitlohn: Vergütung nach Zeit (Std./Monat). Vorteil: planbar, kein Qualitätsdruck. Nachteil: kein Leistungsanreiz. Akkordlohn: Vergütung nach Stückzahl (Geldakkord) oder Zeit/Stück (Zeitakkord). Leistungsanreiz, aber Qualitätsrisiko.'}},
+  {id:'b27',tag:'Personal',de:{q:'Was ist das Berufsbildungsgesetz (BBiG) und was regelt es?',a:'Rahmengesetz für die duale Ausbildung in Deutschland. Regelt: Ausbildungsverhältnis (Vertrag, Pflichten), Ausbildungsordnungen, Prüfungswesen (IHK/HWK), Berufsschule, Kündigung im Ausbildungsverhältnis (nur schriftlich mit Begründung nach Probezeit), Zeugnis.'}},
+  {id:'b28',tag:'Personal',de:{q:'Was sind Lohn-Nebenkosten für den Arbeitgeber?',a:'Arbeitgeberanteil zur Sozialversicherung (~21% des Bruttolohns): KV, PV, RV, AV. Plus: Unfallversicherung (UV), Berufsgenossenschaftsbeitrag, Ausgleichsabgabe (ggf.), Urlaubsentgelt, Entgeltfortzahlung im Krankheitsfall (6 Wochen), ggf. betriebliche Altersvorsorge.'}},
+  {id:'b29',tag:'Personal',de:{q:'Was versteht man unter einer Abmahnung?',a:'Schriftliche Rüge des AG bei Pflichtverletzung des AN (z.B. unentschuldigtes Fehlen). Funktion: Warnung + Dokumentation. Voraussetzung für verhaltensbedingte Kündigung (mind. 1 Abmahnung für gleiches Verhalten). Muss konkret (Datum, Vorfall, Aufforderung) sein. Kein Abmahnungsregister gesetzlich vorgeschrieben.'}},
+  {id:'b30',tag:'Personal',de:{q:'Was ist Elterngeld und wer hat Anspruch?',a:'Lohnersatzleistung für Elternteile, die nach Geburt Erwerbstätigkeit reduzieren. Basiselterngeld: 65–100% des Netto-Voreinkommens, mind. 300 €, max. 1.800 € für 12 Monate (14 mit Partnermonate). ElterngeldPlus: halber Betrag, doppelte Dauer. Anspruch: Wohnsitz Deutschland, Kind im Haushalt.'}},
+
+  // ── LF4: BÜROKOMMUNIKATION & KORRESPONDENZ ─────────────────
+  {id:'b31',tag:'Kommunikation',de:{q:'Welche Pflichtangaben enthält ein Geschäftsbrief nach DIN 5008?',a:'Absender (Firmenlogo, Name, Anschrift), Empfängeranschrift (7 Zeilen, Zeile 1 Zustellweg), Datum rechtsbündig, Betreff (fett, ohne "Betreff:"), Anrede, Brieftext, Gruß, Unterschrift, ggf. Anlagen-/Verteilvermerk. Rand: links 25 mm, rechts 20 mm.'}},
+  {id:'b32',tag:'Kommunikation',de:{q:'Was ist eine Mängelrüge und wann wird sie eingesetzt?',a:'Schriftliche Beanstandung einer fehlerhaften Lieferung/Leistung. Inhalt: Auftragsdaten, genaue Beschreibung des Mangels, Forderung (Nacherfüllung, Minderung, Rücktritt, Schadenersatz). Zeitlich: unverzüglich nach Entdeckung (§ 377 HGB: kaufmänn. Untersuchungs- und Rügepflicht).'}},
+  {id:'b33',tag:'Kommunikation',de:{q:'Was ist der Unterschied zwischen einer Zahlungserinnerung und einer Mahnung?',a:'Zahlungserinnerung: freundliche Erinnerung, kein Rechtsbegriff, Schonfrist gewähren. Mahnung: formelle Aufforderung zur Zahlung, setzt AN in Verzug (wenn Fälligkeit bekannt). Ab 2. Mahnung: Verzugszinsen (§ 288 BGB: 9% über Basiszinssatz bei B2B). Nach 3. Mahnung: Inkasso oder Klage.'}},
+  {id:'b34',tag:'Kommunikation',de:{q:'Was regelt die DSGVO in Bezug auf personenbezogene Daten?',a:'Grundsätze: Rechtmäßigkeit (Einwilligung/Vertrag/Gesetz), Zweckbindung, Datensparsamkeit, Richtigkeit, Speicherbegrenzung, Integrität. Betroffenenrechte: Auskunft, Berichtigung, Löschung ("Recht auf Vergessen"), Widerspruch. Meldepflicht bei Datenpanne (72h an Aufsichtsbehörde).'}},
+  {id:'b35',tag:'Kommunikation',de:{q:'Erkläre das Sender-Empfänger-Modell (Shannon & Weaver) für Bürokommunikation.',a:'Sender codiert Nachricht → Übertragungskanal → Empfänger decodiert. Störungen: Lärm, Missverständnis, sprachliche Unterschiede. Im Büro: Störungen durch Fachbegriffe, emotionale Belastung, Multitasking vermeiden — klare Botschaft, Feedback einholen.'}},
+  {id:'b36',tag:'Kommunikation',de:{q:'Was sind die 4 Seiten einer Nachricht nach Schulz von Thun?',a:'1. Sachinhalt (was ist gemeint), 2. Selbstoffenbarung (was sage ich über mich), 3. Beziehung (wie stehen wir zueinander), 4. Appell (was soll der Empfänger tun). Missverständnisse entstehen, wenn Sender eine Seite betont, Empfänger andere "hört".'}},
+  {id:'b37',tag:'Kommunikation',de:{q:'Was ist beim Führen von Protokollen zu beachten?',a:'Protokollarten: Ergebnisprotokoll (nur Beschlüsse), Verlaufsprotokoll (Diskussion), wörtliches Protokoll. Inhalt: Datum, Ort, Teilnehmer, Tagesordnung, Beschlüsse mit Verantwortlichen und Terminen, Unterschrift (Protokollführer + Vorsitzender). Korrekturen: im nächsten Meeting verabschieden.'}},
+  {id:'b38',tag:'Kommunikation',de:{q:'Welche Regeln gelten für eine professionelle E-Mail im Büro?',a:'Klare Betreffzeile (aussagekräftig, max. 60 Zeichen), Anrede (förmlich zu Unbekannten), Strukturierter Text, max. 3 Kernaussagen, Anhänge benennen, Grußformel, Signatur (Name, Funktion, Kontakt, Pflichtangaben gem. TMG/HGB). Antwortzeit: 1 Werktag.'}},
+  {id:'b39',tag:'Kommunikation',de:{q:'Was sind die Pflichtangaben einer Rechnung nach § 14 UStG?',a:'Vollständiger Name/Anschrift von Lieferer und Leistungsempfänger, Steuernummer oder USt-IdNr., Ausstellungsdatum, fortlaufende Rechnungsnummer, Leistungsbeschreibung, Lieferdatum, Nettoentgelt, Steuersatz, Steuerbetrag, Bruttobetrag.'}},
+  {id:'b40',tag:'Kommunikation',de:{q:'Was sind die Unterschiede zwischen Angebot, Bestellung und Auftragsbestätigung?',a:'Angebot: Verkäufer macht konkretes Angebot (Ware, Preis, Konditionen, Gültigkeitsfrist). Bestellung: Käufer nimmt Angebot an oder erteilt eigene Bestellung (Antrag). Auftragsbestätigung: Verkäufer bestätigt Bestellung (Annahme) → Kaufvertrag kommt zustande.'}},
+
+  // ── LF5: WIRTSCHAFTS- & PRIVATRECHT ───────────────────────
+  {id:'b41',tag:'Recht',de:{q:'Was ist der Unterschied zwischen natürlichen und juristischen Personen?',a:'Natürliche Person: jeder Mensch, Rechtsfähigkeit ab Geburt (§ 1 BGB). Juristische Person: rechtsfähige Organisation (GmbH, AG, Verein) — kann klagen, Verträge schließen, Eigentum halten. Handelt durch Organe (Geschäftsführer, Vorstand).'}},
+  {id:'b42',tag:'Recht',de:{q:'Welche Stufen der Geschäftsfähigkeit gibt es?',a:'Geschäftsunfähig: unter 7 Jahre, Geisteskrankheit (§ 104 BGB) → nichtig. Beschränkt geschäftsfähig: 7–17 Jahre → nur mit Einwilligung der Eltern wirksam, außer "lediglich rechtlich vorteilhaft" oder Taschengeld (§ 110 BGB). Voll geschäftsfähig: ab 18.'}},
+  {id:'b43',tag:'Recht',de:{q:'Wie kommt ein Kaufvertrag nach BGB zustande?',a:'Durch Antrag (Angebot) + Annahme. Antrag: konkret, vollständig, bindend (bis Fristablauf). Annahme: vorbehaltlos, rechtzeitig, in gleicher Weise. Willensmängel (Irrtum, Täuschung, Drohung) → Anfechtbarkeit. Form: grundsätzlich formfrei (Ausnahmen: Immobilien → notariell).'}},
+  {id:'b44',tag:'Recht',de:{q:'Was sind die Hauptpflichten aus einem Kaufvertrag?',a:'Verkäufer: Übergabe der Kaufsache (§ 433 BGB), mangelfreie Sache, Eigentumsverschaffung. Käufer: Kaufpreis zahlen, Sache abnehmen. Nebenleistungspflichten: pünktlich liefern, sorgfältige Verpackung, Aufklärungspflichten.'}},
+  {id:'b45',tag:'Recht',de:{q:'Was ist Schuldnerverzug und welche Folgen hat er?',a:'Verzug: Schuldner leistet trotz Fälligkeit + Mahnung nicht (§ 286 BGB, bei Datum auch ohne Mahnung). Folgen: Verzugszinsen (§ 288: 9% über Basiszinssatz B2B), Schadensersatz (nachgewiesener Verspätungsschaden), Rücktrittsrecht des Gläubigers.'}},
+  {id:'b46',tag:'Recht',de:{q:'Welche Unternehmensformen gibt es und wie haften sie?',a:'Einzelunternehmen: unbeschränkte persönliche Haftung. GbR: alle Gesellschafter gesamtschuldnerisch. OHG: alle Gesellschafter unbeschränkt. KG: Komplementär unbeschränkt, Kommanditist beschränkt auf Einlage. GmbH: nur Gesellschaftsvermögen (mind. 25.000 € Stammkapital). AG: nur Gesellschaftsvermögen.'}},
+  {id:'b47',tag:'Recht',de:{q:'Was ist der Unterschied zwischen Anfechtung und Widerruf eines Vertrags?',a:'Anfechtung (§ 119 ff. BGB): bei Willensmängeln (Inhalts-/Erklärungsirrtum, arglistige Täuschung, Drohung). Wirkung ex tunc (rückwirkend). Widerruf: gesetzliches Rücktrittsrecht (z.B. Fernabsatz, Haustürgeschäft, § 355 BGB). Wirkung ex nunc (ab Widerruf). Frist: 14 Tage bei Verbrauchergeschäft.'}},
+  {id:'b48',tag:'Recht',de:{q:'Was ist die kaufmännische Untersuchungs- und Rügepflicht (§ 377 HGB)?',a:'Kaufleute müssen Waren unverzüglich nach Erhalt untersuchen. Bei Mängeln: unverzüglich rügen (schriftlich, konkret). Versteckte Mängel: unverzüglich nach Entdeckung rügen. Versäumnis → Ware gilt als genehmigt → Mängelansprüche erlöschen.'}},
+  {id:'b49',tag:'Recht',de:{q:'Was ist der Unterschied zwischen Bürgschaft und Schuldbeitritt?',a:'Bürgschaft (§ 765 BGB): Bürge haftet akzessorisch (nur wenn Hauptschuldner nicht zahlt), Schriftform erforderlich. Schuldbeitritt: neue Person tritt als Mitschuldner ein (gesamtschuldnerisch), formfrei. Bürgschaft: subsidiär. Schuldbeitritt: gleichrangig.'}},
+  {id:'b50',tag:'Recht',de:{q:'Was regelt das Handelsgesetzbuch (HGB) in Bezug auf Kaufleute?',a:'HGB gilt für Kaufleute (§ 1: wer ein Handelsgewerbe betreibt). Istkaufmann (§ 1), Kannkaufmann (§ 2/3), Formkaufmann (GmbH, AG immer). Pflichten: Firmenname, Handelsregistereintrag, Buchführung (§ 238), Jahresabschluss, kaufm. Bestätigungsschreiben.'}},
+
+  // ── LF6: WIRTSCHAFTS- & SOZIALKUNDE (WiSo) ────────────────
+  {id:'b51',tag:'WiSo',de:{q:'Erkläre den einfachen Wirtschaftskreislauf.',a:'Haushalte liefern Produktionsfaktoren (Arbeit, Boden, Kapital) an Unternehmen → erhalten Faktorentgelte (Lohn, Pacht, Zins). Unternehmen produzieren Güter/Dienstleistungen → Haushalte kaufen diese (Güter/Geldstrom entgegengesetzt). Erweiterung: Staat, Banken, Ausland.'}},
+  {id:'b52',tag:'WiSo',de:{q:'Welche vier Konjunkturphasen gibt es und wie erkennt man sie?',a:'1. Aufschwung (Expansion): steigende Produktion, sinkende Arbeitslosigkeit, Investitionen ↑. 2. Hochkonjunktur (Boom): Vollbeschäftigung, Inflation ↑, Kapazitätsauslastung max. 3. Abschwung (Rezession): Rückgang BIP ≥ 2 Quartale, Entlassungen. 4. Tiefstand (Depression): Massenarbeitslosigkeit, Deflation.'}},
+  {id:'b53',tag:'WiSo',de:{q:'Was sind die wirtschaftspolitischen Ziele (Magisches Viereck)?',a:'1. Preisniveaustabilität (Inflation ≤ 2%), 2. Hohes Beschäftigungsniveau (< 4% Arbeitslosigkeit), 3. Außenwirtschaftliches Gleichgewicht, 4. Stetiges angemessenes Wirtschaftswachstum (BIP +2% p.a.). Heute: erweitertes Sechseck + Umwelt + Verteilungsgerechtigkeit.'}},
+  {id:'b54',tag:'WiSo',de:{q:'Was ist ein Tarifvertrag und was unterscheidet Manteltarifvertrag von Entgelttarifvertrag?',a:'Tarifvertrag: Vereinbarung zwischen Gewerkschaft und Arbeitgeberverband (nicht Einzelunternehmen!). Manteltarifvertrag (MTV): Arbeitsbedingungen (Arbeitszeit, Urlaub, Kündigungsfristen, Zuschläge) — langfristig. Entgelttarifvertrag (ETV): Gehälter/Lohn — oft jährlich neu verhandelt.'}},
+  {id:'b55',tag:'WiSo',de:{q:'Was ist das Günstigkeitsprinzip im Arbeitsrecht?',a:'Von Tarifvertrag oder Gesetz darf durch Individualvertrag/Betriebsvereinbarung nur abgewichen werden, wenn dies für den AN günstiger ist. Gilt zwischen: Gesetz > Tarifvertrag > Betriebsvereinbarung > Arbeitsvertrag. Schlechtere Bedingungen als TV-Norm sind nichtig.'}},
+  {id:'b56',tag:'WiSo',de:{q:'Welche Sozialleistungen erbringt die gesetzliche Krankenversicherung (GKV)?',a:'Sachleistungen: ärztliche Behandlung, Arzneimittel (mit Zuzahlung), Krankenhausbehandlung, Reha. Geldleistungen: Krankengeld (ab 7. Woche: 70% des Brutto, max. 78 Wochen). Familienversicherung (kostenlos für nicht erwerbstätige Partner/Kinder). Beitragsbemessungsgrenze 2024: 62.100 €.'}},
+  {id:'b57',tag:'WiSo',de:{q:'Was ist der Unterschied zwischen Brutto-/Nettoinlandsprodukt und BIP/BSP?',a:'BIP (Bruttoinlandsprodukt): alle im Inland produzierten Güter/Dienste (unabhängig vom Sitz der Produzenten). BSP/BNE: alle von Inländern produzierten Güter/Dienste (unabhängig vom Ort). NIP = BIP − Abschreibungen. Reales BIP: zu Preisen eines Basisjahrs (inflationsbereinigt).'}},
+  {id:'b58',tag:'WiSo',de:{q:'Was ist Inflation und wie wird sie gemessen?',a:'Inflation = allgemeiner Anstieg des Preisniveaus → Kaufkraftverlust. Messung: Verbraucherpreisindex (VPI) des Statistischen Bundesamts — Warenkorb repräsentativer Güter. Inflationsrate = (VPI_t − VPI_0) / VPI_0 × 100 %. Ziel EZB: ~2 % p.a. Ursachen: Nachfrage-/Angebots-/Kosteninfiation.'}},
+  {id:'b59',tag:'WiSo',de:{q:'Was sind die Grundprinzipien der sozialen Marktwirtschaft?',a:'Verbindet freie Marktwirtschaft (Wettbewerb, Preisbildung) mit sozialen Korrekturen (Sozialpolitik, Umverteilung). Kernelemente: Privateigentum, Vertragsfreiheit, Haftung, Wettbewerb, sozialer Ausgleich (Sozialstaatsprinzip Art. 20 GG), Stabilität. Konjunkturpolitik: Fiskalpolitik + Geldpolitik.'}},
+  {id:'b60',tag:'WiSo',de:{q:'Was ist der Unterschied zwischen Arbeitnehmer, Arbeitnehmerähnlichem und Selbstständigem?',a:'Arbeitnehmer: weisungsgebunden, persönlich, zeitlich, örtlich. Selbstständiger: unternehmerisches Risiko, eigene Betriebsmittel, mehrere Auftraggeber, freie Zeiteinteilung. Arbeitnehmerähnlich: formal selbstständig aber wirtschaftlich abhängig (Heimarbeiter) → Schutzrechte ähnlich AN. Scheinselbstständigkeit: steuer-/SV-Gefahr.'}},
+];
+
+var KAUF_KEY = 'kauf_sr_data';
+var kaufSRData = (function(){try{return JSON.parse(localStorage.getItem(KAUF_KEY)||"{}")}catch(e){return {}}})();
+var kaufSRSession = [], kaufSRIdx = 0, kaufSROK = 0, kaufSRFail = 0, kaufSRFlipped = false;
+
+function kaufSaveSR() {
+  try { localStorage.setItem(KAUF_KEY, JSON.stringify(kaufSRData)); } catch(e) {}
+  if(typeof AppStore !== 'undefined') AppStore.set(KAUF_KEY, kaufSRData);
+}
+function kaufGetSR(id) {
+  if(!kaufSRData[id]) kaufSRData[id] = {ef:2.5, interval:0, due:0, reps:0};
+  return kaufSRData[id];
+}
+function kaufNextInterval(sr, q) {
+  var newEf = sr.ef + (0.1 - (5 - q) * (0.08 + (5 - q) * 0.02));
+  if(newEf < 1.3) newEf = 1.3;
+  var ni;
+  if(q < 3) { ni = 1; sr.reps = 0; }
+  else { if(sr.reps === 0) ni = 1; else if(sr.reps === 1) ni = 6; else ni = Math.round(sr.interval * newEf); sr.reps++; }
+  sr.ef = Math.round(newEf * 100) / 100;
+  sr.interval = ni;
+  sr.due = Date.now() + ni * 86400000;
+  return sr;
+}
+function kaufDueCards() {
+  var now = Date.now();
+  return KAUF_SR_CARDS.filter(function(c) { return kaufGetSR(c.id).due <= now; });
+}
+function kaufNewCards() {
+  return KAUF_SR_CARDS.filter(function(c) { return kaufGetSR(c.id).reps === 0; });
+}
+
+function initKaufSR() {
+  var due = kaufDueCards();
+  var newC = kaufNewCards();
+  var learned = KAUF_SR_CARDS.filter(function(c) { return kaufGetSR(c.id).reps > 0; }).length;
+  document.getElementById('sr-v-due').textContent = due.length;
+  document.getElementById('sr-v-new').textContent = newC.length;
+  document.getElementById('sr-v-learned').textContent = learned;
+  document.getElementById('sr-v-total').textContent = KAUF_SR_CARDS.length;
+
+  var total = Math.min(due.length + Math.min(newC.length, 10), 20);
+  var area = document.getElementById('sr-start-area');
+  if(total === 0) {
+    area.innerHTML = '<div style="text-align:center;padding:1.5rem 0;"><div style="font-size:36px;margin-bottom:.5rem;">🎉</div><div style="font-size:16px;font-weight:700;color:#30d158;margin-bottom:.5rem;">Alle Karten für heute erledigt!</div><div style="font-size:12px;color:var(--tx3);">Komm morgen wieder.</div></div>';
+  } else {
+    area.innerHTML = '<button type="button" class="sr-start-btn" id="sr-start-btn">→ LERNSITZUNG STARTEN (' + total + ' Karten)</button><button type="button" class="sr-reset-btn" id="sr-reset-btn">↺ Fortschritt zurücksetzen</button>';
+    document.getElementById('sr-start-btn').onclick = startFisiSR;
+    document.getElementById('sr-reset-btn').onclick = function() {
+      if(confirm('SR-Fortschritt zurücksetzen?')) { kaufSRData = {}; kaufSaveSR(); initKaufSR(); }
+    };
+  }
+  document.getElementById('sr-dash-view').style.display = '';
+  document.getElementById('sr-session-view').style.display = 'none';
+  document.getElementById('sr-done-view').style.display = 'none';
+  fisiInitNotify();
+}
+
+function startFisiSR() {
+  var due = kaufDueCards();
+  var newC = kaufNewCards();
+  var sess = due.concat(newC.slice(0, Math.max(0, 20 - due.length))).slice(0, 20);
+  for(var i = sess.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = sess[i]; sess[i] = sess[j]; sess[j] = t;
+  }
+  kaufSRSession = sess; kaufSRIdx = 0; kaufSROK = 0; kaufSRFail = 0; kaufSRFlipped = false;
+  document.getElementById('sr-dash-view').style.display = 'none';
+  document.getElementById('sr-session-view').style.display = '';
+  document.getElementById('sr-done-view').style.display = 'none';
+  renderFisiCard();
+}
+
+function renderFisiCard() {
+  if(kaufSRIdx >= kaufSRSession.length) { showKfzDone(); return; }
+  // ── fill mode ──
+  if (srMode === 'fill') {
+    var _c = kaufSRSession[kaufSRIdx];
+    var _cl = _c[kaufLernLang] || _c.de;
+    srFillRender(_cl.q, _cl.a, _c.tag);
+    document.getElementById('sr-grade-area').style.display = 'none';
+    return;
+  }
+  document.getElementById('sr-fill-area').style.display = 'none';
+  var _fw = document.querySelector('.sr-flip-wrap');
+  if (_fw) _fw.style.display = '';
+  // ── end fill mode ──
+  var c = kaufSRSession[kaufSRIdx];
+  var prog = kaufSRSession.length > 0 ? kaufSRIdx / kaufSRSession.length : 0;
+  document.getElementById('sr-prog-bar').style.width = Math.round(prog * 100) + '%';
+  document.getElementById('sr-prog-txt').textContent = (kaufSRIdx + 1) + ' / ' + kaufSRSession.length + '  ·  ✓ ' + kaufSROK + '  ✗ ' + kaufSRFail;
+  document.getElementById('sr-card-tag').textContent = c.tag;
+  var cl = c[kaufLernLang] || c.de;
+  document.getElementById('sr-card-q').textContent = cl.q;
+  document.getElementById('sr-card-a').textContent = cl.a;
+  var flip = document.getElementById('sr-flip');
+  flip.classList.remove('flipped');
+  kaufSRFlipped = false;
+  document.getElementById('sr-grade-area').style.display = 'none';
+  document.getElementById('sr-card-hint').style.display = '';
+}
+
+function srFlip() {
+  if(kaufSRFlipped) return;
+  kaufSRFlipped = true;
+  document.getElementById('sr-flip').classList.add('flipped');
+  document.getElementById('sr-grade-area').style.display = '';
+  document.getElementById('sr-card-hint').style.display = 'none';
+}
+
+function srGrade(q) {
+  var c = kaufSRSession[kaufSRIdx];
+  var sr = kaufGetSR(c.id);
+  kaufNextInterval(sr, q);
+  kaufSaveSR();
+  if(q >= 3) kaufSROK++; else kaufSRFail++;
+  kaufSRIdx++;
+  renderFisiCard();
+  updateDashStats();
+}
+
+function showKfzDone() {
+  document.getElementById('sr-session-view').style.display = 'none';
+  document.getElementById('sr-done-view').style.display = '';
+  document.getElementById('sr-done-sub').innerHTML = '<strong>' + kaufSROK + '</strong> gewusst · <strong>' + kaufSRFail + '</strong> wiederholen<br><span style="color:var(--tx3);font-size:12px;margin-top:.5rem;display:block;">Der Algorithmus plant deine nächsten Wiederholungen.</span>';
+}
+
+function kaufSrBackToDash() { initKaufSR(); }
+
+// ── Core screen switcher ─────────────────────────────────────
+window.showScreen = function(id) {
+  document.querySelectorAll('.screen').forEach(function(s) {
+    s.classList.toggle('on', s.id === id);
+  });
+  document.querySelectorAll('.bnav-btn').forEach(function(b) {
+    b.classList.toggle('on', b.dataset.screen === id);
+    if (b.dataset.screen === id) b.setAttribute('aria-current','page');
+    else b.removeAttribute('aria-current');
+  });
+};
+
+document.querySelectorAll('.bnav-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    window.showScreen(btn.dataset.screen);
+  });
+});
+
+// Hook into showScreen to init SR and AP
+var _origShowScreen = window.showScreen;
+window.showScreen = function(id) {
+  _origShowScreen(id);
+  if(id === 's-sr') initKaufSR();
+  if(id === 's-ap') initAP();
+  if(id === 's-bh') bhInit();
+};
+
+// ── KFZ PUSH NOTIFICATIONS ──────────────────────────────────
+function fisiInitNotify() {
+  var enabled = localStorage.getItem('kauf_notify') === '1';
+  var btn = document.getElementById('fisiNotifyBtn');
+  var hint = document.getElementById('fisiNotifyHint');
+  if(!btn) return;
+  if(enabled) {
+    btn.textContent = '🔔 Erinnerungen aktiv';
+    btn.classList.add('active');
+    if(hint) hint.textContent = 'Du wirst täglich erinnert, deine Karten zu lernen.';
+  } else {
+    btn.textContent = '🔔 Erinnerungen aktivieren';
+    btn.classList.remove('active');
+    if(hint) hint.textContent = '';
+  }
+}
+
+function fisiToggleNotify() {
+  var enabled = localStorage.getItem('kauf_notify') === '1';
+  if(enabled) { localStorage.removeItem('kauf_notify'); fisiInitNotify(); return; }
+  if(!('Notification' in window)) { alert('Dein Browser unterstützt keine Benachrichtigungen.'); return; }
+  Notification.requestPermission().then(function(perm) {
+    if(perm === 'granted') {
+      localStorage.setItem('kauf_notify', '1');
+      fisiInitNotify();
+      kaufCheckAndNotify();
+    } else {
+      alert('Benachrichtigungen wurden blockiert. Bitte in den Browser-Einstellungen erlauben.');
+    }
+  });
+}
+
+function kaufCheckAndNotify() {
+  if(localStorage.getItem('kauf_notify') !== '1') return;
+  if(Notification.permission !== 'granted') return;
+  var lastNotify = localStorage.getItem('kauf_last_notify');
+  var today = new Date().toDateString();
+  if(lastNotify === today) return;
+  var data = JSON.parse(localStorage.getItem(KAUF_KEY) || '{}');
+  var now = Date.now();
+  var dueCount = 0;
+  Object.values(data).forEach(function(c) { if(!c.due || c.due <= now) dueCount++; });
+  if(dueCount === 0) return;
+  localStorage.setItem('kauf_last_notify', today);
+  var title = 'SPARK \u2013 ' + dueCount + ' Karte' + (dueCount > 1 ? 'n' : '') + ' f\u00e4llig';
+  var body = 'Deine Lernkarten warten. Jetzt kurz \u00fcben!';
+  if('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+    navigator.serviceWorker.controller.postMessage({
+      type: 'SHOW_REMINDER', title: title, body: body, url: 'kauf-buero.html#sr'
+    });
+  } else if(Notification.permission === 'granted') {
+    new Notification(title, { body: body, icon: 'pwa/icon-192.png' });
+  }
+}
+
+// Hash-based deep link
+(function() {
+  if(location.hash === '#sr') { window.showScreen('s-sr'); }
+  kaufCheckAndNotify();
+})();
+
+// ── KFZ-Rechner ──────────────────────────────────────────────
+function calcKalkulation() {
+  var dir = document.getElementById('kalk-dir').value;
+  var val = parseFloat(document.getElementById('kalk-val').value);
+  var r = parseFloat(document.getElementById('kalk-rabatt').value) || 0;
+  var sk = parseFloat(document.getElementById('kalk-skonto').value) || 0;
+  var gk = parseFloat(document.getElementById('kalk-gk').value) || 0;
+  var gw = parseFloat(document.getElementById('kalk-gw').value) || 0;
+  var ust = parseFloat(document.getElementById('kalk-ust').value) || 19;
+  if(isNaN(val) || val <= 0) { alert('Bitte Betrag eingeben.'); return; }
+  var lines = [];
+  function fmt(n) { return n.toFixed(2).replace('.',',') + ' €'; }
+  if(dir === 'forward') {
+    var LEP = val;
+    var rabattBetrag = LEP * r / 100;
+    var ZEP = LEP - rabattBetrag;
+    var skontoBetrag = ZEP * sk / 100;
+    var BEP = ZEP - skontoBetrag;
+    var HK = BEP;
+    var GK = HK * gk / 100;
+    var SK = HK + GK;  // Selbstkostenpreis
+    var GWBetrag = SK * gw / 100;
+    var BAP = SK + GWBetrag;  // Barverkaufspreis
+    var ZVP = BAP / (1 - sk/100);
+    var BVP = ZVP / (1 - r/100);  // vereinfacht, Händlerrabatt
+    var Brutto = BVP * (1 + ust/100);
+    lines = [
+      'Listeneinkaufspreis (LEP):    ' + fmt(LEP),
+      '− Rabatt (' + r + '%):              ' + fmt(rabattBetrag),
+      '= Zieleinkaufspreis (ZEP):    ' + fmt(ZEP),
+      '− Skonto (' + sk + '%):             ' + fmt(skontoBetrag),
+      '= Bareinkaufspreis (BEP):     ' + fmt(BEP),
+      '+ Gemeinkosten (' + gk + '%):       ' + fmt(GK),
+      '= Selbstkostenpreis (SK):     ' + fmt(SK),
+      '+ Gewinn (' + gw + '%):             ' + fmt(GWBetrag),
+      '= Barverkaufspreis (BAP):     ' + fmt(BAP),
+      '+ Skonto-Aufschlag → ZVP:     ' + fmt(ZVP),
+      '+ Rabatt-Aufschlag → BVP:     ' + fmt(BVP),
+      '+ USt (' + ust + '%):               ' + fmt(BVP * ust/100),
+      '= Bruttoverkaufspreis:        ' + fmt(Brutto)
+    ];
+  } else {
+    var Brutto = val;
+    var BVP = Brutto / (1 + ust/100);
+    var ZVP = BVP * (1 - r/100);
+    var BAP = ZVP * (1 - sk/100);
+    var SK = BAP / (1 + gw/100);
+    var BEP = SK / (1 + gk/100);
+    var ZEP = BEP / (1 - sk/100);
+    var LEP = ZEP / (1 - r/100);
+    lines = [
+      'Bruttoverkaufspreis (BVP brutto): ' + fmt(Brutto),
+      '÷ (1 + USt ' + ust + '%) → BVP netto:  ' + fmt(BVP),
+      '÷ (1 − Rabatt ' + r + '%) → ZVP:       ' + fmt(ZVP),
+      '÷ (1 − Skonto ' + sk + '%) → BAP:       ' + fmt(BAP),
+      '÷ (1 + Gewinn ' + gw + '%) → SK:        ' + fmt(SK),
+      '÷ (1 + GK ' + gk + '%) → BEP:         ' + fmt(BEP),
+      '÷ (1 − Skonto ' + sk + '%) → ZEP:       ' + fmt(ZEP),
+      '÷ (1 − Rabatt ' + r + '%) → LEP:        ' + fmt(LEP)
+    ];
+  }
+  var el = document.getElementById('kalk-lines');
+  el.innerHTML = lines.map(function(l){ return '<div>' + l + '</div>'; }).join('');
+  document.getElementById('kalk-result').classList.add('show');
+}
+
+function calcZinsen() {
+  var K = parseFloat(document.getElementById('zins-k').value);
+  var p = parseFloat(document.getElementById('zins-p').value);
+  var t = parseFloat(document.getElementById('zins-t').value);
+  if(isNaN(K)||isNaN(p)||isNaN(t)||K<=0||p<0||t<1) { alert('Bitte alle Felder ausfüllen.'); return; }
+  var Z = K * p * t / (100 * 360);
+  var Kend = K + Z;
+  document.getElementById('zins-val').textContent = Z.toFixed(2).replace('.',',');
+  document.getElementById('zins-label').textContent =
+    'Z = ' + K.toFixed(2).replace('.',',') + ' € × ' + p + '% × ' + t + ' Tage / (100 × 360) = ' + Z.toFixed(2).replace('.',',') + ' €   |   Endkapital: ' + Kend.toFixed(2).replace('.',',') + ' €';
+  document.getElementById('zins-result').classList.add('show');
+}
+
+function calcMwSt() {
+  var dir = document.getElementById('mwst-dir').value;
+  var val = parseFloat(document.getElementById('mwst-val').value);
+  var satz = parseFloat(document.getElementById('mwst-satz').value) || 19;
+  if(isNaN(val)||val<=0) { alert('Bitte Betrag eingeben.'); return; }
+  function fmt(n) { return n.toFixed(2).replace('.',',') + ' €'; }
+  var lines = [];
+  if(dir === 'nb') {
+    var netto = val;
+    var ust = netto * satz / 100;
+    var brutto = netto + ust;
+    lines = [
+      'Nettobetrag:      ' + fmt(netto),
+      'USt (' + satz + '%):      + ' + fmt(ust),
+      'Bruttobetrag:     ' + fmt(brutto)
+    ];
+  } else {
+    var brutto = val;
+    var netto = brutto / (1 + satz/100);
+    var ust = brutto - netto;
+    lines = [
+      'Bruttobetrag:     ' + fmt(brutto),
+      'USt (' + satz + '%):      − ' + fmt(ust),
+      'Nettobetrag:      ' + fmt(netto)
+    ];
+  }
+  var el = document.getElementById('mwst-lines');
+  el.innerHTML = lines.map(function(l){ return '<div>' + l + '</div>'; }).join('');
+  document.getElementById('mwst-result').classList.add('show');
+}
+
+// ── AP-Check ─────────────────────────────────────────────────
+var KAUF_AP_ITEMS=[
+  // LF1: Organisation & Bürowirtschaft
+  'Organisation: Ablagesysteme erklären (alphabetisch, numerisch, alphanumerisch, Sachprinzip, Mischsystem)',
+  'Organisation: Unterschied DMS (Dokumentenmanagementsystem) vs. physische Aktenführung',
+  'Organisation: Postbearbeitung — Ein- und Ausgangspost bearbeiten, Postbuch führen',
+  'Organisation: Terminplanung — Terminarten (feste, bewegliche), Terminüberwachung, Wiedervorlage',
+  'Organisation: Qualitätsmanagement — DIN EN ISO 9001, PDCA-Zyklus, KVP erklären',
+  // LF2: Rechnungswesen & Buchführung
+  'ReWe: Grundsätze ordnungsmäßiger Buchführung (GoB) nennen und erklären',
+  'ReWe: Kontenrahmen SKR03 vs. SKR04 — Unterschied, wer nutzt welchen?',
+  'ReWe: Buchungssatz aufstellen: Soll an Haben (Geschäftsvorfälle)',
+  'ReWe: Umsatzsteuer — Vorsteuer, Umsatzsteuer, Zahllast berechnen',
+  'ReWe: Abschreibung (AfA) — lineare vs. degressive AfA berechnen',
+  'ReWe: Bilanz lesen — Aktiva/Passiva, Anlagevermögen, Umlaufvermögen, Eigenkapital',
+  'ReWe: Gewinn-und-Verlustrechnung (GuV) — Erträge, Aufwendungen, Jahresüberschuss',
+  'ReWe: Vorwärts- und Rückwärtskalkulation (LEP → BVP und BVP → LEP)',
+  // LF3: Personalwesen & Arbeitsrecht
+  'Personal: Personalplanung — Personalbedarfsplanung (quantitativ/qualitativ), Personalbeschaffung (intern/extern)',
+  'Personal: Arbeitsvertrag — Mindestinhalt, befristet/unbefristet, Probezeit (max. 6 Monate)',
+  'Personal: Vergütungsarten — Zeitlohn, Akkordlohn, Prämienlohn — Vor- und Nachteile',
+  'Personal: Arbeitszeitgesetz (ArbZG) — max. Arbeitszeit, Ruhezeiten, Ausnahmen',
+  'Personal: Betriebsverfassungsgesetz (BetrVG) — Mitbestimmungsrechte des Betriebsrats',
+  'Personal: Sozialversicherung — 5 Zweige (KV, PV, RV, AV, UV), Beitragsaufteilung AN/AG',
+  // LF4: Kommunikation & Korrespondenz
+  'Kommunikation: DIN 5008 — Briefaufbau, Anschriftenfeld, Betreff, Grußformel',
+  'Kommunikation: Geschäftsbriefarten — Angebot, Bestellung, Auftragsbestätigung, Rechnung, Mängelrüge, Mahnung',
+  'Kommunikation: DSGVO — Grundsätze (Zweckbindung, Datensparsamkeit), Rechte der Betroffenen',
+  'Kommunikation: Kommunikationsmodelle — Sender-Empfänger, 4 Ohren (Schulz v. Thun)',
+  // LF5: Wirtschafts- & Privatrecht
+  'Recht: Rechtssubjekte — natürliche vs. juristische Personen; Geschäftsfähigkeit (beschränkt/voll)',
+  'Recht: Kaufvertrag — Abschluss (Antrag + Annahme), Pflichten Käufer/Verkäufer (BGB)',
+  'Recht: Leistungsstörungen — Verzug, Schlechtleistung, Unmöglichkeit — Folgen',
+  // LF6: WiSo
+  'WiSo: Wirtschaftskreislauf — einfacher, erweiterter Kreislauf (Staat, Ausland, Banken)',
+  'WiSo: Konjunkturphasen — Aufschwung, Hochkonjunktur, Abschwung, Rezession — Merkmale',
+  'WiSo: Tarifrecht — Tarifvertrag, Tarifparteien (Gewerkschaft/Arbeitgeberverband), Günstigkeitsprinzip',
+];
+var kaufApData=(function(){try{return JSON.parse(localStorage.getItem('kauf_ap_check')||"{}")}catch(e){return {}}})();
+function initAP(){
+  var list=document.getElementById('ap-list');if(!list)return;
+  list.innerHTML='';var done=0;
+  KAUF_AP_ITEMS.forEach(function(text,i){
+    var id='ap'+i;var checked=!!kaufApData[id];if(checked)done++;
+    var div=document.createElement('div');div.className='ap-item';
+    div.innerHTML='<input type="checkbox" class="ap-check" id="'+id+'"'+(checked?' checked':'')+'><label class="ap-item-text'+(checked?' done':'')+'" for="'+id+'">'+text+'</label>';
+    div.querySelector('input').onchange=function(){kaufApData[id]=this.checked;localStorage.setItem('kauf_ap_check',JSON.stringify(kaufApData));initAP();};
+    list.appendChild(div);
+  });
+  var pct=Math.round(done/KAUF_AP_ITEMS.length*100);
+  document.getElementById('ap-done').textContent=done+' / '+KAUF_AP_ITEMS.length+' erledigt';
+  document.getElementById('ap-pct').textContent=pct+'%';
+  document.getElementById('ap-bar').style.width=pct+'%';
+}
+
+/* ── Berichtsheft KFZ ── */
+var KAUF_BH_KEY = 'kauf_bh_weeks';
+var bhWeeks = [];
+var bhCurrentIdx = -1;
+function bhInit(){try{bhWeeks=JSON.parse(localStorage.getItem(KAUF_BH_KEY)||'[]');}catch(e){bhWeeks=[];}bhBuildSelect();bhUpdateStats();if(bhWeeks.length>0){document.getElementById('bh-week-select').selectedIndex=bhWeeks.length-1;bhLoadWeek();}else{document.getElementById('bh-form').style.display='none';document.getElementById('bh-empty').style.display='block';}}
+function bhGetKW(){var d=new Date(),jan1=new Date(d.getFullYear(),0,1);var kw=Math.ceil(((d-jan1)/86400000+jan1.getDay()+1)/7);return 'KW '+kw+' / '+d.getFullYear();}
+function bhBuildSelect(){var sel=document.getElementById('bh-week-select');sel.innerHTML='';bhWeeks.forEach(function(w,i){var opt=document.createElement('option');opt.value=i;opt.textContent=w.label||('Woche '+(i+1));sel.appendChild(opt);});}
+function bhNewWeek(){var label=bhGetKW();bhWeeks.push({label:label,mo:{cat:'Sonstiges',text:''},di:{cat:'Sonstiges',text:''},mi:{cat:'Sonstiges',text:''},do:{cat:'Sonstiges',text:''},fr:{cat:'Sonstiges',text:''}});bhSaveAll();bhBuildSelect();document.getElementById('bh-week-select').selectedIndex=bhWeeks.length-1;bhLoadWeek();}
+function bhLoadWeek(){var idx=parseInt(document.getElementById('bh-week-select').value);if(isNaN(idx)||idx<0||idx>=bhWeeks.length)return;bhCurrentIdx=idx;var w=bhWeeks[idx];['mo','di','mi','do','fr'].forEach(function(d){var cat=document.getElementById('bh-'+d+'-cat');var txt=document.getElementById('bh-'+d+'-text');if(w[d]){for(var i=0;i<cat.options.length;i++){if(cat.options[i].text===w[d].cat){cat.selectedIndex=i;break;}}txt.value=w[d].text||'';}});document.getElementById('bh-form').style.display='block';document.getElementById('bh-empty').style.display='none';}
+function bhSaveWeek(){if(bhCurrentIdx<0)return;var w=bhWeeks[bhCurrentIdx];['mo','di','mi','do','fr'].forEach(function(d){w[d]={cat:document.getElementById('bh-'+d+'-cat').value,text:document.getElementById('bh-'+d+'-text').value};});bhSaveAll();bhUpdateStats();alert('✅ Gespeichert!');}
+function bhSaveAll(){try{localStorage.setItem(KAUF_BH_KEY,JSON.stringify(bhWeeks));}catch(e){}}
+function bhUpdateStats(){var done=bhWeeks.filter(function(w){return['mo','di','mi','do','fr'].every(function(d){return w[d]&&w[d].text&&w[d].text.trim().length>10;});}).length;var chars=bhWeeks.reduce(function(s,w){return s+['mo','di','mi','do','fr'].reduce(function(a,d){return a+(w[d]&&w[d].text?w[d].text.length:0);},0);},0);document.getElementById('bh-total-weeks').textContent=bhWeeks.length;document.getElementById('bh-done-weeks').textContent=done;document.getElementById('bh-total-chars').textContent=chars>999?(chars/1000).toFixed(1)+'k':chars;}
+function bhExport(){if(bhCurrentIdx<0)return;var w=bhWeeks[bhCurrentIdx];var days=['mo','di','mi','do','fr'];var names=['Montag','Dienstag','Mittwoch','Donnerstag','Freitag'];var txt='BERICHTSHEFT — Kaufmann Büro\n'+(w.label||'')+'\n'+'='.repeat(40)+'\n\n';days.forEach(function(d,i){txt+=names[i]+' ['+(w[d]&&w[d].cat||'')+']\n'+(w[d]&&w[d].text||'(leer)')+'\n\n';});var blob=new Blob([txt],{type:'text/plain;charset=utf-8'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Berichtsheft-Buero-'+(w.label||'export').replace(/\s/g,'-')+'.txt';a.click();}
+</script>
+
+<script>
+/* AppStore — offline-first sync (arc-studio.org/sync.php) */
+if(typeof AppStore === 'undefined') {
+  var AppStore = (function() {
+    var EP = 'https://arc-studio.org/sync.php', DB = 4000, TP = 'arc_sync_ts_', DK = 'arc_device_id';
+    var SK = ['kauf_sr_data','amp_sr_data','tor_sr_data','vt_sr_data','vt_streak','arc_achievements','arc_lang','bh_profile','bh_weeks'];
+    var _t = null, _sy = false, _p = false;
+    function _uuid() { return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) { var r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16); }); }
+    function _did() { var id = localStorage.getItem(DK); if(!id) { id = _uuid(); localStorage.setItem(DK, id); } return id; }
+    function get(k, d) { try { var r = localStorage.getItem(k); return r !== null ? JSON.parse(r) : d; } catch(e) { return d; } }
+    function set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); localStorage.setItem(TP + k, Date.now() + ''); } catch(e) {} if(SK.indexOf(k) !== -1) { clearTimeout(_t); _t = setTimeout(sync, DB); } }
+    function sync() {
+      if(!navigator.onLine) return;
+      if(_sy) { _p = true; return; }
+      _sy = true; _p = false;
+      var push = {};
+      SK.forEach(function(k) { var r = localStorage.getItem(k); if(r === null) return; var ts = parseInt(localStorage.getItem(TP + k) || '0', 10); if(ts > 0) push[k] = {payload: r, updated_at: ts}; });
+      fetch(EP, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({device_id: _did(), push: push, pull_keys: SK})})
+        .then(function(r) { if(!r.ok) throw 0; return r.json(); })
+        .then(function(d) {
+          if(!d.ok || !d.pulled) return;
+          Object.keys(d.pulled).forEach(function(k) {
+            var rem = d.pulled[k];
+            var lts = parseInt(localStorage.getItem(TP + k) || '0', 10);
+            if(parseInt(rem.updated_at, 10) > lts) { try { localStorage.setItem(k, rem.payload); localStorage.setItem(TP + k, rem.updated_at + ''); } catch(e) {} }
+          });
+        })
+        .catch(function() {})
+        .finally(function() { _sy = false; if(_p) sync(); });
+    }
+    window.addEventListener('online', sync);
+    if(navigator.onLine) setTimeout(sync, 1500);
+    return {get: get, set: set, sync: sync, deviceId: _did, SYNC_KEYS: SK};
+  })();
+}
+</script>
+
+<script>
+// Analytics ping
+(function() {
+  if(location.hostname !== 'arc-studio.org') return;
+  fetch('/analytics.php', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({page: 'kauf-buero', lang: 'de'})
+  }).catch(function() {});
+})();
+</script>
+
+<script>
+// ── Language System ──────────────────────────────────────────
+var KAUF_LANG_FLAGS={de:'🇩🇪',en:'🇬🇧',tr:'🇹🇷',ru:'🇷🇺',ar:'🇸🇦'};
+var kaufLernLang=localStorage.getItem('arc_lang')||'de';
+function openLangModal(){
+  var m=document.getElementById('langModal');
+  m.style.display='flex';
+  document.querySelectorAll('.lang-pill').forEach(function(p){
+    p.classList.toggle('active',p.dataset.lang===kaufLernLang);
+  });
+}
+function closeLangModal(){document.getElementById('langModal').style.display='none';}
+function setLang(l){
+  kaufLernLang=l;
+  localStorage.setItem('arc_lang',l);
+  var cls=document.documentElement.className.replace(/\blang-\w+/g,'').trim();
+  document.documentElement.className=cls+' lang-'+l;
+  var btn=document.getElementById('langBtn');
+  if(btn) btn.textContent=KAUF_LANG_FLAGS[l]||'🌐';
+  // Re-render language-aware dynamic content
+  var dqEl=document.getElementById('dq-q');
+  if(dqEl) dqEl.textContent=(QUIZ[DQ_IDX][l]||QUIZ[DQ_IDX].de).q;
+  if(typeof kaufSRSession!=='undefined'&&kaufSRSession.length&&kaufSRIdx<kaufSRSession.length) renderFisiCard();
+  closeLangModal();
+}
+(function(){
+  var l=localStorage.getItem('arc_lang')||'de';
+  kaufLernLang=l;
+  var cls=document.documentElement.className||'';
+  document.documentElement.className=cls.replace(/\blang-\w+/g,'').trim()+' lang-'+l;
+  var btn=document.getElementById('langBtn');
+  if(btn) btn.textContent=KAUF_LANG_FLAGS[l]||'🌐';
+})();
+
+// ── Session Hero + Besuchszähler ─────────────────────────────
+(function(){
+  var v=parseInt(localStorage.getItem('kauf_visits')||'0')+1;
+  localStorage.setItem('kauf_visits',v);
+
+  // Streak
+  var streak=parseInt(localStorage.getItem('kauf_streak')||'0');
+  var shStreak=document.getElementById('sh-streak');
+  if(shStreak){
+    shStreak.textContent='🔥 '+streak+' Tage';
+    if(streak>=7) shStreak.className='sh-streak great';
+  }
+
+  // SR fällig berechnen
+  var due=0;
+  try{
+    var sr=JSON.parse(localStorage.getItem('kauf_sr_data')||'[]');
+    var now=Date.now();
+    if(Array.isArray(sr)){
+      due=sr.filter(function(c){return !c.nextReview||c.nextReview<=now;}).length;
+    } else {
+      Object.values(sr).forEach(function(c){if(!c.due||c.due<=now)due++;});
+    }
+  }catch(e){}
+
+  // Session Hero befüllen
+  var shCount=document.getElementById('sh-count');
+  var shSub=document.getElementById('sh-sub');
+  var shCta=document.getElementById('sh-cta');
+  var hero=document.getElementById('session-hero');
+  var srCountEl=document.getElementById('sh-sr-count');
+  if(srCountEl) srCountEl.textContent=due;
+
+  if(due===0){
+    if(shCount) shCount.innerHTML='<b>✓</b>';
+    if(shSub) shSub.textContent='Alle Karten gelernt — gut gemacht!';
+    if(shCta){ shCta.textContent='📊 Fortschritt ansehen'; shCta.className='sh-cta done-cta'; shCta.onclick=function(){window.showScreen('s-sr');}; }
+    if(hero) hero.classList.add('done');
+  } else {
+    if(shCount) shCount.innerHTML='<b>'+due+'</b>';
+    if(shSub) shSub.textContent='SR-Karten fällig · '+streak+' Tage Streak';
+    if(shCta){ shCta.textContent='🧠 SR starten'; shCta.className='sh-cta pulse'; }
+  }
+})();
+
+// ── Backup Panel ─────────────────────────────────────────────
+var KAUF_BACKUP_KEYS=[
+  {key:'kauf_sr_data',label:'SR-Karten',app:'🖥️'},
+  {key:'kauf_streak',label:'Lernstreak',app:'🔧'},
+  {key:'kauf_quiz_hist',label:'Quiz-Verlauf',app:'🔧'},
+  {key:'kauf_ap_check',label:'AP-Checkliste',app:'🔧'},
+  {key:'kauf_visits',label:'Besuchszähler',app:'🔧'},
+  {key:'bh_profile',label:'BH Profil',app:'📓'},
+  {key:'bh_weeks',label:'BH Wochen',app:'📓'},
+  {key:'arc_lang',label:'Sprache',app:'🌐'},
+];
+function fisiLernRenderBackupKeys(){
+  var el=document.getElementById('backupKeyList');
+  if(!el)return;
+  el.innerHTML=KAUF_BACKUP_KEYS.map(function(k){
+    var has=localStorage.getItem(k.key)!==null;
+    return '<span class="bk-tag'+(has?' has-data':'')+'">'+k.app+' '+k.label+'</span>';
+  }).join('');
+}
+function fisiLernExportBackup(){
+  var data={_version:1,_app:'FISI-Lern',_date:new Date().toISOString()};
+  KAUF_BACKUP_KEYS.forEach(function(k){
+    var v=localStorage.getItem(k.key);
+    if(v!==null)data[k.key]=v;
+  });
+  var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='kauf-buero-backup-'+new Date().toISOString().slice(0,10)+'.json';
+  a.click();
+}
+function fisiLernImportBackup(e){
+  var file=e.target.files[0];
+  if(!file)return;
+  var reader=new FileReader();
+  reader.onload=function(ev){
+    try{
+      var data=JSON.parse(ev.target.result);
+      KAUF_BACKUP_KEYS.forEach(function(k){
+        if(data[k.key]!==undefined)localStorage.setItem(k.key,data[k.key]);
+      });
+      fisiLernRenderBackupKeys();
+      alert('Import erfolgreich!');
+    }catch(err){alert('Fehler beim Import: '+err.message);}
+  };
+  reader.readAsText(file);
+}
+document.addEventListener('DOMContentLoaded',fisiLernRenderBackupKeys);
+
+// ── What's New Toast ─────────────────────────────────────────
+(function(){
+  var V='1.0';
+  if(localStorage.getItem('kauf_wn_seen')!==V){
+    setTimeout(function(){var t=document.getElementById('whatsNewToast');if(t)t.classList.remove('hidden');},1200);
+  }
+})();
+</script>
+
+<script>
+// ── AP1-SIMULATION KFZ ───────────────────────────────────────────
+var KAUF_SIM_QUESTIONS = [
+  // ── Organisation (8) ──────────────────────────────────────
+  {q:"Welches Ablagesystem sortiert Dokumente nach ihrem Inhalt/Thema?",opts:["Alphabetisches System","Numerisches System","Sachprinzip","Chronologisches System"],ans:2,exp:"Beim Sachprinzip (Sachablage) werden Vorgänge nach ihrem Inhalt/Thema (z.B. 'Kunden K', 'Lieferanten L') geordnet. Alphabetisch = nach Namen, Numerisch = nach Nummern, Chronologisch = nach Datum.",topic:"Organisation"},
+  {q:"Was ist der PDCA-Zyklus im Qualitätsmanagement?",opts:["Plan-Decide-Control-Act","Plan-Do-Check-Act","Process-Data-Control-Analysis","Prepare-Deploy-Check-Adjust"],ans:1,exp:"PDCA = Plan (planen) → Do (umsetzen) → Check (überprüfen) → Act (verbessern/standardisieren). Kontinuierlicher Verbesserungsprozess (KVP), Basis der DIN EN ISO 9001. Ziel: Fehlerursachen dauerhaft beseitigen.",topic:"Organisation"},
+  {q:"Welche Norm legt Anforderungen an Qualitätsmanagementsysteme fest?",opts:["DIN 5008","DIN EN ISO 9001","ISO 27001","DIN EN 45011"],ans:1,exp:"DIN EN ISO 9001 definiert Anforderungen an QMS (Prozessorientierung, Kundenfokus, Leadership, Verbesserung). Unternehmen können sich zertifizieren lassen. Wird weltweit von über 1 Million Organisationen eingesetzt.",topic:"Organisation"},
+  {q:"Was versteht man unter dem Belegprinzip in der Buchführung/Organisation?",opts:["Alle Buchungen müssen durch einen Beleg belegt sein","Belege müssen alphabetisch abgelegt werden","Belege werden nur für Eingangsrechnungen geführt","Nur digitale Belege sind zulässig"],ans:0,exp:"'Keine Buchung ohne Beleg' ist ein Grundsatz ordnungsmäßiger Buchführung (GoB). Belege: extern (Rechnung, Quittung) oder intern (Eigenbeleg). Pflicht zur Aufbewahrung: Buchungsbelege 10 Jahre.",topic:"Organisation"},
+  {q:"Was ist der Hauptvorteil eines Dokumentenmanagementsystems (DMS)?",opts:["Papierverbrauch wird erhöht","Schnelle Suche, Versionskontrolle und gleichzeitiger Zugriff mehrerer Nutzer","Dokumente können nicht gelöscht werden","Nur für große Unternehmen sinnvoll"],ans:1,exp:"DMS-Vorteile: schnelle Volltextsuche, Versionskontrolle, Zugriffsrechte, paralleler Zugriff, Raumersparnis, Revisionssicherheit (DSGVO, GoBD-konform), automatisierte Workflows.",topic:"Organisation"},
+  {q:"Welche Postbearbeitungsschritte gelten für persönlich adressierte Briefsendungen?",opts:["Öffnen, stempeln, verteilen","Ungeöffnet an Empfänger weiterleiten","Scannen und im DMS ablegen","Zurücksenden an Absender"],ans:1,exp:"Persönlich/vertraulich adressierte Sendungen werden ungeöffnet an den Empfänger weitergeleitet (Datenschutz, Briefgeheimnis Art. 10 GG). Nur der Empfänger darf sie öffnen.",topic:"Organisation"},
+  {q:"Was ist eine Wiedervorlage und wofür wird sie genutzt?",opts:["System zur Ablage erledigter Vorgänge","Erinnerungssystem für zu einem bestimmten Datum wieder aufzugreifende Vorgänge","Protokollsystem für Telefonate","Methode zur alphabetischen Sortierung"],ans:1,exp:"Wiedervorlage (WV): Vorgänge die zu einem späteren Datum wieder bearbeitet werden sollen. Systeme: Hängemappenregister 1–31 (pro Tag), digitale Wiedervorlage in Outlook/DMS. Sichert Termineinhaltung.",topic:"Organisation"},
+  {q:"Was ist der Unterschied zwischen Generalvollmacht und Prokura?",opts:["Generalvollmacht ist umfassender als Prokura","Prokura ist umfassender und ins Handelsregister einzutragen; Generalvollmacht ist privatrechtlich formlos","Prokura gilt nur für GmbHs","Generalvollmacht gilt nur im Außenverhältnis"],ans:1,exp:"Prokura (§§ 48–53 HGB): gesetzlich definierte Vollmacht für alle Handelsgeschäfte außer Grundstücksveräußerung/Liquidation. Muss ins HR eingetragen werden. Generalvollmacht: privatrechtlich, keine HR-Pflicht, kann weiter gehen.",topic:"Organisation"},
+
+  // ── Rechnungswesen (9) ────────────────────────────────────
+  {q:"Wie lautet die Grundregel für eine Buchung im doppelten Buchführungssystem?",opts:["Erst Haben, dann Soll","Jede Buchung hat eine Gegenbuchung: Soll (links) an Haben (rechts)","Aktiva immer im Soll, Passiva im Haben","Aufwendungen immer im Haben"],ans:1,exp:"Grundprinzip der doppelten Buchführung: jeder Geschäftsvorfall wird auf zwei Konten gebucht (Soll und Haben). Buchungssatz: 'Soll an Haben'. Soll = linke Seite, Haben = rechte Seite des T-Kontos.",topic:"Rechnungswesen"},
+  {q:"Ein Lieferant gewährt 3% Skonto bei Zahlung innerhalb von 10 Tagen. Wie hoch ist der Skontoabzug auf eine Rechnung über 2.000 € netto?",opts:["60 €","20 €","600 €","30 €"],ans:0,exp:"Skonto = Rechnungsbetrag × Skontosatz / 100 = 2.000 € × 3 / 100 = 60 €. Zahlbetrag = 2.000 − 60 = 1.940 €. Skonto ist ein Preisnachlass für schnelle Zahlung (Barzahlungsrabatt).",topic:"Rechnungswesen"},
+  {q:"Ein Unternehmen kauft ein Fahrzeug für 24.000 € netto (Nutzungsdauer 6 Jahre). Wie hoch ist die lineare jährliche AfA?",opts:["4.000 €","3.000 €","2.000 €","6.000 €"],ans:0,exp:"Lineare AfA = Anschaffungskosten / Nutzungsdauer = 24.000 € / 6 = 4.000 € pro Jahr. Buchwert sinkt jedes Jahr gleichmäßig um 4.000 €. Steuerliche Nutzungsdauer laut AfA-Tabelle BMF.",topic:"Rechnungswesen"},
+  {q:"Ein Unternehmen hat Ausgangsrechnungen mit 3.800 € USt und Eingangsrechnungen mit 1.200 € Vorsteuer. Wie hoch ist die USt-Zahllast?",opts:["5.000 €","2.600 €","1.200 €","3.800 €"],ans:1,exp:"Zahllast = USt − Vorsteuer = 3.800 − 1.200 = 2.600 €. Diese 2.600 € werden ans Finanzamt abgeführt. Vorsteuerüberhang (Erstattung) wenn Vorsteuer > USt (z.B. bei hohen Investitionen).",topic:"Rechnungswesen"},
+  {q:"Welche Seite der Bilanz zeigt die Mittelherkunft?",opts:["Aktiva (linke Seite)","Passiva (rechte Seite)","Beide Seiten gleichermaßen","Keines von beiden"],ans:1,exp:"Passiva = Mittelherkunft: Eigenkapital (Einlagen, Gewinn) und Fremdkapital (Bankdarlehen, Verbindlichkeiten, Rückstellungen). Aktiva = Mittelverwendung (wie die Mittel eingesetzt sind).",topic:"Rechnungswesen"},
+  {q:"Was ist der Deckungsbeitrag (DB) und wie berechnet er sich?",opts:["DB = Erlöse − Gesamtkosten","DB = Erlöse − variable Kosten (je Stück oder gesamt)","DB = Fixkosten − variable Kosten","DB = Gewinn + Abschreibungen"],ans:1,exp:"Deckungsbeitrag (DB) = Erlöse − variable Kosten. Der DB zeigt, wie viel zur Deckung der Fixkosten übrig bleibt. DB − Fixkosten = Betriebsergebnis. Deckungsbeitragssatz = DB / Erlös × 100 %.",topic:"Rechnungswesen"},
+  {q:"Was ist der Unterschied zwischen SKR03 und SKR04?",opts:["SKR03 nur für GmbH, SKR04 für AG","SKR03: Prozessgliederung (Wertschöpfungsreihenfolge); SKR04: Abschlussgliederung (nach Bilanzstruktur)","Beide sind identisch, nur unterschiedlich nummeriert","SKR04 ist veraltet"],ans:1,exp:"SKR03: Konten nach betrieblichem Ablauf (Beschaffung→Produktion→Absatz). SKR04: Konten nach Bilanzposition (Anlagevermögen, Umlaufvermögen, Eigenkapital…). Industrie: SKR04, Handel: SKR03.",topic:"Rechnungswesen"},
+  {q:"Bei der Vorwärtskalkulation: Welcher Schritt folgt auf den Bareinkaufspreis (BEP)?",opts:["Rabattabzug","Addition der Gemeinkosten zum Selbstkostenpreis","Skontierung","USt-Aufschlag"],ans:1,exp:"Vorwärtskalkulation: BEP + Gemeinkosten (%) = Selbstkostenpreis (SK). Danach: SK + Gewinnaufschlag = Barverkaufspreis (BAP). Es folgen Skonto-Aufschlag → ZVP, Rabatt-Aufschlag → BVP, + USt = Brutto-VKP.",topic:"Rechnungswesen"},
+  {q:"Was sind Rückstellungen in der Bilanz und warum werden sie gebildet?",opts:["Rücklagen aus Gewinnen für Investitionen","Passivposten für wahrscheinliche Verbindlichkeiten ungewisser Höhe oder Fälligkeit (z.B. Prozessrisiken, Garantien)","Abschreibungen auf Anlagevermögen","Vorauszahlungen von Kunden"],ans:1,exp:"Rückstellungen (§ 249 HGB) = Verbindlichkeiten die dem Grunde nach bestehen, aber Höhe/Zeitpunkt unsicher sind. Beispiele: Urlaubsrückstellungen, Gewährleistungen, Steuerrückstellungen. Passivierungspflicht nach HGB.",topic:"Rechnungswesen"},
+
+  // ── Personal (8) ─────────────────────────────────────────
+  {q:"Welche maximale Probezeit ist für ein Ausbildungsverhältnis nach BBiG zulässig?",opts:["6 Monate","3 Monate","1 Monat","4 Monate"],ans:3,exp:"BBiG § 20: Probezeit im Ausbildungsverhältnis mindestens 1 Monat, höchstens 4 Monate. Im normalen Arbeitsvertrag: Probezeit bis 6 Monate. Während der Ausbildungsprobezeit: Kündigung jederzeit ohne Frist möglich.",topic:"Personal"},
+  {q:"Welche Sozialversicherungsbeiträge trägt der Arbeitgeber allein?",opts:["Kranken- und Rentenversicherung","Unfallversicherung (Berufsgenossenschaft)","Alle Sozialversicherungsbeiträge","Arbeitslosenversicherung"],ans:1,exp:"Die Unfallversicherung (UV/Berufsgenossenschaft) wird ausschließlich vom Arbeitgeber finanziert. Alle anderen SV-Beiträge (KV, PV, RV, AV) werden paritätisch zwischen AN und AG geteilt.",topic:"Personal"},
+  {q:"Was ist der Unterschied zwischen Zeitlohn und Akkordlohn?",opts:["Zeitlohn ist höher als Akkordlohn","Zeitlohn: Vergütung nach Arbeitszeit; Akkordlohn: Vergütung nach Leistung/Stückzahl","Akkordlohn gilt nur für Führungskräfte","Zeitlohn hat keinen gesetzlichen Mindestlohn"],ans:1,exp:"Zeitlohn: Entlohnung nach Stunden/Monaten — planbar, kein Zeitdruck. Akkordlohn: nach Stückzahl (Geldakkord) oder Zeit/Stück (Zeitakkord) — Leistungsanreiz, aber Qualitätsrisiko. Mindestlohn gilt für beide.",topic:"Personal"},
+  {q:"Was regelt das Arbeitszeitgesetz bezüglich der täglichen Ruhepausen?",opts:["Keine gesetzliche Regelung","Ab 6 Std.: mind. 30 Min.; ab 9 Std.: mind. 45 Min. Pause","Ab 4 Std.: 15 Min.; ab 8 Std.: 30 Min.","1 Stunde Pause bei jeder Arbeitszeit über 6 Std."],ans:1,exp:"ArbZG § 4: Ruhepausen ab 6 Stunden Arbeitszeit: mindestens 30 Minuten (in Abschnitte teilbar, mind. 15 Min.). Ab 9 Stunden: mind. 45 Minuten. Pause nicht am Anfang oder Ende der Arbeitszeit.",topic:"Personal"},
+  {q:"Was versteht man unter der Mitbestimmungspflicht des Betriebsrats bei Überstunden?",opts:["Betriebsrat muss jede Überstunde genehmigen","Betriebsrat hat echtes Mitbestimmungsrecht bei Anordnung und Lage der Überstunden (§ 87 BetrVG)","Betriebsrat wird nur informiert","Überstunden sind ohne Betriebsrat generell verboten"],ans:1,exp:"§ 87 Abs. 1 Nr. 3 BetrVG: Vorübergehende Verkürzung/Verlängerung der Arbeitszeit → echte Mitbestimmung. Ohne Zustimmung des Betriebsrats sind Überstunden nicht wirksam angeordnet. Ausnahme: Notfall.",topic:"Personal"},
+  {q:"Welche Fristen gelten für die Kündigung während der Probezeit im Arbeitsvertrag?",opts:["14 Tage Kündigungsfrist beidseitig","2 Wochen sofort möglich (gesetzlich, § 622 BGB)","1 Monat Kündigungsfrist","Probezeit kann nicht gekündigt werden"],ans:1,exp:"§ 622 BGB: Während vereinbarter Probezeit (max. 6 Monate): Kündigung mit 2 Wochen Frist. Nach Probezeit: Grundkündigungsfrist 4 Wochen zum 15. oder Monatsende. Längere Fristen per Vertrag/TV möglich.",topic:"Personal"},
+  {q:"Was ist Kurzarbeitergeld (KUG) und wann wird es gewährt?",opts:["Zuschuss für Arbeitnehmer in Teilzeit","Lohnersatzleistung der Bundesagentur für Arbeit bei vorübergehendem Arbeitsausfall (mind. 10% der Belegschaft)","Sonderurlaub bei Kurzarbeit","Staatliche Investitionshilfe für Betriebe"],ans:1,exp:"KUG (§§ 95 ff. SGB III): Lohnersatz bei vorübergehendem erheblichem Arbeitsausfall. Voraussetzungen: mind. 10% Belegschaft betroffen, unvermeidbar, AN-Meldung bei BA. KUG: 60% (67% mit Kind) des Netto-Ausfalls.",topic:"Personal"},
+  {q:"Was ist eine Abmahnung und welche Funktion hat sie?",opts:["Strafmaßnahme die direkt zur Kündigung führt","Schriftliche Rüge bei Pflichtverletzung mit Warnfunktion; Voraussetzung für verhaltensbedingte Kündigung","Mündliche Verwarnung","Gerichtliches Dokument"],ans:1,exp:"Abmahnung: AG rügt konkrete Pflichtverletzung (Datum, Sachverhalt), fordert Verhaltensänderung, warnt vor Kündigung. Ohne vorherige Abmahnung ist verhaltensbedingte Kündigung meist unwirksam. Muss konkret und verhältnismäßig sein.",topic:"Personal"},
+
+  // ── Kommunikation (7) ─────────────────────────────────────
+  {q:"Welche Zeilenabstände und Ränder schreibt DIN 5008 für Geschäftsbriefe vor?",opts:["Links 30 mm, rechts 25 mm, oben 27 mm","Links 25 mm, rechts mind. 20 mm, oben 27 mm (mit Faltmarken)","Links 20 mm, rechts 20 mm symmetrisch","Keine genauen Vorgaben"],ans:1,exp:"DIN 5008 (2020): Linker Rand 25 mm, rechter Rand mind. 20 mm, Schriftfeld oben 45 mm (für Fensterumschlag). Faltmarken: 105 mm (1. Falz), 210 mm (2. Falz) von oben.",topic:"Kommunikation"},
+  {q:"Wann liegt nach HGB eine Pflicht zur unverzüglichen Mängelrüge vor?",opts:["Nur bei Verbrauchergeschäften","Bei beiderseitigen Handelsgeschäften (§ 377 HGB): unverzüglich nach Entdeckung","Nur bei Dienstleistungsverträgen","Nur wenn im Kaufvertrag vereinbart"],ans:1,exp:"§ 377 HGB: Kaufmann muss Ware nach Erhalt unverzüglich untersuchen. Sichtbare Mängel: sofort rügen. Versteckte Mängel: unverzüglich nach Entdeckung. Unterlassung → Ware gilt als genehmigt → Mängelansprüche verloren.",topic:"Kommunikation"},
+  {q:"Was sind die Pflichtangaben einer Rechnung nach § 14 UStG?",opts:["Nur Name und Betrag","Name/Anschrift beider Parteien, USt-IdNr., Datum, Rechnungsnummer, Leistungsbeschreibung, Nettobetrag, Steuersatz, Steuerbetrag","Nur für Beträge über 250 €","Handelsregisternummer und Bankverbindung reichen"],ans:1,exp:"§ 14 UStG Pflichtangaben: vollständige Namen/Anschriften, Steuernummer/USt-IdNr. des Lieferers, Ausstellungsdatum, fortlaufende Rechnungsnummer, Leistungsbeschreibung und Zeitraum, Nettobetrag, Steuersatz, Steuerbetrag, Bruttobetrag.",topic:"Kommunikation"},
+  {q:"Was ist der Unterschied zwischen Ergebnisprotokoll und Verlaufsprotokoll?",opts:["Keine inhaltlichen Unterschiede","Ergebnisprotokoll: nur Beschlüsse/Ergebnisse; Verlaufsprotokoll: Diskussionsverlauf und Redebeiträge","Verlaufsprotokoll ist kürzer","Ergebnisprotokoll wird nur bei Hauptversammlungen geführt"],ans:1,exp:"Ergebnisprotokoll: kompakt, nur Beschlüsse, Verantwortliche und Termine. Verlaufsprotokoll: detailliert, Redebeiträge, Pro-Contra-Argumente. Im Büroalltag: meist Ergebnisprotokoll. Wörtliches Protokoll: nur bei Gericht/Notariat.",topic:"Kommunikation"},
+  {q:"Welche Grundsätze der DSGVO gelten für die Verarbeitung personenbezogener Daten?",opts:["Daten dürfen unbegrenzt gespeichert werden","Rechtmäßigkeit, Zweckbindung, Datensparsamkeit, Richtigkeit, Speicherbegrenzung, Integrität/Vertraulichkeit","Nur Einwilligung ist als Rechtsgrundlage zulässig","Nur große Unternehmen sind von der DSGVO betroffen"],ans:1,exp:"Art. 5 DSGVO: 1. Rechtmäßigkeit/Transparenz, 2. Zweckbindung (kein anderer Zweck), 3. Datensparsamkeit, 4. Richtigkeit, 5. Speicherbegrenzung, 6. Integrität/Vertraulichkeit, 7. Rechenschaftspflicht (Nachweispflicht).",topic:"Kommunikation"},
+  {q:"Was bedeutet 'Angebot bindet' im Vertragsrecht?",opts:["Angebot kann jederzeit widerrufen werden","Antragsteller ist an sein Angebot gebunden bis zur Annahmefrist oder Ablehnung","Nur schriftliche Angebote binden","Angebot muss notariell beurkundet werden"],ans:1,exp:"§ 145 BGB: Wer ein Angebot macht, ist daran gebunden bis zum Ablauf der Annahmefrist (oder 'unverzüglich' wenn keine Frist). Ausnahme: Anbieter schließt Bindung aus ('freibleibend', 'ohne Obligo'). Annahme → Vertrag zustande.",topic:"Kommunikation"},
+  {q:"Was ist eine Mahnung rechtlich und ab wann entstehen Verzugszinsen?",opts:["Eine freundliche Zahlungserinnerung ohne rechtliche Folgen","Formelle Leistungsaufforderung nach Fälligkeit → setzt AN in Verzug; Verzugszinsen: 9% über Basiszinssatz (B2B)","Nur bei gerichtlicher Mahnung entstehen Zinsen","Verzugszinsen entstehen erst nach 3 Mahnungen"],ans:1,exp:"§ 286 BGB: Schuldner kommt in Verzug durch Mahnung nach Fälligkeit (oder bei Datumsfälligkeit automatisch). § 288 BGB: Verzugszinsen 9 Prozentpunkte über Basiszinssatz (B2B) bzw. 5 Pp. (B2C).",topic:"Kommunikation"},
+
+  // ── Recht (7) ────────────────────────────────────────────
+  {q:"Ab welchem Alter ist eine Person nach BGB voll geschäftsfähig?",opts:["16 Jahre","18 Jahre","21 Jahre","14 Jahre"],ans:1,exp:"§ 2 BGB: Volljährigkeit und volle Geschäftsfähigkeit ab 18 Jahren. 7–17 Jahre: beschränkt geschäftsfähig (Einwilligung der Erziehungsberechtigten nötig). Ausnahme: § 110 BGB (Taschengeldparagraph) — eigene Mittel.",topic:"Recht"},
+  {q:"Was ist der Taschengeldparagraph (§ 110 BGB)?",opts:["Regelt Taschengeld der Eltern","Minderjährige Verträge sind wirksam, wenn der Minderjährige mit eigenen Mitteln (Taschengeld) zahlt","Ermöglicht 16-Jährigen unbegrenzte Vertragsabschlüsse","Regelt Aufbewahrungspflichten für Kassenbons"],ans:1,exp:"§ 110 BGB: Ein beschränkt Geschäftsfähiger (7–17) darf Verträge ohne Einwilligung der Eltern abschließen, wenn er sie vollständig mit eigenen Mitteln (Taschengeld, Lohn aus Nebenjob) erfüllt.",topic:"Recht"},
+  {q:"Was ist eine OHG und wie haften ihre Gesellschafter?",opts:["Offene Handelsgesellschaft: Gesellschafter haften beschränkt","OHG: Personengesellschaft, alle Gesellschafter haften gesamtschuldnerisch und unbeschränkt persönlich","Nur der Geschäftsführer haftet","Haftung auf Einlage beschränkt"],ans:1,exp:"OHG (§§ 105 ff. HGB): Personengesellschaft für Handelsgewerbe. Alle Gesellschafter haften gesamtschuldnerisch, unbeschränkt und persönlich (Privatvermögen). Kein Mindestkapital. HR-Eintragung konstitutiv.",topic:"Recht"},
+  {q:"Was unterscheidet Rücktritt und Anfechtung eines Vertrages?",opts:["Rücktritt wirkt rückwirkend, Anfechtung nur für die Zukunft","Anfechtung wirkt rückwirkend (ex tunc, §§ 119 ff. BGB) bei Willensmängeln; Rücktritt wirkt ab Erklärung (ex nunc, § 355)","Kein rechtlicher Unterschied","Rücktritt immer möglich, Anfechtung nur bei Irrtum"],ans:1,exp:"Anfechtung (§§ 119-123): bei Willensmängeln (Irrtum, Täuschung, Drohung) → Vertrag von Anfang an nichtig (ex tunc). Rücktritt (§ 323 ff. / § 355): bei Leistungsstörungen oder Widerrufsrecht → Rückabwicklung ab Erklärung.",topic:"Recht"},
+  {q:"Was versteht man unter Gesamtschuld (§ 421 BGB)?",opts:["Alle Gläubiger müssen gleichzeitig zahlen","Mehrere Schuldner haften für dieselbe Schuld; Gläubiger kann Zahlung von jedem einzeln verlangen","Schuldner können Zahlung verweigern","Schuld wird auf alle Schuldner aufgeteilt"],ans:1,exp:"Gesamtschuld: mehrere Schuldner schulden dasselbe (z.B. OHG-Gesellschafter). Gläubiger kann beliebig von einem oder mehreren Gesamtschuldnern in voller Höhe verlangen. Innenverhältnis: Ausgleich unter Schuldnern.",topic:"Recht"},
+  {q:"Was ist die Prokura und wer kann sie erteilen?",opts:["Allgemeine Vollmacht, jeder kann sie ausstellen","Handelsrechtliche Vollmacht (§ 48 HGB) nur von Kaufleuten erteilbar; umfasst alle Handelsgeschäfte außer Immobilienveräußerung und Liquidation; HR-Eintragung erforderlich","Identisch mit Generalvollmacht","Gilt nur für interne Vertretung"],ans:1,exp:"Prokura: nur Kaufmann (§ 48 HGB) kann sie erteilen, muss ins Handelsregister eingetragen werden (deklaratorisch, aber Vertrauensschutz). Prokurist kann alle Handelsgeschäfte außer Grundstücksveräußerung/Geschäftsveräußerung. Kennzeichnung: ppa.",topic:"Recht"},
+  {q:"Was ist eine Leistungsstörung und welche Arten gibt es?",opts:["Nur Zahlungsverzug des Käufers","Nichterfüllung, Schlechterfüllung (Sachmangel), Verzug (Schuldnerverzug), Unmöglichkeit — je mit eigenen Rechtsfolgen","Nur technische Störungen bei der Lieferung","Störungen die den Vertrag automatisch auflösen"],ans:1,exp:"Leistungsstörungen (Schuldrecht): 1. Nichterfüllung/Unmöglichkeit (§ 275) → Befreiung/Schadensersatz. 2. Schlechtleistung/Sachmangel (§§ 434, 439) → Nacherfüllung, Minderung, Rücktritt. 3. Verzug (§§ 286 ff.) → Zinsen, Schadensersatz.",topic:"Recht"},
+
+  // ── WiSo (6) ─────────────────────────────────────────────
+  {q:"Was ist das 'Magische Viereck' der Wirtschaftspolitik?",opts:["Angebot, Nachfrage, Preis, Menge","Preisstabilität, hohe Beschäftigung, außenwirtschaftliches Gleichgewicht, stetiges Wirtschaftswachstum","Steuer, Soziales, Sicherheit, Umwelt","Produktion, Konsum, Investition, Export"],ans:1,exp:"Stabilitätsgesetz 1967: 4 gesamtwirtschaftliche Ziele: 1. Preisniveaustabilität (<2% Inflation), 2. Hoher Beschäftigungsstand (<4% AL), 3. Außenwirtschaftl. Gleichgewicht, 4. Stetiges Wachstum. Heute: erweitertes Sechseck + Umwelt/Verteilung.",topic:"WiSo"},
+  {q:"Was ist der Unterschied zwischen Arbeitnehmer und Selbstständigem?",opts:["Nur das Einkommen unterscheidet sie","AN: weisungsgebunden, persönlich/zeitlich/örtlich gebunden; Selbstständiger: unternehmerisches Risiko, eigene Betriebsmittel, mehrere Auftraggeber","Selbstständige zahlen keine Steuern","AN darf keine Nebentätigkeiten ausüben"],ans:1,exp:"AN: Weisungsgebundenheit (Ort, Zeit, Art) → Sozialversicherungspflicht. Selbstständiger: eigenes wirtschaftliches Risiko, Auftraggeber weisungsfrei, eigene Betriebsmittel. Scheinselbstständigkeit: formal selbstständig, aber faktisch weisungsgebunden → Nachforderungsrisiko.",topic:"WiSo"},
+  {q:"Was ist der Tarifvertrag und was regelt ein Entgelttarifvertrag?",opts:["Vertrag zwischen zwei Unternehmen über Lieferpreise","Kollektivvertrag zwischen Gewerkschaft und Arbeitgeberverband; Entgelttarifvertrag regelt Gehälter/Löhne und wird meist jährlich verhandelt","Arbeitsvertrag für Tarifangestellte","Vertrag über Auszubildendenvergütungen"],ans:1,exp:"Tarifvertrag: zwischen Gewerkschaft und Arbeitgeberverband (Tarifparteien). Manteltarifvertrag (MTV): Arbeitsbedingungen langfristig. Entgelttarifvertrag (ETV): Löhne/Gehälter, meist 1 Jahr Laufzeit. Allgemeinverbindlicherklärung: gilt für alle Betriebe der Branche.",topic:"WiSo"},
+  {q:"Was versteht man unter Inflation und wie wirkt sie sich auf Gläubiger aus?",opts:["Deflation schadet Gläubigern","Inflation = Anstieg des Preisniveaus → Kaufkraftverlust; Gläubiger verlieren, da zurückgezahlte Schulden weniger wert sind","Inflation nützt Gläubigern","Inflation hat keine Auswirkungen auf Schulden"],ans:1,exp:"Inflation = allgemeiner Preisanstieg → Geldwert sinkt. Gläubiger (z.B. Sparer, Kreditgeber): bekommen nominell gleichen Betrag zurück, aber Kaufkraft ist gesunken → realer Verlust. Schuldner: profitieren (zahlen weniger in realer Kaufkraft zurück).",topic:"WiSo"},
+  {q:"Was sind die Merkmale der sozialen Marktwirtschaft?",opts:["Vollständige staatliche Planwirtschaft","Freie Marktwirtschaft kombiniert mit sozialer Absicherung, Wettbewerbsregeln und staatlichem Ausgleich","Reine Privatwirtschaft ohne staatliche Eingriffe","Alle Betriebe in Staatsbesitz"],ans:1,exp:"Soziale Marktwirtschaft (Ludwig Erhard): Ordnungsrahmen durch Staat (Wettbewerbsrecht, Arbeitsrecht), Preisbildung durch Markt, sozialer Ausgleich (Sozialversicherung, Mindestlohn, Sozialleistungen). Grundlage: GG Art. 20 Sozialstaatsprinzip.",topic:"WiSo"},
+  {q:"Welche Phasen durchläuft ein Konjunkturzyklus?",opts:["Boom, Krise, Erholung","Aufschwung (Expansion), Hochkonjunktur (Boom), Abschwung (Rezession), Tiefstand (Depression)","Wachstum, Stagnation, Rückgang","Inflation, Deflation, Stagflation"],ans:1,exp:"Konjunkturzyklus: 1. Aufschwung: Produktion↑, AL↓, Investitionen↑. 2. Boom: Vollbeschäftigung, Inflation↑. 3. Rezession (≥2 Quartale BIP-Rückgang): Entlassungen, Investitionen↓. 4. Depression: Massenarbeitslosigkeit, Deflation. Dauer: 4–10 Jahre.",topic:"WiSo"},
+];
+
+var fisiSimState = {idx:0, correct:0, wrong:0, answered:false, questions:[], timer:null, seconds:90*60, topicErrors:{}};
+
+function simLoad() {
+  var stored = localStorage.getItem('kauf_sim_hs');
+  var el = document.getElementById('sim-hs-badge');
+  if(el && stored) {
+    var hs; try { hs = JSON.parse(stored); } catch(e) { hs = null; }
+    el.textContent = '🏆 Bestleistung: ' + hs.score + '/30 (' + hs.pct + '%) — ' + hs.date;
+  }
+}
+
+function simStart() {
+  fisiSimState.idx = 0; fisiSimState.correct = 0; fisiSimState.wrong = 0;
+  fisiSimState.seconds = 90*60; fisiSimState.answered = false; fisiSimState.topicErrors = {};
+  fisiSimState.questions = KAUF_SIM_QUESTIONS.slice().sort(function(){return Math.random()-.5;});
+  document.getElementById('sim-start').style.display = 'none';
+  document.getElementById('sim-end').style.display = 'none';
+  document.getElementById('sim-quiz').style.display = 'block';
+  simRenderQ();
+  simStartTimer();
+}
+
+function simStartTimer() {
+  if(fisiSimState.timer) clearInterval(fisiSimState.timer);
+  fisiSimState.timer = setInterval(function(){
+    fisiSimState.seconds--;
+    var m = Math.floor(fisiSimState.seconds/60), s = fisiSimState.seconds%60;
+    var el = document.getElementById('sim-timer');
+    if(el) el.textContent = m + ':' + (s<10?'0':'') + s;
+    if(fisiSimState.seconds <= 0) { clearInterval(fisiSimState.timer); simFinish(); }
+  }, 1000);
+}
+
+function simRenderQ() {
+  var st = fisiSimState, q = st.questions[st.idx];
+  document.getElementById('sim-counter').textContent = 'Frage ' + (st.idx+1) + ' / 30';
+  document.getElementById('sim-prog').style.width = (st.idx/30*100) + '%';
+  document.getElementById('sim-q-text').textContent = q.q;
+  document.getElementById('sim-q-exp').style.display = 'none';
+  document.getElementById('sim-q-next').style.display = 'none';
+  st.answered = false;
+  var optsEl = document.getElementById('sim-q-opts');
+  optsEl.innerHTML = '';
+  q.opts.forEach(function(o, i) {
+    var btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = o;
+    btn.onclick = function(){ if(!st.answered) simAnswer(i, q.ans, q.exp, q.topic); };
+    optsEl.appendChild(btn);
+  });
+}
+
+function simAnswer(chosen, correct, exp, topic) {
+  fisiSimState.answered = true;
+  var btns = document.getElementById('sim-q-opts').querySelectorAll('.quiz-opt');
+  btns.forEach(function(b){ b.disabled = true; });
+  if(chosen === correct) {
+    btns[chosen].classList.add('correct');
+    fisiSimState.correct++;
+  } else {
+    btns[chosen].classList.add('wrong');
+    btns[correct].classList.add('correct');
+    fisiSimState.wrong++;
+    fisiSimState.topicErrors[topic] = (fisiSimState.topicErrors[topic]||0)+1;
+  }
+  var expEl = document.getElementById('sim-q-exp');
+  expEl.textContent = exp;
+  expEl.style.display = 'block';
+  document.getElementById('sim-q-next').style.display = 'block';
+}
+
+function simNext() {
+  fisiSimState.idx++;
+  if(fisiSimState.idx < 30) simRenderQ();
+  else simFinish();
+}
+
+function simFinish() {
+  if(fisiSimState.timer) clearInterval(fisiSimState.timer);
+  document.getElementById('sim-quiz').style.display = 'none';
+  document.getElementById('sim-end').style.display = 'block';
+  var sc = fisiSimState.correct, pct = Math.round(sc/30*100);
+  document.getElementById('sim-end-score').textContent = sc;
+  document.getElementById('sim-end-sub').textContent = 'von 30 Fragen richtig (' + pct + '%) — ' + (pct >= 50 ? '✅ Bestanden' : '❌ Nicht bestanden');
+  // Save HS
+  var prev = JSON.parse(localStorage.getItem('kauf_sim_hs')||'null');
+  if(!prev || sc > prev.score) {
+    var hs = {score:sc, pct:pct, date: new Date().toLocaleDateString('de-DE')};
+    localStorage.setItem('kauf_sim_hs', JSON.stringify(hs));
+    document.getElementById('sim-end-hs').textContent = '🏆 Neuer Highscore!';
+  } else {
+    document.getElementById('sim-end-hs').textContent = 'Highscore: ' + prev.score + '/30 (' + prev.pct + '%)';
+  }
+  // Topic breakdown
+  var breakdown = document.getElementById('sim-end-breakdown');
+  var errors = fisiSimState.topicErrors;
+  var topics = Object.keys(errors).sort(function(a,b){return errors[b]-errors[a];});
+  if(topics.length === 0) {
+    breakdown.innerHTML = '🎯 Keine Fehler — perfekte Runde!';
+  } else {
+    breakdown.innerHTML = '<strong>Schwächen:</strong><br>' + topics.map(function(t){ return '· ' + t + ': ' + errors[t] + ' Fehler'; }).join('<br>');
+  }
+  document.getElementById('sim-start').style.display = '';
+}
+
+// Init on screen show
+var _origShowScreenFisiSim = window.showScreen;
+window.showScreen = function(id) {
+  _origShowScreenFisiSim(id);
+  if(id === 's-sim') simLoad();
+};
+
+
+// ── Lückentext Mode ───────────────────────────────────────────────
+var srMode = localStorage.getItem('sr_mode') || 'flip';
+var srFillCurrentAnswer = '';
+
+function setSRMode(m) {
+  srMode = m;
+  localStorage.setItem('sr_mode', m);
+  var fb = document.getElementById('sr-mode-flip');
+  var tb = document.getElementById('sr-mode-fill');
+  if (fb) fb.classList.toggle('active', m === 'flip');
+  if (tb) tb.classList.toggle('active', m === 'fill');
+}
+
+function srFillRender(q, a, tag) {
+  document.getElementById('sr-fill-tag').textContent = tag || '';
+  document.getElementById('sr-fill-q').textContent = q || '';
+  var inp = document.getElementById('sr-fill-input');
+  if (inp) { inp.value = ''; inp.disabled = false; }
+  document.getElementById('sr-fill-answer').style.display = 'none';
+  document.getElementById('sr-fill-area').style.display = 'block';
+  var sb = document.getElementById('sr-fill-submit');
+  if (sb) sb.disabled = false;
+  var _fwr = document.querySelector('.sr-flip-wrap');
+  if (_fwr) _fwr.style.display = 'none';
+  srFillCurrentAnswer = a || '';
+}
+
+(function(){ setSRMode(srMode); })();
+
+function srFillSubmit() {
+  document.getElementById('sr-fill-answer-text').textContent = srFillCurrentAnswer;
+  document.getElementById('sr-fill-answer').style.display = 'block';
+  var inp = document.getElementById('sr-fill-input');
+  if (inp) inp.disabled = true;
+  var sb = document.getElementById('sr-fill-submit');
+  if (sb) sb.disabled = true;
+  kaufSRFlipped = true;
+  document.getElementById('sr-grade-area').style.display = '';
+}
+</script>
+
+<!-- ===================== AP1-SIMULATION KFZ ===================== -->
+<main id="s-sim" class="screen">
+
+  <div id="sim-start">
+    <div class="quiz-hero">
+      <span class="quiz-hero-icon">🎓</span>
+      <h2>AP1-Simulation Büro</h2>
+      <p style="font-size:13px;color:var(--tx2);line-height:1.6;">30 IHK-Fragen · 90 Minuten · Bestehensgrenze 50%</p>
+      <div class="quiz-hs-badge" id="sim-hs-badge">🏆 Bestleistung: —</div>
+      <button type="button" class="btn-primary" onclick="simStart()" style="margin-top:.75rem">Simulation starten</button>
+    </div>
+  </div>
+
+  <div id="sim-quiz" style="display:none">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
+      <div style="font-size:12px;color:var(--tx3)" id="sim-counter">Frage 1 / 30</div>
+      <div style="font-size:13px;font-weight:700;color:var(--ac);font-family:'JetBrains Mono',monospace" id="sim-timer">90:00</div>
+    </div>
+    <div class="quiz-progress-wrap"><div class="quiz-progress-bar" id="sim-prog" style="width:0%"></div></div>
+    <div class="quiz-card" style="margin-top:.75rem">
+      <div id="sim-q-text" class="quiz-question"></div>
+      <div id="sim-q-opts" class="quiz-opts"></div>
+      <div id="sim-q-exp" class="quiz-explanation" style="display:none"></div>
+      <button type="button" id="sim-q-next" class="quiz-next-btn" style="display:none" onclick="simNext()">Weiter →</button>
+    </div>
+  </div>
+
+  <div id="sim-end" style="display:none">
+    <div class="quiz-end-card">
+      <div class="quiz-score-big" id="sim-end-score">0</div>
+      <div class="quiz-score-sub" id="sim-end-sub">von 30 Fragen richtig</div>
+      <div class="quiz-end-hs" id="sim-end-hs"></div>
+      <div id="sim-end-breakdown" style="text-align:left;margin:.75rem 0;font-size:12px;color:var(--tx3);line-height:1.8;background:var(--bg2);border-radius:12px;padding:.75rem"></div>
+      <button class="btn-primary" onclick="simStart()" style="margin-bottom:.75rem">Neue Runde</button>
+      <button type="button" class="btn-primary" style="background:var(--bg3);color:var(--tx);margin-top:.5rem" onclick="showScreen('s-dash')">Zum Dashboard</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- Language Modal -->
+<div id="langModal" style="display:none;position:fixed;inset:0;background:#0008;z-index:9999;align-items:flex-end;justify-content:center" onclick="if(event.target===this)closeLangModal()">
+  <div style="background:var(--bg2);border-radius:20px 20px 0 0;padding:20px;width:100%;max-width:500px;max-height:60vh;overflow-y:auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+      <h2 style="margin:0;font-size:1.1rem">🌐 Sprache wählen</h2>
+      <button onclick="closeLangModal()" style="background:none;border:none;color:var(--tx3);font-size:1.3rem;cursor:pointer;min-height:44px;min-width:44px">✕</button>
+    </div>
+    <div class="lang-pill-grid">
+      <button class="lang-pill" data-lang="de" onclick="setLang('de')"><span class="lang-flag">🇩🇪</span><span class="lang-code">DE</span><span class="lang-name">Deutsch</span></button>
+      <button class="lang-pill" data-lang="en" onclick="setLang('en')"><span class="lang-flag">🇬🇧</span><span class="lang-code">EN</span><span class="lang-name">English</span></button>
+      <button class="lang-pill" data-lang="tr" onclick="setLang('tr')"><span class="lang-flag">🇹🇷</span><span class="lang-code">TR</span><span class="lang-name">Türkçe</span></button>
+      <button class="lang-pill" data-lang="ru" onclick="setLang('ru')"><span class="lang-flag">🇷🇺</span><span class="lang-code">RU</span><span class="lang-name">Русский</span></button>
+      <button class="lang-pill" data-lang="ar" onclick="setLang('ar')"><span class="lang-flag">🇸🇦</span><span class="lang-code">AR</span><span class="lang-name">العربية</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- What's New Toast -->
+<div class="whats-new-toast hidden" id="whatsNewToast">
+  <div class="wnt-header"><strong>📋 KAUF Büro v1.0</strong><button class="wnt-close" aria-label="Schließen" onclick="document.getElementById('whatsNewToast').classList.add('hidden');localStorage.setItem('kauf_wn_seen','1.0')">✕</button></div>
+  <div class="wnt-body">KAUF Büromanagement ist live! 60 SR-Karten, 45 Quiz-Fragen, Büro-Rechner & Lernfelder.</div>
+</div>
+
+<script>
+// ── Spracheingabe (Web Speech API) ────────────────────────────────────────────
+function srStartVoice() {
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var btn = document.getElementById('sr-mic-btn');
+  if(!SR) {
+    if(btn) { btn.title='Nicht unterstützt in diesem Browser'; btn.style.opacity='.3'; }
+    return;
+  }
+  var rec = new SR();
+  var langMap = {de:'de-DE',en:'en-US',tr:'tr-TR',ru:'ru-RU',ar:'ar-SA'};
+  rec.lang = langMap[localStorage.getItem('arc_lang')||'de'] || 'de-DE';
+  rec.interimResults = false;
+  rec.maxAlternatives = 1;
+  if(btn) btn.classList.add('listening');
+  rec.onresult = function(e) {
+    var t = e.results[0][0].transcript;
+    var inp = document.getElementById('sr-fill-input');
+    if(inp && !inp.disabled) inp.value = t;
+    if(btn) btn.classList.remove('listening');
+  };
+  rec.onerror = function() { if(btn) btn.classList.remove('listening'); };
+  rec.onend   = function() { if(btn) btn.classList.remove('listening'); };
+  rec.start();
+}
+</script>
+<script src="VOLTECH-daily.js" defer></script>
+<script>ArcDaily.init({pool:KAUF_SIM_QUESTIONS,format:'kfz',streakKey:'kauf_streak',color:'#7c3aed'});</script>
+<script src="VOLTECH-sharecard.js" defer></script>
+<script src="VOLTECH-pwa.js" defer></script>
+<script src="VOLTECH-notif.js" defer></script>
+<script src="VOLTECH-wochenrueckblick.js" defer></script>
+<script>ArcWeekly.init({app:'KAUF',appColor:'#7c3aed',streakKey:'kauf_streak'});</script>
+</body>
+</html>
