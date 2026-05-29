@@ -374,6 +374,32 @@ footer{
   }
 }
 </script>
+<script>
+// ── SW Auto-Update: zwingt den Browser die neue SW-Version zu aktivieren ──
+(function(){
+  if(!('serviceWorker' in navigator)) return;
+  navigator.serviceWorker.getRegistration().then(function(reg){
+    if(!reg) return;
+    // Neue SW-Version warten → sofort aktivieren + Seite neu laden
+    if(reg.waiting){
+      reg.waiting.postMessage('skipWaiting');
+      navigator.serviceWorker.addEventListener('controllerchange', function(){
+        window.location.reload();
+      });
+      return;
+    }
+    // Auf Update prüfen und sofort anwenden wenn vorhanden
+    reg.update().then(function(){
+      if(reg.waiting){
+        reg.waiting.postMessage('skipWaiting');
+        navigator.serviceWorker.addEventListener('controllerchange', function(){
+          window.location.reload();
+        });
+      }
+    });
+  });
+})();
+</script>
 </head>
 <body>
 
