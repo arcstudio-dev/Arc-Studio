@@ -31,6 +31,22 @@ FILES=(
   "VOLTECH-sps.html"
   "VOLTECH-berichtsheft.html"
   "VOLTECH-tools2.html"
+  "VOLTECH-eigene-karten.html"
+  "VOLTECH-achievements.html"
+  "VOLTECH-analytics.html"
+  "VOLTECH-ap2-sim.html"
+  "VOLTECH-ki-quiz.html"
+  "VOLTECH-lernplan.html"
+  "VOLTECH-whats-new.html"
+  "SHK-lern.html"
+  "FISI-core.html"
+  "FISI-lern.html"
+  "spark-kfz.html"
+  "MESH-lern.html"
+  "PAINT-lern.html"
+  "CHEF-lern.html"
+  "KAUF-lern.html"
+  "ELEK-lern.html"
   "impressum.html"
   "datenschutz.html"
   ".htaccess"
@@ -65,10 +81,12 @@ echo ""
 
 # ── UPLOAD via LFTP ───────────────────────────────────────────
 lftp -c "
-set ftp:ssl-allow yes;
-set ssl:verify-certificate no;
-set net:timeout 30;
+set ftp:ssl-allow no;
+set ftp:passive-mode false;
+set ftp:use-feat false;
+set net:timeout 60;
 set net:max-retries 3;
+set net:reconnect-interval-base 5;
 
 open ftp://$FTP_USER:$FTP_PASS@$FTP_HOST;
 

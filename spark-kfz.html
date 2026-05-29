@@ -1,0 +1,2097 @@
+<!DOCTYPE html>
+<html lang="de" class="theme-spark">
+<head>
+<meta charset="UTF-8">
+<script>if(localStorage.getItem('arc_theme')==='dark')document.documentElement.classList.add('dm');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="SPARK: IHK-App für KFZ-Mechatroniker. Motor, Elektrik, Fahrwerk, OBD-Diagnose, E-Mobilität, SR-Karten. Kostenlos, offline, kein Account.">
+<meta name="keywords" content="KFZ-Mechatroniker, IHK Prüfung, Motor Viertakt, Fahrzeugelektrik, CAN-Bus, OBD2, ABS ESP, E-Mobilität HV, Spaced Repetition, kostenlos, Azubi">
+<link rel="canonical" href="https://arc-studio.org/spark-kfz.html">
+<meta property="og:title" content="SPARK — IHK-App für KFZ-Mechatroniker">
+<meta property="og:description" content="Motor, Elektrik, Fahrwerk, OBD-Diagnose, E-Mobilität, SR-Karten, Quiz. 100% kostenlos, offline, kein Account.">
+<meta property="og:url" content="https://arc-studio.org/spark-kfz.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://arc-studio.org/og/spark.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Arc Studio">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Arcstudio_org">
+<meta name="twitter:title" content="SPARK — IHK-App für KFZ-Mechatroniker">
+<meta name="twitter:description" content="Motor, Elektrik, Fahrwerk, OBD-Diagnose, E-Mobilität, SR-Karten. Kostenlos, offline, kein Account.">
+<meta name="twitter:image" content="https://arc-studio.org/og/spark.png">
+<meta name="theme-color" content="#050507">
+<title>SPARK — IHK-App KFZ-Mechatroniker | Kostenlos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap"></noscript>
+<link rel="stylesheet" href="voltech-base.css?v=2">
+<style>
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ARC STUDIO — DESIGN TOKENS · SPARK Theme (red #dc2626)
+   Shared base rules loaded from voltech-base.css
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+:root {
+  --bg:  #ffffff;
+  --bg2: #f5f5fe;
+  --bg3: #eeeefc;
+  --bg4: #e3e3f9;
+  --sep:  rgba(220,38,38,.06);
+  --brd:  rgba(220,38,38,.10);
+  --brd2: rgba(220,38,38,.18);
+  --tx:  #1a1a2e;
+  --tx2: #6b7280;
+  --tx3: #9ca3af;
+  --tx4: rgba(26,26,46,.08);
+  --ac:  #dc2626;
+  --acd: #b91c1c;
+  --acg: rgba(220,38,38,.12);
+  --acb: rgba(220,38,38,.28);
+  --ok:   #30d158;  --ok-g:  rgba(48,209,88,.14);   --ok-b:  rgba(48,209,88,.25);
+  --warn: #ff9f0a;  --warn-g:rgba(255,159,10,.12);
+  --err:  #ff453a;  --err-g: rgba(255,69,58,.12);
+  --pur:  #bf5af2;
+  --teal: #40c8e0;
+  --font-sans:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'SF Mono','Fira Code',monospace;
+  --fs-xs:   10px;  --fs-sm:   12px;  --fs-md:   13px;
+  --fs-base: 15px;  --fs-lg:   17px;  --fs-xl:   20px;  --fs-2xl:  24px;
+  --fw-medium: 500;  --fw-semi: 600;  --fw-bold: 700;
+  --lh-snug: 1.3;  --lh-base: 1.5;  --lh-relaxed: 1.65;
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px;  --sp-4: 16px;
+  --sp-5: 20px; --sp-6: 24px; --sp-8: 32px;
+  --r-xs: 6px;  --r-sm: 8px;  --r-md: 12px;
+  --r-lg: 16px; --r-xl: 20px; --r-full: 9999px;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,.08);
+  --shadow-md: 0 4px 20px rgba(0,0,0,.10);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,.15);
+  --t-fast: .12s ease;  --t-base: .2s ease;
+  --t-slow: .32s cubic-bezier(.16,1,.3,1);
+  --max-w: 640px;  --touch: 44px;
+  --br:  var(--brd);   --br2: var(--brd2);
+  --r:   var(--r-md);  --r2:  var(--r-lg);  --r3: var(--r-xl);
+  --sa:  var(--font-sans);  --mo: var(--font-mono);
+}
+
+/* ── SPARK-specific: header logo element ── */
+.hdr-logo {
+  width: 32px; height: 32px; border-radius: 7px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ── SPARK-specific: drawer close button ── */
+.drawer-close {
+  width: 44px; height: 44px; min-height: 44px; min-width: 44px;
+  border-radius: 8px;
+  background: var(--bg3); border: none; color: var(--tx2);
+  font-size: 16px; cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+}
+.lang-btn,.header-btn,.theme-btn{min-height:44px;min-width:44px;}
+
+/* ── SPARK-specific: quiz filter active (green, not accent) ── */
+.quiz-filter-btn.active{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.4);color:#22c55e;}
+
+/* ── SPARK-specific: quiz highscore badge border ── */
+.quiz-hs-badge { border: 1px solid rgba(220,38,38,.2); }
+
+/* ── SPARK-specific: quiz correct/wrong with raw rgba ── */
+.quiz-opt.correct { background: rgba(48,209,88,.12); }
+.quiz-opt.wrong { background: rgba(255,69,58,.1); }
+
+/* ── SPARK-specific: AP Check hover with indigo ── */
+.ap-item:hover{border-color:rgba(220,38,38,.3);}
+
+/* ── SPARK-specific: lf-quick-card hover with indigo ── */
+.lf-quick-card:hover { border-color: rgba(220,38,38,.3); }
+
+/* ── SPARK-specific: SR Notify button (red) ── */
+.sr-notify-btn { background: rgba(220,38,38,.15); border:1px solid rgba(220,38,38,.3); color:#dc2626; }
+.sr-notify-btn.active { background:rgba(220,38,38,.3); }
+
+/* ── SPARK-specific: SR Flashcard back face (indigo gradient) ── */
+.sr-back{
+  background:linear-gradient(160deg,rgba(220,38,38,.14) 0%,rgba(220,38,38,.04) 100%);
+  border:1px solid rgba(220,38,38,.3);
+  box-shadow:0 24px 64px rgba(0,0,0,.65),0 0 48px rgba(220,38,38,.08),inset 0 1px 0 rgba(220,38,38,.1);
+  transform:rotateY(180deg);
+}
+.sr-back .sr-card-tag{color:#dc2626;background:rgba(220,38,38,.12);border-color:rgba(220,38,38,.2);}
+
+/* ── SPARK-specific: SR progress bar fill (hardcoded indigo) ── */
+.sr-prog-bar-fill{background:#dc2626;}
+
+/* ── SPARK-specific: Calc cards (flex layout, not grid) ── */
+.calc-card{background:var(--bg2);border:1px solid var(--br);border-radius:var(--r2);padding:1rem;margin-bottom:.75rem;}
+.calc-card-title{font-size:14px;font-weight:700;color:var(--tx);margin-bottom:.25rem;}
+.calc-card-desc{font-size:12px;color:var(--tx3);margin-bottom:.75rem;}
+.calc-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem;}
+.calc-field{flex:1;min-width:140px;display:flex;flex-direction:column;gap:.3rem;}
+.calc-field label{font-size:11px;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;}
+.calc-field input,.calc-field select{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:.5rem .65rem;font-size:13px;color:var(--tx);font-family:var(--sa);outline:none;transition:border-color .15s;}
+.calc-field input:focus,.calc-field select:focus{border-color:var(--ac);}
+.calc-field select{cursor:pointer;}
+.calc-go{background:var(--ac);color:#fff;border:none;border-radius:10px;padding:.55rem 1.1rem;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--sa);transition:background .15s;margin-bottom:.75rem;}
+.calc-go:hover{background:var(--acd);}
+.calc-result-box{display:none;background:var(--bg3);border-radius:10px;padding:.75rem 1rem;border-left:3px solid var(--ac);}
+.calc-result-box.show{display:block;}
+.calc-result-val{font-size:28px;font-weight:700;color:var(--ac);font-family:var(--mo);}
+.calc-result-unit{font-size:14px;color:var(--tx2);margin-left:.4rem;}
+.calc-result-label{font-size:12px;color:var(--tx3);margin-top:.25rem;}
+.calc-hint{font-size:11px;color:var(--tx3);margin-top:.35rem;}
+
+/* ── SPARK-specific: Berichtsheft ── */
+.bh-week-sel{display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem;}
+.bh-week-sel select{flex:1;background:var(--bg2);border:1px solid var(--br);border-radius:10px;padding:.6rem .75rem;font-size:14px;color:var(--tx);font-family:var(--sa);outline:none;}
+.bh-week-sel button{padding:.6rem 1rem;background:var(--ac);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--sa);white-space:nowrap;}
+.bh-day-card{background:var(--bg2);border:1px solid var(--br);border-radius:var(--r2);padding:.85rem;margin-bottom:.6rem;}
+.bh-day-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;}
+.bh-day-name{font-size:13px;font-weight:700;}
+.bh-day-sel{background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:.4rem .6rem;font-size:12px;color:var(--tx);font-family:var(--sa);outline:none;max-width:55%;}
+.bh-day-text{width:100%;background:var(--bg3);border:1px solid var(--br);border-radius:8px;padding:.55rem .7rem;font-size:13px;color:var(--tx);font-family:var(--sa);resize:vertical;min-height:60px;outline:none;transition:border-color .15s;}
+.bh-day-text:focus{border-color:var(--ac);}
+.bh-save-btn{width:100%;padding:.7rem;background:var(--ac);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--sa);margin-top:.5rem;}
+.bh-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;margin-bottom:.75rem;}
+.bh-stat{background:var(--bg2);border:1px solid var(--br);border-radius:var(--r);padding:.65rem;text-align:center;}
+.bh-stat-val{font-family:var(--mo);font-size:20px;font-weight:700;color:var(--ac);}
+.bh-stat-label{font-size:10px;color:var(--tx3);margin-top:.2rem;}
+.bh-export-btn{width:100%;padding:.6rem;background:transparent;border:1px solid var(--br);border-radius:10px;font-size:13px;color:var(--tx2);cursor:pointer;font-family:var(--sa);margin-top:.5rem;}
+
+/* ── SPARK-specific: Language Pill Grid ── */
+.lang-pill-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:16px 0}
+.lang-pill{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 8px;background:var(--bg3);border:2px solid transparent;border-radius:12px;cursor:pointer;color:var(--tx);transition:all .2s}
+.lang-pill:hover{background:var(--bg4);border-color:var(--brd2)}
+.lang-pill.active{border-color:var(--ac);background:color-mix(in srgb, var(--ac) 15%, transparent)}
+.lang-flag{font-size:1.6rem}
+.lang-code{font-size:.75rem;font-weight:700;color:var(--ac)}
+.lang-name{font-size:.65rem;color:var(--tx3)}
+html.lang-ar{direction:rtl}
+
+/* ── SPARK-specific: What's New Toast ── */
+.whats-new-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--bg2);border:1px solid var(--ac);border-radius:16px;padding:14px 20px;max-width:340px;width:calc(100% - 40px);z-index:900;box-shadow:0 8px 32px #0008;animation:slideUp .4s ease}
+.whats-new-toast.hidden{display:none}
+.wnt-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.wnt-header strong{font-size:.95rem}
+.wnt-close{background:none;border:none;color:var(--tx3);font-size:1.2rem;cursor:pointer;padding:4px}
+.wnt-body{font-size:.82rem;color:var(--tx3);line-height:1.5}
+
+/* ── SPARK-specific: ARC STUDIO brand light mode (indigo accent) ── */
+.hdr {
+  background: rgba(255,255,255,.92) !important;
+  backdrop-filter: saturate(180%) blur(24px) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(24px) !important;
+  box-shadow: 0 1px 12px rgba(0,0,0,.06) !important;
+  border-bottom-color: rgba(220,38,38,.08) !important;
+}
+.app-tile:hover, .card:hover, .dash-card:hover {
+  box-shadow: 0 8px 24px rgba(220,38,38,.10), 0 0 0 1px rgba(220,38,38,.06) !important;
+}
+input, textarea, select {
+  background: #ffffff !important;
+  border-color: rgba(220,38,38,.15) !important;
+  color: #1a1a2e !important;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 3px rgba(220,38,38,.12) !important;
+}
+.drawer { box-shadow: -4px 0 32px rgba(0,0,0,.12) !important; }
+
+/* ── SPARK-specific dark mode: input accent (red) ── */
+.dm input:focus,
+.dm textarea:focus,
+.dm select:focus {
+  border-color: rgba(220,38,38,.6) !important;
+  box-shadow: 0 0 0 3px rgba(220,38,38,.18) !important;
+  outline: none !important;
+}
+.dm input[type=checkbox],
+.dm input[type=radio] {
+  accent-color: #dc2626 !important;
+  color-scheme: dark !important;
+}
+.dm input[type=range] {
+  accent-color: #dc2626 !important;
+  color-scheme: dark !important;
+}
+/* ── SPARK-specific dark mode: scrollbar & selection (red) ── */
+.dm * { scrollbar-color: rgba(220,38,38,.4) rgba(255,255,255,.05); }
+.dm ::selection { background: rgba(220,38,38,.35); color: #fff; }
+
+/* ── SPARK-specific dark mode: card hover (red) ── */
+.dm .card:hover,
+.dm .dash-card:hover,
+.dm .app-tile:hover,
+.dm .tool-card:hover {
+  border-color: rgba(220,38,38,.4) !important;
+  box-shadow: 0 0 0 1px rgba(220,38,38,.2), 0 8px 24px rgba(0,0,0,.4) !important;
+}
+/* ── Session Hero ─────────────────────────────────────── */
+.session-hero{margin:1.5rem 0 1.5rem;border-radius:var(--r3);padding:1.4rem 1.25rem;border:1px solid var(--acb);background:var(--acg);position:relative;overflow:hidden;}
+.session-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 100% 0%,rgba(220,38,38,.14),transparent);pointer-events:none;}
+.session-hero.done{border-color:rgba(22,163,74,.22);background:rgba(22,163,74,.07);}
+.session-hero.done::before{background:radial-gradient(ellipse 80% 60% at 100% 0%,rgba(22,163,74,.1),transparent);}
+.sh-cta{display:inline-flex;align-items:center;gap:.5rem;font-size:14px;font-weight:700;background:var(--ac);color:#fff;padding:.7rem 1.25rem;border-radius:10px;border:none;cursor:pointer;position:relative;z-index:1;transition:opacity .15s,transform .15s;box-shadow:0 4px 16px rgba(220,38,38,.3);}
+.sh-cta:hover{opacity:.88;}.sh-cta:active{transform:scale(.97);}
+.sh-cta.done-cta{background:var(--ok);box-shadow:0 4px 16px rgba(22,163,74,.25);}
+@keyframes fisiPulse{0%,100%{box-shadow:0 4px 16px rgba(220,38,38,.3)}50%{box-shadow:0 4px 24px rgba(220,38,38,.6)}}
+.sh-cta.pulse{animation:fisiPulse 2s ease infinite;}
+/* ── App Tile Grid ────────────────────────────────────── */
+.app-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.75rem;}
+.tile{background:var(--bg2);border:1px solid var(--brd);border-radius:var(--r2);padding:1.1rem 1rem;text-decoration:none;color:var(--tx);display:flex;flex-direction:column;gap:.3rem;transition:transform .2s cubic-bezier(.16,1,.3,1),box-shadow .2s,border-color .15s;position:relative;overflow:hidden;cursor:pointer;}
+.tile:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(220,38,38,.1);}
+.tile:active{opacity:.75;transform:scale(.97);}
+.tile.wide{grid-column:1/-1;flex-direction:row;align-items:center;gap:1rem;}
+.tile-ico{font-size:0;display:block;flex-shrink:0;margin-bottom:.1rem;}
+.tile.wide .tile-ico{margin-bottom:0;}
+.tile-info{flex:1;min-width:0;}
+.tile-sup{font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--tx3);margin-bottom:.15rem;}
+.tile-name{font-size:15px;font-weight:700;letter-spacing:-.2px;line-height:1.2;color:var(--tx);}
+.tile-desc{font-size:12px;color:var(--tx3);line-height:1.4;margin-top:.2rem;}
+.tile-arrow{font-size:13px;color:var(--ac);font-weight:700;margin-top:auto;padding-top:.6rem;}
+.tile.wide .tile-arrow{margin-top:0;padding-top:0;margin-left:auto;flex-shrink:0;font-size:16px;}
+.a-indigo{border-color:rgba(220,38,38,.22)!important;}
+.a-purple{border-color:rgba(124,58,237,.22)!important;}
+.a-orange{border-color:rgba(249,115,22,.22)!important;}
+.a-teal{border-color:rgba(20,184,166,.22)!important;}
+.a-green{border-color:rgba(22,163,74,.22)!important;}
+.a-blue{border-color:rgba(59,130,246,.22)!important;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.app-grid .tile{animation:fadeUp .3s ease both;}
+.app-grid .tile:nth-child(2){animation-delay:.04s}.app-grid .tile:nth-child(3){animation-delay:.08s}.app-grid .tile:nth-child(4){animation-delay:.12s}.app-grid .tile:nth-child(5){animation-delay:.16s}.app-grid .tile:nth-child(6){animation-delay:.20s}.app-grid .tile:nth-child(7){animation-delay:.24s}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SPARK",
+  "applicationCategory": "EducationApplication",
+  "operatingSystem": "Web, iOS, Android (PWA)",
+  "url": "https://arc-studio.org/spark-kfz.html",
+  "description": "IHK-Prüfungs-App für KFZ-Mechatroniker. Motor, Elektrik, Fahrwerk, OBD-Diagnose, E-Mobilität, Spaced Repetition.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "publisher": { "@type": "Organization", "name": "Arc Studio", "url": "https://arc-studio.org" },
+  "inLanguage": "de",
+  "audience": { "@type": "EducationalAudience", "educationalRole": "student" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ist SPARK kostenlos?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja, SPARK ist 100% kostenlos. Kein Account erforderlich, kein Tracking, offline nutzbar als Progressive Web App auf iOS und Android." }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Themen für die KFZ-Mechatroniker IHK-Prüfung werden abgedeckt?",
+      "acceptedAnswer": { "@type": "Answer", "text": "SPARK deckt alle wichtigen AP1- und AP2-Themen für KFZ-Mechatroniker ab: Motor und Verbrennungstechnik, Fahrzeugelektrik (Ohmsches Gesetz, CAN-Bus, Lichtmaschine), Fahrwerk und Bremsen (ABS, ESP), Antriebsstrang, OBD-Diagnose (Fehlercodes, Messtechnik) und E-Mobilität/HV-Systeme (5-Sicherheitsregeln, Batterietechnik, Rekuperation)." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist der Unterschied zwischen Quiz und SR-Karten in SPARK?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Das Quiz zeigt 4 Antwortoptionen und testet dein Wissen sofort. Die Spaced-Repetition-Karten (SR) zeigen Frage und Antwort — du bewertest dich selbst und der SM-2-Algorithmus plant die nächste Wiederholung automatisch. SR ist ideal für langfristiges Behalten." }
+    },
+    {
+      "@type": "Question",
+      "name": "Hilft SPARK auch bei der Prüfungssimulation?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja! SPARK enthält einen AP1-Simulator mit 45 Prüfungsfragen im IHK-Stil. Der Timer simuliert die echte Prüfungssituation. Außerdem gibt es einen AP-Check mit allen relevanten Themen für AP1 und AP2 des KFZ-Mechatronikers." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Header -->
+<header class="hdr">
+  <div class="hdr-logo">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="32" height="32" rx="7" fill="#dc2626"/>
+      <!-- Zündkerze Icon -->
+      <rect x="13" y="4" width="6" height="8" rx="1.5" fill="white" opacity=".9"/>
+      <rect x="14.5" y="12" width="3" height="5" rx=".5" fill="white" opacity=".7"/>
+      <path d="M12 18 L16 22 L12 28" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M20 18 L16 22 L20 28" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".6"/>
+      <circle cx="16" cy="22" r="1.5" fill="white"/>
+    </svg>
+  </div>
+  <div class="hdr-wordmark">
+    <h1>SPARK<span style="color:var(--ac)">KFZ</span></h1>
+    <p>KFZ-Mechatroniker · IHK-Prüfung</p>
+  </div>
+  <div class="hdr-actions">
+    <button class="lang-btn header-btn" id="langBtn" onclick="openLangModal()" aria-label="Sprache" style="background:none;border:none;font-size:1.3rem;cursor:pointer;min-height:44px;min-width:44px;padding:0 6px">🇩🇪</button>
+    <button type="button" class="hdr-btn" id="thm-btn" onclick="thmToggle()" title="Theme wechseln" aria-label="Theme wechseln">🌙</button>
+    <button type="button" class="hdr-btn" onclick="drawerOpen()" title="App-Switcher" aria-label="App-Switcher öffnen">⊞</button>
+  </div>
+</header>
+
+<!-- Bottom Nav -->
+<nav class="bnav">
+  <button type="button" class="bnav-btn on" data-screen="s-dash" aria-current="page"><span class="bnav-icon">🏠</span>Home</button>
+  <button type="button" class="bnav-btn" data-screen="s-lern"><span class="bnav-icon">📖</span>Lernen</button>
+  <button type="button" class="bnav-btn" data-screen="s-quiz"><span class="bnav-icon">❓</span>Quiz</button>
+  <button type="button" class="bnav-btn" data-screen="s-sr"><span class="bnav-icon">🧠</span>SR</button>
+  <button type="button" class="bnav-btn" data-screen="s-calc"><span class="bnav-icon">🧮</span>Rechner</button>
+  <button type="button" class="bnav-btn" data-screen="s-ap"><span class="bnav-icon">✅</span>AP-Check</button>
+  <button type="button" class="bnav-btn" data-screen="s-bh"><span class="bnav-icon">📓</span>Heft</button>
+  <button type="button" class="bnav-btn" data-screen="s-sim"><span class="bnav-icon">🎓</span>AP1-Sim</button>
+</nav>
+
+<!-- ===================== SCREEN 1: DASHBOARD ===================== -->
+<main id="s-dash" class="screen on">
+
+  <!-- SESSION HERO -->
+  <div class="session-hero" id="session-hero">
+    <div class="sh-top">
+      <span class="sh-label">SPARK · IHK-Vorbereitung</span>
+      <span class="sh-streak" id="sh-streak">🔥 —</span>
+    </div>
+    <div id="sh-body">
+      <div class="sh-count"><b id="sh-count">—</b></div>
+      <p class="sh-sub" id="sh-sub">SR-Karten fällig · Lade Lernstatus…</p>
+      <button type="button" class="sh-cta pulse" onclick="window.showScreen('s-sr')" id="sh-cta">🧠 SR starten</button>
+    </div>
+  </div>
+
+  <!-- APP GRID -->
+  <div class="app-grid">
+
+    <button type="button" class="tile wide a-indigo" onclick="window.showScreen('s-lern')">
+      <div class="tile-ico">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="11" fill="rgba(220,38,38,.15)"/>
+          <rect x="10" y="11" width="20" height="2.5" rx="1.25" fill="#fca5a5"/>
+          <rect x="10" y="16" width="15" height="2" rx="1" fill="#fca5a5" opacity=".7"/>
+          <rect x="10" y="21" width="11" height="2" rx="1" fill="#fca5a5" opacity=".5"/>
+          <circle cx="29" cy="28" r="4.5" fill="rgba(220,38,38,.25)" stroke="#fca5a5" stroke-width="1.5"/>
+          <path d="M27.2 28l1.2 1.2 2.4-2.4" stroke="#fca5a5" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="tile-info">
+        <div class="tile-sup">Hauptmodul</div>
+        <div class="tile-name">Lernfelder</div>
+        <div class="tile-desc">LF1–LF6 · Motor · Elektrik · Fahrwerk · Diagnose</div>
+      </div>
+      <div class="tile-arrow">→</div>
+    </button>
+
+    <button type="button" class="tile a-indigo" onclick="window.showScreen('s-quiz')">
+      <div class="tile-ico">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="9" fill="rgba(220,38,38,.15)"/>
+          <circle cx="18" cy="15" r="5.5" stroke="#fca5a5" stroke-width="1.5" fill="rgba(220,38,38,.08)"/>
+          <path d="M16 13.8c0-1.1.9-2 2-2s2 .9 2 2c0 .8-.5 1.5-1.2 1.8V17" stroke="#fca5a5" stroke-width="1.3" stroke-linecap="round"/>
+          <circle cx="18" cy="19.2" r=".9" fill="#fca5a5"/>
+          <rect x="10" y="24" width="16" height="2" rx="1" fill="#fca5a5" opacity=".35"/>
+        </svg>
+      </div>
+      <div class="tile-sup">Prüfung</div>
+      <div class="tile-name">Quiz</div>
+      <div class="tile-desc">30 Fragen · Multiple Choice</div>
+      <div class="tile-arrow">→</div>
+    </button>
+
+    <button type="button" class="tile a-purple" onclick="window.showScreen('s-sr')">
+      <div class="tile-ico">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="9" fill="rgba(124,58,237,.15)"/>
+          <rect x="8" y="10" width="20" height="13" rx="2" stroke="#a78bfa" stroke-width="1.5" fill="rgba(124,58,237,.08)"/>
+          <line x1="12" y1="15" x2="24" y2="15" stroke="#a78bfa" stroke-width="1.3" stroke-linecap="round"/>
+          <line x1="12" y1="19" x2="19" y2="19" stroke="#a78bfa" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M16 27l2-4 2 4" stroke="#a78bfa" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="tile-sup">Lernen</div>
+      <div class="tile-name">SR-Karten</div>
+      <div class="tile-desc">Spaced Repetition · <span id="sh-sr-count">—</span> fällig</div>
+      <div class="tile-arrow">→</div>
+    </button>
+
+    <button type="button" class="tile a-teal" onclick="window.showScreen('s-calc')">
+      <div class="tile-ico">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="9" fill="rgba(20,184,166,.15)"/>
+          <rect x="9" y="8" width="18" height="20" rx="2.5" stroke="#2dd4bf" stroke-width="1.5" fill="rgba(20,184,166,.08)"/>
+          <rect x="12" y="12" width="12" height="3" rx="1" fill="#2dd4bf" opacity=".6"/>
+          <rect x="12" y="17.5" width="3" height="3" rx=".75" fill="#2dd4bf" opacity=".8"/>
+          <rect x="16.5" y="17.5" width="3" height="3" rx=".75" fill="#2dd4bf" opacity=".8"/>
+          <rect x="21" y="17.5" width="3" height="3" rx=".75" fill="#2dd4bf" opacity=".8"/>
+          <rect x="12" y="22" width="3" height="2.5" rx=".75" fill="#2dd4bf" opacity=".5"/>
+          <rect x="21" y="22" width="3" height="2.5" rx=".75" fill="#2dd4bf" opacity=".5"/>
+        </svg>
+      </div>
+      <div class="tile-sup">Tool</div>
+      <div class="tile-name">KFZ-Rechner</div>
+      <div class="tile-desc">Reifengröße · Spannung · Batterie</div>
+      <div class="tile-arrow">→</div>
+    </button>
+
+    <button type="button" class="tile a-green" onclick="window.showScreen('s-ap')">
+      <div class="tile-ico">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="9" fill="rgba(22,163,74,.15)"/>
+          <rect x="9" y="8" width="18" height="22" rx="2" stroke="#4ade80" stroke-width="1.5" fill="rgba(22,163,74,.08)"/>
+          <path d="M13 18.5l3.5 3.5 7-7" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="tile-sup">Prüfung</div>
+      <div class="tile-name">AP-Check</div>
+      <div class="tile-desc">AP1 Prüfungsvorbereitung</div>
+      <div class="tile-arrow">→</div>
+    </button>
+
+    <button type="button" class="tile a-orange" onclick="window.showScreen('s-bh')">
+      <div class="tile-ico">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="9" fill="rgba(249,115,22,.15)"/>
+          <rect x="9" y="7" width="18" height="22" rx="2" stroke="#fb923c" stroke-width="1.5" fill="rgba(249,115,22,.08)"/>
+          <line x1="13" y1="13" x2="23" y2="13" stroke="#fb923c" stroke-width="1.3" stroke-linecap="round"/>
+          <line x1="13" y1="17" x2="23" y2="17" stroke="#fb923c" stroke-width="1.3" stroke-linecap="round"/>
+          <line x1="13" y1="21" x2="19" y2="21" stroke="#fb923c" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="tile-sup">Ausbildung</div>
+      <div class="tile-name">Berichtsheft</div>
+      <div class="tile-desc">Ausbildungsnachweise</div>
+      <div class="tile-arrow">→</div>
+    </button>
+
+    <button type="button" class="tile a-blue" onclick="window.showScreen('s-sim')">
+      <div class="tile-ico">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <rect width="36" height="36" rx="9" fill="rgba(59,130,246,.15)"/>
+          <rect x="8" y="10" width="20" height="13" rx="2" stroke="#60a5fa" stroke-width="1.5" fill="rgba(59,130,246,.08)"/>
+          <line x1="14" y1="27" x2="22" y2="27" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="18" y1="23" x2="18" y2="27" stroke="#60a5fa" stroke-width="1.5"/>
+          <circle cx="18" cy="16.5" r="3" stroke="#60a5fa" stroke-width="1.3" fill="rgba(59,130,246,.08)"/>
+        </svg>
+      </div>
+      <div class="tile-sup">Simulation</div>
+      <div class="tile-name">AP1-Simulator</div>
+      <div class="tile-desc">Prüfungssimulation · 40 Fragen</div>
+      <div class="tile-arrow">→</div>
+    </button>
+
+  </div>
+
+  <!-- Versteckte Elemente für JS-Kompatibilität -->
+  <div style="display:none" aria-hidden="true">
+    <span id="stat-cards">0</span><span id="stat-hs">—</span>
+    <span id="stat-streak">0</span><span id="qsStreak">0</span>
+    <span id="qsSR">0</span><span id="qsDate">—</span>
+    <div id="returnBanner"></div>
+    <div id="dq-q"></div><div id="dq-answer"></div><button id="dq-toggle"></button>
+  </div>
+
+</main>
+
+<!-- ===================== SCREEN 2: LERNEN ===================== -->
+<main id="s-lern" class="screen">
+
+  <details class="lf-accordion" id="lf1">
+    <summary class="lf-summary">
+      <span class="lf-icon">⚙️</span>
+      <div class="lf-meta">
+        <span class="lf-title">LF1 — Motor &amp; Verbrennungstechnik</span>
+        <span class="lf-count">10 Themen</span>
+      </div>
+      <span class="lf-arrow">›</span>
+    </summary>
+    <div class="lf-body">
+      <ul>
+        <li>Viertakt-Ottomotor: Ansaugen → Verdichten → Arbeiten → Ausstoßen (AVA-A)</li>
+        <li>Otto vs. Diesel: Ottomotor Fremdzündung (Zündkerze), Dieselmotor Selbstzündung (hohe Verdichtung 14–22:1)</li>
+        <li>Hubraum: V_H = π/4 × d² × s × z (d = Bohrung, s = Hub, z = Zylinderanzahl)</li>
+        <li>Verdichtungsverhältnis ε: Otto ca. 8–12:1 / Diesel ca. 14–22:1; höher = effizienter, aber klopfgefährdet</li>
+        <li>Nockenwelle: steuert Einlass-/Auslassventile; DOHC = 2 Nockenwellen oben, SOHC = 1</li>
+        <li>Gemischbildung: Direkteinspritzung (GDI/FSI) vs. Saugrohreinspritzung; Common-Rail beim Diesel</li>
+        <li>Kühlung: Flüssigkeitskühlung (Wasserpumpe, Thermostat, Kühler) vs. Luftkühlung</li>
+        <li>Motoröl: Viskositätsklasse SAE (z.B. 5W-30); W = Winterfähigkeit; Ölwechselintervalle</li>
+        <li>Abgasnachbehandlung: KAT (3-Wege), DPF (Dieselpartikelfilter, Regeneration), AGR, SCR/AdBlue</li>
+        <li>Turbolader: Abgasenergierückgewinnung → Ladedruck erhöht Füllung; Ladeluftkühler reduziert Temp.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="lf-accordion" id="lf2">
+    <summary class="lf-summary">
+      <span class="lf-icon">⚡</span>
+      <div class="lf-meta">
+        <span class="lf-title">LF2 — Fahrzeugelektrik &amp; Elektronik</span>
+        <span class="lf-count">10 Themen</span>
+      </div>
+      <span class="lf-arrow">›</span>
+    </summary>
+    <div class="lf-body">
+      <ul>
+        <li>Ohmsches Gesetz: U = R × I (Spannung = Widerstand × Strom); Leistung P = U × I = I² × R</li>
+        <li>Reihen-/Parallelschaltung: Reihe → R_ges = R1+R2, U teilt sich auf; Parallel → 1/R = 1/R1+1/R2, I teilt sich auf</li>
+        <li>Drehstromgenerator (Lima): Lichtmaschine erzeugt Wechselstrom → Gleichrichter → Bordnetz 12–14,8V</li>
+        <li>Startmotor (Anlasser): Starterritzel greift in Schwungrad; Einrückrelais, Freilauf</li>
+        <li>Batterie: Blei-Säure, AGM (Absorbent Glass Mat), EFB (Enhanced Flooded Battery); Kapazität in Ah</li>
+        <li>CAN-Bus: Controller Area Network; serielle Vernetzung aller Steuergeräte; High-Speed CAN (500 kBit/s)</li>
+        <li>LIN-Bus: Local Interconnect Network; günstig, langsam (20 kBit/s); für einfache Aktoren (Spiegel, Sitze)</li>
+        <li>Zündanlage: Transistorzündung, Direktzündung (eine Zündspule pro Zylinder); Zündfolge (z.B. 1-3-4-2)</li>
+        <li>Sensoren: Lambda-Sonde (Gemischregelung, Sprung- vs. Breitband), Klopfsensor, Nockenwellensensor</li>
+        <li>Glühanlage (Diesel): Glühstiftkerze 1–5 s Vorglühen; Keramik-Glühkerzen bis 1000°C</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="lf-accordion" id="lf3">
+    <summary class="lf-summary">
+      <span class="lf-icon">🛞</span>
+      <div class="lf-meta">
+        <span class="lf-title">LF3 — Fahrwerk, Bremsen &amp; Bereifung</span>
+        <span class="lf-count">10 Themen</span>
+      </div>
+      <span class="lf-arrow">›</span>
+    </summary>
+    <div class="lf-body">
+      <ul>
+        <li>Bremsanlage: Scheibenbremse (Sattelbremse, belüftet) vs. Trommelbremse; Bremsdruck hydraulisch</li>
+        <li>ABS: Antiblockiersystem — Raddrehzahlsensoren messen Bremsschlupf; Druckhalte/Abbau-Ventile verhindern Blockieren</li>
+        <li>ESP: Elektronisches Stabilitätsprogramm; erkennt Gier-/Querbeschleunigung; bremst einzelne Räder gezielt</li>
+        <li>Spurweite: Abstand Reifenmitte; Sturz (Camber): positiv/negativ — beeinflusst Kurvenverhalten</li>
+        <li>Vorspur/Nachspur (Toe): Toe-in = Räder vorne enger; beeinflusst Geradeauslauf und Reifenverschleiß</li>
+        <li>Federung: Schraubenfedern, Drehstabfedern, Luftfederung; Federkennlinie progressiv/linear</li>
+        <li>Stoßdämpfer: Dämpft Schwingungen der Feder; Teleskopstoßdämpfer (Einrohr, Zwirohr)</li>
+        <li>Reifenbezeichnung: 205/55 R 16 91V — 205=Breite mm, 55=Querschnitt %, R=Radial, 16=Felge Zoll</li>
+        <li>Reifendruck: beeinflusst Rollwiderstand, Haftung und Verschleiß; TPMS = Reifendruckkontrollsystem</li>
+        <li>Achsgeometrie: Hauptachsen Vorderachse (McPherson, Doppelquerlenker) und Hinterachse</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="lf-accordion" id="lf4">
+    <summary class="lf-summary">
+      <span class="lf-icon">🔩</span>
+      <div class="lf-meta">
+        <span class="lf-title">LF4 — Antriebsstrang &amp; Getriebe</span>
+        <span class="lf-count">10 Themen</span>
+      </div>
+      <span class="lf-arrow">›</span>
+    </summary>
+    <div class="lf-body">
+      <ul>
+        <li>Kupplung: Einscheiben-Trockenkupplung; Reibbelag überträgt Motordrehmoment; Ausrücklager betätigt Federn</li>
+        <li>Schaltgetriebe: Synchronring gleicht Drehzahldifferenz aus vor dem Einspuren; Schaltgabel bewegt Schiebemuffe</li>
+        <li>Automatikgetriebe: Drehmomentwandler (hydrodynamisch) + Planetenradsatz; Wandlerüberbrückungskupplung</li>
+        <li>DSG/Doppelkupplungsgetriebe: 2 Kupplungen (gerade/ungerade Gänge), schnelle Schaltung ohne Zugkraftunterbrechung</li>
+        <li>CVT (Stufenlosgetriebe): Riemengetriebe mit variablem Scheibendurchmesser; stufenlose Übersetzung</li>
+        <li>Gelenkwelle: überträgt Drehmoment bei veränderlichem Winkel; Gleichlaufgelenk (VL-Gelenk, rzeppaförmig)</li>
+        <li>Differential: verteilt Drehmoment auf 2 Antriebsräder; erlaubt Drehzahldifferenz in Kurven</li>
+        <li>Sperrdifferential: begrenzt Drehzahldifferenz; mechanisch, viskos oder elektronisch (Brake-Torque-Vectoring)</li>
+        <li>Allradantrieb: permanenter (Torsen-Diff) vs. zuschaltbarer (Haldex-Kupplung); 4WD vs. AWD</li>
+        <li>Übersetzung i: i = n_Antrieb / n_Abtrieb = M_Abtrieb / M_Antrieb; Gesamtübersetzung = i_Getriebe × i_Achse</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="lf-accordion" id="lf5">
+    <summary class="lf-summary">
+      <span class="lf-icon">🔍</span>
+      <div class="lf-meta">
+        <span class="lf-title">LF5 — OBD-Diagnose &amp; Messtechnik</span>
+        <span class="lf-count">10 Themen</span>
+      </div>
+      <span class="lf-arrow">›</span>
+    </summary>
+    <div class="lf-body">
+      <ul>
+        <li>OBD2 (On-Board-Diagnose): genormter 16-polige DLC-Stecker (ISO 15765-4); Fehlercodes auslesen und löschen</li>
+        <li>DTCs (Diagnostic Trouble Codes): P = Powertrain, B = Body, C = Chassis, U = Network; z.B. P0300 = Fehlzündung</li>
+        <li>Freeze-Frame-Daten: gespeicherte Motordaten zum Zeitpunkt des Fehlers; hilft bei Intermittent-Fehlern</li>
+        <li>Multimeter: Spannungsmessung (parallel), Strommessung (Zangenamperemeter), Widerstandsmessung (stromlos)</li>
+        <li>Spannungsfall (Durchgangsprüfung): U_Verlust = I × R_Leitung; max. 0,1V je Verbindung zulässig</li>
+        <li>Oszilloskop: Signalverlauf zeitlich darstellen; ideal für CAN-Bus, Injektoren, Nockenwellensensor</li>
+        <li>Kompressionstest: Mindestdruck und Gleichmäßigkeit der Zylinder prüfen; Nennwert aus Herstellerdaten</li>
+        <li>Abgasanalyse AU: CO, HC, CO₂, O₂, λ-Wert; EU-Grenzwerte je nach Abgasnorm (Euro 5/6)</li>
+        <li>Drucktest Kraftstoff: Kraftstoffdruckregler, Injektordichtigkeit; Abfall nach Abstellen = leckt</li>
+        <li>Leckagetest Motor: Druckluft in Zylinder; hören wo Luft entweicht (Ansaugtrakt, Auspuff, Öleinfüllöffnung)</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="lf-accordion" id="lf6">
+    <summary class="lf-summary">
+      <span class="lf-icon">🔋</span>
+      <div class="lf-meta">
+        <span class="lf-title">LF6 — E-Mobilität &amp; HV-Systeme</span>
+        <span class="lf-count">10 Themen</span>
+      </div>
+      <span class="lf-arrow">›</span>
+    </summary>
+    <div class="lf-body">
+      <ul>
+        <li>HV-Spannungsklassen: Klasse A ≤ 60 V DC / 25 V AC (sicher); Klasse B &gt; 60 V DC (HV-Bereich ab 60 V)</li>
+        <li>5-Sicherheitsregeln HV: 1.Freischalten, 2.Sichern gegen Wiedereinschalten, 3.Spannungsfreiheit feststellen, 4.Erden und Kurzschließen, 5.Benachbarte Teile abdecken</li>
+        <li>Service-Disconnect (SD): mechanische Trennung des HV-Stromkreises; MUST vor Arbeiten am HV-System</li>
+        <li>HV-Batterie: Lithium-Ionen-Zellen (NMC, LFP); Kapazität in kWh; Energie W = U × Q (Volt × Ah)</li>
+        <li>BMS (Batteriemanagementsystem): überwacht Zellspannung, Temperatur, SOC, SOH; Cell-Balancing</li>
+        <li>Elektromotor: PMSM (Permanentmagnet-Synchronmotor) oder ASM (Asynchronmotor); kein Getriebe erforderlich</li>
+        <li>Wechselrichter (Inverter): wandelt DC-Batteriestrom in AC-Drehstrom für E-Motor; Pulsweiten-Modulation</li>
+        <li>Rekuperation: kinetische Energie beim Bremsen → Generator → Batterie laden; bis 25% Reichweitengewinn</li>
+        <li>Ladearten: AC-Laden Mode 2/3 (3,7–22 kW, Typ 2), DC-Schnellladen Mode 4 (CCS, CHAdeMO, bis 350 kW)</li>
+        <li>Thermomanagement: Batterieheizung bei Kälte, Kühlung bei Schnellladen; beeinflusst Zelllebensdauer stark</li>
+      </ul>
+    </div>
+  </details>
+
+</main>
+
+<!-- ===================== SCREEN 3: QUIZ ===================== -->
+<main id="s-quiz" class="screen">
+
+  <div id="quiz-start">
+    <div class="quiz-hero">
+      <span class="quiz-hero-icon">❓</span>
+      <h2>KFZ Quiz</h2>
+      <p>45 Fragen · Themenfilter · 20 pro Runde</p>
+      <div class="quiz-hs-badge" id="hs-badge">🏆 Highscore: —</div>
+      <div class="quiz-filter">
+        <button class="quiz-filter-btn active" data-topic="all" onclick="setQuizTopic('all')">🔧 Alle</button>
+        <button class="quiz-filter-btn" data-topic="Motor" onclick="setQuizTopic('Motor')">⚙️ Motor</button>
+        <button class="quiz-filter-btn" data-topic="Elektrik" onclick="setQuizTopic('Elektrik')">⚡ Elektrik</button>
+        <button class="quiz-filter-btn" data-topic="Fahrwerk" onclick="setQuizTopic('Fahrwerk')">🛞 Fahrwerk</button>
+        <button class="quiz-filter-btn" data-topic="Antrieb" onclick="setQuizTopic('Antrieb')">🔩 Antrieb</button>
+        <button class="quiz-filter-btn" data-topic="Diagnose" onclick="setQuizTopic('Diagnose')">🔍 Diagnose</button>
+        <button class="quiz-filter-btn" data-topic="E-Mobilitaet" onclick="setQuizTopic('E-Mobilitaet')">🔋 E-Mob</button>
+      </div>
+      <button type="button" class="btn-primary" onclick="quizStart()">Quiz starten</button>
+    </div>
+  </div>
+
+  <div id="quiz-run" style="display:none;">
+    <div class="quiz-progress-wrap">
+      <div class="quiz-progress-bar" id="q-prog" style="width:0%"></div>
+    </div>
+    <div class="quiz-counter" id="q-counter">Frage 1 / 20</div>
+    <div class="quiz-card">
+      <div class="quiz-question" id="q-text"></div>
+      <div class="quiz-opts" id="q-opts"></div>
+      <div class="quiz-explanation" id="q-exp" style="display:none;"></div>
+      <button type="button" class="quiz-next-btn" id="q-next" style="display:none;" onclick="quizNext()">Weiter →</button>
+    </div>
+  </div>
+
+  <div id="quiz-end" style="display:none;">
+    <div class="quiz-end-card">
+      <div class="quiz-score-big" id="end-score">0</div>
+      <div class="quiz-score-sub" id="end-sub">von 20 Fragen richtig</div>
+      <div class="quiz-end-hs" id="end-hs"></div>
+      <button type="button" class="btn-primary" onclick="quizStart()">Nochmal spielen</button>
+      <button type="button" onclick="window.ArcShare&&ArcShare.show({score:quizScore,total:quizQ.length,app:'SPARK',appColor:'#dc2626',appIcon:'🔧',streak:parseInt(localStorage.getItem('kfz_streak')||'0')})" class="btn-primary" style="background:rgba(220,38,38,.15);color:#dc2626;border:1px solid rgba(220,38,38,.35);margin-top:.5rem">📤 Ergebnis teilen</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- ===================== SCREEN 4: SR ===================== -->
+<main id="s-sr" class="screen">
+
+  <div id="sr-dash-view">
+    <div class="sr-stat-row">
+      <div class="sr-stat"><div class="sr-stat-v" id="sr-v-due" style="color:var(--warn);">0</div><div class="sr-stat-l">Fällig</div></div>
+      <div class="sr-stat"><div class="sr-stat-v" id="sr-v-new" style="color:var(--ac);">0</div><div class="sr-stat-l">Neu</div></div>
+      <div class="sr-stat"><div class="sr-stat-v" id="sr-v-learned" style="color:var(--ok);">0</div><div class="sr-stat-l">Gelernt</div></div>
+      <div class="sr-stat"><div class="sr-stat-v" id="sr-v-total">40</div><div class="sr-stat-l">Gesamt</div></div>
+    </div>
+    <div class="sr-mode-row" id="sr-mode-row">
+      <button type="button" class="sr-mode-btn active" id="sr-mode-flip" onclick="setSRMode('flip')">🃏 Karteikarte</button>
+      <button type="button" class="sr-mode-btn" id="sr-mode-fill" onclick="setSRMode('fill')">✏️ Lückentext</button>
+    </div>
+    <div id="sr-start-area"></div>
+    <div class="sr-notify-row">
+      <button type="button" class="sr-notify-btn" id="fisiNotifyBtn" onclick="fisiToggleNotify()">🔔 Erinnerungen aktivieren</button>
+      <span class="sr-notify-hint" id="fisiNotifyHint"></span>
+    </div>
+  </div>
+
+  <div id="sr-session-view" style="display:none;">
+    <div class="sr-prog-wrap">
+      <div class="sr-prog-bar-track">
+        <div class="sr-prog-bar-fill" id="sr-prog-bar" style="width:0%"></div>
+      </div>
+      <div class="sr-prog-label" id="sr-prog-txt">1 / 1</div>
+    </div>
+    <div class="sr-flip-wrap">
+      <div class="sr-flip" id="sr-flip" onclick="srFlip()">
+        <div class="sr-front">
+          <div class="sr-card-tag" id="sr-card-tag">TAG</div>
+          <div class="sr-card-q" id="sr-card-q">Frage</div>
+          <div class="sr-card-hint" id="sr-card-hint">Tippen zum Aufdecken</div>
+        </div>
+        <div class="sr-back">
+          <div class="sr-card-tag">Antwort</div>
+          <div class="sr-card-a" id="sr-card-a">Antwort</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sr-fill-area" style="display:none;">
+      <div class="sr-fill-area-wrap">
+        <div class="sr-fill-q-card">
+          <div class="sr-fill-q-tag" id="sr-fill-tag"></div>
+          <div class="sr-fill-q-text" id="sr-fill-q"></div>
+        </div>
+        <div class="sr-fill-input-row">
+  <textarea id="sr-fill-input" class="sr-fill-input" placeholder="Deine Antwort…" rows="3"></textarea>
+  <button type="button" class="sr-mic-btn" id="sr-mic-btn" onclick="srStartVoice()" title="Spracheingabe starten" aria-label="Spracheingabe">🎙️</button>
+</div>
+        <button type="button" class="sr-fill-submit" id="sr-fill-submit" onclick="srFillSubmit()">✓ Antwort prüfen</button>
+        <div id="sr-fill-answer" style="display:none;">
+          <div class="sr-fill-answer-box">
+            <div class="sr-fill-answer-label">Musterlösung</div>
+            <div id="sr-fill-answer-text" class="sr-fill-answer-text"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="sr-grade-area" style="display:none;">
+      <div class="sr-grade-prompt">Wie gut wusstest du es?</div>
+      <div class="sr-grade-row">
+        <button type="button" class="sr-grade-btn bad" onclick="srGrade(1)">
+          <span class="sr-grade-btn-label">Nochmal</span>
+          <span class="sr-grade-btn-note">morgen</span>
+        </button>
+        <button type="button" class="sr-grade-btn ok" onclick="srGrade(3)">
+          <span class="sr-grade-btn-label">Schwer</span>
+          <span class="sr-grade-btn-note">+Intervall</span>
+        </button>
+        <button type="button" class="sr-grade-btn good" onclick="srGrade(5)">
+          <span class="sr-grade-btn-label">Gewusst</span>
+          <span class="sr-grade-btn-note">+mehr</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="sr-done-view" style="display:none;">
+    <div class="sr-done">
+      <span class="sr-done-emoji">🎉</span>
+      <div class="sr-done-title">Sitzung abgeschlossen!</div>
+      <div class="sr-done-sub" id="sr-done-sub"></div>
+      <button type="button" class="sr-start-btn" style="margin-top:1.5rem;" onclick="kfzSrBackToDash()">← Zurück zur Übersicht</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- ===================== SCREEN 5: RECHNER ===================== -->
+<main id="s-calc" class="screen">
+  <div class="sec-title">🧮 KFZ-Rechner</div>
+
+  <!-- Reifenumfang / Rollumfang -->
+  <div class="calc-card">
+    <div class="calc-card-title">🛞 Reifenumfang &amp; dynamischer Rollradius</div>
+    <div class="calc-card-desc">Aus Reifenbezeichnung z.B. 205/55 R16 — Rollumfang berechnen</div>
+    <div class="calc-row">
+      <div class="calc-field"><label>Breite (mm)</label><input type="number" id="t-width" placeholder="z.B. 205" min="100" max="400"></div>
+      <div class="calc-field"><label>Querschnitt (%)</label><input type="number" id="t-ratio" placeholder="z.B. 55" min="25" max="90"></div>
+      <div class="calc-field"><label>Felge (Zoll)</label><input type="number" id="t-rim" placeholder="z.B. 16" min="10" max="26"></div>
+    </div>
+    <button type="button" class="calc-go" onclick="calcTireCirc()">Berechnen</button>
+    <div class="calc-result-box" id="tire-result">
+      <div id="tire-lines" style="font-size:13px;line-height:2;color:var(--tx2);font-family:var(--mo);"></div>
+    </div>
+  </div>
+
+  <!-- Spannungsfall -->
+  <div class="calc-card">
+    <div class="calc-card-title">⚡ Spannungsfall-Rechner</div>
+    <div class="calc-card-desc">U_Verlust = 2 × L × I / (κ × A) — max. 0,5 V empfohlen</div>
+    <div class="calc-row">
+      <div class="calc-field"><label>Leitungslänge (m)</label><input type="number" id="sv-len" placeholder="z.B. 5" step="0.1" min="0"></div>
+      <div class="calc-field"><label>Strom I (A)</label><input type="number" id="sv-amp" placeholder="z.B. 10" step="0.1" min="0"></div>
+      <div class="calc-field"><label>Querschnitt (mm²)</label>
+        <select id="sv-area">
+          <option value="0.5">0,5 mm²</option>
+          <option value="0.75">0,75 mm²</option>
+          <option value="1.0">1,0 mm²</option>
+          <option value="1.5" selected>1,5 mm²</option>
+          <option value="2.5">2,5 mm²</option>
+          <option value="4.0">4,0 mm²</option>
+          <option value="6.0">6,0 mm²</option>
+          <option value="10.0">10 mm²</option>
+          <option value="16.0">16 mm²</option>
+          <option value="25.0">25 mm²</option>
+        </select>
+      </div>
+    </div>
+    <button type="button" class="calc-go" onclick="calcVoltDrop()">Berechnen</button>
+    <div class="calc-result-box" id="sv-result"><span class="calc-result-val" id="sv-val"></span><span class="calc-result-unit" id="sv-unit"> V</span><div class="calc-result-label" id="sv-label"></div></div>
+    <div class="calc-hint">κ Kupfer ≈ 56 m/(Ω·mm²) · Faktor 2 für Hin- und Rückleitung</div>
+  </div>
+
+  <!-- Batteriekapazität / Ladezeit -->
+  <div class="calc-card">
+    <div class="calc-card-title">🔋 Ladezeit-Rechner (Batterie)</div>
+    <div class="calc-card-desc">t = Q / I — Wie lange lädt eine leere Batterie?</div>
+    <div class="calc-row">
+      <div class="calc-field"><label>Kapazität (Ah)</label><input type="number" id="bt-cap" placeholder="z.B. 70" step="1" min="1"></div>
+      <div class="calc-field"><label>Ladestrom (A)</label><input type="number" id="bt-cur" placeholder="z.B. 10" step="0.5" min="0.1"></div>
+      <div class="calc-field"><label>SOC Ist (%)</label><input type="number" id="bt-soc" placeholder="z.B. 20" min="0" max="99" value="0"></div>
+    </div>
+    <button type="button" class="calc-go" onclick="calcChargeTime()">Berechnen</button>
+    <div class="calc-result-box" id="bt-result"><span class="calc-result-val" id="bt-val"></span><span class="calc-result-unit" id="bt-unit"></span><div class="calc-result-label" id="bt-label"></div></div>
+    <div class="calc-hint">Empfohlen: max. 10% der Kapazität als Ladestrom (z.B. 70 Ah → max. 7 A Normalladung)</div>
+  </div>
+</main>
+
+<!-- ===================== SCREEN 6: AP-CHECK ===================== -->
+<main id="s-ap" class="screen">
+  <div class="sec-title">✅ AP-Vorbereitung KFZ</div>
+  <div style="background:var(--bg2);border:1px solid var(--br);border-radius:var(--r2);padding:1rem;margin-bottom:.75rem;">
+    <div style="font-size:13px;font-weight:700;margin-bottom:.5rem;">📊 Fortschritt</div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--tx3);margin-bottom:.5rem;">
+      <span id="ap-done">0 erledigt</span><span id="ap-pct">0%</span>
+    </div>
+    <div style="background:var(--bg3);border-radius:4px;height:6px;overflow:hidden;">
+      <div id="ap-bar" style="height:6px;background:var(--ac);border-radius:4px;width:0%;transition:width .3s;"></div>
+    </div>
+  </div>
+  <div class="ap-list" id="ap-list"></div>
+</main>
+
+<!-- ===================== SCREEN 7: BERICHTSHEFT ===================== -->
+<main id="s-bh" class="screen">
+  <div class="sec-title">📓 Berichtsheft</div>
+  <div class="bh-stats">
+    <div class="bh-stat"><div class="bh-stat-val" id="bh-total-weeks">0</div><div class="bh-stat-label">Wochen</div></div>
+    <div class="bh-stat"><div class="bh-stat-val" id="bh-done-weeks">0</div><div class="bh-stat-label">Vollständig</div></div>
+    <div class="bh-stat"><div class="bh-stat-val" id="bh-total-chars">0</div><div class="bh-stat-label">Zeichen</div></div>
+  </div>
+  <div class="bh-week-sel">
+    <select id="bh-week-select" onchange="bhLoadWeek()"></select>
+    <button type="button" onclick="bhNewWeek()">+ Neue Woche</button>
+  </div>
+  <div id="bh-form" style="display:none;">
+    <div class="bh-day-card">
+      <div class="bh-day-hdr"><span class="bh-day-name">Montag</span>
+        <select class="bh-day-sel" id="bh-mo-cat"><option>Netzwerkadministration</option><option>Programmierung/Entwicklung</option><option>IT-Support/Helpdesk</option><option>Server-Administration</option><option>IT-Sicherheit</option><option>Dokumentation</option><option>Projektarbeit</option><option>Berufsschule</option><option>Sonstiges</option></select>
+      </div>
+      <textarea class="bh-day-text" id="bh-mo-text" placeholder="Was hast du heute gemacht?"></textarea>
+    </div>
+    <div class="bh-day-card">
+      <div class="bh-day-hdr"><span class="bh-day-name">Dienstag</span>
+        <select class="bh-day-sel" id="bh-di-cat"><option>Netzwerkadministration</option><option>Programmierung/Entwicklung</option><option>IT-Support/Helpdesk</option><option>Server-Administration</option><option>IT-Sicherheit</option><option>Dokumentation</option><option>Projektarbeit</option><option>Berufsschule</option><option>Sonstiges</option></select>
+      </div>
+      <textarea class="bh-day-text" id="bh-di-text" placeholder="Was hast du heute gemacht?"></textarea>
+    </div>
+    <div class="bh-day-card">
+      <div class="bh-day-hdr"><span class="bh-day-name">Mittwoch</span>
+        <select class="bh-day-sel" id="bh-mi-cat"><option>Netzwerkadministration</option><option>Programmierung/Entwicklung</option><option>IT-Support/Helpdesk</option><option>Server-Administration</option><option>IT-Sicherheit</option><option>Dokumentation</option><option>Projektarbeit</option><option>Berufsschule</option><option>Sonstiges</option></select>
+      </div>
+      <textarea class="bh-day-text" id="bh-mi-text" placeholder="Was hast du heute gemacht?"></textarea>
+    </div>
+    <div class="bh-day-card">
+      <div class="bh-day-hdr"><span class="bh-day-name">Donnerstag</span>
+        <select class="bh-day-sel" id="bh-do-cat"><option>Netzwerkadministration</option><option>Programmierung/Entwicklung</option><option>IT-Support/Helpdesk</option><option>Server-Administration</option><option>IT-Sicherheit</option><option>Dokumentation</option><option>Projektarbeit</option><option>Berufsschule</option><option>Sonstiges</option></select>
+      </div>
+      <textarea class="bh-day-text" id="bh-do-text" placeholder="Was hast du heute gemacht?"></textarea>
+    </div>
+    <div class="bh-day-card">
+      <div class="bh-day-hdr"><span class="bh-day-name">Freitag</span>
+        <select class="bh-day-sel" id="bh-fr-cat"><option>Netzwerkadministration</option><option>Programmierung/Entwicklung</option><option>IT-Support/Helpdesk</option><option>Server-Administration</option><option>IT-Sicherheit</option><option>Dokumentation</option><option>Projektarbeit</option><option>Berufsschule</option><option>Sonstiges</option></select>
+      </div>
+      <textarea class="bh-day-text" id="bh-fr-text" placeholder="Was hast du heute gemacht?"></textarea>
+    </div>
+    <button type="button" class="bh-save-btn" onclick="bhSaveWeek()">💾 Woche speichern</button>
+    <button type="button" class="bh-export-btn" onclick="bhExport()">↓ Als Text exportieren</button>
+  </div>
+  <div id="bh-empty" style="text-align:center;padding:2rem 1rem;color:var(--tx3);font-size:14px;">Noch kein Eintrag. Erstelle deine erste Woche!</div>
+</main>
+
+<!-- ===================== BACKUP PANEL ===================== -->
+<section class="backup-panel" id="backupPanel" style="max-width:640px;margin-left:auto;margin-right:auto;padding-left:1rem;padding-right:1rem;">
+  <h3>💾 Datensicherung</h3>
+  <p>Exportiere oder importiere alle deine Lernfortschritte</p>
+  <div class="backup-btns">
+    <button class="backup-btn primary" onclick="fisiLernExportBackup()">⬇ Exportieren</button>
+    <button class="backup-btn" onclick="document.getElementById('fisiLernImportFile').click()">⬆ Importieren</button>
+  </div>
+  <input type="file" id="fisiLernImportFile" accept=".json" style="display:none" onchange="fisiLernImportBackup(event)">
+  <div class="backup-keys" id="backupKeyList"></div>
+</section>
+
+<!-- Drawer Overlay -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="drawerClose()"></div>
+
+<!-- Drawer -->
+<div class="drawer" id="drawer">
+  <div class="drawer-hdr">
+    <span class="drawer-title">⊞ Arc Studio</span>
+    <button type="button" class="drawer-close" aria-label="Menü schließen" onclick="drawerClose()">✕</button>
+  </div>
+  <div class="drawer-apps">
+    <a class="drawer-app" href="index.html">
+      <span class="drawer-app-icon">🏠</span>
+      <div><div class="drawer-app-name">Arc Studio Startseite</div><div class="drawer-app-sub">Alle Berufe</div></div>
+    </a>
+    <a class="drawer-app active" href="spark-kfz.html">
+      <span class="drawer-app-icon">🔧</span>
+      <div><div class="drawer-app-name">SPARK</div><div class="drawer-app-sub">KFZ-Mechatroniker</div></div>
+      <span class="drawer-app-badge">Aktiv</span>
+    </a>
+    <a class="drawer-app" href="FISI-lern.html">
+      <span class="drawer-app-icon">💻</span>
+      <div><div class="drawer-app-name">FISI-Lern</div><div class="drawer-app-sub">Fachinformatiker</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-ampere.html">
+      <span class="drawer-app-icon">⚡</span>
+      <div><div class="drawer-app-name">AMPERE</div><div class="drawer-app-sub">Elektroniker E&amp;G</div></div>
+    </a>
+    <a class="drawer-app" href="VOLTECH-torque.html">
+      <span class="drawer-app-icon">⚙️</span>
+      <div><div class="drawer-app-name">TORQUE</div><div class="drawer-app-sub">Industriemechaniker</div></div>
+    </a>
+  </div>
+  <div class="drawer-footer">
+    <a href="voltiq.html">↗ Alle Apps</a>
+  </div>
+</div>
+
+<script>
+// ── Drawer ──────────────────────────────────────────────────
+function drawerOpen() {
+  document.getElementById('drawer-overlay').classList.add('on');
+  document.getElementById('drawer').classList.add('on');
+}
+function drawerClose() {
+  document.getElementById('drawer-overlay').classList.remove('on');
+  document.getElementById('drawer').classList.remove('on');
+}
+
+// ── Lernfeld Quick-Nav ──────────────────────────────────
+function openLf(lfId) {
+  window.showScreen('s-lern');
+  var el = document.getElementById(lfId);
+  if (el) {
+    el.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+// ── Theme ───────────────────────────────────────────────────
+function thmToggle() {
+  var isDark = localStorage.getItem('arc_theme') !== 'dark';
+  localStorage.setItem('arc_theme', isDark ? 'dark' : 'light');
+  document.documentElement.classList.toggle('dm', isDark);
+  var b = document.getElementById('thm-btn');
+  if (b) b.textContent = isDark ? '☀️' : '🌙';
+}
+(function(){
+  var isDark = localStorage.getItem('arc_theme') === 'dark';
+  document.documentElement.classList.toggle('dm', isDark);
+  var b = document.getElementById('thm-btn');
+  if (b) b.textContent = isDark ? '☀️' : '🌙';
+})();
+
+// ── Quiz & Dashboard ────────────────────────────────────────
+
+// Daily Question — uses index based on day-of-year from SR cards
+var DQ_IDX = (function(){
+  var d = new Date();
+  var start = new Date(d.getFullYear(), 0, 0);
+  var diff = d - start;
+  var oneDay = 1000 * 60 * 60 * 24;
+  var dayOfYear = Math.floor(diff / oneDay);
+  // QUIZ will be defined below after KFZ_SIM_QUESTIONS, use a placeholder
+  return dayOfYear;
+})();
+
+function dqReveal() {
+  var toggle = document.getElementById('dq-toggle');
+  var answer = document.getElementById('dq-answer');
+  if (!answer || !toggle) return;
+  var pool = (typeof KFZ_SIM_QUESTIONS !== 'undefined') ? KFZ_SIM_QUESTIONS : [];
+  if (pool.length === 0) return;
+  var q = pool[DQ_IDX % pool.length];
+  answer.textContent = q.opts[q.ans] + ' — ' + q.exp;
+  answer.style.display = 'block';
+  toggle.style.display = 'none';
+}
+
+function updateDashStats() {
+  try {
+    var sr = JSON.parse(localStorage.getItem('kfz_sr_data') || '{}');
+    var learned = Object.values(sr).filter(function(c){ return c.reps > 0; }).length;
+    var el = document.getElementById('stat-cards');
+    if (el) el.textContent = learned;
+  } catch(e) {}
+  try {
+    var hs = localStorage.getItem('kfz_quiz_hs');
+    var hsEl = document.getElementById('stat-hs');
+    if (hsEl) hsEl.textContent = hs ? hs + '/20' : '—';
+  } catch(e) {}
+  try {
+    var streak = parseInt(localStorage.getItem('kfz_streak') || '0');
+    var stEl = document.getElementById('stat-streak');
+    if (stEl) stEl.textContent = streak;
+  } catch(e) {}
+}
+
+// ── Quiz Logic (uses KFZ_SIM_QUESTIONS as pool) ─────────────
+var quizQ = [], quizIdx = 0, quizScore = 0, quizResults = [];
+var quizTopic = 'all';
+
+function setQuizTopic(t) {
+  quizTopic = t;
+  document.querySelectorAll('.quiz-filter-btn').forEach(function(b){
+    b.classList.toggle('active', b.dataset.topic === t);
+  });
+}
+
+function fisiQuizShuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  }
+  return a;
+}
+
+function quizStart() {
+  var pool = (typeof KFZ_SIM_QUESTIONS !== 'undefined') ? KFZ_SIM_QUESTIONS : [];
+  if (quizTopic !== 'all') {
+    pool = pool.filter(function(q){ return q.topic === quizTopic; });
+  }
+  quizQ = fisiQuizShuffle(pool).slice(0, Math.min(20, pool.length));
+  quizIdx = 0; quizScore = 0; quizResults = [];
+  document.getElementById('quiz-start').style.display = 'none';
+  document.getElementById('quiz-end').style.display = 'none';
+  document.getElementById('quiz-run').style.display = 'block';
+  fisiShowQuestion(0);
+}
+
+function fisiShowQuestion(idx) {
+  var q = quizQ[idx];
+  document.getElementById('q-text').textContent = q.q;
+  document.getElementById('q-counter').textContent = 'Frage ' + (idx + 1) + ' / ' + quizQ.length;
+  document.getElementById('q-prog').style.width = ((idx / quizQ.length) * 100) + '%';
+  document.getElementById('q-exp').style.display = 'none';
+  document.getElementById('q-exp').textContent = '';
+  document.getElementById('q-next').style.display = 'none';
+
+  var optsEl = document.getElementById('q-opts');
+  optsEl.innerHTML = '';
+  var shuffled = fisiQuizShuffle(q.opts.map(function(o, i){ return {text: o, orig: i}; }));
+  shuffled.forEach(function(opt) {
+    var btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = opt.text;
+    var isCorrect = (opt.orig === q.ans);
+    btn.onclick = function(){ quizAnswer(btn, isCorrect, q.exp, optsEl, shuffled, q.ans); };
+    optsEl.appendChild(btn);
+  });
+}
+
+function quizAnswer(chosenBtn, isCorrect, explanation, optsEl, shuffledOpts, correctOrig) {
+  var btns = optsEl.querySelectorAll('.quiz-opt');
+  btns.forEach(function(b){ b.disabled = true; });
+  var currentTopic = quizQ[quizIdx] ? (quizQ[quizIdx].topic || 'Sonstige') : 'Sonstige';
+  quizResults.push({topic: currentTopic, correct: isCorrect});
+  if (isCorrect) {
+    chosenBtn.classList.add('correct');
+    quizScore++;
+    if (navigator.vibrate) navigator.vibrate(50);
+  } else {
+    chosenBtn.classList.add('wrong');
+    btns.forEach(function(b, i){ if (shuffledOpts[i].orig === correctOrig) b.classList.add('correct'); });
+    if (navigator.vibrate) navigator.vibrate([80,30,80]);
+  }
+  var expEl = document.getElementById('q-exp');
+  expEl.textContent = explanation;
+  expEl.style.display = 'block';
+  document.getElementById('q-next').style.display = 'block';
+}
+
+function quizNext() {
+  quizIdx++;
+  if (quizIdx < quizQ.length) {
+    fisiShowQuestion(quizIdx);
+  } else {
+    quizEnd();
+  }
+}
+
+function quizEnd() {
+  document.getElementById('quiz-run').style.display = 'none';
+  document.getElementById('quiz-end').style.display = 'block';
+  document.getElementById('end-score').textContent = quizScore;
+  var totalQ = quizQ.length;
+  document.getElementById('end-sub').textContent = 'von ' + totalQ + ' Fragen richtig (' + Math.round(quizScore/totalQ*100) + '%)';
+
+  var prev = parseInt(localStorage.getItem('kfz_quiz_hs') || '0');
+  var isNew = quizScore > prev;
+  if (isNew) localStorage.setItem('kfz_quiz_hs', quizScore);
+  if(window.ArcWeekly) ArcWeekly.logQuiz({app:'SPARK',score:quizScore,total:totalQ});
+  document.getElementById('end-hs').textContent = isNew ? '🏆 Neuer Highscore!' : ('Highscore: ' + prev + '/' + totalQ);
+
+  // ── fisi_topic_perf tracking ────────────────────────────────
+  var topicMap = {};
+  quizResults.forEach(function(r) {
+    if (!topicMap[r.topic]) topicMap[r.topic] = {correct:0, total:0};
+    topicMap[r.topic].total++;
+    if (r.correct) topicMap[r.topic].correct++;
+  });
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem('kfz_topic_perf') || '{}'); } catch(e) {}
+  Object.keys(topicMap).forEach(function(t) {
+    if (!saved[t]) saved[t] = {correct:0, total:0};
+    saved[t].correct += topicMap[t].correct;
+    saved[t].total   += topicMap[t].total;
+  });
+  localStorage.setItem('kfz_topic_perf', JSON.stringify(saved));
+
+  // Also save to quiz history
+  var hist = [];
+  try { hist = JSON.parse(localStorage.getItem('kfz_quiz_hist') || '[]'); } catch(e) {}
+  hist.push({score: quizScore, total: totalQ, date: new Date().toLocaleDateString('de-DE'), topics: topicMap});
+  if (hist.length > 50) hist = hist.slice(-50);
+  localStorage.setItem('kfz_quiz_hist', JSON.stringify(hist));
+
+  updateDashStats();
+}
+
+// ── Init ────────────────────────────────────────────────────
+(function() {
+  // Init DQ after KFZ_SIM_QUESTIONS is defined (deferred) — ArcDaily takes over if loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    var pool = (typeof KFZ_SIM_QUESTIONS !== 'undefined') ? KFZ_SIM_QUESTIONS : [];
+    if (pool.length > 0 && !window.ArcDaily) {
+      var q = pool[DQ_IDX % pool.length];
+      var dqEl = document.getElementById('dq-q');
+      if (dqEl) dqEl.textContent = q.q;
+    }
+    updateDashStats();
+    // Init HS badge
+    var hs = parseInt(localStorage.getItem('kfz_quiz_hs') || '0');
+    var hsBadge = document.getElementById('hs-badge');
+    if (hsBadge && hs > 0) hsBadge.textContent = '🏆 Highscore: ' + hs + '/20';
+  });
+  updateDashStats();
+})();
+</script>
+
+<script>
+// ══════════════════════════════════════════════════════
+// SPACED REPETITION — SPARK
+// SM-2 Algorithm · localStorage: kfz_sr_data
+// ══════════════════════════════════════════════════════
+var KFZ_SR_CARDS = [
+  // ── MOTOR / VERBRENNUNG ─────────────────────────────────────
+  {id:'k01',tag:'Motor',de:{q:'Nenne die 4 Takte des Ottomotors.',a:'1. Ansaugen (Kolben ↓, Einlassventil offen), 2. Verdichten (beide Ventile zu), 3. Arbeiten (Zündung → Expansion, Kolben ↓), 4. Ausstoßen (Kolben ↑, Auslassventil offen).'}},
+  {id:'k02',tag:'Motor',de:{q:'Unterschied Otto- vs. Dieselmotor?',a:'Otto: Fremdzündung durch Zündkerze, λ-Regelung, Verdichtung ε ≈ 8–12. Diesel: Selbstzündung durch hohe Verdichtung (ε ≈ 14–22), kein Drossel-verlust, höherer Wirkungsgrad.'}},
+  {id:'k03',tag:'Motor',de:{q:'Formel für den Hubraum?',a:'V_H = (π/4) × d² × s × z. d = Zylinderbohrung, s = Kolbenhub, z = Zylinderanzahl. Einheit: cm³ oder Liter.'}},
+  {id:'k04',tag:'Motor',de:{q:'Was ist das Verdichtungsverhältnis ε?',a:'ε = (V_H + V_c) / V_c. V_c = Kompressionsraum. Otto: 8–12:1. Diesel: 14–22:1. Höher = effizienter, aber beim Otto: Klopfgefahr.'}},
+  {id:'k05',tag:'Motor',de:{q:'Funktion der Nockenwelle?',a:'Steuert Öffnen/Schließen der Einlass- und Auslassventile. Angetrieben vom Kurbelwellen-Zahnriemen oder -Kette. SOHC = 1 Nockenwelle oben, DOHC = 2.'}},
+  {id:'k06',tag:'Motor',de:{q:'Unterschied Direkteinspritzung vs. Saugrohreinspritzung?',a:'Direkteinspritzung (GDI/FSI): Kraftstoff direkt in Brennraum → homogenes oder geschichtetes Gemisch, effizienter. Saugrohreinspritzung: Kraftstoff ins Saugrohr, Gemisch sauber, günstiger.'}},
+  {id:'k07',tag:'Motor',de:{q:'Wie funktioniert ein Turbolader?',a:'Abgasstrom treibt Turbinenlaufrad → Welle dreht Verdichterrad → Frischluft wird vorverdichtet (Ladedruck). Ladeluftkühler senkt Lufttemperatur → dichtere Füllung → mehr Leistung.'}},
+  {id:'k08',tag:'Motor',de:{q:'Was bedeutet SAE 5W-30 beim Motoröl?',a:'5W = Winterviskosität (kalt, Kaltstart); 30 = Betriebsviskosität bei 100°C. Je niedriger "W", desto besser bei Kälte. Hoch = stabiler Schmierfilm bei Betriebstemperatur.'}},
+  {id:'k09',tag:'Motor',de:{q:'Was ist ein Drei-Wege-Katalysator?',a:'Oxidiert CO und HC zu CO₂/H₂O, reduziert NOx zu N₂. Arbeitet nur bei λ ≈ 1 (stöchiometrisch). Lambda-Sonde vor/nach KAT regelt Gemisch.'}},
+  {id:'k10',tag:'Motor',de:{q:'Funktion des Dieselpartikelfilters (DPF)?',a:'Filtert Rußpartikel aus dem Abgas. Regeneration: Bei Ablagerungen → Nacheinspritzung erhöht Abgastemperatur auf 600°C → Ruß verbrennt (aktiv oder passiv).'}},
+  {id:'k11',tag:'Motor',de:{q:'Was ist Common-Rail beim Diesel?',a:'Hochdruckspeicher (Rail, 1500–3000 bar) versorgt alle Injektoren gleichzeitig. Einspritzzeitpunkt und -menge elektronisch gesteuert → Mehrfacheinspritzung möglich (Vor-, Haupt-, Nacheinspritzung).'}},
+  {id:'k12',tag:'Motor',de:{q:'Was ist die Abgasrückführung (AGR)?',a:'Ein Teil des Abgases wird zurück ins Saugrohr geführt → senkt Verbrennungstemperatur → reduziert NOx-Ausstoß. Gekühlte AGR effizienter als ungekühlte.'}},
+
+  // ── ELEKTRIK / ELEKTRONIK ───────────────────────────────────
+  {id:'k13',tag:'Elektrik',de:{q:'Ohmsches Gesetz — Formel und Einheiten?',a:'U = R × I. U = Spannung in Volt [V], R = Widerstand in Ohm [Ω], I = Strom in Ampere [A]. Umgeformt: I = U/R, R = U/I.'}},
+  {id:'k14',tag:'Elektrik',de:{q:'Leistungsformel im Gleichstromkreis?',a:'P = U × I [W]. Auch: P = I² × R oder P = U²/R. Merke: 1 W = 1 V × 1 A. Bei 12V/10A = 120 Watt.'}},
+  {id:'k15',tag:'Elektrik',de:{q:'Reihenschaltung: wie verhalten sich R, U und I?',a:'R_ges = R1 + R2 + … Der Strom I ist überall gleich. Die Spannung teilt sich auf: U_ges = U1 + U2 + …'}},
+  {id:'k16',tag:'Elektrik',de:{q:'Parallelschaltung: wie verhalten sich R, U und I?',a:'1/R_ges = 1/R1 + 1/R2 + … Die Spannung U ist überall gleich. Der Strom teilt sich auf: I_ges = I1 + I2 + …'}},
+  {id:'k17',tag:'Elektrik',de:{q:'Wie funktioniert der Drehstromgenerator (Lichtmaschine)?',a:'3 um 120° versetzte Wicklungen erzeugen Wechselstrom (AC) → 3-Phasen-Brückengleichrichter (6 Dioden) → Gleichstrom 12–14,8 V. Spannungsregler hält Bordnetz konstant.'}},
+  {id:'k18',tag:'Elektrik',de:{q:'Funktion des Startmotors (Anlassers)?',a:'Einrückrelais koppelt Ritzel in Schwungrad-Zahnkranz → E-Motor dreht Kurbelwelle für Kaltstart. Freilauf entkoppelt sobald Motor läuft (Drehzahl Ritzel > Anker).'}},
+  {id:'k19',tag:'Elektrik',de:{q:'Unterschied AGM vs. EFB vs. Starterbatterie?',a:'Nass (Flooded): Standard, wartungsarm. EFB (Enhanced Flooded Battery): verstärkt, besser für Start-Stopp. AGM (Absorbent Glass Mat): 3× zyklenfest, für Rekuperation, kein Auslaufen.'}},
+  {id:'k20',tag:'Elektrik',de:{q:'Was ist der CAN-Bus?',a:'Controller Area Network: serieller Bus zur Vernetzung aller Steuergeräte. Zwei Leitungen (CAN-H, CAN-L). High-Speed-CAN: 500 kBit/s. Alle Teilnehmer hören, Identifier bestimmt Priorität.'}},
+  {id:'k21',tag:'Elektrik',de:{q:'Was ist der LIN-Bus?',a:'Local Interconnect Network: 1-Draht-Bus, Master-Slave-Prinzip, max. 20 kBit/s. Günstig für einfache Aktoren (Fensterheber, Spiegel, Sitzverstellung). Kein eigener Controller nötig.'}},
+  {id:'k22',tag:'Elektrik',de:{q:'Funktion der Lambda-Sonde?',a:'Misst Restsauerstoff im Abgas → Regelung auf λ = 1 (stöchiometrisch). Sprungsonde: λ < 1 = fett (0 mV), λ > 1 = mager (900 mV). Breitband-LSU: misst λ 0,7–∞, präziser.'}},
+  {id:'k23',tag:'Elektrik',de:{q:'Was sind Steuerzeiten beim Motor?',a:'Öffnungs- und Schließzeitpunkte der Ventile relativ zur Kurbelwellenstellung (°KW). Nockenwellenversteller (VVT) verschiebt Steuerzeiten dynamisch → mehr Leistung oder Effizienz je nach Last.'}},
+  {id:'k24',tag:'Elektrik',de:{q:'Was ist Zündfolge (Zündreihenfolge)?',a:'Reihenfolge der Zündungen der einzelnen Zylinder. 4-Zylinder häufig: 1-3-4-2. Gleichmäßig über 720° KW (2 Kurbelwellenumdrehungen). Vermeidet Vibrationen, schont Lager.'}},
+  {id:'k25',tag:'Elektrik',de:{q:'Funktion des Klopfsensors?',a:'Piezokeramischer Sensor am Motorblock detektiert Klingeln/Klopfen (unkontrollierte Verbrennung). Motorsteuerung retardiert Zündzeitpunkt bei Klopfen → schützt Motor, reduziert Leistung.'}},
+
+  // ── FAHRWERK / BREMSEN ──────────────────────────────────────
+  {id:'k26',tag:'Fahrwerk',de:{q:'Unterschied Scheiben- vs. Trommelbremse?',a:'Scheibe: Bremsbeläge klemmen Bremsscheibe von beiden Seiten (Bremssattel), gute Kühlung, gleichmäßig. Trommel: Bremsbacken pressen gegen Innenfläche der Trommel, günstig, noch als Feststell-bremse.'}},
+  {id:'k27',tag:'Fahrwerk',de:{q:'Wie funktioniert das ABS?',a:'Raddrehzahlsensoren messen ständig Raddrehzahl. Bei Bremsschlupf > Schwellwert: Druckhalte-Ventil (hält Druck) → Druckabbau-Ventil öffnet (Druck sinkt) → Rad dreht wieder. Zyklus ≈ 15×/s.'}},
+  {id:'k28',tag:'Fahrwerk',de:{q:'Wie funktioniert das ESP?',a:'Gierratensensor + Querbeschleunigungssensor + Lenkwinkelsensor. Bei drohendem Schleudern: ESP bremst gezielt einzelne Räder, kann auch Motormoment reduzieren. Nutzt ABS-Unterbau.'}},
+  {id:'k29',tag:'Fahrwerk',de:{q:'Was ist der Sturz (Camber) bei der Achsgeometrie?',a:'Neigung des Rades zur Fahrbahn-Senkrechten. Negativer Sturz (Rad oben nach innen): bessere Kurven-haftung. Positiver Sturz: erhöht Geradeaus-lauf. Beeinflusst Reifenverschleiß.'}},
+  {id:'k30',tag:'Fahrwerk',de:{q:'Was bedeutet Vorspur (Toe)?',a:'Toe-in: Räder vorne enger als hinten → Stabilität geradeaus. Toe-out: Räder vorne weiter → wendigerer Einlenkvorgang. Falsche Einstellung → Reifenverschleiß auf einer Seite.'}},
+  {id:'k31',tag:'Fahrwerk',de:{q:'Reifenbezeichnung 205/55 R16 91V lesen?',a:'205 = Breite in mm. 55 = Querschnittsverhältnis (Höhe/Breite in %). R = Radialreifen. 16 = Felgendurchmesser in Zoll. 91 = Tragfähigkeitsindex (615 kg). V = Geschwindigkeitskategorie (240 km/h).'}},
+  {id:'k32',tag:'Fahrwerk',de:{q:'Funktion des Stoßdämpfers?',a:'Dämpft Schwingungen der Feder → verhindert Aufschaukeln des Fahrzeugaufbaus. Teleskopstoßdämpfer: Einrohr (Hochdruck-Gas + Öl) oder Zwirohr (Öl + Ausgleichsraum mit Niederdruckgas).'}},
+  {id:'k33',tag:'Fahrwerk',de:{q:'Was ist das TPMS (Reifendruckkontrollsystem)?',a:'Direkt: Drucksensoren in jedem Rad, senden per Funk. Indirekt: nutzt ABS-Raddrehzahlen, ein platter Reifen hat kleineren Rollumfang → dreht schneller. Warnt ab ca. 20% Druckverlust.'}},
+
+  // ── ANTRIEBSSTRANG / GETRIEBE ───────────────────────────────
+  {id:'k34',tag:'Antrieb',de:{q:'Funktion der Einscheiben-Trockenkupplung?',a:'Mitnehmerscheibe mit Reibbelägen zwischen Schwungrad und Druckplatte. Feder-paket (Tellerfeder) presst zusammen → Kraftschluss. Ausrücklager drückt Tellerfeder → entkoppelt.'}},
+  {id:'k35',tag:'Antrieb',de:{q:'Wie funktioniert der Synchronring im Getriebe?',a:'Reibkegel des Synchronrings verzögert/beschleunigt das Gangrad auf Eingangswellen-Drehzahl, bevor Schiebemuffe eingreift → verhindert Schleifen/Kratzen. Ohne Synchronisation: "doppelt Kuppeln" nötig.'}},
+  {id:'k36',tag:'Antrieb',de:{q:'Was ist ein Drehmomentwandler?',a:'Hydrodynamische Kupplung im Automatikgetriebe. Pumpenrad (Motor) → Öl → Turbinenrad (Getriebe) → Leitrad (wandelt Drehmoment um). Wandlerüberbrückungskupplung sperrt bei höheren Geschwindigkeiten.'}},
+  {id:'k37',tag:'Antrieb',de:{q:'Was ist ein DSG (Doppelkupplungsgetriebe)?',a:'Zwei Kupplungen: K1 für ungerade Gänge (1,3,5,7), K2 für gerade Gänge (2,4,6,R). Nächster Gang vorgewählt → Schaltung ohne Zugkraftunterbrechung in Millisekunden. Sehr schnell und effizient.'}},
+  {id:'k38',tag:'Antrieb',de:{q:'Funktion des Differentials?',a:'Erlaubt unterschiedliche Drehzahlen der angetriebenen Räder (nötig in Kurven). Kegelrad-Differential: Ausgleichs-kegelräder verteilen Moment bei gleicher Kraft auf beide Räder.'}},
+  {id:'k39',tag:'Antrieb',de:{q:'Was ist ein Gleichlaufgelenk (VL-Gelenk)?',a:'Überträgt Antriebsdrehmoment bei veränderlichem Beugewinkel (Einlenkbewegung, Federweg) ohne Drehzahlschwankung (Homokinetisch). Rzeppa-Gelenk häufigste Bauform. Beim Brechen: Klickgeräusch.'}},
+  {id:'k40',tag:'Antrieb',de:{q:'Übersetzungsformel und Gesamtübersetzung?',a:'i = n_Antrieb / n_Abtrieb = M_Abtrieb / M_Antrieb. Gesamtübersetzung: i_ges = i_Getriebe × i_Achse. Z.B.: i_Getriebe = 3,5 × i_Achse = 4,0 → i_ges = 14,0.'}},
+
+  // ── OBD / DIAGNOSE ──────────────────────────────────────────
+  {id:'k41',tag:'Diagnose',de:{q:'Was ist OBD2?',a:'On-Board-Diagnose 2: genormte Schnittstelle (16-poliger DLC-Stecker, Pin 4=Masse, Pin 16=12V). Protokoll ISO 15765-4 (CAN). Seit 2001 (Benzin) / 2004 (Diesel) Pflicht in EU.'}},
+  {id:'k42',tag:'Diagnose',de:{q:'Wie sind DTCs (Fehlercodes) aufgebaut?',a:'P = Powertrain (Motor/Getriebe), B = Body, C = Chassis, U = Network. 2. Stelle: 0 = genormt (SAE), 1 = Hersteller. Beispiel: P0300 = Fehlzündung mehrere Zylinder.'}},
+  {id:'k43',tag:'Diagnose',de:{q:'Was sind Freeze-Frame-Daten?',a:'Schnappschuss aller relevanten Betriebsparameter (Drehzahl, Last, Temperatur, λ) zum Zeitpunkt des Fehlereintrags. Hilft bei der Diagnose sporadischer (intermittierender) Fehler.'}},
+  {id:'k44',tag:'Diagnose',de:{q:'Multimeter im Fahrzeug: worauf achten?',a:'Spannungsmessung: parallel (hochohmig). Strommessung: in Reihe oder Zangenamperemeter. Widerstandsmessung: stromlos (Bauteil ausgebaut/stromfrei). Nie Widerstand unter Spannung messen!'}},
+  {id:'k45',tag:'Diagnose',de:{q:'Was ist Spannungsfall (Voltage Drop) und wie messen?',a:'Spannungsverlust an Übergangswiderständen (Stecker, Klemmen, Kabel). Messung: Multimeter parallel zur Verbindung, Motor läuft + Verbraucher an. Grenzwert: max. 0,1 V pro Verbindung.'}},
+  {id:'k46',tag:'Diagnose',de:{q:'Wofür nutzt man das Oszilloskop in der KFZ-Diagnose?',a:'Signalverlauf zeitlich darstellen: CAN-Bus-Signal, Injektoransteuerung (Stromrampe), Nockenwellen-/Kurbelwellensensor-Signal, Lambda-Sprungsonde. Laufzeitfehler und Wellenform-abweichungen sichtbar machen.'}},
+  {id:'k47',tag:'Diagnose',de:{q:'Wie wird ein Kompressionstest durchgeführt?',a:'Motor warm, Zündkerzen/Glühkerzen ausbauen, Drossel öffnen (Gas), Kompressionsprüfer einschrauben, Anlassen bis Wert stabil (4–5 Kompressionen). Vergleich Soll/Ist, max. 25% Abweichung zwischen Zylindern.'}},
+  {id:'k48',tag:'Diagnose',de:{q:'Abgasuntersuchung (AU): welche Werte?',a:'CO (Kohlenmonoxid), HC (Kohlenwasserstoffe), CO₂, O₂, λ-Wert. Euro-6 Diesel: nur mit OBD-Auswertung + Partikel. Grenzwerte je nach Abgasnorm und Motortyp verschieden.'}},
+  {id:'k49',tag:'Diagnose',de:{q:'Was ist der Kraftstoffdruck-Test?',a:'Kraftstoffdruck messen bei laufendem Motor (Solldruck lt. Werkstatthandbuch). Nach Abstellen: Druckabfall prüfen. Starker Abfall → undichter Injektor oder Rückschlagventil der Kraftstoffpumpe defekt.'}},
+  {id:'k50',tag:'Diagnose',de:{q:'Leckagetest am Motor — wie vorgehen?',a:'Kolben auf OT Verdichtung, Druckluft (ca. 3 bar) in Zylinder. Hören: Luftgeräusch aus Ansaugtrakt (Einlassventil), Auspuff (Auslassventil), Öleinfüllöffnung (Kolbenringe), Nachbarzylinder (Kopfdichtung).'}},
+
+  // ── E-MOBILITÄT / HV-SYSTEME ────────────────────────────────
+  {id:'k51',tag:'E-Mobil',de:{q:'Welche Spannungsklassen gibt es bei KFZ?',a:'Klasse A: ≤ 60 V DC / ≤ 25 V AC — gefährdungslos berührbar. Klasse B: > 60 V DC / > 25 V AC — Hochvoltbereich! Erst ab Klasse B gelten besondere Schutzmaßnahmen. Typische HV-Batterie: 400–800 V DC.'}},
+  {id:'k52',tag:'E-Mobil',de:{q:'Nenne die 5 Sicherheitsregeln für HV-Arbeiten.',a:'1. Freischalten (HV-Spannung trennen, SD), 2. Gegen Wiedereinschalten sichern, 3. Spannungsfreiheit feststellen (Messgerät Kat. III), 4. Erden und Kurzschließen, 5. Benachbarte spannungsführende Teile abdecken/abschranken.'}},
+  {id:'k53',tag:'E-Mobil',de:{q:'Was ist der Service-Disconnect (SD)?',a:'Mechanische Steckverbindung im HV-Batteriekreis. Zieht man den SD, wird der HV-Stromkreis physisch unterbrochen. Vor JEDER Arbeit am HV-System SD ziehen und 5-Minuten-Wartezeit einhalten (Kondensatoren entladen).'}},
+  {id:'k54',tag:'E-Mobil',de:{q:'Wie ist eine HV-Batterie aufgebaut?',a:'Zellen → Module → Pack (Battery Pack). Lithium-Ionen: NMC (Nickel-Mangan-Kobalt) oder LFP (Lithium-Eisen-Phosphat). Kapazität in Ah; Energie W = U × Q (kWh). Typisch: 40–100 kWh.'}},
+  {id:'k55',tag:'E-Mobil',de:{q:'Funktion des Batteriemanagementsystems (BMS)?',a:'Überwacht Zellspannungen, Temperaturen, SOC (State of Charge), SOH (State of Health). Cell-Balancing: gleicht Ladungsunterschiede zwischen Zellen aus (passiv: Wärme, aktiv: Ladungsverschiebung). Schützt vor Über-/Tiefentladung.'}},
+  {id:'k56',tag:'E-Mobil',de:{q:'Unterschied PMSM vs. ASM beim E-Motor?',a:'PMSM (Permanentmagnet-Synchronmotor): Rotor mit Permanentmagneten, synchron mit Drehfeld, hoher Wirkungsgrad, teuer (Seltene Erden). ASM (Asynchronmotor/Induktionsmotor): Rotor aus Kupfer/Alu, induktiv erregt, robuster, günstiger, Tesla Model S.'}},
+  {id:'k57',tag:'E-Mobil',de:{q:'Was macht der Wechselrichter (Inverter)?',a:'Wandelt Gleichstrom der HV-Batterie in dreiphasigen Wechselstrom für den E-Motor. Steuert Drehmoment und Drehzahl über Pulsweiten-Modulation (PWM) der IGBT-Transistoren.'}},
+  {id:'k58',tag:'E-Mobil',de:{q:'Was ist Rekuperation?',a:'Kinetische Energie beim Bremsen/Verzögern wird durch den E-Motor (jetzt Generator) zurückgewonnen → Batterie laden. Spart bis zu 25% Energie. Stärke einstellbar. Zusätzlich: hydraulische Bremse bei hohem Verzögerungsbedarf.'}},
+  {id:'k59',tag:'E-Mobil',de:{q:'AC vs. DC-Laden — welche Standards gibt es?',a:'AC: Mode 2 (Schuko/Typ 2, 3,7–22 kW), Mode 3 (Wallbox, Typ 2, bis 22 kW). DC: Mode 4 (Schnellladen, CCS Combo 2, bis 350 kW; CHAdeMO bis 150 kW). Einphasig/3-phasig.'}},
+  {id:'k60',tag:'E-Mobil',de:{q:'Warum ist Thermomanagement der HV-Batterie wichtig?',a:'Li-Ion-Zellen optimal bei 20–40°C. Kälte: sinkende Kapazität und Ladeströme. Hitze: beschleunigter Alterung. Thermisches Durchgehen (Thermal Runaway) ab ca. 150°C möglich. Kühlung bei Schnellladen essenziell.'}},
+];
+
+var KFZ_KEY = 'kfz_sr_data';
+var kfzSRData = (function(){try{return JSON.parse(localStorage.getItem(KFZ_KEY)||"{}")}catch(e){return {}}})();
+var kfzSRSession = [], kfzSRIdx = 0, kfzSROK = 0, kfzSRFail = 0, kfzSRFlipped = false;
+
+function kfzSaveSR() {
+  try { localStorage.setItem(KFZ_KEY, JSON.stringify(kfzSRData)); } catch(e) {}
+  if(typeof AppStore !== 'undefined') AppStore.set(KFZ_KEY, kfzSRData);
+}
+function kfzGetSR(id) {
+  if(!kfzSRData[id]) kfzSRData[id] = {ef:2.5, interval:0, due:0, reps:0};
+  return kfzSRData[id];
+}
+function kfzNextInterval(sr, q) {
+  var newEf = sr.ef + (0.1 - (5 - q) * (0.08 + (5 - q) * 0.02));
+  if(newEf < 1.3) newEf = 1.3;
+  var ni;
+  if(q < 3) { ni = 1; sr.reps = 0; }
+  else { if(sr.reps === 0) ni = 1; else if(sr.reps === 1) ni = 6; else ni = Math.round(sr.interval * newEf); sr.reps++; }
+  sr.ef = Math.round(newEf * 100) / 100;
+  sr.interval = ni;
+  sr.due = Date.now() + ni * 86400000;
+  return sr;
+}
+function kfzDueCards() {
+  var now = Date.now();
+  return KFZ_SR_CARDS.filter(function(c) { return kfzGetSR(c.id).due <= now; });
+}
+function kfzNewCards() {
+  return KFZ_SR_CARDS.filter(function(c) { return kfzGetSR(c.id).reps === 0; });
+}
+
+function initKfzSR() {
+  var due = kfzDueCards();
+  var newC = kfzNewCards();
+  var learned = KFZ_SR_CARDS.filter(function(c) { return kfzGetSR(c.id).reps > 0; }).length;
+  document.getElementById('sr-v-due').textContent = due.length;
+  document.getElementById('sr-v-new').textContent = newC.length;
+  document.getElementById('sr-v-learned').textContent = learned;
+  document.getElementById('sr-v-total').textContent = KFZ_SR_CARDS.length;
+
+  var total = Math.min(due.length + Math.min(newC.length, 10), 20);
+  var area = document.getElementById('sr-start-area');
+  if(total === 0) {
+    area.innerHTML = '<div style="text-align:center;padding:1.5rem 0;"><div style="font-size:36px;margin-bottom:.5rem;">🎉</div><div style="font-size:16px;font-weight:700;color:#30d158;margin-bottom:.5rem;">Alle Karten für heute erledigt!</div><div style="font-size:12px;color:var(--tx3);">Komm morgen wieder.</div></div>';
+  } else {
+    area.innerHTML = '<button type="button" class="sr-start-btn" id="sr-start-btn">→ LERNSITZUNG STARTEN (' + total + ' Karten)</button><button type="button" class="sr-reset-btn" id="sr-reset-btn">↺ Fortschritt zurücksetzen</button>';
+    document.getElementById('sr-start-btn').onclick = startFisiSR;
+    document.getElementById('sr-reset-btn').onclick = function() {
+      if(confirm('SR-Fortschritt zurücksetzen?')) { kfzSRData = {}; kfzSaveSR(); initKfzSR(); }
+    };
+  }
+  document.getElementById('sr-dash-view').style.display = '';
+  document.getElementById('sr-session-view').style.display = 'none';
+  document.getElementById('sr-done-view').style.display = 'none';
+  fisiInitNotify();
+}
+
+function startFisiSR() {
+  var due = kfzDueCards();
+  var newC = kfzNewCards();
+  var sess = due.concat(newC.slice(0, Math.max(0, 20 - due.length))).slice(0, 20);
+  for(var i = sess.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = sess[i]; sess[i] = sess[j]; sess[j] = t;
+  }
+  kfzSRSession = sess; kfzSRIdx = 0; kfzSROK = 0; kfzSRFail = 0; kfzSRFlipped = false;
+  document.getElementById('sr-dash-view').style.display = 'none';
+  document.getElementById('sr-session-view').style.display = '';
+  document.getElementById('sr-done-view').style.display = 'none';
+  renderFisiCard();
+}
+
+function renderFisiCard() {
+  if(kfzSRIdx >= kfzSRSession.length) { showKfzDone(); return; }
+  // ── fill mode ──
+  if (srMode === 'fill') {
+    var _c = kfzSRSession[kfzSRIdx];
+    var _cl = _c[kfzLernLang] || _c.de;
+    srFillRender(_cl.q, _cl.a, _c.tag);
+    document.getElementById('sr-grade-area').style.display = 'none';
+    return;
+  }
+  document.getElementById('sr-fill-area').style.display = 'none';
+  var _fw = document.querySelector('.sr-flip-wrap');
+  if (_fw) _fw.style.display = '';
+  // ── end fill mode ──
+  var c = kfzSRSession[kfzSRIdx];
+  var prog = kfzSRSession.length > 0 ? kfzSRIdx / kfzSRSession.length : 0;
+  document.getElementById('sr-prog-bar').style.width = Math.round(prog * 100) + '%';
+  document.getElementById('sr-prog-txt').textContent = (kfzSRIdx + 1) + ' / ' + kfzSRSession.length + '  ·  ✓ ' + kfzSROK + '  ✗ ' + kfzSRFail;
+  document.getElementById('sr-card-tag').textContent = c.tag;
+  var cl = c[kfzLernLang] || c.de;
+  document.getElementById('sr-card-q').textContent = cl.q;
+  document.getElementById('sr-card-a').textContent = cl.a;
+  var flip = document.getElementById('sr-flip');
+  flip.classList.remove('flipped');
+  kfzSRFlipped = false;
+  document.getElementById('sr-grade-area').style.display = 'none';
+  document.getElementById('sr-card-hint').style.display = '';
+}
+
+function srFlip() {
+  if(kfzSRFlipped) return;
+  kfzSRFlipped = true;
+  document.getElementById('sr-flip').classList.add('flipped');
+  document.getElementById('sr-grade-area').style.display = '';
+  document.getElementById('sr-card-hint').style.display = 'none';
+}
+
+function srGrade(q) {
+  var c = kfzSRSession[kfzSRIdx];
+  var sr = kfzGetSR(c.id);
+  kfzNextInterval(sr, q);
+  kfzSaveSR();
+  if(q >= 3) kfzSROK++; else kfzSRFail++;
+  kfzSRIdx++;
+  renderFisiCard();
+  updateDashStats();
+}
+
+function showKfzDone() {
+  document.getElementById('sr-session-view').style.display = 'none';
+  document.getElementById('sr-done-view').style.display = '';
+  document.getElementById('sr-done-sub').innerHTML = '<strong>' + kfzSROK + '</strong> gewusst · <strong>' + kfzSRFail + '</strong> wiederholen<br><span style="color:var(--tx3);font-size:12px;margin-top:.5rem;display:block;">Der Algorithmus plant deine nächsten Wiederholungen.</span>';
+}
+
+function kfzSrBackToDash() { initKfzSR(); }
+
+// ── Core screen switcher ─────────────────────────────────────
+window.showScreen = function(id) {
+  document.querySelectorAll('.screen').forEach(function(s) {
+    s.classList.toggle('on', s.id === id);
+  });
+  document.querySelectorAll('.bnav-btn').forEach(function(b) {
+    b.classList.toggle('on', b.dataset.screen === id);
+    if (b.dataset.screen === id) b.setAttribute('aria-current','page');
+    else b.removeAttribute('aria-current');
+  });
+};
+
+document.querySelectorAll('.bnav-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    window.showScreen(btn.dataset.screen);
+  });
+});
+
+// Hook into showScreen to init SR and AP
+var _origShowScreen = window.showScreen;
+window.showScreen = function(id) {
+  _origShowScreen(id);
+  if(id === 's-sr') initKfzSR();
+  if(id === 's-ap') initAP();
+  if(id === 's-bh') bhInit();
+};
+
+// ── KFZ PUSH NOTIFICATIONS ──────────────────────────────────
+function fisiInitNotify() {
+  var enabled = localStorage.getItem('kfz_notify') === '1';
+  var btn = document.getElementById('fisiNotifyBtn');
+  var hint = document.getElementById('fisiNotifyHint');
+  if(!btn) return;
+  if(enabled) {
+    btn.textContent = '🔔 Erinnerungen aktiv';
+    btn.classList.add('active');
+    if(hint) hint.textContent = 'Du wirst täglich erinnert, deine Karten zu lernen.';
+  } else {
+    btn.textContent = '🔔 Erinnerungen aktivieren';
+    btn.classList.remove('active');
+    if(hint) hint.textContent = '';
+  }
+}
+
+function fisiToggleNotify() {
+  var enabled = localStorage.getItem('kfz_notify') === '1';
+  if(enabled) { localStorage.removeItem('kfz_notify'); fisiInitNotify(); return; }
+  if(!('Notification' in window)) { alert('Dein Browser unterstützt keine Benachrichtigungen.'); return; }
+  Notification.requestPermission().then(function(perm) {
+    if(perm === 'granted') {
+      localStorage.setItem('kfz_notify', '1');
+      fisiInitNotify();
+      kfzCheckAndNotify();
+    } else {
+      alert('Benachrichtigungen wurden blockiert. Bitte in den Browser-Einstellungen erlauben.');
+    }
+  });
+}
+
+function kfzCheckAndNotify() {
+  if(localStorage.getItem('kfz_notify') !== '1') return;
+  if(Notification.permission !== 'granted') return;
+  var lastNotify = localStorage.getItem('kfz_last_notify');
+  var today = new Date().toDateString();
+  if(lastNotify === today) return;
+  var data = JSON.parse(localStorage.getItem(KFZ_KEY) || '{}');
+  var now = Date.now();
+  var dueCount = 0;
+  Object.values(data).forEach(function(c) { if(!c.due || c.due <= now) dueCount++; });
+  if(dueCount === 0) return;
+  localStorage.setItem('kfz_last_notify', today);
+  var title = 'SPARK \u2013 ' + dueCount + ' Karte' + (dueCount > 1 ? 'n' : '') + ' f\u00e4llig';
+  var body = 'Deine Lernkarten warten. Jetzt kurz \u00fcben!';
+  if('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+    navigator.serviceWorker.controller.postMessage({
+      type: 'SHOW_REMINDER', title: title, body: body, url: 'spark-kfz.html#sr'
+    });
+  } else if(Notification.permission === 'granted') {
+    new Notification(title, { body: body, icon: 'pwa/icon-192.png' });
+  }
+}
+
+// Hash-based deep link
+(function() {
+  if(location.hash === '#sr') { window.showScreen('s-sr'); }
+  kfzCheckAndNotify();
+})();
+
+// ── KFZ-Rechner ──────────────────────────────────────────────
+function calcTireCirc(){
+  var w=parseFloat(document.getElementById('t-width').value);
+  var r=parseFloat(document.getElementById('t-ratio').value);
+  var rim=parseFloat(document.getElementById('t-rim').value);
+  var res=document.getElementById('tire-result');
+  var lines=document.getElementById('tire-lines');
+  if(isNaN(w)||isNaN(r)||isNaN(rim)){res.classList.remove('show');return;}
+  var sidewall=w*(r/100); // mm
+  var diam_mm=rim*25.4+(2*sidewall); // Außendurchmesser in mm
+  var circ=Math.PI*diam_mm; // Rollumfang mm
+  var dyn_r=(diam_mm/2)*0.98; // dynamischer Rollradius ca. 98% des statischen
+  res.classList.add('show');
+  lines.innerHTML=
+    'Reifenbezeichnung: '+w+'/'+r+' R'+rim+'<br>'+
+    'Seitenwandhöhe:    '+sidewall.toFixed(1)+' mm<br>'+
+    'Außendurchmesser:  '+diam_mm.toFixed(1)+' mm = '+(diam_mm/10).toFixed(2)+' cm<br>'+
+    'Rollumfang (U):    '+(circ/1000).toFixed(3)+' m<br>'+
+    'Dyn. Rollradius:   '+dyn_r.toFixed(1)+' mm';
+}
+function calcVoltDrop(){
+  var L=parseFloat(document.getElementById('sv-len').value);
+  var I=parseFloat(document.getElementById('sv-amp').value);
+  var A=parseFloat(document.getElementById('sv-area').value);
+  var res=document.getElementById('sv-result');
+  if(isNaN(L)||isNaN(I)||isNaN(A)||A===0){res.classList.remove('show');return;}
+  var kappa=56; // Kupfer m/(Ohm*mm²)
+  var drop=(2*L*I)/(kappa*A);
+  res.classList.add('show');
+  document.getElementById('sv-val').textContent=drop.toFixed(3);
+  document.getElementById('sv-unit').textContent=' V';
+  var ok=drop<=0.5;
+  document.getElementById('sv-label').textContent=
+    'Spannungsfall: '+drop.toFixed(3)+' V bei '+L+' m, '+I+' A, '+A+' mm² — '+(ok?'✅ OK (≤ 0,5 V)':'⚠️ Zu hoch! Querschnitt vergrößern');
+}
+function calcChargeTime(){
+  var Q=parseFloat(document.getElementById('bt-cap').value);
+  var Ich=parseFloat(document.getElementById('bt-cur').value);
+  var soc=parseFloat(document.getElementById('bt-soc').value)||0;
+  var res=document.getElementById('bt-result');
+  if(isNaN(Q)||isNaN(Ich)||Ich===0){res.classList.remove('show');return;}
+  var remaining=Q*(1-(soc/100));
+  var hours=remaining/Ich;
+  var mins=Math.round(hours*60);
+  res.classList.add('show');
+  document.getElementById('bt-val').textContent=hours>=1?hours.toFixed(1):mins;
+  document.getElementById('bt-unit').textContent=hours>=1?' h':' min';
+  document.getElementById('bt-label').textContent=
+    'Kapazität: '+Q+' Ah, SOC: '+soc+'% → noch '+remaining.toFixed(1)+' Ah zu laden bei '+Ich+' A = ca. '+(hours).toFixed(1)+' h';
+}
+
+// ── AP-Check ─────────────────────────────────────────────────
+var KFZ_AP_ITEMS=[
+  // Motor
+  'Motor: Viertakt-Arbeitstakte nennen können (AVA-A)',
+  'Motor: Unterschied Otto (Fremdzündung) vs. Diesel (Selbstzündung)',
+  'Motor: Hubraum-Formel V_H = π/4 × d² × s × z',
+  'Motor: Abgasnachbehandlung — KAT, DPF, AGR, SCR/AdBlue erklären',
+  // Elektrik
+  'Elektrik: Ohmsches Gesetz U = R × I anwenden',
+  'Elektrik: Leistungsformel P = U × I; Einheit Watt',
+  'Elektrik: Reihen- und Parallelschaltung (R_ges, U, I) berechnen',
+  'Elektrik: CAN-Bus — Funktion, Übertragungsrate, Steuergeräte',
+  'Elektrik: Lichtmaschine — Drehstromgenerator, Gleichrichter, Regler',
+  // Fahrwerk
+  'Fahrwerk: ABS-Funktion erklären (Raddrehzahlsensoren, Schlupf)',
+  'Fahrwerk: ESP-Funktion erklären (Gier-Rate, gezieltes Bremsen)',
+  'Fahrwerk: Reifenbezeichnung 205/55 R16 lesen und erklären',
+  'Fahrwerk: Spurdifferenz, Sturz, Vorspur — Einfluss auf Fahrverhalten',
+  // Antrieb
+  'Antrieb: Kupplung — Einscheiben-Trockenkupplung, Ausrücklager',
+  'Antrieb: Synchronring — Funktion beim Schaltvorgang',
+  'Antrieb: Differential — Funktion, Drehzahldifferenz in Kurven',
+  'Antrieb: Übersetzung i = n_antrieb / n_abtrieb berechnen',
+  // Diagnose
+  'Diagnose: OBD2-Stecker (16-polig), welche Protokolle (ISO 15765-4)',
+  'Diagnose: DTC-Struktur lesen (P0300 = Fehlzündung Mehrfach)',
+  'Diagnose: Spannungsfall messen und beurteilen (max. 0,1 V/Verbindung)',
+  'Diagnose: Kompressionstest — Mindestdruck, Gleichmäßigkeit prüfen',
+  // E-Mobilität / HV
+  'E-Mob: HV-Spannungsklassen — Klasse A (≤60V DC) vs. Klasse B (>60V)',
+  'E-Mob: 5-Sicherheitsregeln beim Arbeiten an HV-Systemen auswendig',
+  'E-Mob: Service-Disconnect (SD) — Zweck und Position kennen',
+  'E-Mob: Rekuperation — Prinzip und Energiefluss erklären',
+  'E-Mob: Ladearten AC (Mode 2/3, Typ 2) vs. DC (Mode 4, CCS) unterscheiden',
+];
+var kfzApData=(function(){try{return JSON.parse(localStorage.getItem('kfz_ap_check')||"{}")}catch(e){return {}}})();
+function initAP(){
+  var list=document.getElementById('ap-list');if(!list)return;
+  list.innerHTML='';var done=0;
+  KFZ_AP_ITEMS.forEach(function(text,i){
+    var id='ap'+i;var checked=!!kfzApData[id];if(checked)done++;
+    var div=document.createElement('div');div.className='ap-item';
+    div.innerHTML='<input type="checkbox" class="ap-check" id="'+id+'"'+(checked?' checked':'')+'><label class="ap-item-text'+(checked?' done':'')+'" for="'+id+'">'+text+'</label>';
+    div.querySelector('input').onchange=function(){kfzApData[id]=this.checked;localStorage.setItem('kfz_ap_check',JSON.stringify(kfzApData));initAP();};
+    list.appendChild(div);
+  });
+  var pct=Math.round(done/KFZ_AP_ITEMS.length*100);
+  document.getElementById('ap-done').textContent=done+' / '+KFZ_AP_ITEMS.length+' erledigt';
+  document.getElementById('ap-pct').textContent=pct+'%';
+  document.getElementById('ap-bar').style.width=pct+'%';
+}
+
+/* ── Berichtsheft KFZ ── */
+var KFZ_BH_KEY = 'kfz_bh_weeks';
+var bhWeeks = [];
+var bhCurrentIdx = -1;
+function bhInit(){try{bhWeeks=JSON.parse(localStorage.getItem(KFZ_BH_KEY)||'[]');}catch(e){bhWeeks=[];}bhBuildSelect();bhUpdateStats();if(bhWeeks.length>0){document.getElementById('bh-week-select').selectedIndex=bhWeeks.length-1;bhLoadWeek();}else{document.getElementById('bh-form').style.display='none';document.getElementById('bh-empty').style.display='block';}}
+function bhGetKW(){var d=new Date(),jan1=new Date(d.getFullYear(),0,1);var kw=Math.ceil(((d-jan1)/86400000+jan1.getDay()+1)/7);return 'KW '+kw+' / '+d.getFullYear();}
+function bhBuildSelect(){var sel=document.getElementById('bh-week-select');sel.innerHTML='';bhWeeks.forEach(function(w,i){var opt=document.createElement('option');opt.value=i;opt.textContent=w.label||('Woche '+(i+1));sel.appendChild(opt);});}
+function bhNewWeek(){var label=bhGetKW();bhWeeks.push({label:label,mo:{cat:'Sonstiges',text:''},di:{cat:'Sonstiges',text:''},mi:{cat:'Sonstiges',text:''},do:{cat:'Sonstiges',text:''},fr:{cat:'Sonstiges',text:''}});bhSaveAll();bhBuildSelect();document.getElementById('bh-week-select').selectedIndex=bhWeeks.length-1;bhLoadWeek();}
+function bhLoadWeek(){var idx=parseInt(document.getElementById('bh-week-select').value);if(isNaN(idx)||idx<0||idx>=bhWeeks.length)return;bhCurrentIdx=idx;var w=bhWeeks[idx];['mo','di','mi','do','fr'].forEach(function(d){var cat=document.getElementById('bh-'+d+'-cat');var txt=document.getElementById('bh-'+d+'-text');if(w[d]){for(var i=0;i<cat.options.length;i++){if(cat.options[i].text===w[d].cat){cat.selectedIndex=i;break;}}txt.value=w[d].text||'';}});document.getElementById('bh-form').style.display='block';document.getElementById('bh-empty').style.display='none';}
+function bhSaveWeek(){if(bhCurrentIdx<0)return;var w=bhWeeks[bhCurrentIdx];['mo','di','mi','do','fr'].forEach(function(d){w[d]={cat:document.getElementById('bh-'+d+'-cat').value,text:document.getElementById('bh-'+d+'-text').value};});bhSaveAll();bhUpdateStats();alert('✅ Gespeichert!');}
+function bhSaveAll(){try{localStorage.setItem(KFZ_BH_KEY,JSON.stringify(bhWeeks));}catch(e){}}
+function bhUpdateStats(){var done=bhWeeks.filter(function(w){return['mo','di','mi','do','fr'].every(function(d){return w[d]&&w[d].text&&w[d].text.trim().length>10;});}).length;var chars=bhWeeks.reduce(function(s,w){return s+['mo','di','mi','do','fr'].reduce(function(a,d){return a+(w[d]&&w[d].text?w[d].text.length:0);},0);},0);document.getElementById('bh-total-weeks').textContent=bhWeeks.length;document.getElementById('bh-done-weeks').textContent=done;document.getElementById('bh-total-chars').textContent=chars>999?(chars/1000).toFixed(1)+'k':chars;}
+function bhExport(){if(bhCurrentIdx<0)return;var w=bhWeeks[bhCurrentIdx];var days=['mo','di','mi','do','fr'];var names=['Montag','Dienstag','Mittwoch','Donnerstag','Freitag'];var txt='BERICHTSHEFT — KFZ-Mechatroniker\n'+(w.label||'')+'\n'+'='.repeat(40)+'\n\n';days.forEach(function(d,i){txt+=names[i]+' ['+(w[d]&&w[d].cat||'')+']\n'+(w[d]&&w[d].text||'(leer)')+'\n\n';});var blob=new Blob([txt],{type:'text/plain;charset=utf-8'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Berichtsheft-KFZ-'+(w.label||'export').replace(/\s/g,'-')+'.txt';a.click();}
+</script>
+
+<script>
+/* AppStore — offline-first sync (arc-studio.org/sync.php) */
+if(typeof AppStore === 'undefined') {
+  var AppStore = (function() {
+    var EP = 'https://arc-studio.org/sync.php', DB = 4000, TP = 'arc_sync_ts_', DK = 'arc_device_id';
+    var SK = ['kfz_sr_data','amp_sr_data','tor_sr_data','vt_sr_data','vt_streak','arc_achievements','arc_lang','bh_profile','bh_weeks'];
+    var _t = null, _sy = false, _p = false;
+    function _uuid() { return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) { var r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16); }); }
+    function _did() { var id = localStorage.getItem(DK); if(!id) { id = _uuid(); localStorage.setItem(DK, id); } return id; }
+    function get(k, d) { try { var r = localStorage.getItem(k); return r !== null ? JSON.parse(r) : d; } catch(e) { return d; } }
+    function set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); localStorage.setItem(TP + k, Date.now() + ''); } catch(e) {} if(SK.indexOf(k) !== -1) { clearTimeout(_t); _t = setTimeout(sync, DB); } }
+    function sync() {
+      if(!navigator.onLine) return;
+      if(_sy) { _p = true; return; }
+      _sy = true; _p = false;
+      var push = {};
+      SK.forEach(function(k) { var r = localStorage.getItem(k); if(r === null) return; var ts = parseInt(localStorage.getItem(TP + k) || '0', 10); if(ts > 0) push[k] = {payload: r, updated_at: ts}; });
+      fetch(EP, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({device_id: _did(), push: push, pull_keys: SK})})
+        .then(function(r) { if(!r.ok) throw 0; return r.json(); })
+        .then(function(d) {
+          if(!d.ok || !d.pulled) return;
+          Object.keys(d.pulled).forEach(function(k) {
+            var rem = d.pulled[k];
+            var lts = parseInt(localStorage.getItem(TP + k) || '0', 10);
+            if(parseInt(rem.updated_at, 10) > lts) { try { localStorage.setItem(k, rem.payload); localStorage.setItem(TP + k, rem.updated_at + ''); } catch(e) {} }
+          });
+        })
+        .catch(function() {})
+        .finally(function() { _sy = false; if(_p) sync(); });
+    }
+    window.addEventListener('online', sync);
+    if(navigator.onLine) setTimeout(sync, 1500);
+    return {get: get, set: set, sync: sync, deviceId: _did, SYNC_KEYS: SK};
+  })();
+}
+</script>
+
+<script>
+// Analytics ping
+(function() {
+  if(location.hostname !== 'arc-studio.org') return;
+  fetch('/analytics.php', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({page: 'spark-kfz', lang: 'de'})
+  }).catch(function() {});
+})();
+</script>
+
+<script>
+// ── Language System ──────────────────────────────────────────
+var KFZ_LANG_FLAGS={de:'🇩🇪',en:'🇬🇧',tr:'🇹🇷',ru:'🇷🇺',ar:'🇸🇦'};
+var kfzLernLang=localStorage.getItem('arc_lang')||'de';
+function openLangModal(){
+  var m=document.getElementById('langModal');
+  m.style.display='flex';
+  document.querySelectorAll('.lang-pill').forEach(function(p){
+    p.classList.toggle('active',p.dataset.lang===kfzLernLang);
+  });
+}
+function closeLangModal(){document.getElementById('langModal').style.display='none';}
+function setLang(l){
+  kfzLernLang=l;
+  localStorage.setItem('arc_lang',l);
+  var cls=document.documentElement.className.replace(/\blang-\w+/g,'').trim();
+  document.documentElement.className=cls+' lang-'+l;
+  var btn=document.getElementById('langBtn');
+  if(btn) btn.textContent=KFZ_LANG_FLAGS[l]||'🌐';
+  // Re-render language-aware dynamic content
+  var dqEl=document.getElementById('dq-q');
+  if(dqEl) dqEl.textContent=(QUIZ[DQ_IDX][l]||QUIZ[DQ_IDX].de).q;
+  if(typeof kfzSRSession!=='undefined'&&kfzSRSession.length&&kfzSRIdx<kfzSRSession.length) renderFisiCard();
+  closeLangModal();
+}
+(function(){
+  var l=localStorage.getItem('arc_lang')||'de';
+  kfzLernLang=l;
+  var cls=document.documentElement.className||'';
+  document.documentElement.className=cls.replace(/\blang-\w+/g,'').trim()+' lang-'+l;
+  var btn=document.getElementById('langBtn');
+  if(btn) btn.textContent=KFZ_LANG_FLAGS[l]||'🌐';
+})();
+
+// ── Session Hero + Besuchszähler ─────────────────────────────
+(function(){
+  var v=parseInt(localStorage.getItem('kfz_visits')||'0')+1;
+  localStorage.setItem('kfz_visits',v);
+
+  // Streak
+  var streak=parseInt(localStorage.getItem('kfz_streak')||'0');
+  var shStreak=document.getElementById('sh-streak');
+  if(shStreak){
+    shStreak.textContent='🔥 '+streak+' Tage';
+    if(streak>=7) shStreak.className='sh-streak great';
+  }
+
+  // SR fällig berechnen
+  var due=0;
+  try{
+    var sr=JSON.parse(localStorage.getItem('kfz_sr_data')||'[]');
+    var now=Date.now();
+    if(Array.isArray(sr)){
+      due=sr.filter(function(c){return !c.nextReview||c.nextReview<=now;}).length;
+    } else {
+      Object.values(sr).forEach(function(c){if(!c.due||c.due<=now)due++;});
+    }
+  }catch(e){}
+
+  // Session Hero befüllen
+  var shCount=document.getElementById('sh-count');
+  var shSub=document.getElementById('sh-sub');
+  var shCta=document.getElementById('sh-cta');
+  var hero=document.getElementById('session-hero');
+  var srCountEl=document.getElementById('sh-sr-count');
+  if(srCountEl) srCountEl.textContent=due;
+
+  if(due===0){
+    if(shCount) shCount.innerHTML='<b>✓</b>';
+    if(shSub) shSub.textContent='Alle Karten gelernt — gut gemacht!';
+    if(shCta){ shCta.textContent='📊 Fortschritt ansehen'; shCta.className='sh-cta done-cta'; shCta.onclick=function(){window.showScreen('s-sr');}; }
+    if(hero) hero.classList.add('done');
+  } else {
+    if(shCount) shCount.innerHTML='<b>'+due+'</b>';
+    if(shSub) shSub.textContent='SR-Karten fällig · '+streak+' Tage Streak';
+    if(shCta){ shCta.textContent='🧠 SR starten'; shCta.className='sh-cta pulse'; }
+  }
+})();
+
+// ── Backup Panel ─────────────────────────────────────────────
+var KFZ_BACKUP_KEYS=[
+  {key:'kfz_sr_data',label:'SR-Karten',app:'🖥️'},
+  {key:'kfz_streak',label:'Lernstreak',app:'🔧'},
+  {key:'kfz_quiz_hist',label:'Quiz-Verlauf',app:'🔧'},
+  {key:'kfz_ap_check',label:'AP-Checkliste',app:'🔧'},
+  {key:'kfz_visits',label:'Besuchszähler',app:'🔧'},
+  {key:'bh_profile',label:'BH Profil',app:'📓'},
+  {key:'bh_weeks',label:'BH Wochen',app:'📓'},
+  {key:'arc_lang',label:'Sprache',app:'🌐'},
+];
+function fisiLernRenderBackupKeys(){
+  var el=document.getElementById('backupKeyList');
+  if(!el)return;
+  el.innerHTML=KFZ_BACKUP_KEYS.map(function(k){
+    var has=localStorage.getItem(k.key)!==null;
+    return '<span class="bk-tag'+(has?' has-data':'')+'">'+k.app+' '+k.label+'</span>';
+  }).join('');
+}
+function fisiLernExportBackup(){
+  var data={_version:1,_app:'FISI-Lern',_date:new Date().toISOString()};
+  KFZ_BACKUP_KEYS.forEach(function(k){
+    var v=localStorage.getItem(k.key);
+    if(v!==null)data[k.key]=v;
+  });
+  var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='spark-kfz-backup-'+new Date().toISOString().slice(0,10)+'.json';
+  a.click();
+}
+function fisiLernImportBackup(e){
+  var file=e.target.files[0];
+  if(!file)return;
+  var reader=new FileReader();
+  reader.onload=function(ev){
+    try{
+      var data=JSON.parse(ev.target.result);
+      KFZ_BACKUP_KEYS.forEach(function(k){
+        if(data[k.key]!==undefined)localStorage.setItem(k.key,data[k.key]);
+      });
+      fisiLernRenderBackupKeys();
+      alert('Import erfolgreich!');
+    }catch(err){alert('Fehler beim Import: '+err.message);}
+  };
+  reader.readAsText(file);
+}
+document.addEventListener('DOMContentLoaded',fisiLernRenderBackupKeys);
+
+// ── What's New Toast ─────────────────────────────────────────
+(function(){
+  var V='1.0';
+  if(localStorage.getItem('kfz_wn_seen')!==V){
+    setTimeout(function(){var t=document.getElementById('whatsNewToast');if(t)t.classList.remove('hidden');},1200);
+  }
+})();
+</script>
+
+<script>
+// ── AP1-SIMULATION KFZ ───────────────────────────────────────────
+var KFZ_SIM_QUESTIONS = [
+  // ── Motor (10) ───────────────────────────────────────────────
+  {q:"Welcher Takt folgt beim Viertaktmotor nach dem Verdichtungstakt?",opts:["Ansaugen","Ausstoßen","Arbeiten","Zünden"],ans:2,exp:"AVA-A: Ansaugen → Verdichten → Arbeiten (Zündung, Expansion) → Ausstoßen. Beim Arbeitstakt wird die Zündkerze gezündet und die Verbrennungsgase drücken den Kolben nach unten.",topic:"Motor"},
+  {q:"Was ist der Hauptunterschied zwischen Otto- und Dieselmotor bei der Zündung?",opts:["Ottomotor: Selbstzündung; Diesel: Fremdzündung","Ottomotor: Fremdzündung (Zündkerze); Diesel: Selbstzündung durch Wärme","Beide nutzen Zündkerzen","Beide nutzen Selbstzündung"],ans:1,exp:"Ottomotor: Fremdzündung durch Zündkerze (λ ≈ 1, ε ≈ 8–12:1). Dieselmotor: Selbstzündung durch hohe Verdichtungswärme (ε ≈ 14–22:1), kein Drossel → höherer Wirkungsgrad.",topic:"Motor"},
+  {q:"Wie lautet die Formel für den Hubraum eines Motors?",opts:["V_H = d × s × z","V_H = (π/4) × d² × s × z","V_H = π × d × s","V_H = d² × s"],ans:1,exp:"V_H = (π/4) × d² × s × z. d = Zylinderbohrung, s = Kolbenhub, z = Anzahl Zylinder. Einheit: cm³. Für einzelnen Zylinder: V_H = (π/4) × d² × s.",topic:"Motor"},
+  {q:"Ein Turbolader verdichtet die Ansaugluft. Was bewirkt der Ladeluftkühler dahinter?",opts:["Erhöht den Ladedruck weiter","Kühlt die verdichtete Luft ab → höhere Luftdichte → mehr Füllung","Reinigt die Luft von Rußpartikeln","Reduziert den Schalldruck des Turboladers"],ans:1,exp:"Verdichtung erhitzt die Luft. Der Ladeluftkühler (Luft-Luft oder Luft-Wasser) kühlt die Ladeluft ab → Dichte steigt → mehr Sauerstoffmoleküle pro Hub → mehr Leistung.",topic:"Motor"},
+  {q:"Was macht ein Drei-Wege-Katalysator?",opts:["Nur CO und HC oxidieren","Nur NOx reduzieren","CO und HC oxidieren UND NOx reduzieren gleichzeitig","Partikel filtern"],ans:2,exp:"Drei-Wege-KAT: oxidiert CO → CO₂, HC → H₂O und CO₂, und reduziert NOx → N₂ gleichzeitig. Funktioniert nur bei λ = 1 (stöchiometrisch), geregelt durch Lambda-Sonde.",topic:"Motor"},
+  {q:"Welche Aussage zur Dieselpartikelfilter (DPF)-Regeneration ist korrekt?",opts:["Findet nur im Stillstand statt","Ruß wird bei etwa 600°C verbrannt; kann aktiv (Nacheinspritzung) oder passiv (Fahrbetrieb) erfolgen","Reinigung durch Waschen mit Adblue","Regeneration senkt Motortemperatur"],ans:1,exp:"Bei Rußbeladung: aktive Regeneration durch Nacheinspritzung erhöht Abgastemperatur auf ~600°C → Ruß verbrennt. Passive Regeneration bei Langstreckenfahrt (hohe Temp.).",topic:"Motor"},
+  {q:"Was versteht man unter Steuerzeiten beim Motor?",opts:["Die Ventilhübe in mm","Öffnungs- und Schließzeitpunkte der Ventile in Grad Kurbelwellenwinkel","Die Einspritzmenge in mg/Hub","Die Dauer des Zündfunkens"],ans:1,exp:"Steuerzeiten = wann Einlass-/Auslassventile öffnen/schließen (in °KW). Variable Nockenwellenversteller (VVT) passen Steuerzeiten dynamisch an → mehr Leistung oder Verbrauchsreduktion.",topic:"Motor"},
+  {q:"Welche Komponente misst den Restsauerstoff im Abgas zur Gemischregelung?",opts:["Klopfsensor","Nockenwellensensor","Lambda-Sonde","Druckdifferenzsensor"],ans:2,exp:"Lambda-Sonde (Sprungsonde oder Breitband-LSU) misst O₂-Gehalt im Abgas. Motorsteuerung regelt Einspritzung auf λ = 1 (14,7 kg Luft : 1 kg Benzin = stöchiometrisch).",topic:"Motor"},
+  {q:"Was ist Common-Rail beim Diesel-Einspritzsystem?",opts:["Ein Hochdruckspeicher (Rail, 1500–3000 bar) der alle Injektoren versorgt","Eine Form der Saugrohreinspritzung","Ein Turbolader-Konzept","Ein Abgasrückführungs-System"],ans:0,exp:"Common-Rail: ein gemeinsamer Druckspeicher unter hohem Druck versorgt alle piezo/magnetventil-gesteuerten Injektoren. Mehrfacheinspritzung (Vor-, Haupt-, Nacheinspritzung) möglich → weniger Lärm, Partikel, Verbrauch.",topic:"Motor"},
+  {q:"Welche Viskositätsbezeichnung bedeutet bei einem Motoröl '5W-30'?",opts:["5 = Sommerviskosität, W = Winteröl, 30 = Herstellerkennzahl","5W = Kaltstartviskosität (W=Winter), 30 = Betriebsviskosität bei 100°C","5 = Partikelfiltereignung, 30 = zulässige Höchsttemperatur","W = vollsynthetisch, 5 = Ölwechselintervall in 1000 km"],ans:1,exp:"SAE-Klassifikation: 5W = Kaltstarteigenschaft (je kleiner, desto kaltstarttauglicher). 30 = kinematische Viskosität bei 100°C (Betriebstemperatur). Niedrigere W-Zahl → bessere Kälteeigenschaften.",topic:"Motor"},
+
+  // ── Elektrik (8) ─────────────────────────────────────────────
+  {q:"Ein Verbraucher hat 12V Spannung und 3Ω Widerstand. Wie groß ist der Strom?",opts:["36 A","4 A","0,25 A","9 A"],ans:1,exp:"Ohmsches Gesetz: I = U / R = 12 V / 3 Ω = 4 A. Merke: U = R × I. Leistung P = U × I = 12 × 4 = 48 W.",topic:"Elektrik"},
+  {q:"Welche Spannung hat ein normales 12-V-Bordnetz bei laufendem Motor mit funktionierender Lichtmaschine?",opts:["12,0 V","13,8–14,8 V","15,5 V","11,5 V"],ans:1,exp:"Lichtmaschine lädt Batterie: Bordnetzspannung steigt auf 13,8–14,8 V. Unter 13,5 V → Lima-Ausgabe prüfen. Über 14,8 V → Regler defekt, Batterie kann überladen werden.",topic:"Elektrik"},
+  {q:"Was ist das Hauptmerkmal einer AGM-Batterie gegenüber einer Standard-Nassbatterie?",opts:["Höhere Kaltstartstromstärke bei sonst gleichen Eigenschaften","Auslaufsicheres Glasvlies, 3× höhere Zyklenfestigkeit, geeignet für Start-Stopp und Rekuperation","Wartungsfreie Ausführung (kann kein Wasser nachfüllen)","Günstigerer Preis"],ans:1,exp:"AGM (Absorbent Glass Mat): Elektrolyt in Glasvlies gebunden → auslaufsicher, vibrationsfest. 3× mehr Ladezyklen. Pflicht bei Start-Stopp + Rekuperation. EFB ist ein Zwischenstandard.",topic:"Elektrik"},
+  {q:"Auf welche Weise kommunizieren Steuergeräte über den CAN-Bus?",opts:["Jedes Steuergerät hat eine eigene dedizierte Leitung zu jedem anderen","Serielle Übertragung auf 2 Leitungen (CAN-H/CAN-L); alle Teilnehmer lesen alle Nachrichten; Priorität per ID","Master-Slave-Prinzip wie beim LIN-Bus","Nur bei Fahrzeugen mit OBD2-Anschluss vorhanden"],ans:1,exp:"CAN-Bus: differentielle Signalübertragung (CAN-H/CAN-L) sichert Störresistenz. Alle Teilnehmer erhalten alle Botschaften; jede Botschaft hat eine ID (bestimmt Priorität). Kollisionsvermeidung durch CSMA/CD-ähnliches Verfahren.",topic:"Elektrik"},
+  {q:"Was ist bei der Strommessung mit einem Multimeter zu beachten?",opts:["Messgerät parallel zum Verbraucher schalten","Messgerät in Reihe (im Stromkreis) schalten oder Zangenamperemeter verwenden","Strom immer bei ausgeschaltetem Motor messen","Messbereich auf Maximum stellen"],ans:1,exp:"Stromkreis muss für konventionelle Messung aufgetrennt werden → Gerät in Reihe. Einfacher: Zangenamperemeter (klammert um Kabel, berührungslos). Immer vom höchsten Messbereich beginnen.",topic:"Elektrik"},
+  {q:"Was versteht man unter Spannungsfall an einem Massekabel?",opts:["Die Nennspannung der Batterie","Spannungsverlust durch Übergangswiderstand; gemessen: Multimeter parallel zur Verbindung bei fließendem Strom","Spannung zwischen Plus- und Minuspol","Den Innenwiderstand der Batterie"],ans:1,exp:"Spannungsfall (Voltage Drop) = I × R_Leitung. Grenzwert: max. 0,1 V je Verbindung/Klemme. Messung: Multimeter parallel zur Leitung/Verbindung, Verbraucher eingeschaltet, Motor läuft. Gefunden: reinigen, festziehen.",topic:"Elektrik"},
+  {q:"Welche Funktion hat der Klopfsensor am Motorblock?",opts:["Misst den Öldruck im Motorblock","Detektiert Klingeln/Klopfen durch Piezokeramik → Steuerung retardiert Zündzeitpunkt","Misst die Kühlwassertemperatur","Erkennt Motorfehlzündungen im Abgassystem"],ans:1,exp:"Klopfsensor (piezokeramisch) sitzt am Motorblock, erfasst Körperschallschwingungen. Bei Klopfen: Motorsteuerung retardiert Zündung → Schutz vor Motorschaden. Gutes Klopfmodell ermöglicht klopfnahen Betrieb für maximalen Wirkungsgrad.",topic:"Elektrik"},
+  {q:"Welche Bauform des Elektromotors nutzt Tesla beim Antrieb (z.B. Model 3)?",opts:["Reihenschlussmotor","Permanentmagnet-Synchronmotor (PMSM)","Asynchronmotor (ASM) am Heck, PMSM vorn bei Allrad-Version","Gleichstrom-Nebenschlussmotor"],ans:2,exp:"Tesla Model 3 Allrad: Hinterachse ASM (günstiger, robust), Vorderachse PMSM (höherer Wirkungsgrad). Single-Motor: PMSM. Andere Hersteller (VW, BMW) verwenden überwiegend PMSM.",topic:"Elektrik"},
+
+  // ── Fahrwerk (7) ─────────────────────────────────────────────
+  {q:"Wie verhindert ABS das Blockieren der Räder beim Bremsen?",opts:["Durch Erhöhen des Bremsdrucks gleichmäßig","Durch schnelles Wechseln zwischen Druckaufbau, -halt und -abbau pro Rad","Durch Reduzieren der Motorleistung beim Bremsen","Durch vollständiges Entlüften des Bremskreises"],ans:1,exp:"ABS-Regelkreis: Raddrehzahlsensoren → zu viel Schlupf (Rad blockiert fast) → Halteventil sperrt (kein Druckanstieg) → Ablassventil öffnet (Druck sinkt) → Rad dreht wieder. Zyklus ≈ 15× pro Sekunde.",topic:"Fahrwerk"},
+  {q:"Was erkennt und korrigiert das ESP zusätzlich zum ABS?",opts:["Nur Über- und Untersteuern in Kurven","Reifenpannenzustand","Überhitzung der Bremsen","Aquaplaning"],ans:0,exp:"ESP (Electronic Stability Program): Gierratensensor + Querbeschleunigungssensor + Lenkwinkelsensor. Erkennt Übersteuern (Heck bricht aus) und Untersteuern (Fahrzeug schiebt geradeaus) → bremst einzelne Räder gezielt.",topic:"Fahrwerk"},
+  {q:"Was bedeutet 'negativer Sturz' bei der Achsgeometrie?",opts:["Rad steht oben nach außen geneigt","Rad steht oben nach innen geneigt → bessere Kurvenführung","Rad hat eine negative Vorspur","Rad dreht nach hinten"],ans:1,exp:"Negativer Sturz (Camber < 0°): Reifenoberkante nach innen → in Kurven vergrößert sich die Aufstandsfläche → bessere Kurvenführung. Zu viel: erhöhter Verschleiß innen.",topic:"Fahrwerk"},
+  {q:"Ein Reifen ist mit 205/55 R17 bezeichnet. Was bedeutet die '55'?",opts:["Reifenbreite in cm","Querschnittsverhältnis: Reifenhöhe zu Reifenbreite in Prozent","Tragfähigkeitsindex","Maximale Geschwindigkeit in 10er-Stufen"],ans:1,exp:"Querschnittsverhältnis (Aspect Ratio): Reifenhöhe / Reifenbreite × 100 %. Bei 205/55: Höhe = 205 × 0,55 = 112,75 mm. Je niedriger, desto 'flacher' der Reifen.",topic:"Fahrwerk"},
+  {q:"Welcher Sensor ist typischerweise im Rad verbaut beim direkten TPMS?",opts:["Raddrehzahlsensor des ABS","Drucksensor und Temperatursensor mit Funksender","Dehnungsmessstreifen in der Felge","Induktiver Näherungsschalter"],ans:1,exp:"Direktes TPMS: Drucksensor (+ optional Temp.-Sensor) in jedem Rad oder Ventilschaft. Senden Funksignal (433 MHz) an BCM. Batterielebensdauer ≈ 7–10 Jahre. Lernvorgang nach Radwechsel nötig.",topic:"Fahrwerk"},
+  {q:"Was ist der Unterschied zwischen Einrohr- und Zwirohr-Stoßdämpfer?",opts:["Kein technischer Unterschied","Einrohr: Öl + Hochdruckgas in einem Rohr, wartungsfrei; Zwirohr: Arbeitsrohr + Ausgleichsrohr (Niederdruckgas), günstiger","Zwirohr ist immer besser","Einrohr wird nur an Hinterachsen verbaut"],ans:1,exp:"Einrohrstoßdämpfer (Monotube): Arbeitskolben + Trennkolben mit Hochdruckgas. Schnelles Ansprechen, hitzefest. Zwirohrstoßdämpfer: Innenrohr (Arbeitsraum) + Außenrohr (Ausgleichsraum, Niederdruckgas). Günstiger, aber gasblasenempfindlicher.",topic:"Fahrwerk"},
+  {q:"Was ist Vorspur (Toe-in) und welche Auswirkung hat zu viel Toe-in?",opts:["Räder hinten enger, vorne weiter; Auswirkung: Übersteuern","Räder vorne innen enger als hinten; zu viel: Innenreifenverschleiß, träges Lenken","Räder stehen nach vorne geneigt; Auswirkung: Nickneigung beim Bremsen","Spurbreite des Fahrzeugs"],ans:1,exp:"Toe-in (Vorspur): Vorderseite der Räder ist enger als Hinterseite. Stabilisiert Geradeauslauf. Zu viel Toe-in: Abrieb an Reifenaußenkante (Sägezahnprofil), Mehrverbrauch. Einstellung per Spurstangenmutter.",topic:"Fahrwerk"},
+
+  // ── Antrieb (5) ──────────────────────────────────────────────
+  {q:"Was ist die Aufgabe der Synchronisierung im Schaltgetriebe?",opts:["Den Fahrerwunsch an das Motorsteuergerät übermitteln","Die Drehzahl des Gangrads auf Eingangswellendrehzahl angleichen, bevor die Schiebemuffe eingreift","Den Abstand zwischen Kupplung und Getriebegehäuse einstellen","Den Kraftschluss zwischen Motor und Getriebe herstellen"],ans:1,exp:"Ohne Synchronisation würden Zahnflanken unter Drehzahldifferenz aufeinanderstoßen → Knirschen. Synchronring: Reibkegel erhöht/senkt Gangraddrehzahl auf Synchrondrehzahl → geräuschloses Einspuren der Schiebemuffe.",topic:"Antrieb"},
+  {q:"Was ist ein Drehmomentwandler und wo wird er eingesetzt?",opts:["Mechanische Kupplung im Handschaltgetriebe","Hydrodynamische Kupplung im Automatikgetriebe; überträgt Drehmoment via Öl und kann Moment vervielfachen","Elektromagnetische Kupplung in Hybrid-Fahrzeugen","Elektronisch gesteuertes Differential"],ans:1,exp:"Drehmomentwandler (Torque Converter): Pumpenrad (Motor) → Öl → Turbinenrad (Getriebe). Leitrad verstärkt Drehmoment beim Anfahren. Wandlerüberbrückungskupplung sperrt bei höherer Geschwindigkeit für direkten Kraftschluss.",topic:"Antrieb"},
+  {q:"Was ist der Hauptvorteil eines Doppelkupplungsgetriebes (DSG) gegenüber Automatikgetriebe?",opts:["Niedrigere Herstellungskosten","Zugkraftunterbrechungsfreie Schaltung, da nächster Gang vorgewählt ist","Kein Öl benötigt","Weniger Kupplungsverschleiß"],ans:1,exp:"DSG: K1 hält aktuellen Gang (z.B. 3. Gang), K2 hat nächsten Gang (4.) bereits eingelegt. Beim Schalten: K1 löst, K2 greift gleichzeitig → Schaltzeit <100 ms, keine Zugkraftunterbrechung.",topic:"Antrieb"},
+  {q:"Ein Getriebe hat Übersetzung i = 4 im 1. Gang, die Achsübersetzung ist 3,5. Wie groß ist die Gesamtübersetzung?",opts:["7,5","0,89","14","12"],ans:2,exp:"Gesamtübersetzung: i_ges = i_Getriebe × i_Achse = 4 × 3,5 = 14. Bedeutung: Kurbelwelle dreht 14× so schnell wie das Antriebsrad. Bei n_Motor = 1400/min: n_Rad = 1400/14 = 100/min.",topic:"Antrieb"},
+  {q:"Wozu dient ein Sperrdifferential?",opts:["Um den Reifenverschleiß gleichmäßig zu verteilen","Um die Drehzahldifferenz zwischen Antriebsrädern zu begrenzen und Traktion bei unterschiedlichem Grip zu verbessern","Um den Fahrzeugrahmen zu schützen","Um das ABS zu unterstützen"],ans:1,exp:"Offenes Differential: schleuderndes Rad bekommt mehr Moment (Weg des geringsten Widerstands). Sperrdifferential: begrenzt Differenz durch mechanische Sperre, Viskosekupplung, Haldex oder elektronisches Bremsen-Torque-Vectoring.",topic:"Antrieb"},
+
+  // ── Diagnose (8) ─────────────────────────────────────────────
+  {q:"Was bedeutet der Fehlercode P0300?",opts:["Lambdasonde Signal zu fett","Kurbelwellensensor Signal gestört","Fehlzündung wurde in mehreren Zylindern erkannt","Kraftstoffdruck zu niedrig"],ans:2,exp:"P0300 = Random/Multiple Cylinder Misfire Detected. P0301–P0308 = Fehlzündung in Zylinder 1–8 einzeln. Mögliche Ursachen: Zündkerze, Zündkabel, Injektor, Kompressionsverlust.",topic:"Diagnose"},
+  {q:"Was sind Freeze-Frame-Daten (OBD2)?",opts:["Daten die beim Abschalten des Motors gespeichert werden","Momentaufnahme aller Motordaten zum Zeitpunkt des Fehlereintrags","Dauerhaft gespeicherte Werksdaten des Fahrzeugs","Ausgelesene Fehlercodes im Klartext"],ans:1,exp:"Freeze-Frame: Motorsteuerung friert aktuelle Betriebsparameter (Drehzahl, Last, Kühlwassertemp., λ) zum Fehlerzeitpunkt ein. Hilft bei Diagnose von sporadischen Fehlern.",topic:"Diagnose"},
+  {q:"Wie wird ein Spannungsfall am Massekabel gemessen?",opts:["Multimeter in Reihe schalten, Motor abgestellt","Multimeter parallel zur Masseverbindung schalten, Motor läuft und Verbraucher eingeschaltet","Multimeter an Batterie Plus und Minus anlegen","Strom mit Zangenamperemeter messen"],ans:1,exp:"Spannungsfall-Messung: Messgerät parallel zur Verbindung (Kabel, Klemme, Stecker). Verbraucher muss eingeschaltet sein (Strom fließt!). Grenzwert: max. 0,1 V je Übergang. >0,1 V → Kontakt reinigen oder Kabel ersetzen.",topic:"Diagnose"},
+  {q:"Wie wird ein Kompressionstest korrekt durchgeführt?",opts:["Motor kalt, Drosselklappe geschlossen, eine Messung pro Zylinder","Motor warm, Drosselklappe geöffnet (Gas durchtreten), alle Zündkerzen ausgebaut, Anlassen bis Wert stabil","Motor kalt, beliebige Drosselstellung","Nur bei laufendem Motor möglich"],ans:1,exp:"Korrekt: Motor warmgefahren, Zündkerzen/-Glühkerzen alle ausbauen, Drossel vollständig öffnen (Gaspedalanschlag), Messsonde eindrehen, Anlasser betätigen bis Wert nicht mehr ansteigt (4–5 Kompressionen). Ableichen: max. 25% Differenz.",topic:"Diagnose"},
+  {q:"Wofür eignet sich das Oszilloskop besonders in der Kfz-Diagnose?",opts:["Zum statischen Messen von Batteriezustand","Zum Darstellen von Signalverläufen über die Zeit (CAN-Bus, Sensoren, Injektoren)","Zur Ermittlung des Kompressionsdrucks","Zum Auslesen von OBD-Fehlercodes"],ans:1,exp:"Oszilloskop: zeigt Spannung über Zeit. Ideal für: CAN-High/Low-Signalform, Injektoransteuerung (Stromrampe), Kurbelwellensensor-Signal, Lambda-Sonden-Sprung, Zündsystem-Spannungen. Fehler sichtbar die ein Multimeter nicht zeigt.",topic:"Diagnose"},
+  {q:"Was deutet beim Leckagetest darauf hin, dass die Zylinderkopfdichtung defekt ist?",opts:["Druckluft entweicht aus dem Auspuff","Druckluft entweicht aus der Öleinfüllöffnung","Druckluft entweicht in den Nachbarzylinder (Luft in Zündkerzenbohrung nebenan hörbar)","Druckluft entweicht aus dem Kühlwasserbehälter"],ans:2,exp:"Leckagetest: Kolben auf OT-Verdichtung, Druckluft einleiten. Kopfdichtung-Defekt: Luft dringt in Nachbarzylinder (Zündkerzenbohrung) oder ins Kühlsystem (Kühlwasserstand blubbert). Ölwanne = Kolbenringe, Ansaugtrakt = Einlassventil.",topic:"Diagnose"},
+  {q:"Was prüft ein Kraftstoffdrucktest?",opts:["Den Öldruck im Motor","Den Förderdruck der Kraftstoffpumpe und die Dichtigkeit des Systems (Injektor, Rückschlagventil)","Den Ladedruck des Turboladers","Den Bremsdruck im Hydrauliksystem"],ans:1,exp:"Kraftstoffdruck-Test: Manometer am Kraftstoffverteiler (Schrader-Ventil). Motor starten: Solldruck lt. Werkstattdaten. Nach Abstellen: Druckabfall > 0,3 bar/Minute → undichter Injektor, defektes Rückschlagventil der Pumpe.",topic:"Diagnose"},
+  {q:"Was ist der DLC-Stecker und wo sitzt er?",opts:["Data Link Connector — genormter 16-poliger OBD2-Diagnosestecker, meist unter Armaturenbrett Fahrerseite","Direktes Ladeprotokoll für HV-Batterie","Diagnoseleitung am Motorblock (Öldruck)","Stecker am Drehstromgenerator"],ans:0,exp:"DLC = Data Link Connector: trapezförmiger 16-poliger Stecker nach ISO 15031-3. Pin 4 = Fahrzeugmasse, Pin 16 = Klemme 30 (Batterie +). Seit 2001/2004 Pflicht. Sitz: meist unter Armaturenbrett links.",topic:"Diagnose"},
+
+  // ── E-Mobilität / HV (7) ─────────────────────────────────────
+  {q:"Ab welcher Gleichspannung gilt ein Kfz-System als Hochvoltbereich (Klasse B)?",opts:["Über 12 V DC","Über 42 V DC","Über 60 V DC","Über 120 V DC"],ans:2,exp:"VDE 0100-410 / IEC 60479: Klasse A ≤ 60 V DC / 25 V AC = gefährdungslos berührbar. Klasse B > 60 V DC gilt als Hochvolt. Typische HV-Traktionsbatterien: 200–800 V DC.",topic:"E-Mobilitaet"},
+  {q:"Was ist die erste Sicherheitsregel beim Arbeiten an HV-Systemen?",opts:["Spannung messen","Freischalten — HV-Spannung trennen (Service-Disconnect ziehen)","Fahrzeug auf Erdungspotenzial legen","Warnweste anziehen"],ans:1,exp:"5-Sicherheitsregeln: 1. Freischalten (SD ziehen), 2. Gegen Wiedereinschalten sichern, 3. Spannungsfreiheit feststellen (KAT III-Messgerät), 4. Erden und Kurzschließen, 5. Benachbarte Teile abdecken.",topic:"E-Mobilitaet"},
+  {q:"Was ist der Service-Disconnect (SD) bei Elektrofahrzeugen?",opts:["Ein OBD-Diagnosestecker für HV-Systeme","Eine mechanische Steckverbindung die den HV-Batteriekreis physisch unterbricht — MUSS vor HV-Arbeiten gezogen werden","Ein Sicherheitsventil in der Batteriezelle","Der Sicherheitsschalter an der Wallbox"],ans:1,exp:"SD = manuelle Trennung des HV-Stromkreises in der Batterie (oft unter Rücksitz). Nach Ziehen: 5–10 Minuten warten (Entladen der Hochvolt-Kondensatoren im Wechselrichter). Dann Spannungsfreiheit messen.",topic:"E-Mobilitaet"},
+  {q:"Was bedeutet 'Rekuperation' beim Elektro-/Hybridfahrzeug?",opts:["Aufladung der 12-V-Batterie durch die Lichtmaschine","Umwandlung von Bremsenergie (kinetische → elektrische) durch den E-Motor als Generator in Ladeenergie für die HV-Batterie","Kühlung der HV-Batterie bei Schnellladen","Regeneration des Dieselpartikelfilters im E-Hybridbetrieb"],ans:1,exp:"Rekuperation: beim Verzögern/Bremsen wirkt E-Motor als Generator → kinetische Energie → Strom → HV-Batterie. Bis zu 25% Reichweitengewinn. Bei starkem Bremsen zusätzlich hydraulische Bremse (Brake Blending).",topic:"E-Mobilitaet"},
+  {q:"Welcher Ladestandard wird für DC-Schnellladen (Mode 4) in Europa hauptsächlich verwendet?",opts:["CHAdeMO","Type 1 (J1772)","CCS Combo 2 (Combined Charging System)","GB/T"],ans:2,exp:"Europa: CCS Combo 2 (AC Typ-2 + 2 DC-Pins unten). Bis 350 kW. CHAdeMO: japanischer Standard (Nissan, Mitsubishi), wird weniger. GB/T: China. Typ 2 (Mennekes): nur AC, bis 22 kW (Mode 3).",topic:"E-Mobilitaet"},
+  {q:"Welche Funktion hat das Batteriemanagementsystem (BMS)?",opts:["Steuert den Wechselrichter für den E-Motor","Überwacht Zellspannungen, Temperatur, SOC und SOH; schützt vor Über-/Tiefentladung und führt Cell-Balancing durch","Regelt die Ladeleistung an der Wallbox","Steuert die Rekuperation beim Bremsen"],ans:1,exp:"BMS überwacht: Einzelzellspannungen (±mV), Temperaturen, SOC (State of Charge = Ladezustand), SOH (State of Health = Alterungszustand). Cell-Balancing gleicht Ladungsunterschiede aus. Schützt Zellen vor Schäden.",topic:"E-Mobilitaet"},
+  {q:"Was ist der Unterschied zwischen PMSM und ASM (E-Motor im Fahrzeug)?",opts:["PMSM hat keine Magnete, ASM hat Permanentmagnete","PMSM: Rotor mit Permanentmagneten, hoher Wirkungsgrad, läuft synchron; ASM: Rotor ohne Magnete (Kurzschlussläufer), induktiv, robuster/günstiger","Beide sind identisch in der Funktionsweise","PMSM wird nur in Hybrid-Fahrzeugen eingesetzt"],ans:1,exp:"PMSM: Permanentmagnete im Rotor, läuft synchron mit Drehfeld, Wirkungsgrad bis 97%, benötigt Seltene Erden (Neodym). ASM: Rotor aus Alu/Kupfer, Strom wird induktiv erzeugt, günstig, robust, keine seltenen Erden (Einsatz: Tesla Hinterachse).",topic:"E-Mobilitaet"},
+];
+
+var fisiSimState = {idx:0, correct:0, wrong:0, answered:false, questions:[], timer:null, seconds:90*60, topicErrors:{}};
+
+function simLoad() {
+  var stored = localStorage.getItem('kfz_sim_hs');
+  var el = document.getElementById('sim-hs-badge');
+  if(el && stored) {
+    var hs; try { hs = JSON.parse(stored); } catch(e) { hs = null; }
+    el.textContent = '🏆 Bestleistung: ' + hs.score + '/30 (' + hs.pct + '%) — ' + hs.date;
+  }
+}
+
+function simStart() {
+  fisiSimState.idx = 0; fisiSimState.correct = 0; fisiSimState.wrong = 0;
+  fisiSimState.seconds = 90*60; fisiSimState.answered = false; fisiSimState.topicErrors = {};
+  fisiSimState.questions = KFZ_SIM_QUESTIONS.slice().sort(function(){return Math.random()-.5;});
+  document.getElementById('sim-start').style.display = 'none';
+  document.getElementById('sim-end').style.display = 'none';
+  document.getElementById('sim-quiz').style.display = 'block';
+  simRenderQ();
+  simStartTimer();
+}
+
+function simStartTimer() {
+  if(fisiSimState.timer) clearInterval(fisiSimState.timer);
+  fisiSimState.timer = setInterval(function(){
+    fisiSimState.seconds--;
+    var m = Math.floor(fisiSimState.seconds/60), s = fisiSimState.seconds%60;
+    var el = document.getElementById('sim-timer');
+    if(el) el.textContent = m + ':' + (s<10?'0':'') + s;
+    if(fisiSimState.seconds <= 0) { clearInterval(fisiSimState.timer); simFinish(); }
+  }, 1000);
+}
+
+function simRenderQ() {
+  var st = fisiSimState, q = st.questions[st.idx];
+  document.getElementById('sim-counter').textContent = 'Frage ' + (st.idx+1) + ' / 30';
+  document.getElementById('sim-prog').style.width = (st.idx/30*100) + '%';
+  document.getElementById('sim-q-text').textContent = q.q;
+  document.getElementById('sim-q-exp').style.display = 'none';
+  document.getElementById('sim-q-next').style.display = 'none';
+  st.answered = false;
+  var optsEl = document.getElementById('sim-q-opts');
+  optsEl.innerHTML = '';
+  q.opts.forEach(function(o, i) {
+    var btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = o;
+    btn.onclick = function(){ if(!st.answered) simAnswer(i, q.ans, q.exp, q.topic); };
+    optsEl.appendChild(btn);
+  });
+}
+
+function simAnswer(chosen, correct, exp, topic) {
+  fisiSimState.answered = true;
+  var btns = document.getElementById('sim-q-opts').querySelectorAll('.quiz-opt');
+  btns.forEach(function(b){ b.disabled = true; });
+  if(chosen === correct) {
+    btns[chosen].classList.add('correct');
+    fisiSimState.correct++;
+  } else {
+    btns[chosen].classList.add('wrong');
+    btns[correct].classList.add('correct');
+    fisiSimState.wrong++;
+    fisiSimState.topicErrors[topic] = (fisiSimState.topicErrors[topic]||0)+1;
+  }
+  var expEl = document.getElementById('sim-q-exp');
+  expEl.textContent = exp;
+  expEl.style.display = 'block';
+  document.getElementById('sim-q-next').style.display = 'block';
+}
+
+function simNext() {
+  fisiSimState.idx++;
+  if(fisiSimState.idx < 30) simRenderQ();
+  else simFinish();
+}
+
+function simFinish() {
+  if(fisiSimState.timer) clearInterval(fisiSimState.timer);
+  document.getElementById('sim-quiz').style.display = 'none';
+  document.getElementById('sim-end').style.display = 'block';
+  var sc = fisiSimState.correct, pct = Math.round(sc/30*100);
+  document.getElementById('sim-end-score').textContent = sc;
+  document.getElementById('sim-end-sub').textContent = 'von 30 Fragen richtig (' + pct + '%) — ' + (pct >= 50 ? '✅ Bestanden' : '❌ Nicht bestanden');
+  // Save HS
+  var prev = JSON.parse(localStorage.getItem('kfz_sim_hs')||'null');
+  if(!prev || sc > prev.score) {
+    var hs = {score:sc, pct:pct, date: new Date().toLocaleDateString('de-DE')};
+    localStorage.setItem('kfz_sim_hs', JSON.stringify(hs));
+    document.getElementById('sim-end-hs').textContent = '🏆 Neuer Highscore!';
+  } else {
+    document.getElementById('sim-end-hs').textContent = 'Highscore: ' + prev.score + '/30 (' + prev.pct + '%)';
+  }
+  // Topic breakdown
+  var breakdown = document.getElementById('sim-end-breakdown');
+  var errors = fisiSimState.topicErrors;
+  var topics = Object.keys(errors).sort(function(a,b){return errors[b]-errors[a];});
+  if(topics.length === 0) {
+    breakdown.innerHTML = '🎯 Keine Fehler — perfekte Runde!';
+  } else {
+    breakdown.innerHTML = '<strong>Schwächen:</strong><br>' + topics.map(function(t){ return '· ' + t + ': ' + errors[t] + ' Fehler'; }).join('<br>');
+  }
+  document.getElementById('sim-start').style.display = '';
+}
+
+// Init on screen show
+var _origShowScreenFisiSim = window.showScreen;
+window.showScreen = function(id) {
+  _origShowScreenFisiSim(id);
+  if(id === 's-sim') simLoad();
+};
+
+
+// ── Lückentext Mode ───────────────────────────────────────────────
+var srMode = localStorage.getItem('sr_mode') || 'flip';
+var srFillCurrentAnswer = '';
+
+function setSRMode(m) {
+  srMode = m;
+  localStorage.setItem('sr_mode', m);
+  var fb = document.getElementById('sr-mode-flip');
+  var tb = document.getElementById('sr-mode-fill');
+  if (fb) fb.classList.toggle('active', m === 'flip');
+  if (tb) tb.classList.toggle('active', m === 'fill');
+}
+
+function srFillRender(q, a, tag) {
+  document.getElementById('sr-fill-tag').textContent = tag || '';
+  document.getElementById('sr-fill-q').textContent = q || '';
+  var inp = document.getElementById('sr-fill-input');
+  if (inp) { inp.value = ''; inp.disabled = false; }
+  document.getElementById('sr-fill-answer').style.display = 'none';
+  document.getElementById('sr-fill-area').style.display = 'block';
+  var sb = document.getElementById('sr-fill-submit');
+  if (sb) sb.disabled = false;
+  var _fwr = document.querySelector('.sr-flip-wrap');
+  if (_fwr) _fwr.style.display = 'none';
+  srFillCurrentAnswer = a || '';
+}
+
+(function(){ setSRMode(srMode); })();
+
+function srFillSubmit() {
+  document.getElementById('sr-fill-answer-text').textContent = srFillCurrentAnswer;
+  document.getElementById('sr-fill-answer').style.display = 'block';
+  var inp = document.getElementById('sr-fill-input');
+  if (inp) inp.disabled = true;
+  var sb = document.getElementById('sr-fill-submit');
+  if (sb) sb.disabled = true;
+  kfzSRFlipped = true;
+  document.getElementById('sr-grade-area').style.display = '';
+}
+</script>
+
+<!-- ===================== AP1-SIMULATION KFZ ===================== -->
+<main id="s-sim" class="screen">
+
+  <div id="sim-start">
+    <div class="quiz-hero">
+      <span class="quiz-hero-icon">🎓</span>
+      <h2>AP1-Simulation KFZ</h2>
+      <p style="font-size:13px;color:var(--tx2);line-height:1.6;">30 IHK-Fragen · 90 Minuten · Bestehensgrenze 50%</p>
+      <div class="quiz-hs-badge" id="sim-hs-badge">🏆 Bestleistung: —</div>
+      <button type="button" class="btn-primary" onclick="simStart()" style="margin-top:.75rem">Simulation starten</button>
+    </div>
+  </div>
+
+  <div id="sim-quiz" style="display:none">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
+      <div style="font-size:12px;color:var(--tx3)" id="sim-counter">Frage 1 / 30</div>
+      <div style="font-size:13px;font-weight:700;color:var(--ac);font-family:'JetBrains Mono',monospace" id="sim-timer">90:00</div>
+    </div>
+    <div class="quiz-progress-wrap"><div class="quiz-progress-bar" id="sim-prog" style="width:0%"></div></div>
+    <div class="quiz-card" style="margin-top:.75rem">
+      <div id="sim-q-text" class="quiz-question"></div>
+      <div id="sim-q-opts" class="quiz-opts"></div>
+      <div id="sim-q-exp" class="quiz-explanation" style="display:none"></div>
+      <button type="button" id="sim-q-next" class="quiz-next-btn" style="display:none" onclick="simNext()">Weiter →</button>
+    </div>
+  </div>
+
+  <div id="sim-end" style="display:none">
+    <div class="quiz-end-card">
+      <div class="quiz-score-big" id="sim-end-score">0</div>
+      <div class="quiz-score-sub" id="sim-end-sub">von 30 Fragen richtig</div>
+      <div class="quiz-end-hs" id="sim-end-hs"></div>
+      <div id="sim-end-breakdown" style="text-align:left;margin:.75rem 0;font-size:12px;color:var(--tx3);line-height:1.8;background:var(--bg2);border-radius:12px;padding:.75rem"></div>
+      <button class="btn-primary" onclick="simStart()" style="margin-bottom:.75rem">Neue Runde</button>
+      <button type="button" class="btn-primary" style="background:var(--bg3);color:var(--tx);margin-top:.5rem" onclick="showScreen('s-dash')">Zum Dashboard</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- Language Modal -->
+<div id="langModal" style="display:none;position:fixed;inset:0;background:#0008;z-index:9999;align-items:flex-end;justify-content:center" onclick="if(event.target===this)closeLangModal()">
+  <div style="background:var(--bg2);border-radius:20px 20px 0 0;padding:20px;width:100%;max-width:500px;max-height:60vh;overflow-y:auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+      <h2 style="margin:0;font-size:1.1rem">🌐 Sprache wählen</h2>
+      <button onclick="closeLangModal()" style="background:none;border:none;color:var(--tx3);font-size:1.3rem;cursor:pointer;min-height:44px;min-width:44px">✕</button>
+    </div>
+    <div class="lang-pill-grid">
+      <button class="lang-pill" data-lang="de" onclick="setLang('de')"><span class="lang-flag">🇩🇪</span><span class="lang-code">DE</span><span class="lang-name">Deutsch</span></button>
+      <button class="lang-pill" data-lang="en" onclick="setLang('en')"><span class="lang-flag">🇬🇧</span><span class="lang-code">EN</span><span class="lang-name">English</span></button>
+      <button class="lang-pill" data-lang="tr" onclick="setLang('tr')"><span class="lang-flag">🇹🇷</span><span class="lang-code">TR</span><span class="lang-name">Türkçe</span></button>
+      <button class="lang-pill" data-lang="ru" onclick="setLang('ru')"><span class="lang-flag">🇷🇺</span><span class="lang-code">RU</span><span class="lang-name">Русский</span></button>
+      <button class="lang-pill" data-lang="ar" onclick="setLang('ar')"><span class="lang-flag">🇸🇦</span><span class="lang-code">AR</span><span class="lang-name">العربية</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- What's New Toast -->
+<div class="whats-new-toast hidden" id="whatsNewToast">
+  <div class="wnt-header"><strong>🔧 SPARK KFZ v1.0</strong><button class="wnt-close" aria-label="Schließen" onclick="document.getElementById('whatsNewToast').classList.add('hidden');localStorage.setItem('kfz_wn_seen','1.0')">✕</button></div>
+  <div class="wnt-body">SPARK KFZ-Mechatroniker ist live! 60 SR-Karten, 45 Quiz-Fragen, KFZ-Rechner & HV-Lernfelder.</div>
+</div>
+
+<script>
+// ── Spracheingabe (Web Speech API) ────────────────────────────────────────────
+function srStartVoice() {
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var btn = document.getElementById('sr-mic-btn');
+  if(!SR) {
+    if(btn) { btn.title='Nicht unterstützt in diesem Browser'; btn.style.opacity='.3'; }
+    return;
+  }
+  var rec = new SR();
+  var langMap = {de:'de-DE',en:'en-US',tr:'tr-TR',ru:'ru-RU',ar:'ar-SA'};
+  rec.lang = langMap[localStorage.getItem('arc_lang')||'de'] || 'de-DE';
+  rec.interimResults = false;
+  rec.maxAlternatives = 1;
+  if(btn) btn.classList.add('listening');
+  rec.onresult = function(e) {
+    var t = e.results[0][0].transcript;
+    var inp = document.getElementById('sr-fill-input');
+    if(inp && !inp.disabled) inp.value = t;
+    if(btn) btn.classList.remove('listening');
+  };
+  rec.onerror = function() { if(btn) btn.classList.remove('listening'); };
+  rec.onend   = function() { if(btn) btn.classList.remove('listening'); };
+  rec.start();
+}
+</script>
+<script src="VOLTECH-daily.js" defer></script>
+<script>ArcDaily.init({pool:KFZ_SIM_QUESTIONS,format:'kfz',streakKey:'kfz_streak',color:'#dc2626'});</script>
+<script src="VOLTECH-sharecard.js" defer></script>
+<script src="VOLTECH-pwa.js" defer></script>
+<script src="VOLTECH-notif.js" defer></script>
+<script src="VOLTECH-wochenrueckblick.js" defer></script>
+<script>ArcWeekly.init({app:'SPARK',appColor:'#dc2626',streakKey:'kfz_streak'});</script>
+</body>
+</html>

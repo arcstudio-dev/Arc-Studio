@@ -3,125 +3,211 @@
 // Version: wird bei Änderungen hochgezählt → Cache wird erneuert
 // ══════════════════════════════════════════════════════════════
 
-var CACHE_NAME = 'voltiq-v6';
+var CACHE_NAME = 'arc-v46';
 
 var FILES_TO_CACHE = [
+  // ── Kern-Apps ─────────────────────────────────────────────
   '../voltiq.html',
   '../index.html',
   '../impressum.html',
   '../datenschutz.html',
+  '../voltech-base.css',
+  '../voltech-base.css?v=2',
+
+  // ── Berufs-Apps ───────────────────────────────────────────
+  '../VOLTECH-ampere.html',
+  '../VOLTECH-torque.html',
+  '../FISI-core.html',
+  '../FISI-lern.html',
+
+  // ── Shared Scripts ────────────────────────────────────────
+  '../VOLTECH-sharecard.js',
+  '../VOLTECH-pwa.js',
+  '../VOLTECH-notif.js',
+  '../VOLTECH-wochenrueckblick.js',
+    
+  // ── Lern-Suite & Tools ────────────────────────────────────
+  '../VOLTECH-lern-hub.html',
   '../VOLTECH-lern-basis.html',
   '../VOLTECH-lern-extra.html',
+  '../VOLTECH-lernplan.html',
+  '../VOLTECH-lernpfade.html',
   '../VOLTECH-mechatronik-pro.html',
   '../VOLTECH-sps.html',
   '../VOLTECH-berichtsheft.html',
   '../VOLTECH-tools2.html',
-  '../VOLTECH-ampere.html',
-  '../VOLTECH-torque.html',
+  '../VOLTECH-eigene-karten.html',
+  '../VOLTECH-achievements.html',
+  '../VOLTECH-analytics.html',
+  '../VOLTECH-ap2-sim.html',
   '../VOLTECH-ki.html',
-  '../pwa/manifest.json'
+  '../VOLTECH-ki-quiz.html',
+  '../VOLTECH-whats-new.html',
+  '../VOLTECH-focus.html',
+  '../VOLTECH-export.html',
+  '../VOLTECH-pwa-guide.html',
+  '../VOLTECH-tts.html',
+  '../VOLTECH-coach.html',
+  '../VOLTECH-qr.html',
+  '../VOLTECH-pruefung-sim.html',
+  '../VOLTECH-lerngruppen.html',
+  '../VOLTECH-quests.html',
+  '../VOLTECH-season.html',
+  '../VOLTECH-duell.html',
+  '../VOLTECH-rangliste.html',
+  '../VOLTECH-ki-lernplan.html',
+  '../VOLTECH-dashboard.html',
+  '../VOLTECH-wochenbericht.html',
+  '../VOLTECH-ausbilder-fragen.html',
+  '../VOLTECH-suche.html',
+  '../VOLTECH-cross-sr.html',
+  '../VOLTECH-lernkurven.html',
+  '../VOLTECH-vergleich.html',
+  '../VOLTECH-tandem.html',
+  '../VOLTECH-foto-karte.html',
+  '../VOLTECH-mentor.html',
+  '../spark-kfz.html',
+
+  // ── Weitere Apps ──────────────────────────────────────────
+  '../VOLTECH-ihk-archiv.html',
+  '../VOLTECH-english.html',
+  '../VOLTECH-ki-tutor.html',
+  '../VOLTECH-klassen.html',
+
+  // ── Community ─────────────────────────────────────────────
+  '../VOLTECH-forum.html',
+  '../quiz-live.html',
+  '../ausbilder.html',
+  '../schule.html',
+
+  // ── PWA ───────────────────────────────────────────────────
+  '../pwa/manifest.json',
+  '../pwa/icon-192.png',
+  '../pwa/icon-512.png',
 ];
 
-// ── INSTALL: alle Dateien in Cache laden ──────────────────────
+// ── INSTALL ──────────────────────────────────────────────────
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
       console.log('[VOLTIQ SW] Cache wird befüllt...');
-      return cache.addAll(FILES_TO_CACHE);
+      var results = FILES_TO_CACHE.map(function(url) {
+        return cache.add(url).catch(function(err) {
+          console.warn('[VOLTIQ SW] Konnte nicht cachen:', url, err);
+        });
+      });
+      return Promise.all(results);
     }).then(function() {
-      console.log('[VOLTIQ SW] Alle Dateien gecacht — Offline-Modus aktiv');
-      // Sofort aktivieren ohne auf alte SW zu warten
+      console.log('[VOLTIQ SW] Install abgeschlossen — Offline-Modus aktiv');
       return self.skipWaiting();
     })
   );
 });
 
-// ── ACTIVATE: alten Cache löschen ────────────────────────────
+// ── ACTIVATE: veraltete Caches löschen ───────────────────────
 self.addEventListener('activate', function(event) {
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
       return Promise.all(
         cacheNames
-          .filter(function(name) { return name !== CACHE_NAME; })
+          .filter(function(name) {
+            return name !== CACHE_NAME && name !== CACHE_NAME + '-fonts';
+          })
           .map(function(name) {
             console.log('[VOLTIQ SW] Alter Cache gelöscht:', name);
             return caches.delete(name);
           })
       );
     }).then(function() {
-      // Sofort alle Clients übernehmen
       return self.clients.claim();
     })
   );
 });
 
-// ── FETCH: Cache-First Strategie ─────────────────────────────
-// Zuerst aus Cache → bei Fehler Netzwerk → bei Fehler Fallback
+// ── FETCH: Stale-While-Revalidate ────────────────────────────
 self.addEventListener('fetch', function(event) {
-  // Nur GET-Anfragen abfangen
   if (event.request.method !== 'GET') return;
 
-  // Externe Ressourcen (Google Fonts etc.) durchlassen
   var url = new URL(event.request.url);
-  if (url.origin !== self.location.origin) {
-    // Externe Fonts: Network-First mit Cache-Fallback
-    if (url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com') {
-      event.respondWith(
-        caches.open(CACHE_NAME + '-fonts').then(function(cache) {
-          return fetch(event.request).then(function(response) {
+
+  // Externe Fonts: Network-First mit Cache-Fallback
+  if (url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com') {
+    event.respondWith(
+      caches.open(CACHE_NAME + '-fonts').then(function(cache) {
+        return fetch(event.request).then(function(response) {
+          if (response && response.status === 200) {
             cache.put(event.request, response.clone());
-            return response;
-          }).catch(function() {
-            return cache.match(event.request);
-          });
-        })
-      );
-    }
+          }
+          return response;
+        }).catch(function() {
+          return cache.match(event.request);
+        });
+      })
+    );
     return;
   }
 
-  // Lokale Dateien: Cache-First
+  if (url.origin !== self.location.origin) return;
+
+  // Lokale Dateien: Cache-First + Stale-While-Revalidate
   event.respondWith(
     caches.match(event.request).then(function(cached) {
       if (cached) {
-        // Aus Cache bedienen + im Hintergrund aktualisieren (Stale-While-Revalidate)
-        var fetchPromise = fetch(event.request).then(function(networkResponse) {
-          if (networkResponse && networkResponse.status === 200) {
-            caches.open(CACHE_NAME).then(function(cache) {
+        caches.open(CACHE_NAME).then(function(cache) {
+          return fetch(event.request).then(function(networkResponse) {
+            if (networkResponse && networkResponse.status === 200) {
               cache.put(event.request, networkResponse.clone());
-            });
-          }
-          return networkResponse;
-        }).catch(function() { /* Offline — Cache bleibt */ });
-
+            }
+          }).catch(function() {});
+        });
         return cached;
       }
-
-      // Nicht im Cache: Netzwerk versuchen
       return fetch(event.request).then(function(networkResponse) {
         if (networkResponse && networkResponse.status === 200) {
-          var responseToCache = networkResponse.clone();
           caches.open(CACHE_NAME).then(function(cache) {
-            cache.put(event.request, responseToCache);
+            cache.put(event.request, networkResponse.clone());
           });
         }
         return networkResponse;
       }).catch(function() {
-        // Offline + nicht gecacht → index.html als Fallback
         return caches.match('../voltiq.html');
       });
     })
   );
 });
 
-// ── MESSAGE: Cache manuell leeren (vom UI aufrufbar) ─────────
+// ── MESSAGE ───────────────────────────────────────────────────
 self.addEventListener('message', function(event) {
   if (event.data === 'skipWaiting') {
     self.skipWaiting();
   }
   if (event.data === 'clearCache') {
-    caches.delete(CACHE_NAME).then(function() {
-      console.log('[VOLTIQ SW] Cache geleert');
+    caches.keys().then(function(names) {
+      return Promise.all(names.map(function(n) { return caches.delete(n); }));
+    }).then(function() {
+      console.log('[VOLTIQ SW] Alle Caches geleert');
     });
   }
+  if (event.data && event.data.type === 'SHOW_REMINDER') {
+    self.registration.showNotification(event.data.title, {
+      body: event.data.body,
+      icon: '../pwa/icon-192.png',
+      badge: '../pwa/icon-192.png',
+      data: { url: event.data.url },
+      vibrate: [200, 100, 200]
+    });
+  }
+});
+
+// ── NOTIFICATIONCLICK ─────────────────────────────────────────
+self.addEventListener('notificationclick', function(event) {
+  event.notification.close();
+  event.waitUntil(
+    clients.matchAll({ type: 'window' }).then(function(clientList) {
+      for (var c of clientList) { if (c.focus) return c.focus(); }
+      return clients.openWindow(
+        (event.notification.data && event.notification.data.url) || '/'
+      );
+    })
+  );
 });
